@@ -1,0 +1,27 @@
+GitHub
+moje: https://github.com/lukasbx/Agros_HF_Modeling
+pánek: https://github.com/karban/agros2d
+
+
+Tex:
+http://latex.feec.vutbr.cz/cz/latex/diskuze/&wQmoVUElBU1tVFm8=295
+http://www.root.cz/clanky/tex-pro-zacatecniky-zaciname-s-dokumentem/nazory/215469/vlakno/
+brožura - konec na stránce 14
+
+
+
+XML:
+http://www.cs.vsb.cz/behalek/vyuka/pcsharp/text/ch08s01.html
+http://downloads.syntext.com/serna-free/4.4.0-RELEASE/
+
+
+
+SMB:
+http://tldp.org/HOWTO/SMB-HOWTO-8.html
+
+
+Microstrip:
+http://en.wikipedia.org/wiki/Microstrip
+http://en.wikipedia.org/wiki/Power_dividers_and_directional_couplers#Other_power_dividers
+
+-konec knížky na stránce 108 (pdf - 126)
