@@ -25,12 +25,35 @@
 \author{Lukáš Brtna}
 \title{Diplomová práce - HF Modul pro Agros}
 
+\newcommand{\me}{\mathrm{e}} % Eulerovo cislo
+\newcommand{\mi}{\mathrm{i}} % komplexni jednotka
+\newcommand{\mj}{\mathrm{j}} % komplexni jednotka
+\newcommand{\dif}{\,\mathrm{d}} % diferencial
+\newcommand{\mat}[1]{\mathrm{\mathbf{{#1}}}} % tenzor nebo matice
+\renewcommand{\vec}[1]{\mbox{\boldmath$#1$}} % vektor
+\newcommand{\faz}[1]{{\underline{#1}}} % fazor
+\newcommand{\vecfaz}[1]{\mbox{\underline{\boldmath$#1$}}} % fazor vektoru
+\newcommand*{\unit}[1]{\ensuremath{\mathrm{\,#1}}} % jednotky
+\newcommand*{\constant}[1]{\ensuremath{\mathrm{\,#1}}} % jednotky
+\newcommand{\degree}{\ensuremath{^{\circ}}} % stupne celsia
+\newcommand{\set}[1]{{\mathcal{#1}}} % oznaen množin
+\newcommand{\field}[1]{{\mathbb{#1}}} % oznaen těles
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+\newcommand{\tg}{\mathrm{tg}\ }
+\newcommand{\grad}{\mathrm{grad}\ }
+\newcommand{\curl}{\mathrm{curl}\ }
+\newcommand{\rot}{\mathrm{rot}\ }
+\renewcommand{\div}{\mathrm{div}\ }
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\konst}{\mathrm{konst}}
+
 \begin{document}
 \renewcommand\refname{Použitá literatura} %Místo slova "Reference" u Bibliography
-\newcommand{\tg}{\mathop{\rm tg}\nolimits} %Přidává schopnost psát "tg" v rovnici automaticky vpřímeným písmem
+%\newcommand{\tg}{\mathop{\rm tg}\nolimits} %Přidává schopnost psát "tg" v rovnici automaticky vpřímeným písmem
 \newcommand{\cotg}{\mathop{\rm cotg}\nolimits} %Přidává schopnost psát "cotg" v rovnici automaticky vpřímeným písmem
-\newcommand{\grad}{\mathop{\rm grad}\nolimits} %Přidává schopnost psát "grad" v rovnici automaticky vpřímeným písmem
-\newcommand{\rot}{\mathop{\rm rot}\nolimits} %Přidává schopnost psát "rot" v rovnici automaticky vpřímeným písmem
+%\newcommand{\grad}{\mathop{\rm grad}\nolimits} %Přidává schopnost psát "grad" v rovnici automaticky vpřímeným písmem
+%\newcommand{\rot}{\mathop{\rm rot}\nolimits} %Přidává schopnost psát "rot" v rovnici automaticky vpřímeným písmem
 \newcommand{\udiv}{\mathop{\rm div}\nolimits} %Přidává schopnost psát "div" v rovnici automaticky vpřímeným písmem; zde se musí použít "\udiv", protože "\div" je již obsazeno systémem
 \newcommand{\ud}{\mathrm{d}} %Přidává schopnost psát "d" v rovnici automaticky vpřímeným písmem
 
@@ -161,17 +184,486 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 %%Úvod%%
 \section{Úvod}
 Bylo nebylo. Za sedmero horami a sedmero řekami existoval program jménem Agros2D. Za jeho vývojem stáli udatní bojovníci katedry KTE jako Ing. David Pánek, Ing. Martin Mach nebo Ing. Václav Kotlan, Ph.D. v čele s chrabrým doc. Ing. Pavlem Karbanem, Ph.D. zvaným ,,Filek''. 
+
+Posuzování toho, co je vysoká frekvence je subjektivně závislé na oboru, v kterém se pohybujeme. Pro člověka pracujícího se síťovou frekvencí (50 Hz) bude 1 kHz již frekvence vysoká. Kdežto pro někoho navrhujícího satelitní spoje bude i 1 GHz frekvence nízká. Tato práce bude považovat za vysokofrekvenční zařízení systémy pracující s frekvencí odpovídající rádiovému a mikrovlnnému spektru - tj. 100 MHz až 1000 GHz. \cite{Pozar4}
+
 \newpage
 
-\section{Šíření vln o vysoké frekvenci}
-\subsection{Letí si to světem}
-Množství informace I jevu xi ze souboru vzájemně vylučujících se jevů X je kvantifikovatelnou veličinou.
+\section{Šíření vysokofrekvenčního elektromagnetického pole}
+Každé nestacionární elektromagnetické pole má charakter elektromagnetické vlny, která se šíří prostředím. Toto pole lze popsat veličinami vztahujícími se k jednotlivému elektrickému a magnetickému poli:
+\begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
+\begin{center} %pro zarovnání tabulky na střed
+\begin{tabular}{l l l}
+$\vec{E}$~~~ & $V \cdot m^{-1}$~~~ & intenzita elektrického pole, \\ 
+$\vec{D}$ & $C \cdot m^{-2}$ & elektrická indukce, \\ 
+$\vec{H}$ & $A \cdot m^{-1}$ & intenzita magnetického pole, \\ 
+$\vec{B}$ & $T$ & magnetická indukce. \\ 
+\end{tabular} 
+\end{center}
+\end{table}
 
-Když se má začít nový odstavec, musí se fyzicky vynechat řádek ve zdrojovém souboru. Nepoužívá se příkaz pro začátek nového řádku. Zajímavé, není-liž pravda?
+Vztahy mezi jednotlivými veličinami lze vyjádřit pomocí základních zákonů pro teorii elektromagnetického pole - soustavy Maxwellových rovnic, níže uvedených v diferenciálním tvaru:
+\begin{subequations}
+\begin{align}
+\label{maxdif1}
+\rot \vec{H} &= \vec{J} + \frac{\partial \vec{D}}{\partial t},
+\\
+\label{maxdif2}
+\rot \vec{E} &= - \frac{\partial \vec{B}}{\partial t},
+\\
+\label{maxdif3}
+\udiv \vec{D} &= \rho,
+\\
+\label{maxdif4}
+\udiv \vec{B} &= 0,
+\end{align}
+\end{subequations}
+kde $\vec{J} ~[A \cdot m^{-2}]$ je vektor proudové hustoty a $\rho ~[C \cdot m^{-3}]$ objemová hustota náboje. 
+
+Vztahy mezi vektorem indukce ($\vec{D}$, $\vec{B}$) a vektorem intenzity pole ($\vec{E}$, $\vec{H}$) lze potom vyjádřit:
+\begin{subequations}
+\begin{align}
+\label{epsilonE}
+\vec{D} &= \varepsilon \vec{E} = \varepsilon _0 \varepsilon _r \vec{E},
+\\
+\label{muH}
+\vec{B} &= \mu \vec{H} = \mu _0 \mu _r \vec{H},
+\end{align}
+\end{subequations}
+kde $\varepsilon _0$ je permitivita vakua, $\varepsilon _r$ relativní permitivita prostředí nebo materiálu, $\mu _0$ permeabilita vakua a $\mu _r$ relativní permeabilita prostředí nebo materiálu.
+
+Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční oblasti pomocí symbolicko-komplexní metody, nahrazením diference $\partial / \partial t$ za $\mj \omega$ a dosazením \ref{epsilonE} a \ref{muH}:
+\begin{subequations}
+\begin{align}
+\rot \vec{H} &= \vec{J} + \mj \omega \varepsilon \vec{E},
+\\
+\rot \vec{E} &= - \mj \omega \mu \vec{H},
+\\
+\udiv (\varepsilon \vec{E}) &= \rho,
+\\
+\udiv (\mu \vec{H}) &= 0.
+\end{align}
+\end{subequations}
+
+\subsubsection*{Helmholtzova rovnice}
+Pokud je pole nezřídlové mohou být první dvě Maxwellovy rovnice vyjádřeny:
+\begin{subequations}
+\label{maxvektor}
+\begin{align}
+\nabla \times \vec{E} &= -j\omega \mu \vec{H} ,
+\\
+\nabla \times \vec{H} &= j\omega \varepsilon \vec{E} .
+\end{align}
+\end{subequations}
+
+
+Tyto rovnice mohou být dále upraveny do tzv. Helmholtzovy vlnové rovnice:
+\begin{subequations}
+\label{helmholtz}
+\begin{align}
+\vec{H} &= \frac{\nabla \times \vec{E}}{-j \omega \mu}
+\\
+\nabla \times \frac{\nabla \times \vec{E}}{-j \omega \mu} &= j \omega \varepsilon \vec{E}
+\\
+\nabla \times \nabla \times \vec{E} &= \omega ^2 \mu \varepsilon \vec{E}
+\\
+k &= \omega \sqrt{\mu \varepsilon}
+\\
+\nabla \times \nabla \times \vec{E} &= k^2 \vec{E}
+\\
+- \nabla ^2 \vec{E} &= k^2 \vec{E}
+\\
+- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} &= k^2 \vec{E}
+\\
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_x &= 0 .
+\end{align}
+\end{subequations}
+
+\subsubsection*{Vlnová rovnice}
+Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvoditelné z Maxwellových rovnic v diferenciálním tvaru. Použijeme \ref{maxdif1} a \ref{maxdif2}. Na levou stranu \ref{maxdif1} dosadíme \ref{muH}. Na pravou dosadíme $\rot{J} = \gamma \cdot \vec{E}$, $\gamma ~[S \cdot m^{-1}]$ a \ref{epsilonE}. V \ref{dosadit3max} potom na pravou stranu dosadíme \ref{maxdif3}
+\begin{subequations}
+\begin{align}
+\frac{1}{\mu} \rot \vec{B} &= \mu \vec{E} + \varepsilon \frac{\partial \vec{E}}{\partial t}
+\\
+\rot \vec{B} &= \mu \gamma \vec{E} + \mu \varepsilon \frac{\partial \vec{E}}{\partial t}
+\end{align}
+\end{subequations}
+\begin{subequations}
+\begin{align}
+\rot \vec{E} &= - \frac{\partial \vec{B}}{\partial t}
+\\
+\rot \rot \vec{E} &= \grad \udiv \vec{E} - \triangle \vec{E}
+\\
+- \frac{\partial \rot \vec{B}}{\partial t} &= \grad \udiv \vec{E} - \triangle \vec{E}
+\\
+- \frac{\partial \left( \mu \gamma \vec{E} + \mu \varepsilon \dfrac{\partial \vec{E}}{\partial t} \right) }{\partial t} &= \grad \udiv \vec{E} - \triangle \vec{E}
+\\
+\label{dosadit3max}
+- \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= \grad \udiv \vec{E} - \triangle \vec{E}
+\\
+\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= 0.
+\end{align}
+\end{subequations}
+
+Podobně postupujeme i při výpočtu vektoru $H$, pouze místo \ref{maxdif3} použijeme \ref{maxdif4}. Výsledkem jsou tzv. zobecněné vlnové rovnice:
+\begin{subequations}
+\begin{align}
+\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= 0,
+\\
+\triangle \vec{H} - \mu \gamma \frac{\partial \vec{H}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{H}}{\partial t ^2} &= 0.
+\end{align}
+\end{subequations}
+
+\subsection{Šíření vln ve volném prostoru}
+
+
+\subsection{Šíření vln pomocí vlnovodů a vedení}
+\subsubsection{Vlnovody}
+Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jednom ze svých projektů. Zabývá se možností šíření elektromagnetických vln uvnitř duté trubice. A tuto myšlenku odmítá. Věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem.
+
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=5cm]{Waveguide.png}
+\caption{Vlnovod masivnější konstrukce pro šíření vln o nižší frekvenci (okolo 1 GHz)}
+\label{vlnovod}
+\end{center}
+\end{figure}
+
+Výhodou vlnovodů je jejich nízký útlum a schopnost přenášet vysoké výkony, stinnou stránkou ale je jejich rozměrnost (čím nižší frekvence, tím masivnější konstrukce) a cena. Pro frekvenci kolem 1 GHz jsou rozměry již 20 cm x 10 cm a s klesající frekvencí dále rostou (viz. obr. \ref{vlnovod}. Pro vysoké frekvence (nad 100 GHz) naopak rozměry klesají na desetiny milimetru a takovéto vlnovody jsou proto náročné na výrobu. Nezřídka se proto používají tzv. nadrozměrné vlnovody, kdy velikost vlnovodu překročí hranici pro šíření jednoho vidu a vlnovodem se šíří vidů více. 
+%Možno doplnit: "Pro dané rozměry a materiálové vlastnosti vlnovodu se tato hraniční frekvence pro šíření jednoho vidu nazývá frevencí mezní (cutoff) a bude o ní řeč později"
+
+Druhým způsobem pro přenos vysokých frekvencí jsou koaxiální vedení. Koaxiální vedení vynikají šířkou pásma, kterou mohou přenášet a jsou i cenově dostupnější, nicméně již méně jsou vhodná pro stavbu komplexních mikrovlnných komponent.
+
+Alternativu představují planární vlnovody vyráběné ve formě stripline, microstrip, koplanárního vlnovodu a mnoha dalších. Kromě malých rozměrů a nízké ceny umožňují díky planární technologii výroby i snadnou integrovatelnost s dalšími elektronickými prvky a stavbu mikrovlnných obvodů.
+
+Microstrip je dnes nejpoužívanějším médiem pro integrované mikrovlnné obvody. Sestává se z vodivého proužkou, který je od země oddělen dielektrickým substrátem, jak je znázorněno na obr. \ref{microstrip}. Microstrip byl vyvinut v laboratořích ITT jako konkurent jiné technologii, zveřejněné v roce 1952, stripline. Nevýhodou technologie microstrip v porovnání s klasickými vlnovody jsou její vyšší ztráty a nižší výkon, který je schopna přenášet. Z důvodu neuzavřenosti je také microstrip náchylnější na přeslechy a rušení.
+
+\begin{figure} 
+\begin{center}
+\includegraphics[width=5cm]{microstrip.png}
+\caption{Microstrip a jeho části\\zdroj: commons.wikimedia.org}
+\label{microstrip}
+\end{center}
+\end{figure}
+
+Elektromagnetická vlna šířící se microstripem existuje z části v dielektrickém substrátu a z části ve vzduchu nad ním. A jelikož dielektrická konstanta substrátu je jiná (větší) než vzduchu, vzniká nehomogenní médium, skrz které se vlna šíří. Nehomogenita a frekvenční rozptyl se ještě dále zhoršují spolu s větší šířkou substrátu. Proto až zvládnutí technologie výroby dostatečně tenkých substrátů umožňující menší frekvenční závislost vedení a potlačení podélných složek elektromagnetického pole umožnilo široké rozšíření a skutečný nástup technologie microstrip.
+%Možno doplnit: Microstrip neumožňuje šíření skutečných TEM vln. Při nenulové frekvenci jsou vždy přítomné i podélné složky $\vec{E}$ a $\vec{H}$ pole. Tyto složky jsou ale zanedbatelně malé, proto lze o přítomném poli hovořit jako o kvazi-TEM.
+
+\subsubsection{Typy vln šířících se prostřednictvím vlnovodů}
+Za běžných okolností nabývají vektory $\vec{E}$ a $\vec{H}$ hodnot v osách roviny kolmé na šíření pole i roviny rovnoběžné s šířením pole (podélné). V určitých případech však může dojít k potlačení podélné složky šíření. Přenosová vedení skládající se ze dvou a více vodičů umožňují šíření tzv. TEM vln (Transverse ElectroMagnetic - transverzálně elektromagnetických). Tyto vlny postrádají podélnou složku elektrického i magnetického pole. Vlnovody sestávající se z jednoho vodiče umožňují šíření TE vln (Transverse Electric - transverzálně elektrických) postrádajících podélnou složku elektrického pole nebo TM vln (Transverse magnetic - transverzálně magnetických) postrádajících podélnou složku magnetického pole. Nikoli však obou současně. Výhodou TEM vln je, že mají jedinečně definované napětí, proud a charakteristickou impedanci. U TE a TM vln toto jednoznačné určení charakteristické impedance není možné, ale existuje matematický postup, který dokáže úspěšně pracovat s modelem charakteristické impedance i u těchto vln.
+
+\begin{figure} 
+\begin{center}
+\includegraphics{geometrie.png}
+\caption{Geometrie válcového vlnovodu v kartézském souřadném systému}
+\label{geometrie}
+\end{center}
+\end{figure}
+
+\subsubsection{Maxwellovy rovnice pro šíření uvnitř válcových vlnovodů}
+Předpokladem je šíření harmonického pole se závislostí $\me ^{jwt}$ podél osy $z$ válcového přenosového vedení nebo vlnovodu, které je ve směru osy $z$ uniformní, nekonečně dlouhé a dokonale vodivé. Geometrie takového vlnovodu je znázorněna na obr. \ref{geometrie} Elektrické a magnetické pole potom může být vyjádřeno takto:
+\begin{subequations}
+\label{hromadna}
+\begin{align}
+\vec{E}(x, y, z)&=[\vec{e}(x, y) + \hat{z}e_z(x, y)] \me ^{j\beta z} ,
+\\
+\vec{H}(x, y, z)&=[\vec{h}(x, y) + \hat{z}h_z(x, y)] \me ^{j\beta z} .
+\end{align}
+\end{subequations}
+$\vec{e}(x,y)$ a $\vec{h}(x,y)$ vyjadřují příčnou (transverzální) složku elektrického a magnetického pole, $e_z$ a $h_z$ představují složku podélnou. Pokud by se vlna šířila v opačném směru (ne ve směru $+z$, ale $-z$), nahradí se $\beta$ za $-\beta$. V případě, kdy by byl přítomen útlum, nahradí se se konstanta šíření $j \beta$ za komplexní konstantu $\gamma$, $\gamma = \alpha + j \beta$.
+
+Pokud vlnovod nebo přenosové vedení jsou nezřídlové mohou být Maxwellovy rovnice vyjádřeny:
+\begin{subequations}
+\label{maxvektor2}
+\begin{align}
+\nabla \times \vec{E} &= -j\omega \mu \vec{H} ,
+\\
+\nabla \times \vec{H} &= j\omega \varepsilon \vec{E} .
+\end{align}
+\end{subequations}
+
+Tyto vektorové rovnice mohou být převedeny do tvaru jednotlivých parciálních diferenciálních rovnic:
+\begin{subequations}
+\begin{align}
+\frac{\partial E_z}{\partial y} + j \beta E_y &= -j \omega \mu H_x ,
+\label{maxpart1}
+\\
+-j \beta E_x - \frac{\partial E_z}{\partial x} &= - j \omega \mu H_y ,
+\\
+\frac{\partial E_y}{\partial x} - \frac{\partial E_x}{\partial y} &= -j \omega \mu H_z ,
+\end{align}
+\end{subequations}
+\begin{subequations}
+\begin{align}
+\frac{\partial H_z}{\partial y} + j \beta H_y &= j \omega \varepsilon E_x ,
+\label{maxpart4}
+\\
+-j \beta H_x - \frac{\partial H_z}{\partial x} &= j \omega \varepsilon E_y ,
+\label{maxpart5}
+\\
+\frac{\partial H_y}{\partial x} - \frac{\partial H_x}{\partial y} &= j \omega \varepsilon E_z .
+\end{align}
+\end{subequations}
+
+Z těchto rovnic mohou být následně vyjádřeny příčné (transverzální) složky jednotlivých $E$ a $H$ polí:
+\begin{subequations}
+\label{vyjadreno}
+\begin{align}
+H_x &= \frac{j}{k^2_c} \left( \omega \varepsilon \frac{\partial E_z}{\partial y} - \beta \frac{\partial H_z}{\partial x} \right) ,
+\\
+H_y &= \frac{-j}{k^2_c} \left( \omega \varepsilon \frac{\partial E_z}{\partial x} + \beta \frac{\partial H_z}{\partial y} \right) ,
+\\
+E_x &= \frac{-j}{k^2_c} \left( \beta \frac{\partial E_z}{\partial x} + \omega \mu \frac{\partial H_z}{\partial y} \right) ,
+\\
+E_y &= \frac{j}{k^2_c} \left(- \beta \frac{\partial E_z}{\partial y} + \omega \mu \frac{\partial H_z}{\partial x} \right) .
+\end{align}
+\end{subequations}
+
+Příklad výpočtu pro získání složky $H_x$ dosazením $E_y$ z \ref{maxpart5} do \ref{maxpart1}:
+%\begin{subequations}
+%momentálně uděláno jako nečíslované (pro výpočty)
+\begin{align*}
+%dále uvažuji, zda centrovat "=" nebo ne
+%1. řádek (a)
+E_y &= - \frac{\beta H_x}{\omega \varepsilon} - \frac{1}{j \omega \varepsilon} \frac{\partial H_z}{\partial x}
+\\
+%2. řádek (b)
+\frac{\partial E_z}{\partial y} + j \beta \left( - \frac{\beta H_x}{\omega \varepsilon} - \frac{1}{j \omega \varepsilon} \frac{\partial H_z}{\partial x} \right) &= -j \omega \mu H_x
+\\
+%3. řádek (c)
+\frac{\partial E_z}{\partial y} - j \frac{\beta ^2 H_x}{\omega \varepsilon} - \frac{\beta}{\omega \varepsilon} \frac{\partial H_z}{\partial x} &= -j \omega \mu H_x
+\\
+%4. řádek (d)
+\frac{\partial E_z}{\partial y} - \frac{\beta}{\omega \varepsilon} \frac{\partial H_z}{\partial x} &= -j \omega \mu H_x + j \frac{\beta ^2 H_x}{\omega \varepsilon}
+\\
+%5. řádek (e)
+H_x &= \frac{\dfrac{\partial E_z}{\partial y} - \dfrac{\beta ^2}{\omega \varepsilon} \dfrac{\partial H_z}{\partial x}}{-j \omega \mu + j \dfrac{\beta ^2}{\omega \varepsilon}}
+\\
+%6. řádek (f)
+H_x &= j \frac{\dfrac{\partial E_z}{\partial y} - \dfrac{\beta ^2}{\omega \varepsilon} \dfrac{\partial H_z}{\partial x}}{\dfrac{\omega ^2 \varepsilon \mu - \beta ^2}{\omega \varepsilon}}
+\\
+%7. řádek (g)
+H_x &= j \left( \frac{\partial E_z}{\partial y} - \frac{\beta}{\omega \varepsilon} \frac{\partial H_z}{\partial x} \right) \frac{\omega \varepsilon}{\omega ^2 \varepsilon \mu - \beta ^2}
+\\
+%8. řádek (h)
+k^2_c &= k^2 - \beta ^2 = {(\omega \sqrt{\mu \varepsilon})}^2 - \beta ^2 = \omega ^2 \mu \varepsilon - \beta ^2
+\\
+%9. řádek (i)
+H_x &= \frac{j}{k^2_c} \left( \mu \varepsilon \frac{\partial E_z}{\partial y} - \beta \frac{\partial H_z}{\partial x} \right),
+\end{align*}
+%\end{subequations}
+%nevím, jak správně vyjádřit "cutoff" wavenumber - vlnové číslo ?odříznutí? ?mezní?
+$k$ je vlnové číslo materiálu uvnitř přenosového vedení nebo vlnovodu, $k_c$ potom tzv. mezní (cutoff) vlnové číslo. V případě přítomnosti ztrát je $\varepsilon$ nahrazeno komplexním $\varepsilon (1 - j \tan{\sigma})$, kde $\tan{\sigma}$ představuje ztrátový tangens materiálu.
+
+\subsubsection{TEM vlny}
+Pro TEM (transverzálně elektromagnetické) vlny platí, že $E_z = 0$ a $H_z = 0$ (není zde přítomna podélná složka elektrického ani magnetického pole). Dosazením těchto hodnot do \ref{vyjadreno} zjistíme, že $H, E = j (0-0) / k^2_c$ a tedy $H, E = 0 / (k^2_c)$. Příčné složky polí jsou tedy také nulové. Pokud se ovšem $k^2_c = 0$, potom získáváme neurčitý výsledek. To mimo jiné znamená, že mezní (cutoff) vlnové číslo pro TEM vlny $k_c = 0$.
+
+Pokud dosadíme $E_z = 0$ do \ref{maxpart1}, $H_x$ poté do \ref{maxpart5} a $H_z = 0$, získáme:
+%\begin{subequations}
+%momentálně uděláno jako nečíslované (pro výpočty)
+\begin{align*}
+j \beta E_y &= -j \omega \mu H_x
+\\
+H_x &= - \frac{\beta E_y}{\omega \mu}
+\\
+-j \beta \left( - \frac{\beta E_y}{\omega \mu} \right) &= j \omega \varepsilon E_y
+\\
+\frac{\beta ^2}{\omega \mu} &= \omega \varepsilon
+\\
+\beta ^2 &= \omega ^2 \mu \varepsilon
+\\
+\beta &= \omega \sqrt{\mu \varepsilon} .
+\end{align*}
+%\end{subequations}
+
+%V \ref{maxvektor} byly uvedeny Maxwellovy rovnice ve vektorovém tvaru pro nezřídlové elektrické a magnetické pole. Tyto rovnice mohou být dále upraveny do tzv. Helmholtzovy vlnové rovnice:
+%\begin{subequations}
+%\label{helmholtz}
+%\begin{align}
+%\vec{H} &= \frac{\nabla \times \vec{E}}{-j \omega \mu}
+%\\
+%\nabla \times \frac{\nabla \times \vec{E}}{-j \omega \mu} &= j \omega \varepsilon \vec{E}
+%\\
+%\nabla \times \nabla \times \vec{E} &= \omega ^2 \mu \varepsilon \vec{E}
+%\\
+%k &= \omega \sqrt{\mu \varepsilon}
+%\\
+%\nabla \times \nabla \times \vec{E} &= k^2 \vec{E}
+%\\
+%- \nabla ^2 \vec{E} &= k^2 \vec{E}
+%\\
+%- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} &= k^2 \vec{E}
+%\\
+%\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_x &= 0 .
+%\end{align}
+%\end{subequations}
+
+V \ref{helmholtz} bylo uvedeno odvození Helmholtzovy rovnice. Její tvar pro $k = 0$ a příčné pole bez přítomnosti podélné složky $z$ lze vyjádřit:
+\begin{subequations}
+\begin{align}
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} \right) E_x &= 0 ,
+\\
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} \right) E_y &= 0 .
+\end{align}
+\end{subequations}
+
+Tyto rovnice potom mohou být přepsány do formy rovnic uvedených v \ref{hromadna}
+\begin{equation}
+\nabla ^2_t \vec{e} (x, y) = 0 ,
+\end{equation}
+využívající Laplacova operátoru ve dvourozměrném příčného pole.
+
+Stejný postup lze aplikovat i u příčného magnetického pole a dojít ke stejnému výsledku:
+\begin{equation}
+\nabla ^2_t \vec{h} (x, y) = 0 .
+\end{equation}
+
+Z toho plyne, že příčné pole TEM vlny je stejné jako statické pole mezi dvěma vodiči. A v případě elektrostatiky lze elektrické pole vyjádřit jako gradient skalárního potenciálu:
+\begin{equation}
+\vec{e} (x, y) = - \nabla _t \Phi (x, y) .
+\end{equation}
+Aby tato rovnice ale mohla platit, musí být ještě splněna podmínka, že pole musí být nevírové:
+\begin{equation}
+\nabla _t \times \vec{e} = 0 ,
+\end{equation}
+což v tomto případě opravdu platí:
+\begin{equation}
+\nabla _t \times \vec{e} = - j \omega \mu h_z \hat{z} = 0 .
+\end{equation}
+
+I toto pole lze potom tedy vyjádřit jako Laplacovu rovnici:
+\begin{equation}
+\nabla ^2_t \Phi (x,y) = 0 .
+\end{equation}
+
+V elektrostatice lze napětí vyjádřit jako rozdíl dvou potenciálů:
+\begin{equation}
+\label{napeti}
+U_{12} = \phi _1 - \phi _2 = \int ^2_1 \vec{E} \ud \vec{l} .
+\end{equation}
+Proud se poté získá z Ampérova zákona:
+\begin{equation}
+\label{amper}
+I = \oint _C \vec{H} \ud \vec{l}.
+\end{equation}
+
+Vlnová impedance TEM vlny se získá jako podíl příčného elektrického a magnetického pole. První rovnice vychází z \ref{maxpart4} při $\beta = \omega \sqrt{\mu \varepsilon}$:
+\begin{subequations}
+\label{ztem1}
+\begin{align}
+Z_{TEM} &= \frac{E_x}{H_y}
+\\
+j \beta H_y &= j \omega \varepsilon E_x
+\\
+\frac{\beta}{\omega \varepsilon} &= \frac{E_x}{H_y}
+\\
+\frac{E_x}{H_y} &= \frac{\omega \sqrt{\mu \varepsilon}}{\omega \varepsilon} = \sqrt{\dfrac{\mu}{\varepsilon}} = \eta .
+\end{align}
+\end{subequations}
+Druhá vychází z \ref{maxpart1}:
+\begin{subequations}
+\label{ztem2}
+\begin{align}
+Z_{TEM} &= - \frac{E_y}{H_x}
+\\
+j \beta E_x &= - j \omega \mu H_y
+\\
+\frac{E_y}{H_x} &= - \frac{\omega \mu}{\beta}
+\\
+- \frac{E_y}{H_x} &= \frac{\omega \mu}{\omega \sqrt{\mu \varepsilon}} = \sqrt{\dfrac{\mu}{\varepsilon}} = \eta .
+\end{align}
+\end{subequations}
+Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
+\begin{equation}
+\vec{h} (x, y) = \frac{1}{Z_{TEM}} \hat{z} \times \vec{e} (x, y) .
+\end{equation}
+
+Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
+
+\subsubsection{TE vlny}
+Na rozdíl od TEM vln, kde jsou podélné složky $H$ i $E$ pole se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
+\begin{subequations}
+\begin{align}
+H_x &= \frac{-j \beta}{k^2_c} \frac{\partial H_z}{\partial x} ,
+\\
+H_y &= \frac{-j \beta}{k^2_c} \frac{\partial H_z}{\partial y} ,
+\\
+E_x &= \frac{-j \omega \mu}{k^2_c} \frac{\partial H_z}{\partial y} ,
+\\
+E_y &= \frac{j \omega \mu}{k^2_c} \frac{\partial H_z}{\partial x} .
+\end{align}
+\end{subequations}
+
+U TE vln neplatí, že $k_c = 0$, a konstanta šíření $\beta$ je funkcí frekvence a geometrie vedení. Nejprve se proto musí spočítat $H_z$ z Helmoholtzovi vlnové rovnice (odvození této rovnice je nastíněno v \ref{helmholtz}):
+\begin{equation}
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) H_z = 0 .
+\end{equation}
+Tato rovnice může být pro $H_z(x,y,z) = h_z(x,y)e^{-j \beta z}$ upravena na:
+\begin{equation}
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + k^2_c \right) h_z = 0 .
+\end{equation}
+K vyřešení této rovnice musí být tedy známy hraniční podmínky a geometrie konkrétního vlnovodu.
+
+Impedance TE vlny je:
+\begin{subequations}
+\begin{align}
+Z_{TE} &= - \frac{E_y}{H_x}
+\\
+j \beta E_y &= - j \omega \mu H_x
+\\
+- \frac{E_y}{H_x} &= \frac{\omega \mu}{\beta} ,
+\end{align}
+\end{subequations}
+z čehož plyne, že $Z_{TE}$ je frekvenčně závislé.
+
+\subsubsection{TM vlny}
+TM vlny jsou podobné TE vlnám tím, že je v nich též jedna podélná složka pole přítomna. V tomto případě je to složka $z$ pole $H$. Platí tedy $E_z = 0$, $H_z \neq 0$. Tyto vlny jsou proto také někdy nazývány jako $H$ vlny. Rovnice \ref{vyjadreno} mohou být pro TM vlny vyjádřeny jako:
+\begin{subequations}
+\begin{align}
+H_x &= \frac{j \omega \varepsilon}{k^2_c} \frac{\partial E_z}{\partial y} ,
+\\
+H_y &= \frac{-j \omega \varepsilon}{k^2_c} \frac{\partial E_z}{\partial x} ,
+\\
+E_x &= \frac{-j \beta}{k^2_c} \frac{\partial E_z}{\partial x} ,
+\\
+E_y &= \frac{-j \beta}{k^2_c} \frac{\partial E_z}{\partial y} .
+\end{align}
+\end{subequations}
+
+Stejně jako u TE vln, neplatí, že $k_c = 0$, a konstanta šíření $\beta$ je funkcí frekvence a geometrie vedení. Nejprve se proto musí spočítat $E_z$ z Helmoholtzovi vlnové rovnice (odvození této rovnice je nastíněno v \ref{helmholtz}):
+\begin{equation}
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_z = 0 .
+\end{equation}
+Tato rovnice může být pro $E_z(x,y,z) = e_z(x,y)e^{-j \beta z}$ upravena na:
+\begin{equation}
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + k^2_c \right) e_z = 0 .
+\end{equation}
+K vyřešení této rovnice musí být tedy známy hraniční podmínky a geometrie konkrétního vlnovodu.
+
+Impedance TM vlny je:
+\begin{subequations}
+\begin{align}
+Z_{TM} &= - \frac{E_y}{H_x}
+\\
+j \beta E_y &= - j \omega \mu H_x
+\\
+- \frac{E_y}{H_x} &= \frac{\beta}{\omega \eta} ,
+%dodělat! výpočet není kompletní a úplně správně!
+%doplnit podle papírů doma!
+\end{align}
+\end{subequations}
+z čehož plyne, že $Z_{TM}$ je frekvenčně závislé.
+
+
+\section{Numerické řešení elektromagnetického pole}
+\subsection{Metoda konečných prvků}
+\subsection{Agros 2D}
+\section{Návrh modulu pro VF pole}
+
 
 
 %%Stránka pro zkoušení vkládání obrázků%%
-\newpage
+\clearpage
 \section{Zatím moje pokusy}
 \subsection{Vkládání obrázků}
 \begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
@@ -262,14 +754,14 @@ Slavná rovnice Alberta Einsteina praví: $E = m \cdot c^2$. Platí pro všechny
 Nyní se podíváme na zoubek číslovaným rovnicím. Co třeba takhle první Maxwellova rovnice v diferenciálním tvaru?
 \begin{equation} \label{max1} %číslovaná rovnice mimo text se uvádní příkazem "equation"; příkaz "label" slouží pro vytvoření návěští pro hypertextový odkaz na rovnici
 \rot\vec{H}=\vec{J}+\dfrac{\partial \vec{D}}{\partial t}
-%"\rot" - rotace; "\vec" - znak vektoru; "\frac{•}{•}" - rovnice; "\partial" - znak diferenciální rovnice 
+%"\rot" - rotace; "\vec" - znak vektoru; "\frac{}{}" - rovnice; "\partial" - znak diferenciální rovnice 
 \end{equation}
 
 Pro sazbu matematiky platí obecně jiná pravidla. Jinak se například zadávají mezery nebo tučné písmo.
 \begin{equation}
 \forall x \in \mathbf{R}: \qquad x^{2+p} \geq 0
-%"\forall" - znak "pro všechna"; "\in" - znak "je prvkem"; "\mathbf{•}" - tučné písmo v rovnici; "\qquad" - delší mezera v rovnici; více znaků v jednom místě musí být uzavřeno mezi "{}"; "\geq" - znak "větší nebo rovno"
-%pro tučné nevzpřímené symboly je místo "\mathbf{•}" nutno použít "\boldsymbol"
+%"\forall" - znak "pro všechna"; "\in" - znak "je prvkem"; "\mathbf{}" - tučné písmo v rovnici; "\qquad" - delší mezera v rovnici; více znaků v jednom místě musí být uzavřeno mezi "{}"; "\geq" - znak "větší nebo rovno"
+%pro tučné nevzpřímené symboly je místo "\mathbf{}" nutno použít "\boldsymbol"
 \end{equation}
 
 Zkusíme i odkazování. Vzpomínáte si na první Maxwellovu rovnici? Jestli ne, je to tato: \ref{max1}. Btw., znáte ten hezký symbol pro množinu reálných čísel? Je to tento: $\mathbb{R}$
@@ -294,7 +786,7 @@ Kdo z vás si vzpomene ještě na limity a ví, co tato znamená?
 Vrátíme se zpět k Maxwellovým rovnicím. Budeme pokračovat popořadě a podíváme se na druhou Maxwellovu rovnici, tentokrát v integrálním tvaru:
 \begin{equation}
 \oint_c \vec{E} \overrightarrow{\ud l} = -\frac{\ud\Phi}{\ud t}
-%"\oint_c" - křivkový integrál po křivce c (zadává se jako dolní index); "\overrightarrow{•} - šipka vektoru ale přes více znaků; "\ud" - vzpřímené "d" používané v integrálu; "\Phi" - velké řecké fí 
+%"\oint_c" - křivkový integrál po křivce c (zadává se jako dolní index); "\overrightarrow{} - šipka vektoru ale přes více znaků; "\ud" - vzpřímené "d" používané v integrálu; "\Phi" - velké řecké fí 
 \end{equation}
 
 A nyní něco trochu komplikovanějšího. Jak se spočte taková zřídlovost?
@@ -310,17 +802,20 @@ E_x & E_y & E_z
 \end{array} \right|
 \end{equation}
 
-Občas bude zapotřebí vysázet víc rovnic současně. Například všechny Maxwellovy rovnice. Následující ukázka předvádí použití příkazu "eqnarray" nahrazující "equation" pro sazbu více rovnic. Rovnítko se musí doplnit znaky "\&": "\&=\&", aby byly rovnice správně vycentrovány na střed.
-\begin{eqnarray}
-%prostředí "eqnarray" nahrazuje "equation" pro sazbu více rovnic
-f(x)&=&\cos x
-%rovnítko se musí doplnit znaky "\&": "\&=\&", aby byly rovnice správně vycentrovány na střed
+Občas bude zapotřebí vysázet víc rovnic současně. Například všechny Maxwellovy rovnice. Následující ukázka předvádí použití příkazu "align" nahrazující "equation" pro sazbu více rovnic. Rovnítko se musí doplnit znaky "\&": "\&=", aby byly rovnice správně vycentrovány na střed.
+\begin{subequations}
+%prostředí subequations zajistí podčíslování rovnic jako a, b, c
+\begin{align}
+%prostředí "align" nahrazuje "equation" pro sazbu více rovnic
+f(x)&=\cos x
+%rovnítko se musí doplnit znakem "&": "&=", aby byly rovnice správně vycentrovány na střed
 \\
-f'(x)&=&-\sin x
+f'(x)&=-\sin x
 \\
-\udiv x &=& 0
+\udiv x &= 0
 %pro divergenci se musí použít "\udiv" namísto "\div"
-\end{eqnarray}
+\end{align}
+\end{subequations}
 
 \noindent
 %"\noindent" - zajistí, že následující odstavec na začátku nebude odsazený
@@ -379,7 +874,7 @@ Hlavní města některých států USA, které jsem navštívil:
 \subsubsection{Odsazování - tabulátor}
 Největší města některých států USA, která jsem navštívil:
 \begin{tabbing} %začátek odsazovaného prostředí tabulátoru
-\hspace{5cm}\=\kill %parametrem v "\hspace{•cm}" je délka odsazení tabulátoru
+\hspace{5cm}\=\kill %parametrem v "\hspace{cm}" je délka odsazení tabulátoru
 Illinois \> Chicago \\ %nejdříve první část, potom tabulátor "\>" a druhá část
 Maryland \> Baltimore \\ 
 Kalifornie \> Los Angeles 
@@ -414,7 +909,8 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 
 %Do "{}" příjmení autora, za to vložit z citace.cz, na název kurzívu
 %Podle názvu v "{}" se poté odkazuje uvnitř textu pomocí příkazu "\cite{}" 
-\bibitem{Pozar} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 1998. Second Edition. ISBN 0-471-17096-8.
+\bibitem{Pozar2} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 1998. Second Edition. ISBN 0-471-17096-8.
+\bibitem{Pozar4} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 2012. Fourth Edition. ISBN 978-0-470-63155-3.
 
 \end{thebibliography}
 
