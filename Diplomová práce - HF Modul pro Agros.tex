@@ -171,9 +171,9 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 \section*{Seznam symbolů a zkratek}
 
 \begin{tabular}{ll}
-\textbf{AFB}\dotfill & Astro-fyzikální Borec \\  
-\textbf{NMNS}~\ldots\ldots\ldots & Nejlepší Město Na Světě \\ 
-\textbf{MK}\dotfill & Mini-kára \\ 
+\textbf{TE}\dotfill & Transverzálně elektrický \\  
+\textbf{TEM}~\ldots\ldots\ldots & Transverzálně elektromagnetický \\ 
+\textbf{TM}\dotfill & Transverzálně magnetický \\ 
 \end{tabular} 
 \newpage
 
@@ -183,7 +183,7 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 
 %%Úvod%%
 \section{Úvod}
-Bylo nebylo. Za sedmero horami a sedmero řekami existoval program jménem Agros2D. Za jeho vývojem stáli udatní bojovníci katedry KTE jako Ing. David Pánek, Ing. Martin Mach nebo Ing. Václav Kotlan, Ph.D. v čele s chrabrým doc. Ing. Pavlem Karbanem, Ph.D. zvaným ,,Filek''. 
+Předkládaná diplomová práce má za cíl rozšířit program Agros2D, resp. jeho knihovnu Hermes, vyvíjený na katedře KTE o modul umožňující modelování vysokofrekvenčního pole. Práce také shrnuje obecné poznatky v oblasti vysokofrekvenčního elektromagnetického pole a pokládá teoretický základ pro následnou tvorbu modulu.
 
 Posuzování toho, co je vysoká frekvence je subjektivně závislé na oboru, v kterém se pohybujeme. Pro člověka pracujícího se síťovou frekvencí (50 Hz) bude 1 kHz již frekvence vysoká. Kdežto pro někoho navrhujícího satelitní spoje bude i 1 GHz frekvence nízká. Tato práce bude považovat za vysokofrekvenční zařízení systémy pracující s frekvencí odpovídající rádiovému a mikrovlnnému spektru - tj. 100 MHz až 1000 GHz. \cite{Pozar4}
 
@@ -230,54 +230,102 @@ Vztahy mezi vektorem indukce ($\vec{D}$, $\vec{B}$) a vektorem intenzity pole ($
 \vec{B} &= \mu \vec{H} = \mu _0 \mu _r \vec{H},
 \end{align}
 \end{subequations}
-kde $\varepsilon _0$ je permitivita vakua, $\varepsilon _r$ relativní permitivita prostředí nebo materiálu, $\mu _0$ permeabilita vakua a $\mu _r$ relativní permeabilita prostředí nebo materiálu.
+kde $\varepsilon _0 ~[F \cdot m^{-1}]$ je permitivita vakua, $\varepsilon _r$ relativní permitivita prostředí nebo materiálu, $\mu _0 ~[H \cdot m^{-1}]$ permeabilita vakua a $\mu _r$ relativní permeabilita prostředí nebo materiálu.
 
 Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční oblasti pomocí symbolicko-komplexní metody, nahrazením diference $\partial / \partial t$ za $\mj \omega$ a dosazením \ref{epsilonE} a \ref{muH}:
 \begin{subequations}
 \begin{align}
-\rot \vec{H} &= \vec{J} + \mj \omega \varepsilon \vec{E},
+\rot \faz{H} &= \faz{J} + \mj \omega \varepsilon \faz{E},
 \\
-\rot \vec{E} &= - \mj \omega \mu \vec{H},
+\rot \faz{E} &= - \mj \omega \mu \faz{H},
 \\
-\udiv (\varepsilon \vec{E}) &= \rho,
+\udiv (\varepsilon \faz{E}) &= \rho,
 \\
-\udiv (\mu \vec{H}) &= 0.
+\udiv (\mu \faz{H}) &= 0.
 \end{align}
 \end{subequations}
 
+Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$.
+
 \subsubsection*{Helmholtzova rovnice}
-Pokud je pole nezřídlové mohou být první dvě Maxwellovy rovnice vyjádřeny:
+Pro harmonicky proměnné ($\frac{\partial}{\partial t} = \mj \omega$) pole bez vnějších zdrojů ($\rho = 0$, $\faz{J} _{ext} = 0$) mohou být první dvě Maxwellovy rovnice vyjádřeny ve formě fázoru:
 \begin{subequations}
 \label{maxvektor}
 \begin{align}
-\nabla \times \vec{E} &= -j\omega \mu \vec{H} ,
+\nabla \times \faz{E} &= -j\omega \mu \faz{H} ,
 \\
-\nabla \times \vec{H} &= j\omega \varepsilon \vec{E} .
+\nabla \times \faz{H} &= j\omega \varepsilon \faz{E} .
 \end{align}
 \end{subequations}
 
 
-Tyto rovnice mohou být dále upraveny do tzv. Helmholtzovy vlnové rovnice:
+Pomocí následujících kroků mohou být tyto rovnice upraveny do tvaru tzv. Helmholtzovy vlnové rovnice (pro fázor vektoru $E$):
 \begin{subequations}
 \label{helmholtz}
 \begin{align}
-\vec{H} &= \frac{\nabla \times \vec{E}}{-j \omega \mu}
+\faz{H} &= \frac{\nabla \times \faz{E}}{-j \omega \mu}
 \\
-\nabla \times \frac{\nabla \times \vec{E}}{-j \omega \mu} &= j \omega \varepsilon \vec{E}
+\nabla \times \frac{\nabla \times \faz{E}}{-j \omega \mu} &= j \omega \varepsilon \faz{E}
 \\
-\nabla \times \nabla \times \vec{E} &= \omega ^2 \mu \varepsilon \vec{E}
+\nabla \times \nabla \times \faz{E} &= \omega ^2 \mu \varepsilon \faz{E}
 \\
 k &= \omega \sqrt{\mu \varepsilon}
 \\
-\nabla \times \nabla \times \vec{E} &= k^2 \vec{E}
+\nabla \times \nabla \times \faz{E} &= k^2 \faz{E}
 \\
-- \nabla ^2 \vec{E} &= k^2 \vec{E}
+\label{helmhomo}
+- \nabla ^2 \faz{E} &= k^2 \faz{E}
 \\
-- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} &= k^2 \vec{E}
+- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} &= k^2 \faz{E}
 \\
 \left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_x &= 0 .
 \end{align}
 \end{subequations}
+
+Konstanta $k ~[m ^{-1}]$ je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě a také na frekvenci:
+\begin{equation}
+k = \omega \sqrt{\mu \varepsilon} .
+\end{equation}
+
+Tvar uvedený v \ref{helmhomo} bývá nazýván jako \textbf{homogenní Helmholtzova rovnice} pro fázor vektoru $E$:
+\begin{equation}
+\nabla ^2 \faz{E} + k^2 \faz{E} = 0 ,
+\end{equation}
+a platí pro oblast bez vnějších zdrojů ($\rho = 0$, $\faz{J} _{ext} = 0$).
+
+Pokud neplatí, že $\rho = 0$, $\faz{J} _{ext} = 0$, pravá strana rovnice není nulová (nejsou nulové členy obsahující $\rho$ a $\faz{J} _{ext}$) a tvar se označuje jako \textbf{nehomogenní Helmholtzova rovnice}:
+\begin{equation}
+\nabla ^2 \faz{E} + k^2 \faz{E} = \grad \frac{\rho}{\varepsilon} + \mj \omega \mu \faz{J} _{ext} .
+\end{equation}
+
+Podobně se postupuje i při výpočtu Helmholtzovy rovnice pro fázor vektoru $B$. Homogenní Helmholtzova rovnice má tvar:
+\begin{equation}
+\nabla ^2 \faz{B} + k ^2 \faz{B} = 0 .
+\end{equation}
+Rozšířením o pravou stranu v prostředí se vnějším zdroji ($\faz{J} _{ext} \neq 0$) dojdeme k nehomogenní Helmholtzově rovnici pro fázor vektoru $B$:
+\begin{equation}
+\nabla ^2 \faz{B} + k ^2 \faz{B} = - \mu \rot \faz{J} _{ext} .
+\end{equation}
+
+Zejména pro popis přenosových vedení se používá také konstanta $\gamma$ (nemá nic společného s gamou používanou pro veličinu konduktivity) vyjadřující měrnou vlnovou míru přenosu:
+\begin{equation}
+\gamma = \alpha + j \beta ,
+\end{equation}
+$\alpha ~[Np \cdot km ^{-1}]$ představuje měrný útlum a $\beta ~[rad \cdot km ^{-1}]$ měrný fázový posun.
+
+Dalším parametrem, kterým je možné popsat určité prostředí, je vlnová impedance $Z ~[\Omega]$:
+\begin{equation}
+\faz{Z} = \frac{\omega \mu}{\faz{k}} = \sqrt{\dfrac{\mj \omega \mu}{\mj \omega \varepsilon + \omega}} .
+\end{equation}
+Vlnová impedance je obecně komplexní veličinou popisující poměr mezi intenzitou elektrického pole $\faz{E}$ a intenzitou magnetického pole $\faz{H}$:
+\begin{equation}
+\faz{Z} = \frac{\faz{E}}{\faz{H}} .
+\end{equation}
+Ve volném prostoru je vlnová impedance rovna tzv. vlastní (intrinsic) impedanci:
+\begin{equation}
+\faz{Z_0} = \eta _0 = \sqrt{\dfrac{\mu _0}{\epsilon _0}} = 377 \omega .
+\end{equation}
+
 
 \subsubsection*{Vlnová rovnice}
 Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvoditelné z Maxwellových rovnic v diferenciálním tvaru. Použijeme \ref{maxdif1} a \ref{maxdif2}. Na levou stranu \ref{maxdif1} dosadíme \ref{muH}. Na pravou dosadíme $\rot{J} = \gamma \cdot \vec{E}$, $\gamma ~[S \cdot m^{-1}]$ a \ref{epsilonE}. V \ref{dosadit3max} potom na pravou stranu dosadíme \ref{maxdif3}
@@ -305,8 +353,9 @@ Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvo
 \end{align}
 \end{subequations}
 
-Podobně postupujeme i při výpočtu vektoru $H$, pouze místo \ref{maxdif3} použijeme \ref{maxdif4}. Výsledkem jsou tzv. zobecněné vlnové rovnice:
+Podobně postupujeme i při výpočtu vektoru $H$, pouze místo \ref{maxdif3} použijeme \ref{maxdif4}. Výsledkem jsou tzv. \textbf{zobecněné vlnové rovnice}:
 \begin{subequations}
+\label{vlnovka}
 \begin{align}
 \triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= 0,
 \\
@@ -314,16 +363,37 @@ Podobně postupujeme i při výpočtu vektoru $H$, pouze místo \ref{maxdif3} po
 \end{align}
 \end{subequations}
 
+Pokud na prostředí působí navíc proud vynucený vnější zdrojem ($\vec{J} _{\mathrm{ext}}$), přecházejí tyto rovnice do nehomogenní vlnové rovnice (pravá strana rovnic není rovna nule):
+\begin{subequations}
+\begin{align}
+\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{\mathrm{ext}}}{\partial t} ,
+\\
+\triangle \vec{H} - \mu \gamma \frac{\partial \vec{H}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{H}}{\partial t ^2} &= - \mu \rot \vec{J} _{\mathrm{ext}}.
+\end{align}
+\end{subequations}
+
+Téměř identické rovnice platí také pro vektory elektrické indukce $\vec{D}$ a magnetické indukce $\vec{B}$:
+\begin{subequations}
+\label{DHnehom}
+\begin{align}
+\triangle \vec{D} - \mu \gamma \frac{\partial \vec{D}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{D}}{\partial t ^2} &= \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{\mathrm{ext}}}{\partial t} ,
+\\
+\triangle \vec{B} - \mu \gamma \frac{\partial \vec{B}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{B}}{\partial t ^2} &= - \mu \rot \vec{J} _{\mathrm{ext}}.
+\end{align}
+\end{subequations}
+Výše uvedené nehomogenní rovnice \ref{DHnehom} přejdou při $\vec{J} _{\mathrm{ext}} = 0$ do rovnic homogenních stejně jako \ref{vlnovka} (pravá strana rovnic bude rovna 0).
+
 \subsection{Šíření vln ve volném prostoru}
 
 
+\newpage
 \subsection{Šíření vln pomocí vlnovodů a vedení}
 \subsubsection{Vlnovody}
 Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jednom ze svých projektů. Zabývá se možností šíření elektromagnetických vln uvnitř duté trubice. A tuto myšlenku odmítá. Věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem.
 
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=5cm]{Waveguide.png}
+\includegraphics[width=8cm]{vlnovod.pdf}
 \caption{Vlnovod masivnější konstrukce pro šíření vln o nižší frekvenci (okolo 1 GHz)}
 \label{vlnovod}
 \end{center}
@@ -338,10 +408,10 @@ Alternativu představují planární vlnovody vyráběné ve formě stripline, m
 
 Microstrip je dnes nejpoužívanějším médiem pro integrované mikrovlnné obvody. Sestává se z vodivého proužkou, který je od země oddělen dielektrickým substrátem, jak je znázorněno na obr. \ref{microstrip}. Microstrip byl vyvinut v laboratořích ITT jako konkurent jiné technologii, zveřejněné v roce 1952, stripline. Nevýhodou technologie microstrip v porovnání s klasickými vlnovody jsou její vyšší ztráty a nižší výkon, který je schopna přenášet. Z důvodu neuzavřenosti je také microstrip náchylnější na přeslechy a rušení.
 
-\begin{figure} 
+\begin{figure}[h] 
 \begin{center}
 \includegraphics[width=5cm]{microstrip.png}
-\caption{Microstrip a jeho části\\zdroj: commons.wikimedia.org}
+\caption{Microstrip a jeho části}
 \label{microstrip}
 \end{center}
 \end{figure}
@@ -365,9 +435,9 @@ Předpokladem je šíření harmonického pole se závislostí $\me ^{jwt}$ pod�
 \begin{subequations}
 \label{hromadna}
 \begin{align}
-\vec{E}(x, y, z)&=[\vec{e}(x, y) + \hat{z}e_z(x, y)] \me ^{j\beta z} ,
+\faz{E}(x, y, z)&=[\faz{e}(x, y) + \hat{z}e_z(x, y)] \me ^{j\beta z} ,
 \\
-\vec{H}(x, y, z)&=[\vec{h}(x, y) + \hat{z}h_z(x, y)] \me ^{j\beta z} .
+\faz{H}(x, y, z)&=[\faz{h}(x, y) + \hat{z}h_z(x, y)] \me ^{j\beta z} .
 \end{align}
 \end{subequations}
 $\vec{e}(x,y)$ a $\vec{h}(x,y)$ vyjadřují příčnou (transverzální) složku elektrického a magnetického pole, $e_z$ a $h_z$ představují složku podélnou. Pokud by se vlna šířila v opačném směru (ne ve směru $+z$, ale $-z$), nahradí se $\beta$ za $-\beta$. V případě, kdy by byl přítomen útlum, nahradí se se konstanta šíření $j \beta$ za komplexní konstantu $\gamma$, $\gamma = \alpha + j \beta$.
@@ -376,9 +446,9 @@ Pokud vlnovod nebo přenosové vedení jsou nezřídlové mohou být Maxwellovy 
 \begin{subequations}
 \label{maxvektor2}
 \begin{align}
-\nabla \times \vec{E} &= -j\omega \mu \vec{H} ,
+\nabla \times \faz{E} &= -j\omega \mu \faz{H} ,
 \\
-\nabla \times \vec{H} &= j\omega \varepsilon \vec{E} .
+\nabla \times \faz{H} &= j\omega \varepsilon \faz{E} .
 \end{align}
 \end{subequations}
 
@@ -453,7 +523,7 @@ H_x &= \frac{j}{k^2_c} \left( \mu \varepsilon \frac{\partial E_z}{\partial y} - 
 \end{align*}
 %\end{subequations}
 %nevím, jak správně vyjádřit "cutoff" wavenumber - vlnové číslo ?odříznutí? ?mezní?
-$k$ je vlnové číslo materiálu uvnitř přenosového vedení nebo vlnovodu, $k_c$ potom tzv. mezní (cutoff) vlnové číslo. V případě přítomnosti ztrát je $\varepsilon$ nahrazeno komplexním $\varepsilon (1 - j \tan{\sigma})$, kde $\tan{\sigma}$ představuje ztrátový tangens materiálu.
+$k$ je vlnové číslo materiálu uvnitř přenosového vedení nebo vlnovodu, $k_c$ potom tzv. mezní (cutoff) vlnové číslo. V případě přítomnosti ztrát je $\varepsilon$ nahrazeno komplexním $\varepsilon (1 - j \tan{\gamma})$, kde $\tan{\gamma}$ představuje ztrátový tangens materiálu.
 
 \subsubsection{TEM vlny}
 Pro TEM (transverzálně elektromagnetické) vlny platí, že $E_z = 0$ a $H_z = 0$ (není zde přítomna podélná složka elektrického ani magnetického pole). Dosazením těchto hodnot do \ref{vyjadreno} zjistíme, že $H, E = j (0-0) / k^2_c$ a tedy $H, E = 0 / (k^2_c)$. Příčné složky polí jsou tedy také nulové. Pokud se ovšem $k^2_c = 0$, potom získáváme neurčitý výsledek. To mimo jiné znamená, že mezní (cutoff) vlnové číslo pro TEM vlny $k_c = 0$.
@@ -509,26 +579,26 @@ V \ref{helmholtz} bylo uvedeno odvození Helmholtzovy rovnice. Její tvar pro $k
 
 Tyto rovnice potom mohou být přepsány do formy rovnic uvedených v \ref{hromadna}
 \begin{equation}
-\nabla ^2_t \vec{e} (x, y) = 0 ,
+\nabla ^2_t \faz{e} (x, y) = 0 ,
 \end{equation}
 využívající Laplacova operátoru ve dvourozměrném příčného pole.
 
 Stejný postup lze aplikovat i u příčného magnetického pole a dojít ke stejnému výsledku:
 \begin{equation}
-\nabla ^2_t \vec{h} (x, y) = 0 .
+\nabla ^2_t \faz{h} (x, y) = 0 .
 \end{equation}
 
 Z toho plyne, že příčné pole TEM vlny je stejné jako statické pole mezi dvěma vodiči. A v případě elektrostatiky lze elektrické pole vyjádřit jako gradient skalárního potenciálu:
 \begin{equation}
-\vec{e} (x, y) = - \nabla _t \Phi (x, y) .
+\faz{e} (x, y) = - \nabla _t \Phi (x, y) .
 \end{equation}
 Aby tato rovnice ale mohla platit, musí být ještě splněna podmínka, že pole musí být nevírové:
 \begin{equation}
-\nabla _t \times \vec{e} = 0 ,
+\nabla _t \times \faz{e} = 0 ,
 \end{equation}
 což v tomto případě opravdu platí:
 \begin{equation}
-\nabla _t \times \vec{e} = - j \omega \mu h_z \hat{z} = 0 .
+\nabla _t \times \faz{e} = - j \omega \mu h_z \hat{z} = 0 .
 \end{equation}
 
 I toto pole lze potom tedy vyjádřit jako Laplacovu rovnici:
@@ -539,12 +609,12 @@ I toto pole lze potom tedy vyjádřit jako Laplacovu rovnici:
 V elektrostatice lze napětí vyjádřit jako rozdíl dvou potenciálů:
 \begin{equation}
 \label{napeti}
-U_{12} = \phi _1 - \phi _2 = \int ^2_1 \vec{E} \ud \vec{l} .
+U_{12} = \phi _1 - \phi _2 = \int ^2_1 \faz{E} \ud \faz{l} .
 \end{equation}
 Proud se poté získá z Ampérova zákona:
 \begin{equation}
 \label{amper}
-I = \oint _C \vec{H} \ud \vec{l}.
+I = \oint _C \faz{H} \ud \faz{l}.
 \end{equation}
 
 Vlnová impedance TEM vlny se získá jako podíl příčného elektrického a magnetického pole. První rovnice vychází z \ref{maxpart4} při $\beta = \omega \sqrt{\mu \varepsilon}$:
@@ -575,7 +645,7 @@ j \beta E_x &= - j \omega \mu H_y
 \end{subequations}
 Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
 \begin{equation}
-\vec{h} (x, y) = \frac{1}{Z_{TEM}} \hat{z} \times \vec{e} (x, y) .
+\faz{h} (x, y) = \frac{1}{Z_{TEM}} \hat{z} \times \faz{e} (x, y) .
 \end{equation}
 
 Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
@@ -643,18 +713,17 @@ K vyřešení této rovnice musí být tedy známy hraniční podmínky a geomet
 Impedance TM vlny je:
 \begin{subequations}
 \begin{align}
-Z_{TM} &= - \frac{E_y}{H_x}
+Z_{TM} &= \frac{E_x}{H_y}
 \\
-j \beta E_y &= - j \omega \mu H_x
+j \beta H_y &= j \omega \varepsilon E_x
 \\
-- \frac{E_y}{H_x} &= \frac{\beta}{\omega \eta} ,
-%dodělat! výpočet není kompletní a úplně správně!
-%doplnit podle papírů doma!
+\frac{E_x}{H_y} &= \frac{\beta}{\omega \varepsilon} ,
 \end{align}
 \end{subequations}
 z čehož plyne, že $Z_{TM}$ je frekvenčně závislé.
 
 
+\newpage
 \section{Numerické řešení elektromagnetického pole}
 \subsection{Metoda konečných prvků}
 \subsection{Agros 2D}
@@ -897,6 +966,16 @@ System.out.println("Ja su lama, nevzpomenu si ani na zapis hlavicky v Jave")
 %%Závěr%%
 \clearpage %\newpage nefunguje, po plouvocím objektu (obrázek, tabulka) musí pro novou stránku následovat "clearpage" 
 \section{Závěr}
+Věřím, že se povede dojít až k úspěšnému odvození finálních rovnic a vytvoření modulu pro modelování vysokofrekvenčního pole.
+
+V současné době zdokonaluji kapitolu o vlnovodech a chtěl bych odvodit okrajové podmínky pro Helmholtzovu rovnici (ale nevím, co to je ani jak na to) - samotnou Helmholtzovu rovnici jsem již odvodil. Také bych Helmholtzovu rovnici chtěl vyjádřit ve válcových souřadnicích.
+
+V další fázi bych dotáhl do konce kapitolu o šíření vln ve volném prostoru a vytvořil kapitolu (nebo přílohu) se stručnými informacemi o programu Agros2D a jeho ovládání.
+
+Poté přijde na řadu to nejtěžší. Zjistit bližší informace o tom, co jsou to tzv. slabé formy, odvodit rovnice, vytvořit modul a analyzovat jeho chování uvnitř programu Agros2D.
+
+Na závěr potom porovnat jeho chování a modelování vysokofrekvenčních zařízení v programu Comsol.
+
 Modleme se za to, že se práce úspěšně povede dotáhnout do konce a v dubnu tady bude moci čnít: ,,Práce dokončena''
 
 In nomine Patris et Filii et Spiritus Sancti. Amen.
@@ -911,6 +990,11 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 %Podle názvu v "{}" se poté odkazuje uvnitř textu pomocí příkazu "\cite{}" 
 \bibitem{Pozar2} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 1998. Second Edition. ISBN 0-471-17096-8.
 \bibitem{Pozar4} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 2012. Fourth Edition. ISBN 978-0-470-63155-3.
+\bibitem{Kastner} KASTNER, Raphael. SCHOOL OF ELECTRICAL ENGINEERING, Tel Aviv University. Antennas and Radiation. Tel Aviv, 2009. Dostupné z: http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Frequency-Domain
+\bibitem{Dimensions} Rectangular waveguide dimensions. Microwaves101.com [online]. Tucson, AZ, November 3, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/waveguidedimensions.cfm
+\bibitem{Microstrip} Microstrip. Microwaves101.com [online]. Tucson, AZ, February 18, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/microstrip.cfm
+\bibitem{Instrinsic} Intrinsic Impedance. Antenna-Theory.com [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
+\bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. Agros2D [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
 
 \end{thebibliography}
 
@@ -935,5 +1019,39 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \phantomsection %Pro správné zobrazení čísla stránky v pdf rejsříku a přesný hyperodkaz
 \addcontentsline{toc}{section}{Přílohy}
 \section*{Příloha I.}
+
+\newpage
+\section*{Harmonogram činností}
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline 
+\textbf{~~~Měsíc a rok~~~} & \textbf{~~~~~~~~~~~~~~~Rozpis činností~~~~~~~~~~~~~~~} \\ 
+\hline 
+Listopad 2012 & Helmhlotzova rovnice, vlnovody \\ 
+\hline 
+Prosinec 2012 & Šíření vln ve volném prostoru, Agros2D \\ 
+\hline 
+Leden 2013 & Metoda konečných prvků \\ 
+\hline 
+Únor 2013 & Návrh modulu pro VF pole \\ 
+\hline 
+Březen 2013 & Ověření funkčnosti proti Comsolu, ladění \\ 
+\hline 
+Duben 2013 & Opravy, dodělávky \\ 
+\hline 
+\end{tabular} 
+\end{table}
+
+\vspace*{20mm}
+\begin{flushright}
+Vedoucí práce: Ing. David Pánek, Ph.D.
+\hspace{10mm}
+
+\vspace*{10mm}
+Podpis vedoucího práce: \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots
+
+\vspace*{10mm}
+Datum: \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots
+\end{flushright}
 
 \end{document}
