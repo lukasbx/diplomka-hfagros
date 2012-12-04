@@ -194,10 +194,10 @@ Každé nestacionární elektromagnetické pole má charakter elektromagnetické
 \begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
 \begin{center} %pro zarovnání tabulky na střed
 \begin{tabular}{l l l}
-$\vec{E}$~~~ & $V \cdot m^{-1}$~~~ & intenzita elektrického pole, \\ 
-$\vec{D}$ & $C \cdot m^{-2}$ & elektrická indukce, \\ 
-$\vec{H}$ & $A \cdot m^{-1}$ & intenzita magnetického pole, \\ 
-$\vec{B}$ & $T$ & magnetická indukce. \\ 
+$\vec{E}$~~~ & $\mathrm{[V \cdot m^{-1}]}$~~~ & intenzita elektrického pole, \\ 
+$\vec{D}$ & $\mathrm{[C \cdot m^{-2}]}$ & elektrická indukce, \\ 
+$\vec{H}$ & $\mathrm{[A \cdot m^{-1}]}$ & intenzita magnetického pole, \\ 
+$\vec{B}$ & $\mathrm{[T]}$ & magnetická indukce. \\ 
 \end{tabular} 
 \end{center}
 \end{table}
@@ -218,7 +218,7 @@ Vztahy mezi jednotlivými veličinami lze vyjádřit pomocí základních zákon
 \udiv \vec{B} &= 0,
 \end{align}
 \end{subequations}
-kde $\vec{J} ~[A \cdot m^{-2}]$ je vektor proudové hustoty a $\rho ~[C \cdot m^{-3}]$ objemová hustota náboje. 
+kde $\vec{J} ~\mathrm{[A \cdot m^{-2}]}$ je vektor proudové hustoty a $\rho ~\mathrm{[C \cdot m^{-3}]}$ objemová hustota náboje. 
 
 Vztahy mezi vektorem indukce ($\vec{D}$, $\vec{B}$) a vektorem intenzity pole ($\vec{E}$, $\vec{H}$) lze potom vyjádřit:
 \begin{subequations}
@@ -230,90 +230,149 @@ Vztahy mezi vektorem indukce ($\vec{D}$, $\vec{B}$) a vektorem intenzity pole ($
 \vec{B} &= \mu \vec{H} = \mu _0 \mu _r \vec{H},
 \end{align}
 \end{subequations}
-kde $\varepsilon _0 ~[F \cdot m^{-1}]$ je permitivita vakua, $\varepsilon _r$ relativní permitivita prostředí nebo materiálu, $\mu _0 ~[H \cdot m^{-1}]$ permeabilita vakua a $\mu _r$ relativní permeabilita prostředí nebo materiálu.
+kde $\varepsilon _0 ~\mathrm{[F \cdot m^{-1}]}$ je permitivita vakua, $\varepsilon _r$ relativní permitivita prostředí nebo materiálu, $\mu _0 ~\mathrm{[H \cdot m^{-1}]}$ permeabilita vakua a $\mu _r$ relativní permeabilita prostředí nebo materiálu.
 
 Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční oblasti pomocí symbolicko-komplexní metody, nahrazením diference $\partial / \partial t$ za $\mj \omega$ a dosazením \ref{epsilonE} a \ref{muH}:
 \begin{subequations}
 \begin{align}
-\rot \faz{H} &= \faz{J} + \mj \omega \varepsilon \faz{E},
+\rot \faz{\vec{H}} &= \faz{J} + \mj \omega \varepsilon \faz{\vec{E}},
 \\
-\rot \faz{E} &= - \mj \omega \mu \faz{H},
+\rot \faz{\vec{E}} &= - \mj \omega \mu \faz{\vec{H}},
 \\
-\udiv (\varepsilon \faz{E}) &= \rho,
+\udiv (\varepsilon \faz{\vec{E}}) &= \rho,
 \\
-\udiv (\mu \faz{H}) &= 0.
+\udiv (\mu \faz{\vec{H}}) &= 0.
 \end{align}
 \end{subequations}
 
 Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$.
 
-\subsubsection*{Helmholtzova rovnice}
-Pro harmonicky proměnné ($\frac{\partial}{\partial t} = \mj \omega$) pole bez vnějších zdrojů ($\rho = 0$, $\faz{J} _{ext} = 0$) mohou být první dvě Maxwellovy rovnice vyjádřeny ve formě fázoru:
+
+\subsection{Vlnová rovnice}
+\subsubsection*{Vlnová rovnice pro vektor $\vec{E}$}
+Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvoditelné z Maxwellových rovnic v diferenciálním tvaru. Použijeme \ref{maxdif1} (první Maxwellovu rovnici), ale budeme uvažovat, že kromě indukovaného proudu se v oblasti nachází také proud vnucený vnějším zdrojem. Výsledkem bude modifikace rovnice \ref{maxdif1} na:
+\begin{equation}
+\label{maxdif1ext}
+\rot \vec{H} = \vec{J} + \frac{\partial \vec{D}}{\partial t} + \vec{J} _{ext} .
+\end{equation}
+Na levou stranu rovnice \ref{maxdif1ext} dosadíme za $\vec{H}$ výraz z \ref{muH}. Na pravou stranu dosadíme za $\vec{J} = \gamma \cdot \vec{E}$, $\gamma ~\mathrm{[S \cdot m^{-1}]}$ a za $\vec{D}$ výraz z \ref{epsilonE}:
 \begin{subequations}
-\label{maxvektor}
 \begin{align}
-\nabla \times \faz{E} &= -j\omega \mu \faz{H} ,
+\frac{1}{\mu} \rot \vec{B} &= \gamma \vec{E} + \varepsilon \frac{\partial \vec{E}}{\partial t} + \vec{J} _{ext}
 \\
-\nabla \times \faz{H} &= j\omega \varepsilon \faz{E} .
+\label{rotB}
+\rot \vec{B} &= \mu \gamma \vec{E} + \mu \varepsilon \frac{\partial \vec{E}}{\partial t} + \mu \vec{J} _{ext} .
 \end{align}
 \end{subequations}
+Na \ref{maxdif2} (druhou Maxwellovu rovnici) použijeme operaci rotace:
+\begin{equation}
+\rot \rot \vec{E} = - \frac{\partial}{\partial t} \rot \vec{B}
+\end{equation}
+Za výraz $\rot \vec{B}$ na pravou stranu rovnice dosadíme \ref{rotB}:
+\begin{equation}
+\rot \rot \vec{E} = - \frac{\partial}{\partial t} \left( \mu \gamma \vec{E} + \mu \varepsilon \frac{\partial \vec{E}}{\partial t} + \mu \vec{J} _{ext} \right) .
+\end{equation}
+Na levou stranu rovnice použijeme vztah vektorové identity $\rot \rot \vec{E} =  \grad \div \vec{E} - \triangle \vec{E}$, pravou stranu rovnice roznásobíme:
+\begin{equation}
+\grad \div \vec{E} - \triangle \vec{E} = - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t^2} - \mu \frac{\partial \vec{J} _{ext}}{\partial t} .
+\end{equation}
+Z \ref{maxdif3} (třetí Maxwellovy rovnice) dosadíme za $\div \vec{E}$ výraz $\frac{\rho}{\varepsilon}$. Na pravou stranu rovnice přesuneme zdrojové funkce elektromagnetického pole. Výsledkem je \textbf{zobecněná nehomogenní vlnová rovnice pro vektor} \vec{E}:
+\begin{equation}
+\label{nehomovlnovkaE}
+\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} = \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{ext}}{\partial t} .
+\end{equation}
+Pokud na dané prostředí nepůsobí vnější zdroje ($\rho = 0$ a $\vec{J} _{ext} = 0$), je pravá strana nulová a rovnice přechází do tvaru \textbf{zobecněné homogenní vlnové rovnice pro vektor} $\vec{E}$:
+\begin{equation}
+\label{homovlnovkaE}
+\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} = 0 .
+\end{equation}
 
+\subsubsection*{Vlnová rovnice pro vektor $\vec{B}$}
+Postup při odvozování vektoru magnetické indukce $\vec{B}$ se příliš neliší od odvození vektoru intenzity elektrického pole $\vec{E}$ . Z \ref{maxdif1ext} (modifikované první Maxwellovy rovnice) opět vyjádříme \ref{rotB} ($\rot \vec{B}$). Na rovnici poté použijeme operaci rotace:
+\begin{equation}
+\rot \rot \vec{B} = \mu \gamma \rot \vec{E} + \mu \varepsilon \frac{\partial \rot \vec{E}}{\partial t} + \mu \rot \vec{J} _{ext} .
+\end{equation}
+Na levou stranu rovnice použijeme vztah vektorové identity $\rot \rot \vec{E} =  \grad \div \vec{E} - \triangle \vec{E}$, za výraz $\rot \vec{E}$ na pravé straně dosadíme \ref{maxdif2} (druhá Maxwellova rovnice):
+\begin{equation}
+\grad \div \vec{B} - \triangle \vec{B} = - \mu \gamma \frac{\partial \vec{B}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{B}}{\partial t^2} + \mu \rot \vec{J} _{ext} .
+\end{equation}
+Nakonec dosadíme z \ref{maxdif4} (čtvrté Maxwellovy rovnice) $\div \vec{B} = 0$ a zdrojové funkce elektromagnetického pole opět přesuneme na pravou stranu. Získáme \textbf{nehomogenní vlnovou rovnici pro vektor} $\vec{B}$:
+\begin{equation}
+\label{nehomovlnovkaB}
+\triangle \vec{B} - \mu \gamma \frac{\partial \vec{B}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{B}}{\partial t^2} = - \mu \rot \vec{J} _{ext} .
+\end{equation}
+Pokud na dané prostředí nepůsobí vnější zdroje ($\rho = 0$ a $\vec{J} _{ext} = 0$), je pravá strana nulová a rovnice přechází do tvaru \textbf{homogenní vlnové rovnice pro vektor} $\vec{B}$:
+\begin{equation}
+\label{homovlnovkaB}
+\triangle \vec{B} - \mu \gamma \frac{\partial \vec{B}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{B}}{\partial t^2} = 0 .
+\end{equation}
 
-Pomocí následujících kroků mohou být tyto rovnice upraveny do tvaru tzv. Helmholtzovy vlnové rovnice (pro fázor vektoru $E$):
+\subsubsection*{Vlnové rovnice pro vektory $\vec{D}$ a $\vec{H}$}
+Téměř identické rovnice platí také pro vektory elektrické indukce $\vec{D}$ a intenzity magnetického pole $\vec{H}$:
 \begin{subequations}
-\label{helmholtz}
+\label{DHnehom}
 \begin{align}
-\faz{H} &= \frac{\nabla \times \faz{E}}{-j \omega \mu}
+\triangle \vec{D} - \mu \gamma \frac{\partial \vec{D}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{D}}{\partial t ^2} &= \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{ext}}{\partial t} ,
 \\
-\nabla \times \frac{\nabla \times \faz{E}}{-j \omega \mu} &= j \omega \varepsilon \faz{E}
-\\
-\nabla \times \nabla \times \faz{E} &= \omega ^2 \mu \varepsilon \faz{E}
-\\
-k &= \omega \sqrt{\mu \varepsilon}
-\\
-\nabla \times \nabla \times \faz{E} &= k^2 \faz{E}
-\\
-\label{helmhomo}
-- \nabla ^2 \faz{E} &= k^2 \faz{E}
-\\
-- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} &= k^2 \faz{E}
-\\
-\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_x &= 0 .
+\triangle \vec{B} - \mu \gamma \frac{\partial \vec{B}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{B}}{\partial t ^2} &= - \mu \rot \vec{J} _{ext}.
 \end{align}
 \end{subequations}
+Výše uvedené nehomogenní rovnice \ref{DHnehom} přejdou při $\vec{J} _{ext} = 0$ a $\rho = 0$ do rovnic homogenních stejně jako \ref{homovlnovkaE} a \ref{homovlnovkaB} (pravá strana rovnic bude rovna 0).
 
-Konstanta $k ~[m ^{-1}]$ je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě a také na frekvenci:
+
+
+\subsection{Helmholtzova rovnice}
+Speciálním případem vlnové rovnice pro harmonicky proměnné ($\mj \omega$) pole ve frekvenční oblasti je tzv. Helmholtzova rovnice, pojmenovaná podle německého fyzika Hermanna Ludwiga Helmholtze.
+
+\subsubsection*{Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$}
+Aplikací Fourierovy transformace na \ref{nehomovlnovkaE} (nehomogenní vlnovou rovnici pro vektor $\vec{E}$) a použitím symbolicko-komplexní metody, lze rovnici zapsat ve formě:
+\begin{equation}
+\triangle \faz{\vec{E}} - \mj \omega \mu \gamma \faz{\vec{E}} - \mj ^2 \omega ^2 \mu \varepsilon \faz{\vec{E}} = \grad \frac{\rho}{\varepsilon} + \mj \omega \mu \faz{\vec{J}} _{ext}
+\end{equation}
+a následně jí malou úpravou (vytknutím) přepsat jako:
+\begin{equation}
+\triangle \faz{\vec{E}} - \mj \omega \mu (\gamma + \mj \omega \varepsilon) \faz{\vec{E}} = \grad \frac{\rho}{\varepsilon} + \mj \omega \mu \faz{\vec{J}} _{ext} .
+\end{equation}
+Pro další krok je potřeba zavést konstantu šíření $\faz{k} = \pm \sqrt{- \mj \omega \mu (\gamma + \mj \omega \varepsilon)}$. Substituce potom rovnici zjednoduší na:
+\begin{equation}
+\triangle \faz{\vec{E}} + \faz{k} ^2 \faz{\vec{E}} = \grad \frac{\rho}{\varepsilon} + \mj \omega \mu \faz{\vec{J}} _{ext} .
+\end{equation}
+Tato rovnice se označuje jako \textbf{nehomogenní Helmholtzova rovnice (pro} $\faz{\vec{E}}$\textbf{)}.
+
+Pro oblast bez vnějších zdrojů ($\rho = 0$, $\faz{\vec{J}} _{ext} = 0$) lze tuto rovnici zjednodušit do tvaru \textbf{homogenní Helmholtzovy rovnice (pro} $\faz{\vec{E}}$\textbf{)}:
+\begin{equation}
+\label{homohelmholtze}
+\triangle \faz{\vec{E}} + \faz{k} ^2 \faz{\vec{E}} = 0 .
+\end{equation}
+
+\subsubsection*{Helmholtzova rovnice pro fázor vektoru $\faz{\vec{B}}$}
+Podobně se postupuje i pro vyjádření $\faz{\vec{B}}$. Aplikací Fourierovy transformace na \ref{nehomovlnovkaB} (nehomogenní vlnovou rovnici pro vektor $\vec{B}$) a použitím symbolicko-komplexní metody, lze rovnici zapsat ve formě:
+\begin{equation}
+\triangle \faz{\vec{B}} - \mj \omega \mu \gamma \faz{\vec{B}} - \mj ^2 \omega ^2 \mu \varepsilon \faz{\vec{E}} = - \mu \rot \faz{\vec{J}} _{ext}
+\end{equation}
+a následně jí malou úpravou (vytknutím) přepsat jako:
+\begin{equation}
+\triangle \faz{\vec{B}} - \mj \omega \mu (\gamma + \mj \omega \varepsilon) \faz{\vec{B}} = - \mu \rot \faz{\vec{J}} _{ext} .
+\end{equation}
+Zavedení konstanty šíření $\faz{k} = \pm \sqrt{- \mj \omega \mu (\gamma + \mj \omega \varepsilon)}$ potom rovnici zjednoduší na:
+\begin{equation}
+\triangle \faz{\vec{B}} + \faz{k} ^2 \faz{\vec{B}} = - \mu \rot \faz{\vec{J}} _{ext} .
+\end{equation}
+Tato rovnice se označuje jako \textbf{nehomogenní Helmholtzova rovnice (pro} $\faz{\vec{B}}$\textbf{)}.
+
+Pokud v regionu nejsou přítomny vnější zdroje ($\rho = 0$, $\faz{\vec{J}} _{ext} = 0$) lze tuto rovnici zjednodušit do tvaru \textbf{homogenní Helmholtzovy rovnice (pro} $\faz{\vec{B}}$\textbf{)}:
+\begin{equation}
+\triangle \faz{\vec{B}} + \faz{k} ^2 \faz{\vec{B}} = 0 .
+\end{equation}
+
+Konstanta $k ~\mathrm{[m ^{-1}]}$, zavedená výše, je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě, konduktivitě a také na frekvenci. Pro homogenní prostředí bez vnějších zdrojů ji lze zapsat jako:
 \begin{equation}
 k = \omega \sqrt{\mu \varepsilon} .
 \end{equation}
 
-Tvar uvedený v \ref{helmhomo} bývá nazýván jako \textbf{homogenní Helmholtzova rovnice} pro fázor vektoru $E$:
-\begin{equation}
-\nabla ^2 \faz{E} + k^2 \faz{E} = 0 ,
-\end{equation}
-a platí pro oblast bez vnějších zdrojů ($\rho = 0$, $\faz{J} _{ext} = 0$).
 
-Pokud neplatí, že $\rho = 0$, $\faz{J} _{ext} = 0$, pravá strana rovnice není nulová (nejsou nulové členy obsahující $\rho$ a $\faz{J} _{ext}$) a tvar se označuje jako \textbf{nehomogenní Helmholtzova rovnice}:
-\begin{equation}
-\nabla ^2 \faz{E} + k^2 \faz{E} = \grad \frac{\rho}{\varepsilon} + \mj \omega \mu \faz{J} _{ext} .
-\end{equation}
-
-Podobně se postupuje i při výpočtu Helmholtzovy rovnice pro fázor vektoru $B$. Homogenní Helmholtzova rovnice má tvar:
-\begin{equation}
-\nabla ^2 \faz{B} + k ^2 \faz{B} = 0 .
-\end{equation}
-Rozšířením o pravou stranu v prostředí se vnějším zdroji ($\faz{J} _{ext} \neq 0$) dojdeme k nehomogenní Helmholtzově rovnici pro fázor vektoru $B$:
-\begin{equation}
-\nabla ^2 \faz{B} + k ^2 \faz{B} = - \mu \rot \faz{J} _{ext} .
-\end{equation}
-
-Zejména pro popis přenosových vedení se používá také konstanta $\gamma$ (nemá nic společného s gamou používanou pro veličinu konduktivity) vyjadřující měrnou vlnovou míru přenosu:
-\begin{equation}
-\gamma = \alpha + j \beta ,
-\end{equation}
-$\alpha ~[Np \cdot km ^{-1}]$ představuje měrný útlum a $\beta ~[rad \cdot km ^{-1}]$ měrný fázový posun.
-
-Dalším parametrem, kterým je možné popsat určité prostředí, je vlnová impedance $Z ~[\Omega]$:
+\subsubsection*{Vlnová impedance}
+Dalším parametrem, kterým je možné popsat určité prostředí, je vlnová impedance $Z ~\mathrm{[\Omega]}$:
 \begin{equation}
 \faz{Z} = \frac{\omega \mu}{\faz{k}} = \sqrt{\dfrac{\mj \omega \mu}{\mj \omega \varepsilon + \omega}} .
 \end{equation}
@@ -323,65 +382,9 @@ Vlnová impedance je obecně komplexní veličinou popisující poměr mezi inte
 \end{equation}
 Ve volném prostoru je vlnová impedance rovna tzv. vlastní (intrinsic) impedanci:
 \begin{equation}
-\faz{Z_0} = \eta _0 = \sqrt{\dfrac{\mu _0}{\epsilon _0}} = 377 \omega .
+\faz{Z_0} = \eta _0 = \sqrt{\dfrac{\mu _0}{\varepsilon _0}} = 377 \Omega .
 \end{equation}
 
-
-\subsubsection*{Vlnová rovnice}
-Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvoditelné z Maxwellových rovnic v diferenciálním tvaru. Použijeme \ref{maxdif1} a \ref{maxdif2}. Na levou stranu \ref{maxdif1} dosadíme \ref{muH}. Na pravou dosadíme $\rot{J} = \gamma \cdot \vec{E}$, $\gamma ~[S \cdot m^{-1}]$ a \ref{epsilonE}. V \ref{dosadit3max} potom na pravou stranu dosadíme \ref{maxdif3}
-\begin{subequations}
-\begin{align}
-\frac{1}{\mu} \rot \vec{B} &= \mu \vec{E} + \varepsilon \frac{\partial \vec{E}}{\partial t}
-\\
-\rot \vec{B} &= \mu \gamma \vec{E} + \mu \varepsilon \frac{\partial \vec{E}}{\partial t}
-\end{align}
-\end{subequations}
-\begin{subequations}
-\begin{align}
-\rot \vec{E} &= - \frac{\partial \vec{B}}{\partial t}
-\\
-\rot \rot \vec{E} &= \grad \udiv \vec{E} - \triangle \vec{E}
-\\
-- \frac{\partial \rot \vec{B}}{\partial t} &= \grad \udiv \vec{E} - \triangle \vec{E}
-\\
-- \frac{\partial \left( \mu \gamma \vec{E} + \mu \varepsilon \dfrac{\partial \vec{E}}{\partial t} \right) }{\partial t} &= \grad \udiv \vec{E} - \triangle \vec{E}
-\\
-\label{dosadit3max}
-- \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= \grad \udiv \vec{E} - \triangle \vec{E}
-\\
-\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= 0.
-\end{align}
-\end{subequations}
-
-Podobně postupujeme i při výpočtu vektoru $H$, pouze místo \ref{maxdif3} použijeme \ref{maxdif4}. Výsledkem jsou tzv. \textbf{zobecněné vlnové rovnice}:
-\begin{subequations}
-\label{vlnovka}
-\begin{align}
-\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= 0,
-\\
-\triangle \vec{H} - \mu \gamma \frac{\partial \vec{H}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{H}}{\partial t ^2} &= 0.
-\end{align}
-\end{subequations}
-
-Pokud na prostředí působí navíc proud vynucený vnější zdrojem ($\vec{J} _{\mathrm{ext}}$), přecházejí tyto rovnice do nehomogenní vlnové rovnice (pravá strana rovnic není rovna nule):
-\begin{subequations}
-\begin{align}
-\triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} &= \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{\mathrm{ext}}}{\partial t} ,
-\\
-\triangle \vec{H} - \mu \gamma \frac{\partial \vec{H}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{H}}{\partial t ^2} &= - \mu \rot \vec{J} _{\mathrm{ext}}.
-\end{align}
-\end{subequations}
-
-Téměř identické rovnice platí také pro vektory elektrické indukce $\vec{D}$ a magnetické indukce $\vec{B}$:
-\begin{subequations}
-\label{DHnehom}
-\begin{align}
-\triangle \vec{D} - \mu \gamma \frac{\partial \vec{D}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{D}}{\partial t ^2} &= \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{\mathrm{ext}}}{\partial t} ,
-\\
-\triangle \vec{B} - \mu \gamma \frac{\partial \vec{B}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{B}}{\partial t ^2} &= - \mu \rot \vec{J} _{\mathrm{ext}}.
-\end{align}
-\end{subequations}
-Výše uvedené nehomogenní rovnice \ref{DHnehom} přejdou při $\vec{J} _{\mathrm{ext}} = 0$ do rovnic homogenních stejně jako \ref{vlnovka} (pravá strana rovnic bude rovna 0).
 
 \subsection{Šíření vln ve volném prostoru}
 
@@ -523,7 +526,7 @@ H_x &= \frac{j}{k^2_c} \left( \mu \varepsilon \frac{\partial E_z}{\partial y} - 
 \end{align*}
 %\end{subequations}
 %nevím, jak správně vyjádřit "cutoff" wavenumber - vlnové číslo ?odříznutí? ?mezní?
-$k$ je vlnové číslo materiálu uvnitř přenosového vedení nebo vlnovodu, $k_c$ potom tzv. mezní (cutoff) vlnové číslo. V případě přítomnosti ztrát je $\varepsilon$ nahrazeno komplexním $\varepsilon (1 - j \tan{\gamma})$, kde $\tan{\gamma}$ představuje ztrátový tangens materiálu.
+$k$ je vlnové číslo materiálu uvnitř přenosového vedení nebo vlnovodu, $k_c$ potom tzv. mezní (cutoff) vlnové číslo. V případě přítomnosti ztrát je $\varepsilon$ nahrazeno komplexním $\varepsilon (1 - j \tan{\gamma})$, kde $\gamma$ představuje ztrátový úhel materiálu.
 
 \subsubsection{TEM vlny}
 Pro TEM (transverzálně elektromagnetické) vlny platí, že $E_z = 0$ a $H_z = 0$ (není zde přítomna podélná složka elektrického ani magnetického pole). Dosazením těchto hodnot do \ref{vyjadreno} zjistíme, že $H, E = j (0-0) / k^2_c$ a tedy $H, E = 0 / (k^2_c)$. Příčné složky polí jsou tedy také nulové. Pokud se ovšem $k^2_c = 0$, potom získáváme neurčitý výsledek. To mimo jiné znamená, že mezní (cutoff) vlnové číslo pro TEM vlny $k_c = 0$.
@@ -546,29 +549,22 @@ H_x &= - \frac{\beta E_y}{\omega \mu}
 \end{align*}
 %\end{subequations}
 
-%V \ref{maxvektor} byly uvedeny Maxwellovy rovnice ve vektorovém tvaru pro nezřídlové elektrické a magnetické pole. Tyto rovnice mohou být dále upraveny do tzv. Helmholtzovy vlnové rovnice:
-%\begin{subequations}
-%\label{helmholtz}
-%\begin{align}
-%\vec{H} &= \frac{\nabla \times \vec{E}}{-j \omega \mu}
-%\\
-%\nabla \times \frac{\nabla \times \vec{E}}{-j \omega \mu} &= j \omega \varepsilon \vec{E}
-%\\
-%\nabla \times \nabla \times \vec{E} &= \omega ^2 \mu \varepsilon \vec{E}
-%\\
-%k &= \omega \sqrt{\mu \varepsilon}
-%\\
-%\nabla \times \nabla \times \vec{E} &= k^2 \vec{E}
-%\\
-%- \nabla ^2 \vec{E} &= k^2 \vec{E}
-%\\
-%- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} &= k^2 \vec{E}
-%\\
-%\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_x &= 0 .
-%\end{align}
-%\end{subequations}
 
-V \ref{helmholtz} bylo uvedeno odvození Helmholtzovy rovnice. Její tvar pro $k = 0$ a příčné pole bez přítomnosti podélné složky $z$ lze vyjádřit:
+Uvažujeme-li kartézský souřadný systém a šíření vlny ve směru osy $z$, lze homogenní Helmholtzovu rovnici \ref{homohelmholtze} přepsat do tvaru:
+\begin{equation}
+- \frac{\partial ^2}{\partial x^2} - \frac{\partial ^2}{\partial y^2} - \frac{\partial ^2}{\partial z^2} = k^2 \faz{\vec{E}}
+\end{equation}
+a poté vyjádřit jednotlivé složky $x$, $y$ a $z$:
+\begin{subequations}
+\begin{align}
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_x &= 0 , 
+\\
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_y &= 0 ,
+\\
+\left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_z &= 0 .
+\end{align}
+\end{subequations}
+Její tvar pro $k = 0$ a příčné pole bez přítomnosti složky rovnoběžné se směrem šíření se poté zjednoduší na:
 \begin{subequations}
 \begin{align}
 \left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} \right) E_x &= 0 ,
@@ -577,45 +573,48 @@ V \ref{helmholtz} bylo uvedeno odvození Helmholtzovy rovnice. Její tvar pro $k
 \end{align}
 \end{subequations}
 
-Tyto rovnice potom mohou být přepsány do formy rovnic uvedených v \ref{hromadna}
+Tyto rovnice potom mohou být přepsány do formy využívající Laplacova operátoru ve dvourozměrném příčném poli (poli kolmém ke směru šíření):
 \begin{equation}
-\nabla ^2_t \faz{e} (x, y) = 0 ,
+\triangle _t \faz{e} (x, y) = 0 .
 \end{equation}
-využívající Laplacova operátoru ve dvourozměrném příčného pole.
+.
 
 Stejný postup lze aplikovat i u příčného magnetického pole a dojít ke stejnému výsledku:
 \begin{equation}
-\nabla ^2_t \faz{h} (x, y) = 0 .
+\triangle _t \faz{h} (x, y) = 0 .
 \end{equation}
 
-Z toho plyne, že příčné pole TEM vlny je stejné jako statické pole mezi dvěma vodiči. A v případě elektrostatiky lze elektrické pole vyjádřit jako gradient skalárního potenciálu:
-\begin{equation}
-\faz{e} (x, y) = - \nabla _t \Phi (x, y) .
-\end{equation}
-Aby tato rovnice ale mohla platit, musí být ještě splněna podmínka, že pole musí být nevírové:
-\begin{equation}
-\nabla _t \times \faz{e} = 0 ,
-\end{equation}
-což v tomto případě opravdu platí:
-\begin{equation}
-\nabla _t \times \faz{e} = - j \omega \mu h_z \hat{z} = 0 .
-\end{equation}
+%%Sekce na přání Pánka vynechána
+%%sekce předkládá podobnost EM pole TEM vlny a statického pole mezi dvěma vodiči na základě čehož vyvozuje vztah pro napětí jako rozdíl potenciálů a pro proud na základě Ampérova zákona
 
-I toto pole lze potom tedy vyjádřit jako Laplacovu rovnici:
-\begin{equation}
-\nabla ^2_t \Phi (x,y) = 0 .
-\end{equation}
-
-V elektrostatice lze napětí vyjádřit jako rozdíl dvou potenciálů:
-\begin{equation}
-\label{napeti}
-U_{12} = \phi _1 - \phi _2 = \int ^2_1 \faz{E} \ud \faz{l} .
-\end{equation}
-Proud se poté získá z Ampérova zákona:
-\begin{equation}
-\label{amper}
-I = \oint _C \faz{H} \ud \faz{l}.
-\end{equation}
+%Z toho plyne, že příčné pole TEM vlny je stejné jako statické pole mezi dvěma vodiči. A v případě elektrostatiky lze elektrické pole vyjádřit jako gradient skalárního potenciálu:
+%\begin{equation}
+%\faz{e} (x, y) = - \nabla _t \Phi (x, y) .
+%\end{equation}
+%Aby tato rovnice ale mohla platit, musí být ještě splněna podmínka, že pole musí být nevírové:
+%\begin{equation}
+%\nabla _t \times \faz{e} = 0 ,
+%\end{equation}
+%což v tomto případě opravdu platí:
+%\begin{equation}
+%\nabla _t \times \faz{e} = - j \omega \mu h_z \hat{z} = 0 .
+%\end{equation}
+%
+%I toto pole lze potom tedy vyjádřit jako Laplacovu rovnici:
+%\begin{equation}
+%\nabla ^2_t \Phi (x,y) = 0 .
+%\end{equation}
+%
+%V elektrostatice lze napětí vyjádřit jako rozdíl dvou potenciálů:
+%\begin{equation}
+%\label{napeti}
+%U_{12} = \phi _1 - \phi _2 = \int ^2_1 \faz{E} \ud \faz{l} .
+%\end{equation}
+%Proud se poté získá z Ampérova zákona:
+%\begin{equation}
+%\label{amper}
+%I = \oint _C \faz{H} \ud \faz{l}.
+%\end{equation}
 
 Vlnová impedance TEM vlny se získá jako podíl příčného elektrického a magnetického pole. První rovnice vychází z \ref{maxpart4} při $\beta = \omega \sqrt{\mu \varepsilon}$:
 \begin{subequations}
@@ -995,6 +994,8 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \bibitem{Microstrip} Microstrip. Microwaves101.com [online]. Tucson, AZ, February 18, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/microstrip.cfm
 \bibitem{Instrinsic} Intrinsic Impedance. Antenna-Theory.com [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
 \bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. Agros2D [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
+\bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
+
 
 \end{thebibliography}
 
