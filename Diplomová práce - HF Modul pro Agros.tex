@@ -47,6 +47,7 @@
 \renewcommand{\div}{\mathrm{div}\ }
 \newcommand{\const}{\mathrm{const}}
 \newcommand{\konst}{\mathrm{konst}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 \begin{document}
 \renewcommand\refname{Použitá literatura} %Místo slova "Reference" u Bibliography
@@ -335,6 +336,7 @@ a následně jí malou úpravou (vytknutím) přepsat jako:
 \end{equation}
 Pro další krok je potřeba zavést konstantu šíření $\faz{k} = \pm \sqrt{- \mj \omega \mu (\gamma + \mj \omega \varepsilon)}$. Substituce potom rovnici zjednoduší na:
 \begin{equation}
+\label{HelmholtzEnehomo}
 \triangle \faz{\vec{E}} + \faz{k} ^2 \faz{\vec{E}} = \grad \frac{\rho}{\varepsilon} + \mj \omega \mu \faz{\vec{J}} _{ext} .
 \end{equation}
 Tato rovnice se označuje jako \textbf{nehomogenní Helmholtzova rovnice (pro} $\faz{\vec{E}}$\textbf{)}.
@@ -362,6 +364,7 @@ Tato rovnice se označuje jako \textbf{nehomogenní Helmholtzova rovnice (pro} $
 
 Pokud v regionu nejsou přítomny vnější zdroje ($\rho = 0$, $\faz{\vec{J}} _{ext} = 0$) lze tuto rovnici zjednodušit do tvaru \textbf{homogenní Helmholtzovy rovnice (pro} $\faz{\vec{B}}$\textbf{)}:
 \begin{equation}
+\label{homohelmholtzb}
 \triangle \faz{\vec{B}} + \faz{k} ^2 \faz{\vec{B}} = 0 .
 \end{equation}
 
@@ -650,7 +653,7 @@ Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
 Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
 
 \subsubsection{TE vlny}
-Na rozdíl od TEM vln, kde jsou podélné složky $H$ i $E$ pole se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
+Na rozdíl od TEM vln, kde jsou podélné složky $H$ i $E$ pole nulové, se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
 \begin{subequations}
 \begin{align}
 H_x &= \frac{-j \beta}{k^2_c} \frac{\partial H_z}{\partial x} ,
@@ -663,7 +666,7 @@ E_y &= \frac{j \omega \mu}{k^2_c} \frac{\partial H_z}{\partial x} .
 \end{align}
 \end{subequations}
 
-U TE vln neplatí, že $k_c = 0$, a konstanta šíření $\beta$ je funkcí frekvence a geometrie vedení. Nejprve se proto musí spočítat $H_z$ z Helmoholtzovi vlnové rovnice (odvození této rovnice je nastíněno v \ref{helmholtz}):
+U TE vln neplatí, že $k_c = 0$, a konstanta šíření $\beta$ je funkcí frekvence a geometrie vedení. Nejprve se proto musí spočítat $H_z$ z Helmoholtzovi vlnové rovnice (odvození této rovnice je nastíněno v \ref{homohelmholtzb}):
 \begin{equation}
 \left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) H_z = 0 .
 \end{equation}
@@ -686,7 +689,7 @@ j \beta E_y &= - j \omega \mu H_x
 z čehož plyne, že $Z_{TE}$ je frekvenčně závislé.
 
 \subsubsection{TM vlny}
-TM vlny jsou podobné TE vlnám tím, že je v nich též jedna podélná složka pole přítomna. V tomto případě je to složka $z$ pole $H$. Platí tedy $E_z = 0$, $H_z \neq 0$. Tyto vlny jsou proto také někdy nazývány jako $H$ vlny. Rovnice \ref{vyjadreno} mohou být pro TM vlny vyjádřeny jako:
+TM vlny jsou podobné TE vlnám tím, že je v nich též jedna podélná složka pole přítomna. V tomto případě je to složka $z$ pole $E$. Platí tedy $H_z = 0$, $E_z \neq 0$. Tyto vlny jsou proto také někdy nazývány jako $E$ vlny. Rovnice \ref{vyjadreno} mohou být pro TM vlny vyjádřeny jako:
 \begin{subequations}
 \begin{align}
 H_x &= \frac{j \omega \varepsilon}{k^2_c} \frac{\partial E_z}{\partial y} ,
@@ -699,7 +702,7 @@ E_y &= \frac{-j \beta}{k^2_c} \frac{\partial E_z}{\partial y} .
 \end{align}
 \end{subequations}
 
-Stejně jako u TE vln, neplatí, že $k_c = 0$, a konstanta šíření $\beta$ je funkcí frekvence a geometrie vedení. Nejprve se proto musí spočítat $E_z$ z Helmoholtzovi vlnové rovnice (odvození této rovnice je nastíněno v \ref{helmholtz}):
+Stejně jako u TE vln, neplatí, že $k_c = 0$, a konstanta šíření $\beta$ je funkcí frekvence a geometrie vedení. Nejprve se proto musí spočítat $E_z$ z Helmoholtzovi vlnové rovnice (odvození této rovnice je nastíněno v \ref{homohelmholtze}):
 \begin{equation}
 \left( \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2} + \frac{\partial ^2}{\partial z^2} + k^2 \right) E_z = 0 .
 \end{equation}
@@ -726,7 +729,152 @@ z čehož plyne, že $Z_{TM}$ je frekvenčně závislé.
 \section{Numerické řešení elektromagnetického pole}
 \subsection{Metoda konečných prvků}
 \subsection{Agros 2D}
+
+\newpage
 \section{Návrh modulu pro VF pole}
+Navrhovaný modul pro VF pole je .xml soubor obsahující upravené předpisy a rovnice, potřebné pro výpočet veličin vln ve volném prostoru a vlnovodech. Na základě těchto rovnic potom vlastní engine programu Agros2D, knihovna Hermes2D a algoritmus hp fem, vypočítají potřebné veličiny šířící se vlny v jednotlivých bodech zdiskretizovaného prostředí a vytvoří modelové rozložení elektromagnetického pole.
+
+\subsection{Slabé formulace vlnových rovnice}
+Prostředí programu Agros2D předpokládá pouze určité typy a způsoby šíření vln vedoucí k zjednodušení modelové situace. Agros2D simuluje pole v 2D prostoru, v třetím rozměru se předpokládá, že je pole rozloženo rovnoměrně nebo symetricky k zakreslené geometrii. Předpokladem je také šíření harmonického pole. Proto je ideální použití Helmholtzovy rovnice (\ref{HelmholtzEnehomo} - Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$).
+
+U Helmholtzovi rovnici dále předpokládáme rovnoměrné rozložení náboje $\rho$. Z toho plyne, že člen $\grad \frac{\rho}{\varepsilon}$ rovnice \ref{HelmholtzEnehomo} bude roven nule. Pro planární problém budeme předpokládat šíření vln v kartézské souřadnicové soustavě ve směru osy $z$. Pro osově symetrický systém bude předpokladem šíření vln v polární souřadnicové soustavě mající pouze tangenciální složku.
+
+Zavedením těchto zjednodušujících předpokladů se Helmholtzova rovnice \ref{HelmholtzEnehomo} transformuje do tvaru:
+\begin{equation}
+\label{HelmEasy}
+\triangle \faz{E} _{(z)} + \faz{k} ^2 \faz{E} _{(z)} = \mj \omega \mu \faz{J} _{ext} .
+\end{equation}
+
+Helmholtzovu rovnici pak lze vyjádřit pomocí takzvané slabé formulace. Výraz si představíme jak Poissonovu rovnici, kterou zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$:
+\begin{subequations}
+\label{Poisson}
+\begin{align}
+- \triangle \cdot u &= f
+\\
+- \int _{\Omega} \triangle \cdot u \ud \Omega &= \int _{\Omega} f \ud \Omega
+\\
+- \int _{\Omega} \triangle u \cdot v \ud \Omega &= \int _{\Omega} f \cdot v \ud \Omega .
+\end{align}
+\end{subequations}
+Na výraz následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\udiv u = \nabla \cdot u$):
+\begin{equation}
+\label{Green}
+- \int _{\Omega} \nabla \cdot u \cdot \nabla \cdot v \ud \Omega + \int _{\Gamma} \frac{\partial u}{\partial n} \cdot v \ud \Gamma = \int _{\Omega} f \cdot v \ud \Omega .
+\end{equation}
+Člen $\int _{\Gamma} \frac{\partial u}{\partial n} \cdot v \ud \Gamma$ vychází z Greenovi věty a představuje Neumannovu okrajovou podmínku. Ve většině případů je tato podmínka (a proto i tento člen) nulová.
+
+Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjádření výrazu pomocí parciálních diferenciálních rovnic, které již umí řešit Hermes2D a jsou tak vhodné pro simulaci (níže výpočet levé strany \ref{Green}, na pravé se již nic nemění):
+\begin{equation}
+\begin{split}
+- \int _{\Omega} \nabla \cdot u \cdot \nabla \cdot v \ud \Omega &= - \int _{\Omega} \left( \frac{\partial u}{\partial x} + \frac{\partial u}{\partial y} \right) \cdot \left( \frac{\partial v}{\partial x} + \frac{\partial v}{\partial y} \right) \ud \Omega =\\
+&= - \int _{\Omega} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) \ud \Omega
+\end{split}
+\end{equation}
+
+
+\subsubsection{Slabá formulace fázoru E v kartézské souřadnicové soustavě}
+
+Vycházejme z rovnice \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Prvním krokem pro vyjádření slabé formy je rozložení rovnice na reálnou a imaginární složku:
+\begin{equation}
+\triangle (E _{zRe} + \mj E _{zIm}) + (\omega ^2 \varepsilon \mu - \mj \omega \mu \gamma) (E _{zRe} + \mj E _{zIm}) = \mj \omega \mu (J _{extRe} + \mj J _{extIm})
+\end{equation}
+\begin{equation}
+\begin{split}
+\triangle E _{zRe} + \mj \triangle E _{zIm} + \omega ^2 \varepsilon \mu E_ {zRe} + \mj \omega ^2 \varepsilon \mu E _{zIm} - \mj \omega \mu \gamma E _{zRe} + \omega \mu \gamma E _{zIm} =\\
+\mj \omega \mu J _{extRe} - \omega \mu J _{extIm} .
+\end{split}
+\end{equation}
+Reálnou částí rovnice je:
+\begin{align*}
+&R_{e}:
+\\
+&\triangle E_ {zRe} + \omega ^2 \varepsilon \mu E_ {zRe} + \omega \mu \gamma E _{zIm} = - \omega \mu J _{extIm} .
+\numberthis
+\end{align*}
+Imaginární potom:
+\begin{align*}
+&I_{m}:
+\\
+&\triangle E _{zIm} + \omega ^2 \varepsilon \mu E _{zIm} - \omega \mu \gamma E _{zRe} = \omega \mu J _{extRe} .
+\numberthis
+\end{align*}
+Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}):
+\begin{align*}
+&R_e:
+\\
+&\int _{\Omega} \triangle E _{zRe} \cdot v \ud \Omega + \omega ^2 \varepsilon \mu \int _{\Omega} E _{zRe} \cdot v \ud \Omega + \omega \mu \gamma \int _{\Omega} E _{zIm} \cdot v \ud \Omega = - \omega \mu \int _{\Omega} J _{extIm} \cdot \ud \omega
+\numberthis
+\end{align*}
+\begin{align*}
+&I_m:
+\\
+&\int _{Omega} \triangle E _{zIm} \cdot v \ud \Omega + \omega ^2 \varepsilon \mu \int _{\Omega} E _{zIm} \cdot v \ud \omega - \omega \mu \gamma \int _{\Omega} E _{zRe} \cdot v \ud \Omega = \omega \mu \int _{\Omega} J _{extRe} \cdot v \ud \Omega
+\numberthis
+\end{align*}
+Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\udiv u = \nabla \cdot u$) (viz \ref{Green}):
+\begin{align*}
+&R_e:
+\\
+&\int _{\Omega} \nabla \cdot E _{zRe} \cdot \nabla \cdot v \ud \Omega + \int _{\Gamma} \frac{\partial E _{zRe}}{\partial n} \cdot v \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} E _{zRe} \cdot v \ud \Omega + \omega \mu \gamma \int _{\Omega} E _{zIm} \cdot v \ud \Omega = 
+\\
+&= - \omega \mu \int _{\Omega} J _{extIm} \cdot \ud \omega
+\numberthis
+\end{align*}
+\begin{align*}
+&I_m:
+\\
+&\int _{\Omega} \nabla \cdot E _{zIm} \cdot \nabla \cdot v \ud \Omega + \int _{\Gamma} \frac{\partial E _{zIm}}{\partial n} \cdot v \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} E _{zIm} \cdot v \ud \omega - \omega \mu \gamma \int _{\Omega} E _{zRe} \cdot v \ud \Omega = 
+\\
+&= \omega \mu \int _{\Omega} J _{extRe} \cdot v \ud \Omega
+\numberthis
+\end{align*}
+
+
+\subsubsection{Slabá formulace fázoru E ve válcové souřadnicové soustavě}
+
+V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\phi$ a vzdáleností od roviny podstavy $z$. Podobně jako v kartézské souřadné soustavě vycházíme z \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Což v tomto případu znamená, že je přítomna pouze tangenciální složka pole. Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
+\begin{equation}
+\triangle \faz{E} _{(\alpha)} + \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} 
+\end{equation}
+nebo jinak zapsáno též takto:
+\begin{equation}
+\rot \rot \faz{E} _{(\alpha)} + \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} .
+\end{equation}
+Provedeme vyjádření operace $\rot \faz{E} _{(\alpha)}$:
+\begin{subequations}
+\begin{align}
+\rot \left( \frac{1}{r} \left|
+\begin{array}{c c c}
+\hat{r} & r\hat{\alpha} & \hat{z} \\
+\frac{\partial}{\partial r} & \frac{\partial}{\partial \alpha} & \frac{\partial}{\partial z} \\
+0 & r\faz{E} _{\alpha} & 0
+\end{array} \right| \right)
++ \faz{k} ^2 \faz{E} _{(\alpha)} &= \mj \omega \mu \faz{J} _{ext} 
+\\
+\rot \left( \frac{1}{r} \frac{\partial}{\partial r} r \faz{R} _{\alpha} \hat{z} - \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \hat{r} \right) + \faz{k} ^2 \faz{E} _{(\alpha)} &= \mj \omega \mu \faz{J} _{ext} .
+\end{align}
+\end{subequations}
+A následně stejným způsobem provedeme druhou operaci rotace:
+\begin{subequations}
+\begin{align*}
+&\frac{1}{r} \left|
+\begin{array}{c c c}
+\hat{r} & r\hat{\alpha} & \hat{z} \\
+\frac{\partial}{\partial r} & \frac{\partial}{\partial \alpha} & \frac{\partial}{\partial z} \\
+- \frac{1}{r} \frac{\partial r \faz{E} _{\alpha}}{\partial z} & 0 & \frac{1}{r} \frac{\partial r \faz{E} _{\alpha}}{\partial r}
+\end{array} \right|
++ \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} 
+\numberthis
+\\
+\frac{1}{r} \frac{\partial}{\partial \alpha} \frac{1}{r} \frac{\partial}{\partial r} r \faz{E} _{\alpha} \hat{r} + &\left[ \frac{1}{r} \frac{\partial}{\partial z} \left( - \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \right) - \frac{1}{r} \frac{\partial}{\partial r} \frac{1}{r} \frac{\partial}{\partial r} \faz{E} _{\alpha} \right] \hat{\alpha} + \frac{1}{r} \frac{\partial}{\partial \alpha} \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \hat{z} + \faz{k} ^2 \faz{E} _{(\alpha)} =
+\\
+= \mj \omega \mu \faz{J} _{ext} .
+\numberthis
+\end{align*}
+\end{subequations}
+
+Vzhledem k tomu, že 
+
 
 
 
