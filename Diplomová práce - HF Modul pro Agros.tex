@@ -842,7 +842,7 @@ Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjá
 \end{equation}
 Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici pro zjednodušení také vydělíme $\mu$ a $\omega$ vyjádříme pomocí $f$:
 \begin{equation}
-- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ u ~ v + 2 ~ \Pi ~ f ~ \gamma ~ u ~ v = - 2 ~ \Pi ~ f ~ \faz{J} _{ext} ~ v .
+- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v + 2 ~ \pi ~ f ~ \gamma ~ u ~ v = - 2 ~ \pi ~ f ~ \faz{J} _{ext} ~ v .
 \end{equation}
 
 Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek.
@@ -850,9 +850,9 @@ Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran r
 Člen levé strany reálné části
 \begin{subequations}
 \begin{gather}
-- \frac{1}{\mu} \left( \frac{\partial E _{zRe}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial E _{zRe}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ E _{zRe} ~ v
+- \frac{1}{\mu} \left( \frac{\partial E _{zRe}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial E _{zRe}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ E _{zRe} ~ v
 \\
-- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2  ~ \varepsilon ~ u ~ v
+- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2  ~ \varepsilon ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 1, j = 1. Indexy udávají polohu v matici. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 1 odráží to, že jde o plně reálný člen (nejsou v něm složky vztažené k imaginární části). 
@@ -860,9 +860,9 @@ bude označen indexy i = 1, j = 1. Indexy udávají polohu v matici. Značení i
 Člen levé strany reálné části
 \begin{subequations}
 \begin{gather}
-2 ~ \Pi ~ f ~ \gamma ~ E _{zIm} ~ v
+2 ~ \pi ~ f ~ \gamma ~ E _{zIm} ~ v
 \\
-2 ~ \Pi ~ f ~ \gamma ~ u ~ v
+2 ~ \pi ~ f ~ \gamma ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 1, j = 2. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 2 odráží to, že jde o člen závislý na imaginární veličině ($E _{zIm}$).
@@ -871,9 +871,9 @@ bude označen indexy i = 1, j = 2. Značení i = 1 reflektuje to, že se jedná 
 Člen levé strany imaginární části
 \begin{subequations}
 \begin{gather}
-- \frac{1}{\mu} \left( \frac{\partial E _{zIm}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial E _{zIm}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ E _{zIm} ~ v
+- \frac{1}{\mu} \left( \frac{\partial E _{zIm}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial E _{zIm}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ E _{zIm} ~ v
 \\
-- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ u ~ v
+- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 2, j = 2. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 2 odráží to, že jde o plně imaginární člen (nejsou v něm složky vztažené k reálné části). 
@@ -881,22 +881,22 @@ bude označen indexy i = 2, j = 2. Značení i = 2 reflektuje to, že se jedná 
 Člen levé strany imaginární části
 \begin{subequations}
 \begin{gather}
-- 2 ~ \Pi ~ f ~ \gamma ~ E _{zRe} ~ v
+- 2 ~ \pi ~ f ~ \gamma ~ E _{zRe} ~ v
 \\
-- 2 ~ \Pi ~ f ~ \gamma ~ u ~ v
+- 2 ~ \pi ~ f ~ \gamma ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 2, j = 1. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 1 odráží to, že jde o člen závislý na reálné veličině ($E _{zRe}$).
 
 Člen pravé strany reálné části
 \begin{equation}
-- 2 ~ \Pi ~ f ~ J _{extIm} ~ v
+- 2 ~ \pi ~ f ~ J _{extIm} ~ v
 \end{equation}
 bude označen indexy i = 2, j = 2. Značení z důvodu přehlednosti zachovává oba indexy i a j, přestože se jedná o jednorozměrný vektor, do kterého jsou členy zanášeny. Proto i = j. Zde jsou indexy rovny 2, protože přestože jde o reálnou část, je zde obsažena imaginární veličina ($J _{extIm}$).
 
 Člen pravé strany imaginární části
 \begin{equation}
-2 ~ \Pi ~ f ~ J _{extRe} ~ v
+2 ~ \pi ~ f ~ J _{extRe} ~ v
 \end{equation}
 bude označen indexy i = 1, j = 1. Zde jsou indexy rovny 1, protože přestože jde o imaginární část, je zde obsažena reálná veličina ($J _{extRe}$).
 
@@ -913,7 +913,7 @@ Prvním krokem pro vyjádření slabé formy je rozložení rovnice na reálnou 
 \begin{equation}
 \begin{split}
 \triangle (H _{zRe} + \mj H _{zIm}) + (\omega ^2 \varepsilon \mu - \mj \omega \mu \gamma) (H _{zRe} + \mj H _{zIm}) =\\ 
-- \mj \mu \left[ \left( - \frac{\partial J _{extRe(x)}}{\partial y} + \frac{\partial J _{extRe(y)}}{\partial x} \right) + \left( - \frac{\partial J _{extIm(x)}}{\partial y} + \frac{\partial J _{extIm(y)}}{\partial x} \right) \right]
+- \mj \mu \left[ \left( - \frac{\partial J _{extRe(x)}}{\partial y} + \frac{\partial J _{extRe(y)}}{\partial x} \right) + \mj \left( - \frac{\partial J _{extIm(x)}}{\partial y} + \frac{\partial J _{extIm(y)}}{\partial x} \right) \right]
 \end{split}
 \end{equation}
 \begin{equation}
@@ -990,7 +990,7 @@ Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjá
 \end{equation}
 Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici pro zjednodušení také vydělíme $\mu$ a $\omega$ vyjádříme pomocí $f$:
 \begin{equation}
-- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ u ~ v + 2 ~ \Pi ~ f ~ \gamma ~ u ~ v = \left( - \frac{\partial \faz{J} _{ext(x)}}{\partial y} + \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) v .
+- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v + 2 ~ \pi ~ f ~ \gamma ~ u ~ v = \left( - \frac{\partial \faz{J} _{ext(x)}}{\partial y} + \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) v .
 \end{equation}
 
 Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek.
@@ -998,9 +998,9 @@ Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran r
 Člen levé strany reálné části
 \begin{subequations}
 \begin{gather}
-- \frac{1}{\mu} \left( \frac{\partial H _{zRe}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial H _{zRe}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ H _{zRe} ~ v
+- \frac{1}{\mu} \left( \frac{\partial H _{zRe}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial H _{zRe}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ H _{zRe} ~ v
 \\
-- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2  ~ \varepsilon ~ u ~ v
+- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2  ~ \varepsilon ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 1, j = 1. Indexy udávají polohu v matici. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 1 odráží to, že jde o plně reálný člen (nejsou v něm složky vztažené k imaginární části). 
@@ -1008,9 +1008,9 @@ bude označen indexy i = 1, j = 1. Indexy udávají polohu v matici. Značení i
 Člen levé strany reálné části
 \begin{subequations}
 \begin{gather}
-2 ~ \Pi ~ f ~ \gamma ~ H _{zIm} ~ v
+2 ~ \pi ~ f ~ \gamma ~ H _{zIm} ~ v
 \\
-2 ~ \Pi ~ f ~ \gamma ~ u ~ v
+2 ~ \pi ~ f ~ \gamma ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 1, j = 2. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 2 odráží to, že jde o člen závislý na imaginární veličině ($H _{zIm}$).
@@ -1019,9 +1019,9 @@ bude označen indexy i = 1, j = 2. Značení i = 1 reflektuje to, že se jedná 
 Člen levé strany imaginární části
 \begin{subequations}
 \begin{gather}
-- \frac{1}{\mu} \left( \frac{\partial H _{zIm}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial H _{zIm}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ H _{zIm} ~ v
+- \frac{1}{\mu} \left( \frac{\partial H _{zIm}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial H _{zIm}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ H _{zIm} ~ v
 \\
-- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \Pi ~ f) ^2 ~ \varepsilon ~ u ~ v
+- \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 2, j = 2. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 2 odráží to, že jde o plně imaginární člen (nejsou v něm složky vztažené k reálné části). 
@@ -1029,9 +1029,9 @@ bude označen indexy i = 2, j = 2. Značení i = 2 reflektuje to, že se jedná 
 Člen levé strany imaginární části
 \begin{subequations}
 \begin{gather}
-- 2 ~ \Pi ~ f ~ \gamma ~ H _{zRe} ~ v
+- 2 ~ \pi ~ f ~ \gamma ~ H _{zRe} ~ v
 \\
-- 2 ~ \Pi ~ f ~ \gamma ~ u ~ v
+- 2 ~ \pi ~ f ~ \gamma ~ u ~ v
 \end{gather}
 \end{subequations}
 bude označen indexy i = 2, j = 1. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 1 odráží to, že jde o člen závislý na reálné veličině ($H _{zRe}$).
@@ -1053,49 +1053,334 @@ Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Př�
 
 \subsubsection{Slabá formulace fázoru E ve válcové souřadnicové soustavě}
 
-V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\phi$ a vzdáleností od roviny podstavy $z$. Podobně jako v kartézské souřadné soustavě vycházíme z \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Což v tomto případu znamená, že je přítomna pouze složka $\faz{E} _{\varphi}$. Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
+V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Podobně jako v kartézské souřadné soustavě vycházíme z \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Což v tomto případu znamená, že je přítomna pouze složka $\faz{E} _{\varphi}$. Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
 \begin{equation}
 \triangle \faz{E} _{(\varphi)} + \faz{k} ^2 \faz{E} _{(\varphi)} = \mj \omega \mu \faz{J} _{ext} 
 \end{equation}
-nebo jinak zapsáno též takto:
+
+Podobně jako při řešení v kartézské souřadné soustavě musíme rovnice rozložit na řešení pro reálnou a imaginární složku:
 \begin{equation}
-\rot \rot \faz{E} _{(\alpha)} + \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} .
+\triangle (E _{\varphi Re} + \mj E _{\varphi Im}) + (\omega ^2 \varepsilon \mu - \mj \omega \mu \gamma) (E _{\varphi Re} + \mj E _{\varphi Im}) = \mj \omega \mu (J _{extRe} + \mj J _{extIm})
 \end{equation}
-Provedeme vyjádření operace $\rot \faz{E} _{(\alpha)}$:
-\begin{subequations}
-\begin{align}
-\rot \left( \frac{1}{r} \left|
-\begin{array}{c c c}
-\hat{r} & r\hat{\alpha} & \hat{z} \\
-\frac{\partial}{\partial r} & \frac{\partial}{\partial \alpha} & \frac{\partial}{\partial z} \\
-0 & r\faz{E} _{\alpha} & 0
-\end{array} \right| \right)
-+ \faz{k} ^2 \faz{E} _{(\alpha)} &= \mj \omega \mu \faz{J} _{ext} 
-\\
-\rot \left( \frac{1}{r} \frac{\partial}{\partial r} r \faz{R} _{\alpha} \hat{z} - \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \hat{r} \right) + \faz{k} ^2 \faz{E} _{(\alpha)} &= \mj \omega \mu \faz{J} _{ext} .
-\end{align}
-\end{subequations}
-A následně stejným způsobem provedeme druhou operaci rotace:
-\begin{subequations}
+\begin{equation}
+\begin{split}
+\triangle E _{\varphi Re} + \mj \triangle E _{\varphi Im} + \omega ^2 \varepsilon \mu E_ {\varphi Re} + \mj \omega ^2 \varepsilon \mu E _{\varphi Im} - \mj \omega \mu \gamma E _{\varphi Re} + \omega \mu \gamma E _{\varphi Im} =\\
+\mj \omega \mu J _{extRe} - \omega \mu J _{extIm} .
+\end{split}
+\end{equation}
+Reálnou částí rovnice je:
 \begin{align*}
-&\frac{1}{r} \left|
-\begin{array}{c c c}
-\hat{r} & r\hat{\alpha} & \hat{z} \\
-\frac{\partial}{\partial r} & \frac{\partial}{\partial \alpha} & \frac{\partial}{\partial z} \\
-- \frac{1}{r} \frac{\partial r \faz{E} _{\alpha}}{\partial z} & 0 & \frac{1}{r} \frac{\partial r \faz{E} _{\alpha}}{\partial r}
-\end{array} \right|
-+ \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} 
-\numberthis
+&R_{e}:
 \\
-\frac{1}{r} \frac{\partial}{\partial \alpha} \frac{1}{r} \frac{\partial}{\partial r} r \faz{E} _{\alpha} \hat{r} + &\left[ \frac{1}{r} \frac{\partial}{\partial z} \left( - \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \right) - \frac{1}{r} \frac{\partial}{\partial r} \frac{1}{r} \frac{\partial}{\partial r} \faz{E} _{\alpha} \right] \hat{\alpha} + \frac{1}{r} \frac{\partial}{\partial \alpha} \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \hat{z} + \faz{k} ^2 \faz{E} _{(\alpha)} =
-\\
-= \mj \omega \mu \faz{J} _{ext} .
+&\triangle E_ {\varphi Re} + \omega ^2 \varepsilon \mu E_ {\varphi Re} + \omega \mu \gamma E _{\varphi Im} = - \omega \mu J _{extIm} .
 \numberthis
 \end{align*}
+Imaginární potom:
+\begin{align*}
+&I_{m}:
+\\
+&\triangle E _{\varphi Im} + \omega ^2 \varepsilon \mu E _{\varphi Im} - \omega \mu \gamma E _{\varphi Re} = \omega \mu J _{extRe} .
+\numberthis
+\end{align*}
+Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
+\begin{equation}
+\iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
+\end{equation}
+Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je proto nutno zapsat $r$ vznikající v trojitém integrálu jako vyjádření úhlové délky pomocí inkrementu infinitezimální hodnoty $r ~ \ud \varphi$: 
+\begin{align*}
+&R_e:
+\\
+&r \int _{\Omega} \triangle E _{\varphi Re} ~ v ~ \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Re} ~ v ~ \ud \Omega +  r \omega \mu \gamma \int _{\Omega} E _{\varphi Im} ~ v ~ \ud \Omega = - r \omega \mu \int _{\Omega} J _{extIm} ~ v ~ \ud \Omega
+\numberthis
+\end{align*}
+\begin{align*}
+&I_m:
+\\
+&r \int _{\Omega} \triangle E _{\varphi Im} ~ v ~ \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Im} ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} E _{\varphi Re} ~ v ~ \ud \Omega = r \omega \mu \int _{\Omega} J _{extRe} ~ v ~ \ud \Omega .
+\numberthis
+\end{align*}
+Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\udiv E _{\varphi Re} = \nabla \cdot E _{\varphi Re}$; $E _{\varphi Re}$ je skalár, proto $\grad E _{\varphi Re} = \nabla E _{\varphi Re}$) (viz \ref{Green}):
+\begin{align*}
+&R_e:
+\\
+&- r \int _{\Omega} \nabla E _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Re} ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} E _{\varphi Im} ~ v ~ \ud \Omega 
+\\
+&= - r \omega \mu \int _{\Omega} J _{extIm} ~ v ~ \ud \Omega
+\numberthis
+\end{align*}
+\begin{align*}
+&I_m:
+\\
+&- r \int _{\Omega} \nabla E _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Im} \! ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} \! E _{\varphi Re} ~ v ~ \ud \Omega 
+\\
+&= r \omega \mu \int _{\Omega} J _{extRe} ~ v ~ \ud \Omega .
+\numberthis
+\end{align*}
+Člen $\int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představuje Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
+
+Složky intenzity elektrického pole jsou v modulu vyjádřeny obecně, proto se vrátíme k substituci $u = E_\varphi$:
+\begin{equation}
+- r \int _{\Omega} \nabla u \cdot \nabla v ~ \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} u ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} u ~ v ~ \ud \Omega = - r \omega \mu \int _{\Omega} \faz{J} _{ext} ~ v ~ \ud \Omega .
+\end{equation}
+Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjádření výrazu pomocí parciálních diferenciálních rovnic:
+\begin{equation}
+- r \int _{\Omega} \! \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} \! u ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} \! u ~ v ~ \ud \Omega = - r \omega \mu \int _{\Omega} \! \faz{J} _{ext} ~ v ~ \ud \Omega .
+\end{equation}
+Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici pro zjednodušení také vydělíme $\mu$ a $\omega$ vyjádříme pomocí $f$:
+\begin{equation}
+- r \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v + r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v = - r ~ 2 ~ \pi ~ f ~ \faz{J} _{ext} ~ v .
+\end{equation}
+
+Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek.
+
+Člen levé strany reálné části
+\begin{subequations}
+\begin{gather}
+- r \frac{1}{\mu} \left( \frac{\partial E _{\varphi Re}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial E _{\varphi Re}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ E _{\varphi Re} ~ v
+\\
+- r \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2  ~ \varepsilon ~ u ~ v
+\end{gather}
 \end{subequations}
+bude označen indexy i = 1, j = 1. Indexy udávají polohu v matici. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 1 odráží to, že jde o plně reálný člen (nejsou v něm složky vztažené k imaginární části). 
 
-Vzhledem k tomu, že 
+Člen levé strany reálné části
+\begin{subequations}
+\begin{gather}
+r ~ 2 ~ \pi ~ f ~ \gamma ~ E _{\varphi Im} ~ v
+\\
+r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 1, j = 2. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 2 odráží to, že jde o člen závislý na imaginární veličině ($E _{\varphi Im}$).
 
+
+Člen levé strany imaginární části
+\begin{subequations}
+\begin{gather}
+- r \frac{1}{\mu} \left( \frac{\partial E _{\varphi Im}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial E _{\varphi Im}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ E _{\varphi Im} ~ v
+\\
+- r \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 2, j = 2. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 2 odráží to, že jde o plně imaginární člen (nejsou v něm složky vztažené k reálné části). 
+
+Člen levé strany imaginární části
+\begin{subequations}
+\begin{gather}
+- r ~ 2 ~ \pi ~ f ~ \gamma ~ E _{\varphi Re} ~ v
+\\
+- r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 2, j = 1. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 1 odráží to, že jde o člen závislý na reálné veličině ($E _{\varphi Re}$).
+
+Člen pravé strany reálné části
+\begin{equation}
+- r ~ 2 ~ \pi ~ f ~ J _{extIm} ~ v
+\end{equation}
+bude označen indexy i = 2, j = 2. Značení z důvodu přehlednosti zachovává oba indexy i a j, přestože se jedná o jednorozměrný vektor, do kterého jsou členy zanášeny. Proto i = j. Zde jsou indexy rovny 2, protože přestože jde o reálnou část, je zde obsažena imaginární veličina ($J _{extIm}$).
+
+Člen pravé strany imaginární části
+\begin{equation}
+r ~ 2 ~ \pi ~ f ~ J _{extRe} ~ v
+\end{equation}
+bude označen indexy i = 1, j = 1. Zde jsou indexy rovny 1, protože přestože jde o imaginární část, je zde obsažena reálná veličina ($J _{extRe}$).
+
+Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 1 v kapitole \nameref{xmlE}.
+
+%%Polární souřadnicová soustava odovzená přes rotace:
+%nebo jinak zapsáno též takto:
+%\begin{equation}
+%\rot \rot \faz{E} _{(\alpha)} + \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} .
+%\end{equation}
+%Provedeme vyjádření operace $\rot \faz{E} _{(\alpha)}$:
+%\begin{subequations}
+%\begin{align}
+%\rot \left( \frac{1}{r} \left|
+%\begin{array}{c c c}
+%\hat{r} & r\hat{\alpha} & \hat{z} \\
+%\frac{\partial}{\partial r} & \frac{\partial}{\partial \alpha} & \frac{\partial}{\partial z} \\
+%0 & r\faz{E} _{\alpha} & 0
+%\end{array} \right| \right)
+%+ \faz{k} ^2 \faz{E} _{(\alpha)} &= \mj \omega \mu \faz{J} _{ext} 
+%\\
+%\rot \left( \frac{1}{r} \frac{\partial}{\partial r} r \faz{R} _{\alpha} \hat{z} - \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \hat{r} \right) + \faz{k} ^2 \faz{E} _{(\alpha)} &= \mj \omega \mu \faz{J} _{ext} .
+%\end{align}
+%\end{subequations}
+%A následně stejným způsobem provedeme druhou operaci rotace:
+%\begin{subequations}
+%\begin{align*}
+%&\frac{1}{r} \left|
+%\begin{array}{c c c}
+%\hat{r} & r\hat{\alpha} & \hat{z} \\
+%\frac{\partial}{\partial r} & \frac{\partial}{\partial \alpha} & \frac{\partial}{\partial z} \\
+%- \frac{1}{r} \frac{\partial r \faz{E} _{\alpha}}{\partial z} & 0 & \frac{1}{r} \frac{\partial r \faz{E} _{\alpha}}{\partial r}
+%\end{array} \right|
+%+ \faz{k} ^2 \faz{E} _{(\alpha)} = \mj \omega \mu \faz{J} _{ext} 
+%\numberthis
+%\\
+%\frac{1}{r} \frac{\partial}{\partial \alpha} \frac{1}{r} \frac{\partial}{\partial r} r \faz{E} _{\alpha} \hat{r} + &\left[ \frac{1}{r} \frac{\partial}{\partial z} \left( - \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \right) - \frac{1}{r} \frac{\partial}{\partial r} \frac{1}{r} \frac{\partial}{\partial r} \faz{E} _{\alpha} \right] \hat{\alpha} + \frac{1}{r} \frac{\partial}{\partial \alpha} \frac{1}{r} \frac{\partial}{\partial z} r \faz{E} _{\alpha} \hat{z} + \faz{k} ^2 \faz{E} _{(\alpha)} =
+%\\
+%= \mj \omega \mu \faz{J} _{ext} .
+%\numberthis
+%\end{align*}
+%\end{subequations}
+
+
+\subsubsection{Slabá formulace fázoru H ve válcové souřadnicové soustavě}
+
+V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Na nehomogenní Helmholtzovu rovnici pro $\faz{H}$ se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{H}$. Což v tomto případu znamená, že je přítomna pouze složka $\faz{H} _{\varphi}$. Její tvar bude podobný rovnici \ref{HelmEasy}. Na pravé straně to mimo jiné znamená, že vzhledem k přítomnosti pouze $\varphi$ složky původního vektoru se $\rot \faz{J} _{ext} = \left( - \frac{1}{r} \frac{\partial \faz{J} _{ext(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r \faz{J} _{ext(\varphi)}}{\partial r} \right) \vec{k}$.  Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
+\begin{equation}
+\triangle \faz{H} _{(\varphi)} + \faz{k} ^2 \faz{H} _{(\varphi)} = - \mu \left( - \frac{1}{r} \frac{\partial \faz{J} _{ext(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r \faz{J} _{ext(\varphi)}}{\partial r} \right)
+\end{equation}
+
+Podobně jako při řešení v kartézské souřadné soustavě musíme rovnice rozložit na řešení pro reálnou a imaginární složku:
+\begin{equation}
+\begin{split}
+\triangle (H _{\varphi Re} + \mj H _{\varphi Im}) + (\omega ^2 \varepsilon \mu - \mj \omega \mu \gamma) (H _{\varphi Re} + \mj H _{\varphi Im}) =\\ 
+- \mj \mu \left[ \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) + j \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) \right]
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+\triangle H _{\varphi Re} + \mj \triangle H _{\varphi Im} + \omega ^2 \varepsilon \mu H_ {\varphi Re} + \mj \omega ^2 \varepsilon \mu H _{\varphi Im} - \mj \omega \mu \gamma H _{\varphi Re} + \omega \mu \gamma H _{\varphi Im} =\\
+- \mj \mu \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) + \mu \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) .
+\end{split}
+\end{equation}
+Reálnou částí rovnice je:
+\begin{align*}
+&R_{e}:
+\\
+&\triangle H_ {\varphi Re} + \omega ^2 \varepsilon \mu H_ {\varphi Re} + \omega \mu \gamma H _{\varphi Im} = \mu \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) .
+\numberthis
+\end{align*}
+Imaginární potom:
+\begin{align*}
+&I_{m}:
+\\
+&\triangle H _{\varphi Im} + \omega ^2 \varepsilon \mu H _{\varphi Im} - \omega \mu \gamma H _{\varphi Re} = - \mj \mu \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) .
+\numberthis
+\end{align*}
+Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
+\begin{equation}
+\iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
+\end{equation}
+Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je proto nutno zapsat $r$ vznikající v trojitém integrálu jako vyjádření úhlové délky pomocí inkrementu infinitezimální hodnoty $r ~ \ud \varphi$:
+\begin{align*}
+&R_e:
+\\
+&r \int _{\Omega} \triangle H _{\varphi Re} ~ v ~ \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} H _{\varphi Re} ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} H _{\varphi Im} ~ v ~ \ud \Omega = 
+\\
+&= r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) v ~ \ud \Omega
+\numberthis
+\end{align*}
+\begin{align*}
+&I_m:
+\\
+&r \int _{\Omega} \triangle H _{\varphi Im} ~ v ~ \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} H _{\varphi Im} ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} H _{\varphi Re} ~ v ~ \ud \Omega = 
+\\
+&= - r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) v ~ \ud \Omega
+\numberthis
+\end{align*}
+Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\udiv H _{\varphi Re} = \nabla \cdot H _{\varphi Re}$; $H _{\varphi Re}$ je skalár, proto $\grad H _{\varphi Re} = \nabla H _{\varphi Re}$) (viz \ref{Green}):
+\begin{align*}
+&R_e:
+\\
+&- r \int _{\Omega} \! \nabla H _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} H _{\varphi Re} \! ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} \! H _{\varphi Im} ~ v ~ \ud \Omega
+\\
+&= r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) v ~ \ud \Omega
+\numberthis
+\end{align*}
+\begin{align*}
+&I_m:
+\\
+&- r \int _{\Omega} \! \nabla H _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} \! H _{\varphi Im} ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} \! H _{\varphi Re} ~ v ~ \ud \Omega 
+\\
+&= - r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) v ~ \ud \Omega
+\numberthis
+\end{align*}
+Člen $\int _{\Gamma} \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představuje Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
+
+Složky intenzity magnetického pole jsou v modulu vyjádřeny obecně, proto se vrátíme k substituci $u = H _{\varphi}$:
+\begin{equation}
+\begin{split}
+&- r \int _{\Omega} \nabla u \cdot \nabla v ~ \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} u ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} u ~ v ~ \ud \Omega = 
+\\
+&= r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial \faz{J} _{ext(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r \faz{J} _{ext(\varphi)}}{\partial r} \right) v ~ \ud \Omega .
+\end{split}
+\end{equation}
+Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjádření výrazu pomocí parciálních diferenciálních rovnic:
+\begin{equation}
+\begin{split}
+&\!-r \int _{\Omega} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) \ud \Omega + r \omega ^2 \varepsilon \mu \int _{\Omega} u ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} u ~ v ~ \ud \Omega = 
+\\
+&r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial \faz{J} _{ext(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r \faz{J} _{ext(\varphi)}}{\partial r} \right) v ~ \ud \Omega .
+\end{split}
+\end{equation}
+Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici pro zjednodušení také vydělíme $\mu$ a $\omega$ vyjádříme pomocí $f$:
+\begin{equation}
+\begin{split}
+&- r \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v + r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v =\\ 
+&= r \left( - \frac{1}{r} \frac{\partial \faz{J} _{ext(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r \faz{J} _{ext(\varphi)}}{\partial r} \right) v .
+\end{split}
+\end{equation}
+
+Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek.
+
+Člen levé strany reálné části
+\begin{subequations}
+\begin{gather}
+- r \frac{1}{\mu} \left( \frac{\partial H _{\varphi Re}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial H _{\varphi Re}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ H _{\varphi Re} ~ v
+\\
+- r \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2  ~ \varepsilon ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 1, j = 1. Indexy udávají polohu v matici. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 1 odráží to, že jde o plně reálný člen (nejsou v něm složky vztažené k imaginární části). 
+
+Člen levé strany reálné části
+\begin{subequations}
+\begin{gather}
+r ~ 2 ~ \pi ~ f ~ \gamma ~ H _{\varphi Im} ~ v
+\\
+r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 1, j = 2. Značení i = 1 reflektuje to, že se jedná o reálnou složku, j = 2 odráží to, že jde o člen závislý na imaginární veličině ($H _{\varphi Im}$).
+
+
+Člen levé strany imaginární části
+\begin{subequations}
+\begin{gather}
+- r \frac{1}{\mu} \left( \frac{\partial H _{\varphi Im}}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial H _{\varphi Im}}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ H _{\varphi Im} ~ v
+\\
+- r \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 2, j = 2. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 2 odráží to, že jde o plně imaginární člen (nejsou v něm složky vztažené k reálné části). 
+
+Člen levé strany imaginární části
+\begin{subequations}
+\begin{gather}
+- r ~ 2 ~ \pi ~ f ~ \gamma ~ H _{\varphi Re} ~ v
+\\
+- r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v
+\end{gather}
+\end{subequations}
+bude označen indexy i = 2, j = 1. Značení i = 2 reflektuje to, že se jedná o imaginární složku, j = 1 odráží to, že jde o člen závislý na reálné veličině ($H _{\varphi Re}$).
+
+Člen pravé strany reálné části
+\begin{equation}
+r \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) v
+\end{equation}
+bude označen indexy i = 2, j = 2. Značení z důvodu přehlednosti zachovává oba indexy i a j, přestože se jedná o jednorozměrný vektor, do kterého jsou členy zanášeny. Proto i = j. Zde jsou indexy rovny 2, protože přestože jde o reálnou část, je zde obsažena imaginární veličina ($J _{extIm}$).
+
+Člen pravé strany imaginární části
+\begin{equation}
+r \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right)  v
+\end{equation}
+bude označen indexy i = 1, j = 1. Zde jsou indexy rovny 1, protože přestože jde o imaginární část, je zde obsažena reálná veličina ($J _{extRe}$).
+
+Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 2 v kapitole \nameref{xmlH}.
 
 
 
@@ -1422,17 +1707,47 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \label{xmlH}
 Zvolené názvosloví:
 \begin{align*}
-\mathrm{Jerxdy} = \frac{\partial J _{extRe(x)}}{\partial y}
+\mathrm{Jerxdy (updy)} = \frac{\partial J _{extRe(x)}}{\partial y}
 \\
-\mathrm{Jerydx} = \frac{\partial J _{extRe(y)}}{\partial x}
+\mathrm{Jerydx (updx)} = \frac{\partial J _{extRe(y)}}{\partial x}
 \\
 \mathrm{Jeixdy} = \frac{\partial J _{extIm(x)}}{\partial y}
 \\
 \mathrm{Jeiydx} = \frac{\partial J _{extIm(y)}}{\partial x}
+\\
+\mathrm{Jeirdf} = \frac{\partial J _{extIm(r)}}{\partial \varphi}
+\\
+\mathrm{rJeifdr} = \frac{\partial r J _{extIm(\varphi)}}{\partial r}
+\\
+\mathrm{Jerrdf} = \frac{\partial J _{extRe(r)}}{\partial \varphi}
+\\
+\mathrm{rJerfdr} = \frac{\partial r J _{extRe(\varphi)}}{\partial r}
+\\
 \end{align*}
 
 \begin{spverbatim}
-
+<module:volume>
+    <module:quantity id="rf_tm_permittivity" shortname="rf_eps"/>
+    <module:quantity id="rf_tm_permeability" shortname="rf_mur"/>
+    <module:quantity id="rf_tm_conductivity" shortname="rf_gamma"/>
+    <module:quantity id="rf_tm_current_density_external_real" shortname="rf_Jer"/>
+    <module:quantity id="rf_tm_current_density_external_imag" shortname="rf_Jei"/>
+    <module:weakforms_volume>
+      <module:weakform_volume analysistype="harmonic">
+        <module:quantity id="rf_tm_permittivity"/>
+        <module:quantity id="rf_tm_permeability"/>
+        <module:quantity id="rf_tm_conductivity"/>
+        <module:quantity id="rf_tm_current_density_external_real"/>
+        <module:quantity id="rf_tm_current_density_external_imag"/>
+        <module:matrix_form id="form" axi_linear="- r * 1 / (rf_mur * MU0) * (udr * vdr + udz * vdz) + r * pow(2 * PI * f, 2) * rf_eps * EPS0 * uval * vval" axi_newton="0" i="1" j="1" planar_linear="- 1 / (rf_mur * MU0) * (udx * vdx + udy * vdy) + pow(2 * PI * f, 2) * rf_eps * EPS0 * uval * vval" planar_newton="0" symmetric="1"/>
+        <module:matrix_form id="form" axi_linear="- r * 1 / (rf_mur * MU0) * (udr * vdr + udz * vdz) + r * pow(2 * PI * f, 2) * rf_eps * EPS0 * uval * vval" axi_newton="0" i="2" j="2" planar_linear="- 1 / (rf_mur * MU0) * (udx * vdx + udy * vdy) + pow(2 * PI * f, 2) * rf_eps * EPS0 * uval * vval" planar_newton="0" symmetric="1"/>
+        <module:matrix_form id="form" axi_linear="r * 2 * PI * f * rf_gamma * uval * vval" axi_newton="0" i="1" j="2" planar_linear="2 * PI * f * rf_gamma * uval * vval" planar_newton="0"/>
+        <module:matrix_form id="form" axi_linear="- r * 2 * PI * f * rf_gamma * uval * vval" axi_newton="0" i="2" j="1" planar_linear="- 2 * PI * f * rf_gamma * uval * vval" planar_newton="0"/>
+        <module:vector_form id="form" axi_linear="r * (- (1/r) * Jerf + (1/r) * rJerr) * vval" axi_newton="0" i="1" j="1" planar_linear="(- Jerxdy + Jerydx) * vval" planar_newton="0"/>
+        <module:vector_form id="form" axi_linear="r * (- (1/r) * Jeif + (1/r) * rJeir) * vval" axi_newton="0" i="2" j="2" planar_linear="(Jeixdy + Jeiydx) * vval" planar_newton="0"/>
+     </module:weakform_volume>
+    </module:weakforms_volume>
+  </module:volume>
 \end{spverbatim}
 
 \end{document}
