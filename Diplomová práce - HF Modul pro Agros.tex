@@ -248,12 +248,12 @@ Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční o
 \end{align}
 \end{subequations}
 
-Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$.
+Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$.
 
 
 \subsection{Vlnová rovnice}
 \subsubsection*{Vlnová rovnice pro vektor $\vec{E}$}
-Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvoditelné z Maxwellových rovnic v diferenciálním tvaru. Použijeme \ref{maxdif1} (první Maxwellovu rovnici), ale budeme uvažovat, že kromě indukovaného proudu se v oblasti nachází také proud vnucený vnějším zdrojem. Výsledkem bude modifikace rovnice \ref{maxdif1} na:
+Popsat elektromagnetické vlnění lze velmi dobře pomocí vlnové rovnice odvoditelné z Maxwellových rovnic v diferenciálním tvaru. Použijeme \ref{maxdif1} (první Maxwellovu rovnici), ale budeme uvažovat, že kromě indukovaného proudu $\vec{J}$ se v oblasti nachází také proud vnucený vnějším zdrojem $\vec{J} _{ext}$. Výsledkem bude modifikace rovnice \ref{maxdif1} na:
 \begin{equation}
 \label{maxdif1ext}
 \rot \vec{H} = \vec{J} + \frac{\partial \vec{D}}{\partial t} + \vec{J} _{ext} .
@@ -279,7 +279,7 @@ Na levou stranu rovnice použijeme vztah vektorové identity $\rot \rot \vec{E} 
 \begin{equation}
 \grad \div \vec{E} - \triangle \vec{E} = - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t^2} - \mu \frac{\partial \vec{J} _{ext}}{\partial t} .
 \end{equation}
-Z \ref{maxdif3} (třetí Maxwellovy rovnice) dosadíme za $\div \vec{E}$ výraz $\frac{\rho}{\varepsilon}$. Na pravou stranu rovnice přesuneme zdrojové funkce elektromagnetického pole. Výsledkem je \textbf{zobecněná nehomogenní vlnová rovnice pro vektor} \vec{E}:
+Z \ref{maxdif3} (třetí Maxwellovy rovnice) dosadíme za $\div \vec{E}$ výraz $\rho / \varepsilon$. Na pravou stranu rovnice přesuneme zdrojové funkce elektromagnetického pole. Výsledkem je \textbf{zobecněná nehomogenní vlnová rovnice pro vektor} \vec{E}:
 \begin{equation}
 \label{nehomovlnovkaE}
 \triangle \vec{E} - \mu \gamma \frac{\partial \vec{E}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{E}}{\partial t ^2} = \grad \frac{\rho}{\varepsilon} + \mu \frac{\partial \vec{J} _{ext}}{\partial t} .
@@ -325,7 +325,7 @@ Výše uvedené nehomogenní rovnice \ref{DHnehom} přejdou při $\vec{J} _{ext}
 
 
 \subsection{Helmholtzova rovnice}
-Speciálním případem vlnové rovnice pro harmonicky proměnné ($\mj \omega$) pole ve frekvenční oblasti je tzv. Helmholtzova rovnice, pojmenovaná podle německého fyzika Hermanna Ludwiga Helmholtze.
+Úpravou vlnové rovnice pro harmonicky proměnné ($\mj \omega$) pole ve frekvenční oblasti vznikne tzv. Helmholtzova rovnice, pojmenovaná podle německého fyzika Hermanna Ludwiga Helmholtze.
 
 \subsubsection*{Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$}
 Aplikací Fourierovy transformace na \ref{nehomovlnovkaE} (nehomogenní vlnovou rovnici pro vektor $\vec{E}$) a použitím symbolicko-komplexní metody, lze rovnici zapsat ve formě:
@@ -370,7 +370,7 @@ Pokud v regionu nejsou přítomny vnější zdroje ($\rho = 0$, $\faz{\vec{J}} _
 \triangle \faz{\vec{B}} + \faz{k} ^2 \faz{\vec{B}} = 0 .
 \end{equation}
 
-Konstanta $k ~\mathrm{[m ^{-1}]}$, zavedená výše, je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě, konduktivitě a také na frekvenci. Pro homogenní prostředí bez vnějších zdrojů ji lze zapsat jako:
+Konstanta $k ~\mathrm{[m ^{-1}]}$, zavedená výše, je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě, konduktivitě a také na frekvenci. Pro prostředí s nulovou vodivostí $\gamma$ rovnice vypadá takto:
 \begin{equation}
 k = \omega \sqrt{\mu \varepsilon} .
 \end{equation}
@@ -392,6 +392,46 @@ Ve volném prostoru je vlnová impedance rovna tzv. vlastní (intrinsic) impedan
 
 
 \subsection{Šíření vln ve volném prostoru}
+V následujícím textu bude uvažováno šíření vln ve volném neohraničeném prostředí. Jedná se o prostor bez přítomnosti překážek (různých objektů), které mají jiné materiálové konstanty $\varepsilon$, $\mu$ a $\gamma$ než okolní prostředí, ve kterém se vlna šíří.
+
+\subsubsection{Rovinná homogenní vlna}
+Každá vlna je každým jednotlivým řešením vlnové rovnice. Subjektivně lze vlnu vnímat jako rozruch šířící se v prostoru a čase. Fyzikálně jde o změnu fáze vycházející z rovnosti druhých parciálních derivací podle času a souřadnic. Množina bodů, v nichž má fáze v daném čase stejnou hodnotu se nazývá vlnoplochou. Nejvýznamnějším druhem vln jsou vlny rovinné (vlnoplochy jsou roviny) a vlny sférické (vlnoplochy jsou kulové plochy). 
+
+Vzhledem k omezením (konečnosti) rozměrů zdroje elektromagnetického záření nemůže žádný zdroj emitovat vlnu, jejíž vlnoplocha by byla dokonale rovinná. Rovinná vlna je zjednodušením aplikovaným na sférickou vlnoplochu v dostatečné vzdálenosti od zdroje vlnění, kde se již uvažovaný výřez její vlnoplochy s akceptovatelnou chybou jeví jako rovina. Výhodou použití rovinných homogenních vln je mimo jiné možnost sestavovaní složitějších vln jejich prostou superpozicí. Homogenní vlnou se nazývá vlna, u které je na vlnoploše konstantní hodnota amplitudy. [\cite{RovinnaVlna}]
+
+Pro harmonické pole bez vnějších zdrojů vycházejme z homogenní Helmholtzovy rovnice \ref{homohelmholtze}. Rovnici rozepišme pro jednotlivé souřadnice kartézské souřadné soustavy, zvolené vzhledem k vhodnosti pro šíření rovinných vln:
+\begin{subequations}
+\begin{align}
+\triangle \faz{E} _x + \faz{k} ^2 \faz{E} _x = 0 ,
+\\
+\triangle \faz{E} _y + \faz{k} ^2 \faz{E} _y = 0 ,
+\\
+\triangle \faz{E} _z + \faz{k} ^2 \faz{E} _z = 0 .
+\end{align}
+\end{subequations} 
+
+Rozepíšeme operátor delta pomocí parciálních derivací. Z předchozího vyjádření se tedy stala soustava parciálních diferenciálních rovnic druhého řádu:
+\begin{subequations}
+\label{rovinadif}
+\begin{align}
+\label{rovinadif1}
+\frac{\partial ^2 \faz{E} _x }{\partial x ^2} + \frac{\partial ^2 \faz{E} _x }{\partial y ^2} + \frac{\partial ^2 \faz{E} _x }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 ,
+\\
+\label{rovinadif2}
+\frac{\partial ^2 \faz{E} _y }{\partial x ^2} + \frac{\partial ^2 \faz{E} _y }{\partial y ^2} + \frac{\partial ^2 \faz{E} _y }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 ,
+\\
+\label{rovinadif3}
+\frac{\partial ^2 \faz{E} _z }{\partial x ^2} + \frac{\partial ^2 \faz{E} _z }{\partial y ^2} + \frac{\partial ^2 \faz{E} _z }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 .
+\end{align}
+\end{subequations}
+Zvolíme-li, že se vlna bude šířit ve směru osy $z$, bude vlnoplocha kolmá na tuto osu a rovnoběžná s rovinou tvořenou osami $x$ a $y$. To znamená výrazné zjednodušení řešeného problému. Dalším zjednodušením je uvažování vektoru intenzity elektrického pole $\vec{\faz{E}}$ pouze ve směru osy $x$.
+
+V důsledku to znamená, že vektor $\vec{\faz{E}}$ bude ve směru osy $y$ a $z$ nulový, tedy že $\vec{\faz{E}} _y = 0$ a $\vec{\faz{E}} _z = 0$. Dalším důsledkem je, že velikost a fáze vektoru $\vec{\faz{E}}$ ve směru osy x bude konstantní. Proto $\frac{\partial \faz{E} _x}{\partial x} = 0$ a $\frac{\partial \faz{E} _x}{\partial y} = 0$. Po aplikaci na soustavu \ref{rovinadif} dojde k tomu, že rovnice \ref{rovinadif2} a \ref{rovinadif3} se celé vynulují a vypadnou. U rovnice \ref{rovinadif1} vypadnou první dva členy na levé straně, výsledná rovnice bude tedy vypadat takto:
+\begin{equation}
+\frac{\partial ^2 \faz{E} _x}{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 .
+\end{equation}
+ 
+ 
 
 
 \newpage
@@ -443,14 +483,14 @@ Předpokladem je šíření harmonického pole se závislostí $\me ^{jwt}$ pod�
 \begin{subequations}
 \label{hromadna}
 \begin{align}
-\faz{E}(x, y, z)&=[\faz{e}(x, y) + \hat{z}e_z(x, y)] \me ^{j\beta z} ,
+\faz{\vec{E}}(x, y, z)&=[\faz{\vec{e}}(x, y) + \hat{z}e_z(x, y)] \me ^{j\beta z} ,
 \\
-\faz{H}(x, y, z)&=[\faz{h}(x, y) + \hat{z}h_z(x, y)] \me ^{j\beta z} .
+\faz{\vec{H}}(x, y, z)&=[\faz{\vec{h}}(x, y) + \hat{z}h_z(x, y)] \me ^{j\beta z} .
 \end{align}
 \end{subequations}
-$\vec{e}(x,y)$ a $\vec{h}(x,y)$ vyjadřují příčnou (transverzální) složku elektrického a magnetického pole, $e_z$ a $h_z$ představují složku podélnou. Pokud by se vlna šířila v opačném směru (ne ve směru $+z$, ale $-z$), nahradí se $\beta$ za $-\beta$. V případě, kdy by byl přítomen útlum, nahradí se se konstanta šíření $j \beta$ za komplexní konstantu $\gamma$, $\gamma = \alpha + j \beta$.
+$\faz{\vec{e}}(x,y)$ a $\faz{\vec{h}}(x,y)$ vyjadřují příčnou (transverzální) složku elektrického a magnetického pole, $e_z$ a $h_z$ představují složku podélnou. Pokud by se vlna šířila v opačném směru (ne ve směru $+z$, ale $-z$), nahradí se $\beta$ za $-\beta$. V případě, kdy by byl přítomen útlum, nahradí se se konstanta šíření $j \beta$ za komplexní konstantu $\gamma$, $\gamma = \alpha + j \beta$.
 
-Pokud vlnovod nebo přenosové vedení jsou nezřídlové mohou být Maxwellovy rovnice vyjádřeny:
+Pokud ve vlnovodu nebo přenosovém vedení nejsou zdroje $J$, mohou být Maxwellovy rovnice vyjádřeny:
 \begin{subequations}
 \label{maxvektor2}
 \begin{align}
@@ -459,7 +499,7 @@ Pokud vlnovod nebo přenosové vedení jsou nezřídlové mohou být Maxwellovy 
 \nabla \times \faz{H} &= j\omega \varepsilon \faz{E} .
 \end{align}
 \end{subequations}
-
+.
 Tyto vektorové rovnice mohou být převedeny do tvaru jednotlivých parciálních diferenciálních rovnic:
 \begin{subequations}
 \begin{align}
@@ -582,7 +622,7 @@ Tyto rovnice potom mohou být přepsány do formy využívající Laplacova oper
 \begin{equation}
 \triangle _t \faz{e} (x, y) = 0 .
 \end{equation}
-.
+
 
 Stejný postup lze aplikovat i u příčného magnetického pole a dojít ke stejnému výsledku:
 \begin{equation}
@@ -739,7 +779,7 @@ Navrhovaný modul pro VF pole je .xml soubor obsahující upravené předpisy a 
 \subsection{Slabé formulace vlnových rovnice}
 Prostředí programu Agros2D předpokládá pouze určité typy a způsoby šíření vln vedoucí k zjednodušení modelové situace. Agros2D simuluje pole v 2D prostoru, v třetím rozměru se předpokládá, že je pole rozloženo rovnoměrně nebo symetricky k zakreslené geometrii. Předpokladem je také šíření harmonického pole. Proto je ideální použití Helmholtzovy rovnice (\ref{HelmholtzEnehomo} - Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$).
 
-U Helmholtzovi rovnici dále předpokládáme rovnoměrné rozložení náboje $\rho$. Z toho plyne, že člen $\grad \frac{\rho}{\varepsilon}$ rovnice \ref{HelmholtzEnehomo} bude roven nule. Pro planární problém budeme předpokládat šíření vln v kartézské souřadnicové soustavě ve směru osy $z$. Pro osově symetrický systém bude předpokladem šíření vln v polární souřadnicové soustavě mající pouze tangenciální složku.
+U Helmholtzovi rovnici dále předpokládáme rovnoměrné rozložení náboje $\rho$. Z toho plyne, že člen $\grad \! \! (\rho / \varepsilon)$ rovnice \ref{HelmholtzEnehomo} bude roven nule. Pro planární problém budeme předpokládat šíření vln v kartézské souřadnicové soustavě ve směru osy $z$. Pro osově symetrický systém bude předpokladem šíření vln v polární souřadnicové soustavě mající pouze tangenciální složku.
 
 Zavedením těchto zjednodušujících předpokladů se Helmholtzova rovnice \ref{HelmholtzEnehomo} transformuje do tvaru:
 \begin{equation}
@@ -747,18 +787,18 @@ Zavedením těchto zjednodušujících předpokladů se Helmholtzova rovnice \re
 \triangle \faz{E} _{(z)} + \faz{k} ^2 \faz{E} _{(z)} = \mj \omega \mu \faz{J} _{ext} .
 \end{equation}
 
-Helmholtzovu rovnici pak lze vyjádřit pomocí takzvané slabé formulace. Výraz si představíme jako Poissonovu rovnici, kterou zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$:
+Helmholtzovu rovnici pak lze vyjádřit pomocí takzvané slabé formulace. Označme symbolem $u$ člen $\faz{E} _{(z)}$ a symbolem $f$ pravou stranu $\mj \omega \mu \faz{J} _{ext}$. Rovnici roznásobíme testovací funkcí $v$ a následně jí zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu):
 \begin{subequations}
 \label{Poisson}
 \begin{align}
 - \triangle u - k ~ u &= f
 \\
-- \int _{\Omega} \triangle u ~ \ud \Omega - \int _{\Omega} k ~ u ~ \ud \Omega &= \int _{\Omega} f ~ \ud \Omega
+- \triangle u ~ v - k ~ u ~ v &= f ~ v
 \\
 - \int _{\Omega} \triangle u ~ v ~ \ud \Omega - \int _{\Omega} k ~ u ~ v ~ \ud \Omega &= \int _{\Omega} f ~ v ~ \ud \Omega .
 \end{align}
 \end{subequations}
-Na výraz následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\udiv u = \nabla \cdot u$; v tomto případě je $u$ skalár, proto $\grad u = \nabla u$):
+Na výraz následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad u = \nabla u$):
 \begin{equation}
 \label{Green}
 - \int _{\Omega} \nabla u \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \frac{\partial u}{\partial n} ~ v ~ \ud \Gamma - \int _{\Omega} k ~ u ~ v ~ \ud \Omega = \int _{\Omega} f ~ v ~ \ud \Omega .
@@ -800,7 +840,7 @@ Imaginární potom:
 &\triangle E _{zIm} + \omega ^2 \varepsilon \mu E _{zIm} - \omega \mu \gamma E _{zRe} = \omega \mu J _{extRe} .
 \numberthis
 \end{align*}
-Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}):
+Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}):
 \begin{align*}
 &R_e:
 \\
@@ -936,7 +976,7 @@ Imaginární potom:
 &\triangle H _{zIm} + \omega ^2 \varepsilon \mu H _{zIm} - \omega \mu \gamma H _{zRe} = - \mj \mu \left( - \frac{\partial J _{extRe(x)}}{\partial y} + \frac{\partial J _{extRe(y)}}{\partial x} \right) .
 \numberthis
 \end{align*}
-Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}):
+Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}):
 \begin{align*}
 &R_e:
 \\
@@ -1082,7 +1122,7 @@ Imaginární potom:
 &\triangle E _{\varphi Im} + \omega ^2 \varepsilon \mu E _{\varphi Im} - \omega \mu \gamma E _{\varphi Re} = \omega \mu J _{extRe} .
 \numberthis
 \end{align*}
-Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
+Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
 \begin{equation}
 \iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
 \end{equation}
@@ -1261,7 +1301,7 @@ Imaginární potom:
 &\triangle H _{\varphi Im} + \omega ^2 \varepsilon \mu H _{\varphi Im} - \omega \mu \gamma H _{\varphi Re} = - \mj \mu \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) .
 \numberthis
 \end{align*}
-Obě části zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu) a následně ho roznásobíme testovací funkcí $v$ (podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
+Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
 \begin{equation}
 \iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
 \end{equation}
@@ -1649,6 +1689,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \bibitem{Instrinsic} Intrinsic Impedance. Antenna-Theory.com [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
 \bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. Agros2D [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
 \bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
+\bibitem{RovinnaVlna} Rovinné vlny. \textit{Fyzikální sekce Matematicko-fyzikální fakulty UK} [online]. [cit. 2013-02-20]. Dostupné z: http://physics.mff.cuni.cz/kfpp/skripta/kurz\_fyziky\_pro\_DS/display.php/optika/1\_3
 
 
 \end{thebibliography}
