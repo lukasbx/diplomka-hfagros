@@ -870,7 +870,7 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 &= \omega \mu \int _{\Omega} J _{extRe} ~ v ~ \ud \Omega .
 \numberthis
 \end{align*}
-Člen $\int _{\Gamma} \frac{\partial E _{zIm}}{\partial n} ~ v ~ \ud \Gamma$ představuje Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
+Členy $\int _{\Gamma} \frac{\partial E _{zRe}}{\partial n} ~ v ~ \ud \Gamma$ a $\int _{\Gamma} \frac{\partial E _{zIm}}{\partial n} ~ v ~ \ud \Gamma$ představují Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebudou uvažovány.
 
 Složky intenzity elektrického pole jsou v modulu vyjádřeny obecně, proto se vrátíme k substituci $u = E_z$:
 \begin{equation}
@@ -1010,7 +1010,7 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 &= - \mu \int _{\Omega} \left( - \frac{\partial J _{extRe(x)}}{\partial y} + \frac{\partial J _{extRe(y)}}{\partial x} \right) v ~ \ud \Omega
 \numberthis
 \end{align*}
-Člen $\int _{\Gamma} \frac{\partial H _{zIm}}{\partial n} ~ v ~ \ud \Gamma$ představuje Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
+Členy $\int _{\Gamma} \frac{\partial H _{zRe}}{\partial n} ~ v ~ \ud \Gamma$ a $\int _{\Gamma} \frac{\partial H _{zIm}}{\partial n} ~ v ~ \ud \Gamma$ představují Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebudou uvažovány.
 
 Složky intenzity magnetického pole jsou v modulu vyjádřeny obecně, proto se vrátíme k substituci $u = H_z$:
 \begin{equation}
@@ -1143,7 +1143,7 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 \begin{align*}
 &R_e:
 \\
-&- r \int _{\Omega} \nabla E _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Re} ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} E _{\varphi Im} ~ v ~ \ud \Omega 
+&- r \int _{\Omega} \nabla E _{\varphi Re} \cdot \nabla v ~ \ud \Omega + r \int _{\Gamma} \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Re} ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} E _{\varphi Im} ~ v ~ \ud \Omega 
 \\
 &= - r \omega \mu \int _{\Omega} J _{extIm} ~ v ~ \ud \Omega
 \numberthis
@@ -1151,12 +1151,12 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 \begin{align*}
 &I_m:
 \\
-&- r \int _{\Omega} \nabla E _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Im} \! ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} \! E _{\varphi Re} ~ v ~ \ud \Omega 
+&- r \int _{\Omega} \nabla E _{\varphi Im} \cdot \nabla v ~ \ud \Omega + r \int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} E _{\varphi Im} \! ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} \! E _{\varphi Re} ~ v ~ \ud \Omega 
 \\
 &= r \omega \mu \int _{\Omega} J _{extRe} ~ v ~ \ud \Omega .
 \numberthis
 \end{align*}
-Člen $\int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představuje Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
+Členy $r \int _{\Gamma} \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma$ a $r \int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představují Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
 
 Složky intenzity elektrického pole jsou v modulu vyjádřeny obecně, proto se vrátíme k substituci $u = E_\varphi$:
 \begin{equation}
@@ -1326,7 +1326,7 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 \begin{align*}
 &R_e:
 \\
-&- r \int _{\Omega} \! \nabla H _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} H _{\varphi Re} \! ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} \! H _{\varphi Im} ~ v ~ \ud \Omega
+&- r \int _{\Omega} \! \nabla H _{\varphi Re} \cdot \nabla v ~ \ud \Omega + r \int _{\Gamma} \! \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} H _{\varphi Re} \! ~ v ~ \ud \Omega + r \omega \mu \gamma \int _{\Omega} \! H _{\varphi Im} ~ v ~ \ud \Omega
 \\
 &= r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial J _{extIm(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extIm(\varphi)}}{\partial r} \right) v ~ \ud \Omega
 \numberthis
@@ -1334,12 +1334,12 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 \begin{align*}
 &I_m:
 \\
-&- r \int _{\Omega} \! \nabla H _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} \! H _{\varphi Im} ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} \! H _{\varphi Re} ~ v ~ \ud \Omega 
+&- r \int _{\Omega} \! \nabla H _{\varphi Im} \cdot \nabla v ~ \ud \Omega + r \int _{\Gamma} \! \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + r \omega ^2 \varepsilon \mu \int _{\Omega} \! H _{\varphi Im} ~ v ~ \ud \Omega - r \omega \mu \gamma \int _{\Omega} \! H _{\varphi Re} ~ v ~ \ud \Omega 
 \\
 &= - r \mu \int _{\Omega} \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1}{r} \frac{\partial r J _{extRe(\varphi)}}{\partial r} \right) v ~ \ud \Omega
 \numberthis
 \end{align*}
-Člen $\int _{\Gamma} \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představuje Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebude uvažována.
+Členy $r \int _{\Gamma} \! \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma$ a $r \int _{\Gamma} \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představují Neumannovu okrajovou podmínku. Okrajovým podmínkám se věnuje následující sekce, zde proto nebudou uvažovány.
 
 Složky intenzity magnetického pole jsou v modulu vyjádřeny obecně, proto se vrátíme k substituci $u = H _{\varphi}$:
 \begin{equation}
@@ -1421,6 +1421,373 @@ r \left( - \frac{1}{r} \frac{\partial J _{extRe(r)}}{\partial \varphi} + \frac{1
 bude označen indexy i = 1, j = 1. Zde jsou indexy rovny 1, protože přestože jde o imaginární část, je zde obsažena reálná veličina ($J _{extRe}$).
 
 Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 2 v kapitole \nameref{xmlH}.
+
+
+\subsection{Okrajové podmínky}
+Okrajové podmínky předepisují chování funkce, nebo derivace funkce, v určitých bodech. Těmito body jsou okraje oblasti, na které danou rovnici řešíme. Při řešení parciálních diferenciálních rovnic vystupují obvykle tři typy okrajových podmínek - Dirichletova okrajová podmínka, Neumannova okrajová podmínka a Newtonova okrajová podmínka.
+
+
+\subsubsection{Dirichletova okrajová podmínka}
+Dirichletova okrajová podmínka vyjadřuje hodnotu funkce $u$ na okraji řešené oblasti. Může být obecně závislá na jednotlivých souřadnicích a na čase: 
+\begin{equation}
+u = f _{Dir} (x, y, z, t)
+\end{equation}
+
+\subsubsection*{Tvar pro $\faz{\vec{E}}$ v kartézských souřadnicích}
+Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{E}}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $\vec{E} _{real}$ a imaginární složku $\vec{E} _{imag}$. Reálná složka $\vec{E} _{real}$ bude označena indexem $i = 1$, imaginární složka $\vec{E} _{imag}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako "essential form".
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlE}.
+
+\subsubsection*{Tvar pro $\faz{\vec{H}}$ v kartézských souřadnicích}
+Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{H}}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $\vec{H} _{real}$ a imaginární složku $\vec{H} _{imag}$. Reálná složka $\vec{H} _{real}$ bude označena indexem $i = 1$, imaginární složka $\vec{H} _{imag}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako "essential form".
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlH}.
+
+\subsubsection*{Tvar pro $\faz{\vec{E}}$ ve válcových souřadnicích}
+Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{E}}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $\vec{E} _{real}$ a imaginární složku $\vec{E} _{imag}$. Reálná složka $\vec{E} _{real}$ bude označena indexem $i = 1$, imaginární složka $\vec{E} _{imag}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako "essential form".
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlE}.
+
+\subsubsection*{Tvar pro $\faz{\vec{H}}$ ve válcových souřadnicích}
+Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{H}}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $\vec{H} _{real}$ a imaginární složku $\vec{H} _{imag}$. Reálná složka $\vec{H} _{real}$ bude označena indexem $i = 1$, imaginární složka $\vec{H} _{imag}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako "essential form".
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlH}.
+
+
+\subsubsection{Neumannova okrajová podmínka}
+Neumannova okrajová podmínka říká, jak se mění veličina ve směru kolmo na rozhraní. Je vyjádřena jako hodnota normálové derivace funkce. V kartézském souřadném systému ji lze obecně zapsat takto:
+\begin{equation}
+\frac{\partial u}{\partial \vec{n}} = f _{Neu} (x, y, z, t)
+\end{equation}
+
+\subsubsection*{Tvar pro $\faz{\vec{E}}$ v kartézských souřadnicích}
+Neumannova okrajová podmínka se objeví při výpočtu slabých forem jako člen integro-diferenciální rovnice ve formě plošného integrálu:
+\begin{subequations}
+\label{weakneumann}
+\begin{align}
+\int _{\Gamma} \frac{\partial E _{z Re}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\\ 
+\int _{\Gamma} \frac{\partial E _{z Im}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\end{align}
+\end{subequations}
+
+Pro získání její hodnoty budeme vycházet z \ref{maxdif2} (2. Maxwellovy rovnice v diferenciálním tvaru). Na levé straně provedeme výpočet operace rotace. Vzhledem k přítomnosti pouze $z$ složky $E$ u TE vlny dojde k zjednodušení výsledku:
+\begin{equation}
+\left| 
+\begin{array}{c c c}
+%determinant nebo matice se zadávají přes prostředí "array", parametry udávají počet sloupců a jejich centrování ("c" - na střed)
+\vec{i} & \vec{j} & \vec{k} \\ 
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+0 & 0 & E_z
+\end{array}
+\right|
+= \frac{\partial E_z}{\partial y} ~ \vec{i} - \frac{\partial E_z}{\partial x} ~ \vec{j}  .
+\end{equation} 
+Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+\begin{equation}
+\vec{n} \times \left( \frac{\partial E_z}{\partial y} ~ \vec{i} - \frac{\partial E_z}{\partial x} ~ \vec{j} \right) = - ~ \vec{n} \times \mj \omega \mu \vec{H} .
+\end{equation}
+Vektorový součin na levé straně vyřešíme s pomocí determinantu:
+\begin{subequations}
+\begin{align}
+\left| 
+\begin{array}{c c c}
+%determinant nebo matice se zadávají přes prostředí "array", parametry udávají počet sloupců a jejich centrování ("c" - na střed)
+\vec{i} & \vec{j} & \vec{k} \\ 
+n_x & n_y & n_z \\
+\frac{\partial E_z}{\partial y} & - \frac{\partial E_z}{\partial x} & 0
+\end{array}
+\right|
+= - ~ \vec{n} \times \mj \omega \mu \vec{H} 
+\\
+\left( - \frac{\partial E_z}{\partial y} n_y - \frac{\partial E_z}{\partial x} n_x \right) \cdot \vec{k} = - ~ \vec{n} \times \mj \omega \mu \vec{H}
+\\
+\left( \frac{\partial E_z}{\partial x} ; \frac{\partial E_z}{\partial y} \right) \cdot \left( n_x; n_y \right) \cdot \vec{k} = - ~ \vec{n} \times \mj \omega \mu \vec{H} .
+\end{align}
+\end{subequations}
+Výraz na levé straně lze také vyjádřit pomocí gradientu:
+\begin{equation}
+\grad E_z \cdot \vec{n} \cdot \vec{k} = - ~ \vec{n} \times \mj \omega \mu \vec{H} .
+\end{equation}
+
+A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
+\begin{equation}
+\label{gradneumann}
+\frac{\partial E_z}{\partial \vec{n}} = grad E_z \cdot \vec{n} .
+\end{equation}
+To znamená, že na levou stranu rovnice \ref{gradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
+\begin{equation}
+\frac{\partial E_z}{\partial \vec{n}} \cdot \vec{k} = - ~ \vec{n} \times \vec{H}.
+\end{equation}
+Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{k}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
+\begin{equation}
+\label{neumann}
+\frac{\partial E_z}{\partial \vec{n}} = - H_t .
+\end{equation}
+Na levé straně máme tedy zápis Neumannovy okrajové podmínky a na straně pravé její funkční vyjádření.
+
+Posledním krokem je dosazení pravé strany z \ref{neumann} do \ref{weakneumann} (výrazu získaného při výpočtu slabých norem):
+\begin{subequations}
+\begin{align}
+\int _{\Gamma} ( - H_{(t~real)} ~ v ) ~ \ud \Gamma ,
+\\ 
+\int _{\Gamma} ( - H_{(t~real)} ~ v ) ~ \ud \Gamma .
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž "vector form". Reálná složka 
+\begin{equation}
+- H_{(t~real)} ~ v
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+- H_{(t~imag)} ~ v
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+\subsubsection*{Tvar pro $\faz{\vec{H}}$ v kartézských souřadnicích}
+Neumannova okrajová podmínka se objeví při výpočtu slabých forem jako člen integro-diferenciální rovnice ve formě plošného integrálu:
+\begin{subequations}
+\label{Hweakneumann}
+\begin{align}
+\int _{\Gamma} \frac{\partial H _{z Re}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\\ 
+\int _{\Gamma} \frac{\partial H _{z Im}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\end{align}
+\end{subequations}
+
+Pro získání její hodnoty budeme vycházet z \ref{maxdif1} (1. Maxwellovy rovnice v diferenciálním tvaru). Na levé straně provedeme výpočet operace rotace. Vzhledem k přítomnosti pouze $z$ složky $H$ u TM vlny dojde k zjednodušení výsledku:
+\begin{equation}
+\left| 
+\begin{array}{c c c}
+\vec{i} & \vec{j} & \vec{k} \\ 
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+0 & 0 & H_z
+\end{array}
+\right|
+= \frac{\partial H_z}{\partial y} ~ \vec{i} - \frac{\partial H_z}{\partial x} ~ \vec{j}  .
+\end{equation} 
+Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+\begin{equation}
+\vec{n} \times \left( \frac{\partial H_z}{\partial y} ~ \vec{i} - \frac{\partial H_z}{\partial x} ~ \vec{j} \right) = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{equation}
+Vektorový součin na levé straně vyřešíme s pomocí determinantu:
+\begin{subequations}
+\begin{align}
+\left| 
+\begin{array}{c c c}
+\vec{i} & \vec{j} & \vec{k} \\ 
+n_x & n_y & n_z \\
+\frac{\partial H_z}{\partial y} & - \frac{\partial H_z}{\partial x} & 0
+\end{array}
+\right|
+= - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) 
+\\
+\left( - \frac{\partial H_z}{\partial y} n_y - \frac{\partial H_z}{\partial x} n_x \right) \cdot \vec{k} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E})
+\\
+\left( \frac{\partial H_z}{\partial x} ; \frac{\partial H_z}{\partial y} \right) \cdot \left( n_x; n_y \right) \cdot \vec{k} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{align}
+\end{subequations}
+Výraz na levé straně lze také vyjádřit pomocí gradientu:
+\begin{equation}
+\grad H_z \cdot \vec{n} \cdot \vec{k} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{equation}
+
+A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
+\begin{equation}
+\label{Hgradneumann}
+\frac{\partial H_z}{\partial \vec{n}} = grad H_z \cdot \vec{n} .
+\end{equation}
+To znamená, že na levou stranu rovnice \ref{Hgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
+\begin{equation}
+\frac{\partial H_z}{\partial \vec{n}} \cdot \vec{k} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}).
+\end{equation}
+Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{k}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
+\begin{equation}
+\label{Hneumann}
+\frac{\partial H_z}{\partial \vec{n}} = - J_t - E_t .
+\end{equation}
+Na levé straně máme tedy zápis Neumannovy okrajové podmínky a na straně pravé její funkční vyjádření.
+
+Posledním krokem je dosazení pravé strany z \ref{Hneumann} do \ref{Hweakneumann} (výrazu získaného při výpočtu slabých norem):
+\begin{subequations}
+\begin{align}
+\int _{\Gamma} (( - J_{(t~real)} - E_{(t~real)}) ~ v ) ~ \ud \Gamma ,
+\\ 
+\int _{\Gamma} (( - J_{(t~imag)} - E_{(t~imag)}) ~ v ) ~ \ud \Gamma .
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž "vector form". Reálná složka 
+\begin{equation}
+( - J_{(t~real)} - E_{(t~real)} ) ~ v
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+( - J_{(t~imag)} - E_{(t~imag)} ) ~ v
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+\subsubsection*{Tvar pro $\faz{\vec{E}}$ ve válcových souřadnicích}
+Neumannova okrajová podmínka se objeví při výpočtu slabých forem jako člen integro-diferenciální rovnice ve formě plošného integrálu:
+\begin{subequations}
+\label{ECweakneumann}
+\begin{align}
+r \int _{\Gamma} \frac{\partial E _{\varphi Re}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\\ 
+r \int _{\Gamma} \frac{\partial E _{\varphi Im}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\end{align}
+\end{subequations}
+
+Pro získání její hodnoty budeme vycházet z \ref{maxdif2} (2. Maxwellovy rovnice v diferenciálním tvaru). Na levé straně provedeme výpočet operace rotace. Vzhledem k přítomnosti pouze $z$ složky $E$ u TE vlny dojde k zjednodušení výsledku:
+\begin{equation}
+\rot \! \vec{E} = - \frac{\partial E_{\varphi}}{\partial z} ~ \vec{\rho} + \frac{1}{r} \frac{\partial ( r E_{\varphi} ) }{\partial r} ~ \vec{k}
+\end{equation}
+Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+\begin{equation}
+\vec{n} \times \left( \frac{1}{r} \frac{\partial ( r E_{\varphi} ) }{\partial r} ~ \vec{k} - \frac{\partial E_{\varphi}}{\partial z} ~ \vec{\rho} \right) = - ~ \vec{n} \times \mj \omega \mu \vec{H} .
+\end{equation}
+Vektorový součin na levé straně vyřešíme s pomocí determinantu:
+\begin{subequations}
+\begin{align}
+\left| 
+\begin{array}{c c c}
+%determinant nebo matice se zadávají přes prostředí "array", parametry udávají počet sloupců a jejich centrování ("c" - na střed)
+\vec{\rho} & \vec{\phi} & \vec{k} \\ 
+n_r & n_{\varphi} & n_z \\
+\frac{1}{r} \frac{\partial ( r E_{\varphi} ) }{\partial r} & 0 & - \frac{\partial E_{\varphi}}{\partial z}
+\end{array}
+\right|
+= - ~ \vec{n} \times \mj \omega \mu \vec{H} 
+\\
+\left( \frac{\partial E_{\varphi}}{\partial z} n_{r} + \frac{1}{r} \frac{\partial ( r E_{\varphi} ) }{\partial r} n_z \right) \cdot \vec{\phi} = - ~ \vec{n} \times \mj \omega \mu \vec{H}
+\\
+\left( \frac{\partial E_{\varphi}}{\partial z} ;\frac{1}{r} \frac{\partial ( r E_{\varphi} ) }{\partial r} \right) \cdot \left( n_r; n_{z} \right) \cdot \vec{\phi} = - ~ \vec{n} \times \mj \omega \mu \vec{H} .
+\end{align}
+\end{subequations}
+Výraz na levé straně lze také vyjádřit pomocí gradientu:
+\begin{equation}
+\grad E_{\varphi} \cdot \vec{n} \cdot \vec{\phi} = - ~ \vec{n} \times \mj \omega \mu \vec{H} .
+\end{equation}
+
+A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
+\begin{equation}
+\label{ECgradneumann}
+\frac{\partial E_{\varphi}}{\partial \vec{n}} = grad E_{\varphi} \cdot \vec{n} .
+\end{equation}
+To znamená, že na levou stranu rovnice \ref{ECgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
+\begin{equation}
+\frac{\partial E_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - ~ \vec{n} \times \vec{H}.
+\end{equation}
+Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{\phi}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
+\begin{equation}
+\label{ECneumann}
+\frac{\partial E_{\varphi}}{\partial \vec{n}} = - H_t .
+\end{equation}
+Na levé straně máme tedy zápis Neumannovy okrajové podmínky a na straně pravé její funkční vyjádření.
+
+Posledním krokem je dosazení pravé strany z \ref{ECneumann} do \ref{ECweakneumann} (výrazu získaného při výpočtu slabých norem):
+\begin{subequations}
+\begin{align}
+r \int _{\Gamma} ( - H_{(t~real)} ~ v ) ~ \ud \Gamma ,
+\\ 
+r \int _{\Gamma} ( - H_{(t~imag)} ~ v ) ~ \ud \Gamma .
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž "vector form". Reálná složka 
+\begin{equation}
+- H_{(t~real)} ~ r ~ v
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+- H_{(t~imag)} ~ r ~ v
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+\subsubsection*{Tvar pro $\faz{\vec{H}}$ ve válcových souřadnicích}
+Neumannova okrajová podmínka se objeví při výpočtu slabých forem jako člen integro-diferenciální rovnice ve formě plošného integrálu:
+\begin{subequations}
+\label{HCweakneumann}
+\begin{align}
+r \int _{\Gamma} \frac{\partial H _{\varphi Re}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\\ 
+r \int _{\Gamma} \frac{\partial H _{\varphi Im}}{\partial \vec{n}} ~ v ~ \ud \Gamma
+\end{align}
+\end{subequations}
+
+Pro získání její hodnoty budeme vycházet z \ref{maxdif1} (1. Maxwellovy rovnice v diferenciálním tvaru). Na levé straně provedeme výpočet operace rotace. Vzhledem k přítomnosti pouze $z$ složky $H$ u TM vlny dojde k zjednodušení výsledku:
+\begin{equation}
+\rot \! \vec{H} = - \frac{\partial H_{\varphi}}{\partial z} ~ \vec{\rho} + \frac{1}{r} \frac{\partial ( r H_{\varphi} ) }{\partial r} ~ \vec{k}
+\end{equation}
+Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+\begin{equation}
+\vec{n} \times \left( \frac{1}{r} \frac{\partial ( r H_{\varphi} ) }{\partial r} ~ \vec{k} - \frac{\partial H_{\varphi}}{\partial z} ~ \vec{\rho} \right) = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{equation}
+Vektorový součin na levé straně vyřešíme s pomocí determinantu:
+\begin{subequations}
+\begin{align}
+\left| 
+\begin{array}{c c c}
+%determinant nebo matice se zadávají přes prostředí "array", parametry udávají počet sloupců a jejich centrování ("c" - na střed)
+\vec{\rho} & \vec{\phi} & \vec{k} \\ 
+n_r & n_{\varphi} & n_z \\
+\frac{1}{r} \frac{\partial ( r H_{\varphi} ) }{\partial r} & 0 & - \frac{\partial H_{\varphi}}{\partial z}
+\end{array}
+\right|
+= - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E})
+\\
+\left( \frac{\partial H_{\varphi}}{\partial z} n_{r} + \frac{1}{r} \frac{\partial ( r H_{\varphi} ) }{\partial r} n_z \right) \cdot \vec{\phi} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E})
+\\
+\left( \frac{\partial H_{\varphi}}{\partial z} ;\frac{1}{r} \frac{\partial ( r H_{\varphi} ) }{\partial r} \right) \cdot \left( n_r; n_{z} \right) \cdot \vec{\phi} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{align}
+\end{subequations}
+Výraz na levé straně lze také vyjádřit pomocí gradientu:
+\begin{equation}
+\grad H_{\varphi} \cdot \vec{n} \cdot \vec{\phi} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{equation}
+
+A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
+\begin{equation}
+\label{HCgradneumann}
+\frac{\partial H_{\varphi}}{\partial \vec{n}} = grad H_{\varphi} \cdot \vec{n} .
+\end{equation}
+To znamená, že na levou stranu rovnice \ref{HCgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
+\begin{equation}
+\frac{\partial H_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - ~ \vec{n} \times (\vec{J} + \mj \omega \varepsilon \vec{E}) .
+\end{equation}
+Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{\phi}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
+\begin{equation}
+\label{HCneumann}
+\frac{\partial H_{\varphi}}{\partial \vec{n}} = - J_t - H_t .
+\end{equation}
+Na levé straně máme tedy zápis Neumannovy okrajové podmínky a na straně pravé její funkční vyjádření.
+
+Posledním krokem je dosazení pravé strany z \ref{HCneumann} do \ref{HCweakneumann} (výrazu získaného při výpočtu slabých norem):
+\begin{subequations}
+\begin{align}
+r \int _{\Gamma} ((- J_{(t~real)} - H_{(t~real)}) ~ v ) ~ \ud \Gamma ,
+\\ 
+r \int _{\Gamma} ((- J_{(t~imag)} - H_{(t~imag)}) ~ v ) ~ \ud \Gamma .
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž "vector form". Reálná složka 
+\begin{equation}
+(- J_{(t~real)} - H_{(t~real)}) ~ r ~ v
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+(- J_{(t~imag)} - H_{(t~imag)}) ~ r ~ v
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+
+\subsubsection{Newtonova okrajová podmínka}
+Newtonova, tzv. smíšená, okrajová podmínka spojuje obě předcházející podmínky (Dirichletovu a Neumannovu). Někdy bývá také označována jako Cauchyho nebo Robinova okrajová podmínka. Tato podmínka definuje impedanci na hranici řešené oblasti:
+\begin{equation}
+\left( u + \frac{\partial u}{\partial n} \right) = f _{New} (x, y, z, t)
+\end{equation}  
 
 
 
@@ -1715,7 +2082,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \phantomsection %Pro správné zobrazení čísla stránky v pdf rejsříku a přesný hyperodkaz
 \addcontentsline{toc}{section}{Přílohy}
 \section*{Příloha I. - XML kód pro TE}
-\subsection*{Zápis slabých formulací fázoru E}
+\subsection*{Zápis slabých formulací fázoru~E}
 \label{xmlE}
 \begin{spverbatim}
  <module:volume>
@@ -1744,7 +2111,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 
 \newpage
 \section*{Příloha II. - XML kód pro TM}
-\subsection*{Zápis slabých formulací fázoru H}
+\subsection*{Zápis slabých formulací fázoru~H}
 \label{xmlH}
 Zvolené názvosloví:
 \begin{align*}
