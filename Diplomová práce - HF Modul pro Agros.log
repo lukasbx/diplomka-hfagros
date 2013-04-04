@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.10.9)  6 MAR 2013 13:52
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.10.9)  4 APR 2013 00:58
 entering extended mode
 **DiplomovÃ¡*prÃ¡ce*-*HF*Modul*pro*Agros.tex
 
@@ -698,7 +698,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 ...r\IeC {\'a}zk\IeC {\r u}}{48}{section*.82}
+l.42 ...r\IeC {\'a}zk\IeC {\r u}}{55}{section*.94}
                                                    [1])
 \tf@toc=\write4
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
@@ -721,479 +721,911 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--195
 []\T1/cmr/bx/n/17.28 ’í°ení vy-so-ko-frekven£-ního elek-tro-mag-ne-tic-kého
  []
 
-[5] [6] [7] [8] [9] [10] <vlnovod.pdf, id=385, 845.0471pt x 597.50829pt>
+[5] [6] [7] [8] [9] [10] [11] <vlnovod.pdf, id=414, 845.0471pt x 597.50829pt>
 File: vlnovod.pdf Graphic file (type pdf)
 
 <use vlnovod.pdf>
-Package pdftex.def Info: vlnovod.pdf used on input line 444.
+Package pdftex.def Info: vlnovod.pdf used on input line 484.
 (pdftex.def)             Requested size: 227.62204pt x 160.94646pt.
- <microstrip.png, id=388, 1003.75pt x 1003.75pt>
+ <microstrip.png, id=417, 1003.75pt x 1003.75pt>
 File: microstrip.png Graphic file (type png)
 
 <use microstrip.png>
-Package pdftex.def Info: microstrip.png used on input line 461.
+Package pdftex.def Info: microstrip.png used on input line 501.
 (pdftex.def)             Requested size: 142.26378pt x 142.25475pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11 <D:/DiplomovÃ¡ prÃ¡ce/Moje prÃ¡ce v TeXu/vlnovod.pdf>]
-<geometrie.png, id=399, 144.7809pt x 171.039pt>
+[12 <D:/DiplomovÃ¡ prÃ¡ce/Moje prÃ¡ce v TeXu/vlnovod.pdf>]
+<geometrie.png, id=428, 144.7809pt x 171.039pt>
 File: geometrie.png Graphic file (type png)
  <use geometrie.png>
-Package pdftex.def Info: geometrie.png used on input line 475.
+Package pdftex.def Info: geometrie.png used on input line 515.
 (pdftex.def)             Requested size: 144.78053pt x 171.03857pt.
- [12 <D:/DiplomovÃ¡ prÃ¡ce/Moje prÃ¡ce v TeXu/microstrip.png>] [13 <D:/Diplomov
-Ã¡ prÃ¡ce/Moje prÃ¡ce v TeXu/geometrie.png>] [14] [15]
+ [13 <D:/DiplomovÃ¡ prÃ¡ce/Moje prÃ¡ce v TeXu/microstrip.png>] [14 <D:/Diplomov
+Ã¡ prÃ¡ce/Moje prÃ¡ce v TeXu/geometrie.png>] [15] [16]
 
-LaTeX Warning: Reference `napeti' on page 16 undefined on input line 695.
+LaTeX Warning: Reference `napeti' on page 17 undefined on input line 735.
 
 
-LaTeX Warning: Reference `amper' on page 16 undefined on input line 695.
+LaTeX Warning: Reference `amper' on page 17 undefined on input line 735.
 
-[16] [17] [18] [19]
-Overfull \hbox (6.21428pt too wide) in paragraph at lines 814--814
+[17] [18] [19] [20]
+Overfull \hbox (6.21428pt too wide) in paragraph at lines 854--854
 [] 
  []
 
-[20] [21] [22] [23] [24] [25] [26]
-Overfull \hbox (5.21793pt too wide) in paragraph at lines 1150--1150
-[] 
- []
-
-
-Overfull \hbox (4.28017pt too wide) in paragraph at lines 1158--1158
-[] 
- []
-
-[27]
-Overfull \hbox (2.1839pt too wide) detected at line 1168
-[] \OMS/cmsy/m/n/12   \OML/cmm/m/it/12 r [][]  [] \OT1/cmr/m/n/12 d
- + \OML/cmm/m/it/12 r![]" [][]  u v \OT1/cmr/m/n/12 d
- + \OML/cmm/m/it/12 r! [][]  u v \OT1/cmr/m/n/12 d
- = \OMS/cmsy/m/n/12  \OML/cmm/m/it/12 r! [][]  [][] v \OT1/cmr/m/n/12 d
-\OML/cmm/m/it/12 :
- []
-
-[28] [29]
-Overfull \hbox (1.36813pt too wide) in paragraph at lines 1333--1333
-[] 
- []
-
-[30]
-Overfull \hbox (4.43031pt too wide) in paragraph at lines 1341--1341
-[] 
- []
-
-[31] [32] [33] [34] [35] [36] [37] [38] [39] [40]
-<Obrzkusmo.pdf, id=841, 160.9473pt x 154.67888pt>
-File: Obrzkusmo.pdf Graphic file (type pdf)
- <use Obrzkusmo.pdf>
-Package pdftex.def Info: Obrzkusmo.pdf used on input line 1800.
-(pdftex.def)             Requested size: 160.94688pt x 154.67848pt.
-
-<58.jpg, id=842, 1284.8pt x 803.0pt>
-File: 58.jpg Graphic file (type jpg)
- <use 58.jpg>
-Package pdftex.def Info: 58.jpg used on input line 1807.
-(pdftex.def)             Requested size: 426.79134pt x 266.74297pt.
- [41
-
- <D:/DiplomovÃ¡ prÃ¡ce/Moje prÃ¡ce v TeXu/Obrzkusmo.pdf> <D:/DiplomovÃ¡ prÃ¡ce/
-Moje prÃ¡ce v TeXu/58.jpg>] [42] [43]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 1961
-.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1961.
-
- [44]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 2021
+[21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
+[36] [37] [38] [39] [40] [41]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1878
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Overfull \hbox (28.1677pt too wide) in paragraph at lines 2023--2023
+Underfull \hbox (badness 10000) in paragraph at lines 1880--1880
+[]\T1/cmtt/m/n/12 Pozn.:[] Na[] druhé[] stran¥[] [] následující[] rovnice[] by[
+] m¥l[] být[] také[] vektor[] n[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1880--1880
+\T1/cmtt/m/n/12 (resp.[] te£ná[] sloºka)[] a[] to[] podle[] stejného[] výpo£tu[
+] u[] Neumannovy[] podmínky.[]
+ []
+
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1916
+[]\T1/cmtt/m/n/12 1)[] Jak[] je[] to[] s[] poloºkami[] matice[] i[] =[] 1,[] j[
+] =[] 1[] a[] i[] =[] 2,[] j[] =[] 2?[] Jsou[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1916
+[]\T1/cmtt/m/n/12 2)[] V[] rf.xml[] jsou[] u[] vector[] form[] indexy[] i[] =[]
+ 1,[] j[] =[] 2[] a[] i[] =[] 2,[] j[] =[] 1.[] Jsem[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1916
+\T1/cmtt/m/n/12 p°ed£en,[] ºe[] je[] to[] ²patn¥[] nebo[] p°inejmen²ím[] nekonz
+istentní[] a[] matoucí.[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1916
+\T1/cmtt/m/n/12 Vektor[] je[] jednorozm¥rný[] a[] index[] by[] m¥l[] být[] jede
+n[] nebo[] by[] alespo¬[] m¥ly[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1916
+[]\T1/cmtt/m/n/12 3)[] Informa£ní[] zobrazující[] se[] p°epis[] rovnice[] (equa
+tion[] =[] ...).[] Z[] £eho[]
+ []
+
+[43] [44] [45] [46] [47] <Obrzkusmo.pdf, id=1006, 160.9473pt x 154.67888pt>
+File: Obrzkusmo.pdf Graphic file (type pdf)
+
+<use Obrzkusmo.pdf>
+Package pdftex.def Info: Obrzkusmo.pdf used on input line 2090.
+(pdftex.def)             Requested size: 160.94688pt x 154.67848pt.
+ <58.jpg, id=1007, 1284.8pt x 803.0pt>
+File: 58.jpg Graphic file (type jpg)
+ <use 58.jpg>
+Package pdftex.def Info: 58.jpg used on input line 2097.
+(pdftex.def)             Requested size: 426.79134pt x 266.74297pt.
+ [48
+
+ <D:/DiplomovÃ¡ prÃ¡ce/Moje prÃ¡ce v TeXu/Obrzkusmo.pdf> <D:/DiplomovÃ¡ prÃ¡ce/
+Moje prÃ¡ce v TeXu/58.jpg>] [49] [50]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 2251
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2251.
+
+ [51]
+Overfull \hbox (28.1677pt too wide) in paragraph at lines 2313--2313
 []\T1/cmtt/m/n/12 System.out.println("Ja su lama, nevzpomenu si ani na zapis hl
 avicky v Jave")[] 
  []
 
-[45] [46
+[52] [53
 
 ]
-Underfull \hbox (badness 3199) in paragraph at lines 2053--2054
+Underfull \hbox (badness 3199) in paragraph at lines 2343--2344
 []\T1/cmr/m/n/12 KASTNER, Ra-phael. SCHOOL OF ELECT-RI-CAL EN-GI-NEE-RING, Tel
  []
 
 
-Underfull \hbox (badness 3219) in paragraph at lines 2053--2054
+Underfull \hbox (badness 3219) in paragraph at lines 2343--2344
 \T1/cmr/m/n/12 Aviv Uni-ver-sity. An-ten-nas and Ra-di-ation. Tel Aviv, 2009. D
 o-stupné z:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2053--2054
+Underfull \hbox (badness 10000) in paragraph at lines 2343--2344
 \T1/cmr/m/n/12 http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Fr
 equency-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2054--2055
+Underfull \hbox (badness 10000) in paragraph at lines 2344--2345
 []\T1/cmr/m/n/12 Rectangular wa-ve-gu-ide di-mensi-ons. Microwa-ves101.com [on-
 line].
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2054--2055
+Underfull \hbox (badness 10000) in paragraph at lines 2344--2345
 \T1/cmr/m/n/12 Tu-c-son, AZ, No-vem-ber 3, 2012 [cit. 2012-11-19]. Do-stupné z:
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2059--2060
+Underfull \hbox (badness 10000) in paragraph at lines 2349--2350
 []\T1/cmr/m/n/12 Rovinné vlny. \T1/cmr/m/it/12 Fy-zi-kální sekce Matematicko-fy
 zikální fa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2059--2060
+Underfull \hbox (badness 10000) in paragraph at lines 2349--2350
 \T1/cmr/m/it/12 kulty UK \T1/cmr/m/n/12 [on-line]. [cit. 2013-02-20]. Do-stupné
  z:
  []
 
 
-Overfull \hbox (32.22722pt too wide) in paragraph at lines 2059--2060
+Overfull \hbox (32.22722pt too wide) in paragraph at lines 2349--2350
 \T1/cmr/m/n/12 http://physics.mff.cuni.cz/kfpp/skripta/kurz_fyziky_pro_DS/displ
 ay.php/optika/1_3 
  []
 
-[47]
+[54]
 ("D:\DiplomovÃ¡ prÃ¡ce\Moje prÃ¡ce v TeXu\DiplomovÃ¡ prÃ¡ce - HF Modul pro Agro
 s.lof")
 \tf@lof=\write5
- [48]
+ [55]
 ("D:\DiplomovÃ¡ prÃ¡ce\Moje prÃ¡ce v TeXu\DiplomovÃ¡ prÃ¡ce - HF Modul pro Agro
 s.lot")
 \tf@lot=\write6
- [49]
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
+ [56]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
 [][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_te_current_density_exte
 rnal_real"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
 [][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_te_current_density_exte
 rnal_imag"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
-_linear="-[] r[] *[] 1[] /[] (rf_mur[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] \T1/cmtt/m/n/12 <module:weakform_volume[] analysistype="har
+monic"[] equation="\curl[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 MU0)[] *[] (udr[] *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[] po
-w(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 \left([] \frac{1}{\mu}\,[] \curl[] \vecfaz{E}[] \right)[] -[] \
+mj[] \omega[] \left([]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 *[] uval[] *[] vval"[] axi_newton="-[] r[] *[] 1[] /[] (rf_mur[
-] *[] MU0)[] *[] (udr[] *[] vdr[] +[] udz[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 \sigma[] +[] \mj[] \omega[] \varepsilon[] \right)[] \vecfaz{E}[
+] =[] \mj[] \omega[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 *[] vdz)[] +[] r[] *[] pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_ep
-s[] *[] EPS0[] *[] uval[] *[] vval"[] i="1"[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linear="-[]
+ 1[] /[] (rf_mur[] *[] MU0)[] *[] (r[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 j="1"[] planar_linear="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (ud
-x[] *[] vdx[] +[] udy[] *[] vdy)[] +[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 udr[] *[] vdr[] +[] r[] *[] udz[] *[] vdz[] +[] (r[] >[] 0)[] *
+[] uval[] *[] vval/r[] +[] uval[] *[] vdr[] +[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval[] *[] udr)[] +[] r[] *[] pow(2[] *[] PI[] *[] f,[] 2)[] *[
+] rf_eps[] *[] EPS0[] *[] uval[] *[] vval"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 axi_newton="-[] r[] *[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (udr[]
+ *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
 \T1/cmtt/m/n/12 pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[] uval
-[] *[] vval"[] planar_newton="-[] 1[] /[]
+[] *[] vval"[] i="1"[] id="form"[] j="1"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 (rf_mur[] *[] MU0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] 
-+[] pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 planar_linear="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (udx[] *[] 
+vdx[] +[] udy[] *[] vdy)[] +[] pow(2[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
-_linear="-[] r[] *[] 1[] /[] (rf_mur[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[] uval[] *[] vval"
+[] planar_newton="-[] 1[] /[] (rf_mur[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 MU0)[] *[] (udr[] *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[] po
-w(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 *[] MU0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] +[] pow(2[
+] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 *[] uval[] *[] vval"[] axi_newton="-[] r[] *[] 1[] /[] (rf_mur[
-] *[] MU0)[] *[] (udr[] *[] vdr[] +[] udz[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linear="-[]
+ 1[] /[] (rf_mur[] *[] MU0)[] *[] (r[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 *[] vdz)[] +[] r[] *[] pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_ep
-s[] *[] EPS0[] *[] uval[] *[] vval"[] i="2"[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 udr[] *[] vdr[] +[] r[] *[] udz[] *[] vdz[] +[] (r[] >[] 0)[] *
+[] uval[] *[] vval/r[] +[] uval[] *[] vdr[] +[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 j="2"[] planar_linear="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (ud
-x[] *[] vdx[] +[] udy[] *[] vdy)[] +[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval[] *[] udr)[] +[] r[] *[] pow(2[] *[] PI[] *[] f,[] 2)[] *[
+] rf_eps[] *[] EPS0[] *[] uval[] *[] vval"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 axi_newton="-[] r[] *[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (udr[]
+ *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
 \T1/cmtt/m/n/12 pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[] uval
-[] *[] vval"[] planar_newton="-[] 1[] /[]
+[] *[] vval"[] i="2"[] id="form"[] j="2"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 (rf_mur[] *[] MU0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] 
-+[] pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 planar_linear="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (udx[] *[] 
+vdx[] +[] udy[] *[] vdy)[] +[] pow(2[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
-_linear="r[] *[] 2[] *[] PI[] *[] f[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[] uval[] *[] vval"
+[] planar_newton="-[] 1[] /[] (rf_mur[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 rf_gamma[] *[] uval[] *[] vval"[] axi_newton="0"[] i="1"[] j="2
-"[] planar_linear="2[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 *[] MU0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] +[] pow(2[
+] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
-_linear="-[] r[] *[] 2[] *[] PI[] *[] f[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linear="2[]
+ *[] PI[] *[] f[] *[] rf_gamma[] *[] uval[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 rf_gamma[] *[] uval[] *[] vval"[] axi_newton="0"[] i="2"[] j="1
-"[] planar_linear="-[] 2[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] axi_newton="0"[] i="1"[] id="form"[] j="2"[] planar_lin
+ear="2[] *[] PI[] *[] f[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] id="form"[] axi
-_linear="r[] *[] rf_Jer[] *[] vval"[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linear="-2[
+] *[] PI[] *[] f[] *[] rf_gamma[] *[] uval[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 axi_newton="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (updr[] *[] vd
-r[] +[] updz[] *[] vdz)[] +[] r[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] axi_newton="0"[] i="2"[] id="form"[] j="1"[] planar_lin
+ear="-[] 2[] *[] PI[] *[] f[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[] upva
-l[] *[] vval[] -[] r[] *[] rf_Jer[] *[] vval"[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linear="-[]
+ r[] *[] 2[] *[] PI[] *[] f[] *[] rf_Jei[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 i="1"[] j="1"[] planar_linear="rf_Jer[] *[] vval"[] planar_newt
-on="-[] 1[] /[] (rf_mur[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] axi_newton="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (updr[
+] *[] vdr[] +[] updz[] *[] vdz)[] +[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 *[] MU0)[] *[] (updx[] *[] vdx[] +[] updy[] *[] vdy)[] +[] pow(
-2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 r[] *[] pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] 
+*[] upval[] *[] vval[] -[] r[] *[] rf_Jer[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] id="form"[] axi
-_linear="r[] *[] rf_Jei[] *[] vval"[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] i="1"[] id="form"[] j="1"[] planar_linear="-[] 2[] *[] 
+PI[] *[] f[] *[] rf_Jei[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 axi_newton="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (updr[] *[] vd
-r[] +[] updz[] *[] vdz)[] +[] r[] *[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[] upva
-l[] *[] vval[] -[] r[] *[] rf_Jei[] *[] vval"[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 i="2"[] j="2"[] planar_linear="rf_Jei[] *[] vval"[] planar_newt
-on="-[] 1[] /[] (rf_mur[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2110--2110
-\T1/cmtt/m/n/12 *[] MU0)[] *[] (updx[] *[] vdx[] +[] updy[] *[] vdy)[] +[] pow(
-2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] planar_newton="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (up
+dx[] *[] vdx[] +[] updy[] *[] vdy)[] +[]
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2110 \end{spverbatim}
-                        [1]pdfTeX warning (ext4): destination with the same ide
-ntifier (name{page.2}) has been already used, duplicate ignored
+l.2400 \end{spverbatim}
+                        [1]
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linear="r[]
+ *[] 2[] *[] PI[] *[] f[] *[] rf_Jer[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] axi_newton="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (updr[
+] *[] vdr[] +[] updz[] *[] vdz)[] +[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 r[] *[] pow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] 
+*[] upval[] *[] vval[] -[] r[] *[] rf_Jei[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 vval"[] i="2"[] id="form"[] j="2"[] planar_linear="2[] *[] PI[]
+ *[] f[] *[] rf_Jer[] *[] vval"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2400--2400
+\T1/cmtt/m/n/12 planar_newton="-[] 1[] /[] (rf_mur[] *[] MU0)[] *[] (updx[] *[]
+ vdx[] +[] updy[] *[] vdy)[] +[] pow(2[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_te_surface_current_real
+"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_te_surface_current_imag
+"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] \T1/cmtt/m/n/12 <module:weakform_surface[] analysistype="ha
+rmonic"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="\vecfaz{
+E}[] =[] \vecfaz{E}_0"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:essential_form[] axi_li
+near="rf_Er"[] axi_newton="rf_Er"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:essential_form[] axi_li
+near="rf_Ei"[] axi_newton="rf_Ei"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="n[] \tim
+es[] H[] =[] n[] \times[] H_0"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="r[] *[] 2[] *[] PI[] *[] f[] *[] rf_Hi[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 vval"[] axi_newton="r[] *[] 2[] *[] PI[] *[] f[] *[] rf_Hi[] *[
+] vval"[] i="1"[] id="form"[] j="1"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 planar_linear="2[] *[] PI[] *[] f[] *[] rf_Hi[] *[] vval"[] pla
+nar_newton="2[] *[] PI[] *[] f[] *[]
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2112 \newpage
-                [2]
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_tm_current_density_exte
-rnal_real"[]
+l.2445 \end{spverbatim}
+                        [2]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="-[] r[] *[] 2[] *[] PI[] *[] f[] *[] rf_Hr[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_tm_current_density_exte
-rnal_imag"[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 vval"[] axi_newton="-[] r[] *[] 2[] *[] PI[] *[] f[] *[] rf_Hr[
+] *[] vval"[] i="2"[] id="form"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
-_linear="-[] r[] *[] 1[] /[] (rf_mur[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 j="2"[] planar_linear="-[] 2[] *[] PI[] *[] f[] *[] rf_Hr[] *[]
+ vval"[] planar_newton="-[] 2[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 MU0)[] *[] (udr[] *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[] po
-w(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="\faz{J}_
+{t}[] =[] -[] \frac{1}{\omega[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 *[] uval[] *[] vval"[] axi_newton="0"[] i="1"[] j="1"[] planar_
-linear="-[] 1[] /[] (rf_mur[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 \mu}[] \frac{\partial[] \vecfaz{E}}{\partial[] n_0}[] =[] \faz{
+J}_0"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 *[] MU0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] +[] pow(2[
-] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="-[] 2[] *[] PI[] *[] f[] *[] rf_Ji[] *[] r[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
-_linear="-[] r[] *[] 1[] /[] (rf_mur[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 vval"[] axi_newton="-[] 2[] *[] PI[] *[] f[] *[] rf_Ji[] *[] r[
+] *[] vval"[] i="1"[] id="form"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 MU0)[] *[] (udr[] *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[] po
-w(2[] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 j="1"[] planar_linear="-[] 2[] *[] PI[] *[] f[] *[] rf_Ji[] *[]
+ vval"[] planar_newton="-[] 2[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 *[] uval[] *[] vval"[] axi_newton="0"[] i="2"[] j="2"[] planar_
-linear="-[] 1[] /[] (rf_mur[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="2[] *[] PI[] *[] f[] *[] rf_Jr[] *[] r[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 *[] MU0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] +[] pow(2[
-] *[] PI[] *[] f,[] 2)[] *[] rf_eps[] *[] EPS0[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 vval"[] axi_newton="2[] *[] PI[] *[] f[] *[] rf_Jr[] *[] r[] *[
+] vval"[] i="2"[] id="form"[] j="2"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 planar_linear="2[] *[] PI[] *[] f[] *[] rf_Jr[] *[] vval"[] pla
+nar_newton="2[] *[] PI[] *[] f[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="-[] \fra
+c{1}{\omega[] \mu}[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 \frac{\partial[] \vecfaz{E}}{\partial[] n_0}[] =[] \sqrt{\frac{
+\varepsilon[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 -[] \mj[] \sigma[] /[] \omega}{\mu}}[] \vecfaz{E}"[] id="rf_te_
+impedance"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linea
+r="r[] *[] 2[] *[] PI[] *[] f[] /[] rf_Z0[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 uval[] *[] vval"[] axi_newton="-r[] *[] 2[] *[] PI[] *[] f[] /[
+] rf_Z0[] *[] uval[] *[] vval"[] i="1"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 id="form"[] j="2"[] planar_linear="2[] *[] PI[] *[] f[] /[] rf_
+Z0[] *[] uval[] *[] vval"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linea
+r="-[] r[] *[] 2[] *[] PI[] *[] f[] /[] rf_Z0[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 uval[] *[] vval"[] axi_newton="r[] *[] 2[] *[] PI[] *[] f[] /[]
+ rf_Z0[] *[] uval[] *[] vval"[] i="2"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 id="form"[] j="1"[] planar_linear="-[] 2[] *[] PI[] *[] f[] /[]
+ rf_Z0[] *[] uval[] *[] vval"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="0"[] axi_newton="r[] *[] 2[] *[] PI[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 *[] f[] /[] rf_Z0[] *[] upval[] *[] vval"[] i="1"[] id="form"[]
+ j="1"[] planar_linear="0"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="0"[] axi_newton="r[] *[] 2[] *[] PI[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
+\T1/cmtt/m/n/12 *[] f[] /[] rf_Z0[] *[] upval[] *[] vval"[] i="2"[] id="form"[]
+ j="2"[] planar_linear="0"[]
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2159 \end{spverbatim}
-                        [3]
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
+l.2448 \newpage
+                [3]
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_tm_current_density_exte
+rnal_real"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_tm_current_density_exte
+rnal_imag"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+[][] [] [] [] [] [] \T1/cmtt/m/n/12 <module:weakform_volume[] analysistype="har
+monic"[] equation="\curl[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 \left([] \frac{1}{\mu}\,[] \curl[] \vecfaz{H}[] \right)[] -[] \
+mj[] \omega[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 \left([] \sigma[] +[] \mj[] \omega[] \varepsilon[] \right)[] \v
+ecfaz{H}[] =[] -[] \curl[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
+_linear="-[] r[] *[] 1[] /[] (rf_eps[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 EPS0)[] *[] (udr[] *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[] p
+ow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_mur[] *[] MU0[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 *[] uval[] *[] vval"[] axi_newton="0"[] i="1"[] j="1"[] planar_
+linear="-[] 1[] /[] (rf_eps[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 *[] EPS0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] +[] pow(2
+[] *[] PI[] *[] f,[] 2)[] *[] rf_mur[] *[] MU0[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
+_linear="-[] r[] *[] 1[] /[] (rf_eps[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 EPS0)[] *[] (udr[] *[] vdr[] +[] udz[] *[] vdz)[] +[] r[] *[] p
+ow(2[] *[] PI[] *[] f,[] 2)[] *[] rf_mur[] *[] MU0[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 *[] uval[] *[] vval"[] axi_newton="0"[] i="2"[] j="2"[] planar_
+linear="-[] 1[] /[] (rf_eps[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 *[] EPS0)[] *[] (udx[] *[] vdx[] +[] udy[] *[] vdy)[] +[] pow(2
+[] *[] PI[] *[] f,[] 2)[] *[] rf_mur[] *[] MU0[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
 [][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
 _linear="r[] *[] 2[] *[] PI[] *[] f[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 rf_gamma[] *[] uval[] *[] vval"[] axi_newton="0"[] i="1"[] j="2
-"[] planar_linear="2[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 rf_gamma[] *[] 1[] /[] (rf_eps[] *[] EPS0)[] *[] uval[] *[] vva
+l"[] axi_newton="0"[] i="1"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 j="2"[] planar_linear="2[] *[] PI[] *[] f[] *[] rf_gamma[] *[] 
+1[] /[] (rf_eps[] *[] EPS0)[] *[] uval[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
 [][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] id="form"[] axi
 _linear="-[] r[] *[] 2[] *[] PI[] *[] f[] *[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 rf_gamma[] *[] uval[] *[] vval"[] axi_newton="0"[] i="2"[] j="1
-"[] planar_linear="-[] 2[] *[]
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 rf_gamma[] *[] 1[] /[] (rf_eps[] *[] EPS0)[] *[] uval[] *[] vva
+l"[] axi_newton="0"[] i="2"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
+\T1/cmtt/m/n/12 j="1"[] planar_linear="-[] 2[] *[] PI[] *[] f[] *[] rf_gamma[] 
+*[] 1[] /[] (rf_eps[] *[] EPS0)[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
 [][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] id="form"[] axi
-_linear="r[] *[] (-[] (1/r)[] *[] Jerf[]
+_linear="0"[] axi_newton="0"[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 +[] (1/r)[] *[] rJerr)[] *[] vval"[] axi_newton="0"[] i="1"[] j
-="1"[] planar_linear="(-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
+Underfull \hbox (badness 10000) in paragraph at lines 2476--2476
 [][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] id="form"[] axi
-_linear="r[] *[] (-[] (1/r)[]
+_linear="0"[] axi_newton="0"[]
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
-\T1/cmtt/m/n/12 *[] Jeif[] +[] (1/r)[] *[] rJeir)[] *[] vval"[] axi_newton="0"[
-] i="2"[] j="2"[]
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2161.
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2161 \end{document}
-                      [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2161.
+l.2521 \end{spverbatim}
+                        [4]
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_tm_surface_current_real
+"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] \T1/cmtt/m/n/12 <module:quantity[] id="rf_tm_surface_current_imag
+"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] \T1/cmtt/m/n/12 <module:weakform_surface[] analysistype="ha
+rmonic"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="\vecfaz{
+H}[] =[] \vecfaz{H}_0"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:essential_form[] id="fo
+rm"[] axi_linear="rf_Hr"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:essential_form[] id="fo
+rm"[] axi_linear="rf_Hi"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="n[] \tim
+es[] E[] =[] n[] \times[] E_0"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] id="form"
+[] axi_linear="-[] 2[] *[] PI[] *[] f[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 rf_Ei[] *[] r[] *[] vval"[] axi_newton="0"[] i="1"[] j="1"[] pl
+anar_linear="-[] 2[] *[] PI[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] id="form"
+[] axi_linear="2[] *[] PI[] *[] f[] *[] rf_Er[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 *[] r[] *[] vval"[] axi_newton="0"[] i="2"[] j="2"[] planar_lin
+ear="2[] *[] PI[] *[] f[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="\faz{J}_
+{t}[] =[] -[] \frac{1}{\omega[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 \mu}[] \frac{\partial[] \vecfaz{E}}{\partial[] n_0}[] =[] \faz{
+J}_0"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="-[] 2[] *[] PI[] *[] f[] *[] rf_Ji[] *[] r[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 vval"[] axi_newton="0"[] i="1"[] id="form"[] j="1"[] planar_lin
+ear="-[] 2[] *[] PI[] *[] f[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="2[] *[] PI[] *[] f[] *[] rf_Jr[] *[] r[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 vval"[] axi_newton="0"[] i="2"[] id="form"[] j="2"[] planar_lin
+ear="2[] *[] PI[] *[] f[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:boundary[] equation="-[] \fra
+c{1}{\omega[] \mu}[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 \frac{\partial[] \vecfaz{E}}{\partial[] n_0}[] =[] \sqrt{\frac{
+\varepsilon[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 -[] \mj[] \sigma[] /[] \omega}{\mu}}[] \vecfaz{E}"[] id="rf_tm_
+impedance"[]
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2521 \end{spverbatim}
+                        [5]
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linea
+r="r[] *[] 2[] *[] PI[] *[] f[] /[] rf_Z0[] *[] uval[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 *[] vval"[] axi_newton="0"[] i="1"[] id="form"[] j="2"[] planar
+_linear="-[] 2[] *[] PI[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:matrix_form[] axi_linea
+r="-[] r[] *[] 2[] *[] PI[] *[] f[] /[] rf_Z0[] *[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+\T1/cmtt/m/n/12 uval[] *[] vval"[] axi_newton="0"[] i="2"[] id="form"[] j="1"[]
+ planar_linear="2[] *[] PI[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="0"[] axi_newton="0"[] i="1"[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2521
+[][] [] [] [] [] [] [] [] [] [] \T1/cmtt/m/n/12 <module:vector_form[] axi_linea
+r="0"[] axi_newton="0"[] i="2"[]
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2524.
+pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2524 \end{document}
+                      [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2524.
 
 ("D:\DiplomovÃ¡ prÃ¡ce\Moje prÃ¡ce v TeXu\DiplomovÃ¡ prÃ¡ce - HF Modul pro Agro
 s.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2161.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2161.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2524.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2524.
 
 Package rerunfilecheck Info: File `DiplomovÃ¡*prÃ¡ce*-*HF*Modul*pro*Agros.out' 
 has not changed.
@@ -1202,19 +1634,19 @@ has not changed.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2161.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2524.
  ) 
 Here is how much of TeX's memory you used:
- 9905 strings out of 494045
- 138254 string characters out of 3148387
- 240570 words of memory out of 3000000
- 12585 multiletter control sequences out of 15000+200000
+ 10004 strings out of 494045
+ 139500 string characters out of 3148387
+ 241151 words of memory out of 3000000
+ 12615 multiletter control sequences out of 15000+200000
  21313 words of font info for 55 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 42i,18n,43p,1212b,450s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,18n,43p,1212b,452s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Lukas\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
-ectt1200.pk> <C:\Users\Lukas\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecrm0800.pk> <C:\Users\Lukas\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
+ecrm0800.pk> <C:\Users\Lukas\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ectt1200.pk> <C:\Users\Lukas\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
 \jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Lukas\AppData\Local\MiKTeX\2.9\fonts
 \pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Lukas\AppData\Local\MiKTeX
 \2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1200.pk> <C:\Users\Lukas\AppData\Lo
@@ -1237,10 +1669,10 @@ lic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb>
-Output written on "DiplomovÃ¡ prÃ¡ce - HF Modul pro Agros.pdf" (58 pages, 14029
-05 bytes).
+Output written on "DiplomovÃ¡ prÃ¡ce - HF Modul pro Agros.pdf" (67 pages, 14599
+88 bytes).
 PDF statistics:
- 1590 PDF objects out of 1728 (max. 8388607)
- 458 named destinations out of 1000 (max. 500000)
+ 1794 PDF objects out of 2073 (max. 8388607)
+ 527 named destinations out of 1000 (max. 500000)
  370 words of extra memory for PDF output out of 10000 (max. 10000000)
 
