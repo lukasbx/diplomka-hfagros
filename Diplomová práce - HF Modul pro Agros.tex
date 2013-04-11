@@ -809,8 +809,17 @@ z čehož plyne, že $Z_{TM}$ je frekvenčně závislé.
 
 \newpage
 \section{Numerické řešení elektromagnetického pole}
-\subsection{Metoda konečných prvků}
+
 \subsection{Agros 2D}
+Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody hp-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje následující kapitola \ref{FEM}. \cite{hpFEM}
+
+Agros2D je volně šiřitelnou open-source aplikací vyvíjenou pod licencí GNU GPL. Zájemce o tento program může zjistit více informací i si stáhnout poslední verzi na stránkách www.agros2d.org (viz \cite{Agros}). Postup vytvoření geometrie a spuštění modelování je také shrnut v příloze B akademické práce \cite{Koudela}.
+
+Pro ukázku je níže znázorněn výstup programu při modelování čtvercového objektu v TM poli:
+
+
+\subsection{Metoda konečných prvků}
+\label{FEM}
 
 \newpage
 \section{Návrh modulu pro VF pole}
@@ -863,7 +872,7 @@ Vycházejme z rovnice \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\f
 \begin{equation}
 \begin{split}
 \triangle E _{zRe} + \mj \triangle E _{zIm} + \omega ^2 \varepsilon \mu E_ {zRe} + \mj \omega ^2 \varepsilon \mu E _{zIm} - \mj \omega \mu \gamma E _{zRe} + \omega \mu \gamma E _{zIm} =\\
-\mj \omega \mu J _{extRe} - \omega \mu J _{extIm} .
+=\mj \omega \mu J _{extRe} - \omega \mu J _{extIm} .
 \end{split}
 \end{equation}
 Reálnou částí rovnice je:
@@ -999,13 +1008,13 @@ Prvním krokem pro vyjádření slabé formy je rozložení rovnice na reálnou 
 \begin{equation}
 \begin{split}
 \triangle (H _{zRe} + \mj H _{zIm}) + (\omega ^2 \varepsilon \mu - \mj \omega \mu \gamma) (H _{zRe} + \mj H _{zIm}) =\\ 
-\left( \frac{\partial J _{extRe(x)}}{\partial y} - \frac{\partial J _{extRe(y)}}{\partial x} \right) + \mj \left( \frac{\partial J _{extIm(x)}}{\partial y} - \frac{\partial J _{extIm(y)}}{\partial x} \right)
+= \left( \frac{\partial J _{extRe(x)}}{\partial y} - \frac{\partial J _{extRe(y)}}{\partial x} \right) + \mj \left( \frac{\partial J _{extIm(x)}}{\partial y} - \frac{\partial J _{extIm(y)}}{\partial x} \right)
 \end{split}
 \end{equation}
 \begin{equation}
 \begin{split}
 \triangle H _{zRe} + \mj \triangle H _{zIm} + \omega ^2 \varepsilon \mu H_ {zRe} + \mj \omega ^2 \varepsilon \mu H _{zIm} - \mj \omega \mu \gamma H _{zRe} + \omega \mu \gamma H _{zIm} =\\
-\left( \frac{\partial J _{extRe(x)}}{\partial y} - \frac{\partial J _{extRe(y)}}{\partial x} \right) + \mj \left( \frac{\partial J _{extIm(x)}}{\partial y} - \frac{\partial J _{extIm(y)}}{\partial x} \right) .
+= \left( \frac{\partial J _{extRe(x)}}{\partial y} - \frac{\partial J _{extRe(y)}}{\partial x} \right) + \mj \left( \frac{\partial J _{extIm(x)}}{\partial y} - \frac{\partial J _{extIm(y)}}{\partial x} \right) .
 \end{split}
 \end{equation}
 Reálnou částí rovnice je:
@@ -1155,7 +1164,7 @@ Podobně jako při řešení v kartézské souřadné soustavě musíme rovnice 
 \begin{equation}
 \begin{split}
 \triangle E _{\varphi Re} + \mj \triangle E _{\varphi Im} + \omega ^2 \varepsilon \mu E_ {\varphi Re} + \mj \omega ^2 \varepsilon \mu E _{\varphi Im} - \mj \omega \mu \gamma E _{\varphi Re} + \omega \mu \gamma E _{\varphi Im} =\\
-\mj \omega \mu J _{extRe} - \omega \mu J _{extIm} .
+= \mj \omega \mu J _{extRe} - \omega \mu J _{extIm} .
 \end{split}
 \end{equation}
 Reálnou částí rovnice je:
@@ -1195,15 +1204,15 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 \begin{align*}
 &R_e:
 \\
-&- \int _{\Omega} r ~ \nabla E _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} r ~ \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ E _{\varphi Re} ~ v ~ \ud \Omega...\\
-&...+ \omega \mu \gamma \int _{\Omega} r ~ E _{\varphi Im} ~ v ~ \ud \Omega = - \omega \mu \int _{\Omega} r ~ J _{extIm} ~ v ~ \ud \Omega
+&- \int _{\Omega} r ~ \nabla E _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} r ~ \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ E _{\varphi Re} ~ v ~ \ud \Omega +\\
+& + \omega \mu \gamma \int _{\Omega} r ~ E _{\varphi Im} ~ v ~ \ud \Omega = - \omega \mu \int _{\Omega} r ~ J _{extIm} ~ v ~ \ud \Omega
 \numberthis
 \end{align*}
 \begin{align*}
 &I_m:
 \\
-&- \int _{\Omega} r ~ \nabla E _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} r ~ \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ E _{\varphi Im} \! ~ v ~ \ud \Omega...\\ 
-&...- \omega \mu \gamma \int _{\Omega} r ~ E _{\varphi Re} ~ v ~ \ud \Omega = \omega \mu \int _{\Omega} r ~ J _{extRe} ~ v ~ \ud \Omega .
+&- \int _{\Omega} r ~ \nabla E _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} r ~ \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ E _{\varphi Im} \! ~ v ~ \ud \Omega +\\ 
+& - \omega \mu \gamma \int _{\Omega} r ~ E _{\varphi Re} ~ v ~ \ud \Omega = \omega \mu \int _{\Omega} r ~ J _{extRe} ~ v ~ \ud \Omega .
 \numberthis
 \end{align*}
 Členy $\int _{\Gamma} r \frac{\partial E _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma$ a $\int _{\Gamma} r \frac{\partial E _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představují Neumannovu okrajovou podmínku.
@@ -1217,8 +1226,8 @@ Složky intenzity elektrického pole jsou v modulu vyjádřeny obecně, proto se
 Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjádření výrazu pomocí parciálních diferenciálních rovnic:
 \begin{equation*}
 \begin{split}
-&- \int _{\Omega} r \left( \frac{\partial u}{\partial r} \cdot \frac{\partial v}{\partial r} + \frac{\partial u}{\partial z} \cdot \frac{\partial v}{\partial z} \right) \ud \Omega + \int _{\Gamma} r ~ \frac{\partial u}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ u ~ v ~ \ud \Omega...\\
-&... + \omega \mu \gamma \int _{\Omega} r ~ u ~ v ~ \ud \Omega = - \omega \mu \int _{\Omega} r ~ \faz{J} _{ext} ~ v ~ \ud \Omega .
+&- \int _{\Omega} r \left( \frac{\partial u}{\partial r} \cdot \frac{\partial v}{\partial r} + \frac{\partial u}{\partial z} \cdot \frac{\partial v}{\partial z} \right) \ud \Omega + \int _{\Gamma} r ~ \frac{\partial u}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ u ~ v ~ \ud \Omega +\\
+& + \omega \mu \gamma \int _{\Omega} r ~ u ~ v ~ \ud \Omega = - \omega \mu \int _{\Omega} r ~ \faz{J} _{ext} ~ v ~ \ud \Omega .
 \end{split}
 \numberthis
 \end{equation*}
@@ -1335,13 +1344,13 @@ Podobně jako při řešení v kartézské souřadné soustavě musíme rovnice 
 \begin{equation}
 \begin{split}
 \triangle (H _{\varphi Re} + \mj H _{\varphi Im}) + (\omega ^2 \varepsilon \mu - \mj \omega \mu \gamma) (H _{\varphi Re} + \mj H _{\varphi Im}) =\\ 
-\frac{1}{r} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) + \mj ~ \frac{1}{r} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right)
+= \frac{1}{r} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) + \mj ~ \frac{1}{r} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right)
 \end{split}
 \end{equation}
 \begin{equation}
 \begin{split}
 \triangle H _{\varphi Re} + \mj \triangle H _{\varphi Im} + \omega ^2 \varepsilon \mu H_ {\varphi Re} + \mj \omega ^2 \varepsilon \mu H _{\varphi Im} - \mj \omega \mu \gamma H _{\varphi Re} + \omega \mu \gamma H _{\varphi Im} =\\
-\frac{1}{r} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) + \mj ~ \frac{1}{r} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right) .
+= \frac{1}{r} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) + \mj ~ \frac{1}{r} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right) .
 \end{split}
 \end{equation}
 Reálnou částí rovnice je:
@@ -1383,15 +1392,15 @@ Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\tria
 \begin{align*}
 &R_e:
 \\
-&- \int _{\Omega} \! r ~ \nabla H _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! r ~ \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} \! r ~ H _{\varphi Re} v ~ \ud \Omega...\\
-&... + \omega \mu \gamma \int _{\Omega} \! r ~ H _{\varphi Im} ~ v ~ \ud \Omega = \int _{\Omega} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) v ~ \ud \Omega
+&- \int _{\Omega} \! r ~ \nabla H _{\varphi Re} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! r ~ \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} \! r ~ H _{\varphi Re} v ~ \ud \Omega +\\
+& + \omega \mu \gamma \int _{\Omega} \! r ~ H _{\varphi Im} ~ v ~ \ud \Omega = \int _{\Omega} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) v ~ \ud \Omega
 \numberthis
 \end{align*}
 \begin{align*}
 &I_m:
 \\
-&- \int _{\Omega} \! r ~ \nabla H _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! r ~ \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} \! r ~ H _{\varphi Im} ~ v ~ \ud \Omega...\\
-&... - \omega \mu \gamma \int _{\Omega} \! r ~ H _{\varphi Re} ~ v ~ \ud \Omega = \int _{\Omega} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right) v ~ \ud \Omega
+&- \int _{\Omega} \! r ~ \nabla H _{\varphi Im} \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \! r ~ \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} \! r ~ H _{\varphi Im} ~ v ~ \ud \Omega +\\
+& - \omega \mu \gamma \int _{\Omega} \! r ~ H _{\varphi Re} ~ v ~ \ud \Omega = \int _{\Omega} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right) v ~ \ud \Omega
 \numberthis
 \end{align*}
 Členy $\int _{\Gamma} r ~ \frac{\partial H _{\varphi Re}}{\partial n} ~ v ~ \ud \Gamma$ a $\int _{\Gamma} r ~ \frac{\partial H _{\varphi Im}}{\partial n} ~ v ~ \ud \Gamma$ představují Neumannovu okrajovou podmínku.
@@ -1406,8 +1415,8 @@ Složky intenzity magnetického pole jsou v modulu vyjádřeny obecně, proto se
 \end{equation}
 Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjádření výrazu pomocí parciálních diferenciálních rovnic:
 \begin{align*}
-&- \int _{\Omega} r ~ \left( \frac{\partial u}{\partial r} \cdot \frac{\partial v}{\partial r} + \frac{\partial u}{\partial z} \cdot \frac{\partial v}{\partial z} \right) \ud \Omega + \int _{\Gamma} r ~ \frac{\partial u}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ u ~ v ~ \ud \Omega...\\
-&... + \omega \mu \gamma \int _{\Omega} r ~ u ~ v ~ \ud \Omega = \int _{\Omega}\left( - \frac{\partial \faz{J} _{ext(r)}}{\partial z} + \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right) v ~ \ud \Omega .
+&- \int _{\Omega} r ~ \left( \frac{\partial u}{\partial r} \cdot \frac{\partial v}{\partial r} + \frac{\partial u}{\partial z} \cdot \frac{\partial v}{\partial z} \right) \ud \Omega + \int _{\Gamma} r ~ \frac{\partial u}{\partial n} ~ v ~ \ud \Gamma + \omega ^2 \varepsilon \mu \int _{\Omega} r ~ u ~ v ~ \ud \Omega +\\
+& + \omega \mu \gamma \int _{\Omega} r ~ u ~ v ~ \ud \Omega = \int _{\Omega}\left( - \frac{\partial \faz{J} _{ext(r)}}{\partial z} + \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right) v ~ \ud \Omega .
 \numberthis
 \end{align*}
 Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici také vydělíme $\varepsilon$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
@@ -1866,23 +1875,28 @@ Jak již název této okrajové podmínky napovídá, řešení vychází z výp
 \end{equation}
 Cílem je upravit rovnici \ref{NewImpedanceEK} do tvaru v \ref{NewEK}.
 
-Použijeme rovnici \ref{max2fharm} a za $\faz{H}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceEK}. Vzhledem k tomu, že objektem výpočtu je TE vlna, bude přítomna pouze složka $z$ pole $\faz{E}$:
+Použijeme rovnici \ref{max2fharm} a za $\faz{H}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceEK}. Tuto rovnici následně vektorově roznásobíme normálovým vektorem $\vec{n}$:
+\begin{equation}
+\vec{n} \times \rot \! \faz{\vec{E}} = - \mj \omega \mu (\vec{n} \times \faz{\vec{H}}) .
+\end{equation}
+Na pravou stranu dosadíme podle rovnice:
 \begin{subequations}
 \begin{align}
-\frac{\faz{E} _z}{\faz{Z} _0} &= - \frac{\rot \! \faz{E}}{\mj \omega \mu}
+\faz{H} _t &= \vec{n} \times \faz{\vec{H}}
 \\
-\rot \! \faz{E} &= - \frac{\mj \omega \mu}{\faz{Z} _0} \faz{E} _z .
+\faz{H} _t &= \frac{\faz{E} _z}{\faz{Z} _o} ,
 \end{align}
 \end{subequations}
+vycházející z \ref{NewImpedanceEK}. Levou stranu vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku (postupuje se stejně jako v kapitole \ref{NeumannEK}).
 
-\begin{spverbatim}
-Pozn.: Na druhé straně  následující rovnice by měl být také vektor n (resp. tečná složka) a to podle stejného výpočtu u Neumannovy podmínky. Ale není. Resp. ani nevím, jak to skloubit s Ez
-\end{spverbatim}
-
-Výpočtem rotace na levé straně (postupuje se stejně jako v kapitole \ref{NeumannEK} - tzn. dále vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku) získáme vyjádření v podobě parciální diferenciální rovnice:
-\begin{equation}
-\frac{\partial \faz{E} _z}{\partial \vec{n}} = - \frac{\mj \omega \mu}{\faz{Z} _0} \faz{E} _z
-\end{equation}
+Vzhledem k tomu, že objektem výpočtu je TE vlna, bude přítomna pouze složka $z$ pole $\faz{E}$:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{E} _z}{\partial \vec{n}} &= - \mj \omega \mu \faz{H} _t
+\\
+\frac{\partial \faz{E} _z}{\partial \vec{n}} &= - \mj \omega \mu \frac{\faz{E} _z}{\faz{Z} _0} .
+\end{align}
+\end{subequations}
 Tento tvar lze podobně jako v kapitole \ref{NeumannEK} dosadit do \ref{weakneumann} (výrazu získaného při výpočtu slabých norem):
 \begin{subequations}
 \begin{align}
@@ -1902,18 +1916,11 @@ bude označena indexy i = 1, j = 2. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici nejsou obsaženy, neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
 
-Pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i = 1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena $0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je v xml modulu též vyjádřena~$0$.
 
 Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
-
-
-\begin{spverbatim}
-1) Jak je to s položkami matice i = 1, j = 1 a i = 2, j = 2? Jsou nulové? Nejsou tam vůbec?
-2) V rf.xml jsou u vector form indexy i = 1, j = 2 a i = 2, j = 1. Jsem předčen, že je to špatně nebo přinejmenším nekonzistentní a matoucí. Vektor je jednorozměrný a index by měl být jeden nebo by alespoň měly být totožné.
-3) Informační zobrazující se přepis rovnice (equation = ...). Z čeho vychází? Jak se k němu dojde?
-\end{spverbatim}
 
 
 \subsubsection*{Tvar pro \faz{\vec{H}} v kartézských souřadnicích}
@@ -1929,21 +1936,28 @@ Jak již název této okrajové podmínky napovídá, řešení vychází z výp
 \end{equation}
 Cílem je upravit rovnici \ref{NewImpedanceHK} do tvaru v \ref{NewHK}.
 
-Použijeme rovnici \ref{max1fharm} (bez uvažování proudové hustoty $J$ a za $\faz{E}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceHK}). Vzhledem k tomu, že objektem výpočtu je TM vlna, bude přítomna pouze složka $z$ pole $\faz{H}$:
+Použijeme rovnici \ref{max1fharm} (bez uvažování proudové hustoty $J$ a za $\faz{E}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceHK}). Tuto rovnici následně vektorově roznásobíme normálovým vektorem $\vec{n}$:
+\begin{equation}
+\vec{n} \times \rot \faz{\vec{H}} = \mj \omega \varepsilon (\vec{n} \times \faz{\vec{E}}) .
+\end{equation}
+Na pravou stranu dosadíme podle rovnice:
 \begin{subequations}
 \begin{align}
-\frac{\faz{H} _z}{\faz{Z} _0} &= \frac{1}{\faz{E}}
+\faz{E} _t &= \vec{n} \times \faz{\vec{E}}
 \\
-\frac{\faz{H} _z}{\faz{Z} _0} &= \frac{\mj \omega \varepsilon}{\rot \! \faz{H}}
-\\
-\rot \! \faz{H} &= \frac{\mj \omega \varepsilon \faz{Z} _0}{\faz{H} _z} .
+\faz{E} _t &= \frac{\faz{Z} _0}{\faz{H} _z} ,
 \end{align}
 \end{subequations}
+vycházející z \ref{NewImpedanceHK}. Levou stranu vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku (postupuje se stejně jako v kapitole \ref{NeumannHK}).
 
-Výpočtem rotace na levé straně (postupuje se stejně jako v kapitole \ref{NeumannHK} - tzn. dále vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku) získáme vyjádření v podobě parciální diferenciální rovnice:
-\begin{equation}
-\frac{\partial \faz{H} _z}{\partial \vec{n}} = \frac{\mj \omega \varepsilon \faz{Z} _0}{\faz{H} _z}
-\end{equation}
+Vzhledem k tomu, že objektem výpočtu je TM vlna, bude přítomna pouze složka $z$ pole $\faz{H}$:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{H} _z}{\partial \vec{n}} &= \mj \omega \varepsilon \faz{E} _t
+\\
+\frac{\partial \faz{H} _z}{\partial \vec{n}} &= \mj \omega \varepsilon \frac{\faz{Z} _0}{\faz{H} _z} .
+\end{align}
+\end{subequations}
 Tento tvar lze podobně jako v kapitole \ref{NeumannHK} dosadit do \ref{Hweakneumann} (výrazu získaného při výpočtu slabých norem):
 \begin{subequations}
 \begin{align}
@@ -1963,9 +1977,9 @@ bude označena indexy i = 1, j = 2. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici nejsou obsaženy, neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
 
-Pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i = 1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena $0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je v xml modulu též vyjádřena~$0$.
 
 Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
 
@@ -1984,19 +1998,28 @@ Jak již název této okrajové podmínky napovídá, řešení vychází z výp
 \end{equation}
 Cílem je upravit rovnici \ref{NewImpedanceEC} do tvaru v \ref{NewEC}.
 
-Použijeme rovnici \ref{max2fharm} a za $\faz{H}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceEC}. Vzhledem k tomu, že objektem výpočtu je TE vlna, bude přítomna pouze složka ${\varphi}$ pole $\faz{E}$:
+Použijeme rovnici \ref{max2fharm} a za $\faz{H}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceEC}. Tuto rovnici následně vektorově roznásobíme normálovým vektorem $\vec{n}$:
+\begin{equation}
+\vec{n} \times \rot \faz{\vec{E}} = - \mj \omega \mu (\vec{n} \times \faz{\vec{H}}) .
+\end{equation}
+Na pravou stranu dosadíme podle rovnice:
 \begin{subequations}
 \begin{align}
-\frac{\faz{E} _{\varphi}}{\faz{Z} _0} &= - \frac{\rot \! \faz{E}}{\mj \omega \mu}
+\faz{H} _t &= \vec{n} \times \vec{H}
 \\
-\rot \! \faz{E} &= - \frac{\mj \omega \mu}{\faz{Z} _0} \faz{E} _{\varphi} .
+\faz{H} _t &= \frac{\faz{E} _{\varphi}}{\faz{Z} _0} ,
 \end{align}
 \end{subequations}
+vycházející z \ref{NewImpedanceEC}. Levou stranu vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku (postupuje se stejně jako v kapitole \ref{NeumannEC}).
 
-Výpočtem rotace na levé straně (postupuje se stejně jako v kapitole \ref{NeumannEC} - tzn. dále vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku) získáme vyjádření v podobě parciální diferenciální rovnice:
-\begin{equation}
-\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} = - \frac{\mj \omega \mu}{\faz{Z} _0} \faz{E} _{\varphi}
-\end{equation}
+Vzhledem k tomu, že objektem výpočtu je TE vlna, bude přítomna pouze složka ${\varphi}$ pole $\faz{E}$:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} &= - \mj \omega \mu H _t
+\\
+\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} &= - \mj \omega \mu \frac{\faz{E} _{\varphi}}{\faz{Z} _0} .
+\end{align}
+\end{subequations}
 Tento tvar lze podobně jako v kapitole \ref{NeumannEC} dosadit do \ref{ECweakneumann} (výrazu získaného při výpočtu slabých norem):
 \begin{subequations}
 \begin{align}
@@ -2016,9 +2039,9 @@ bude označena indexy i = 1, j = 2. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici nejsou obsaženy, neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
 
-Pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i = 1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena $0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je v xml modulu též vyjádřena~$0$.
 
 Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
 
@@ -2037,21 +2060,28 @@ Jak již název této okrajové podmínky napovídá, řešení vychází z výp
 \end{equation}
 Cílem je upravit rovnici \ref{NewImpedanceHC} do tvaru v \ref{NewHC}.
 
-Použijeme rovnici \ref{max1fharm} (bez uvažování proudové hustoty $J$ a za $\faz{E}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceHC}). Vzhledem k tomu, že objektem výpočtu je TM vlna, bude přítomna pouze složka $\varphi$ pole $\faz{H}$:
+Použijeme rovnici \ref{max1fharm} (bez uvažování proudové hustoty $J$ a za $\faz{E}$ dosadíme z této rovnice do rovnice \ref{NewImpedanceHC}). Tuto rovnici následně vektorově roznásobíme normálovým vektorem $\vec{n}$:
+\begin{equation}
+\vec{n} \times \rot \faz{\vec{H}} = \mj \omega \varepsilon (\vec{n} \times \faz{\vec{E}})
+\end{equation}
+Na pravou stranu dosadíme podle rovnice:
 \begin{subequations}
 \begin{align}
-\frac{\faz{H} _{\varphi}}{\faz{Z} _0} &= \frac{1}{\faz{E}}
+\faz{E} _t &= \vec{n} \times \faz{\vec{E}}
 \\
-\frac{\faz{H} _{\varphi}}{\faz{Z} _0} &= \frac{\mj \omega \varepsilon}{\rot \! \faz{H}}
-\\
-\rot \! \faz{H} &= \frac{\mj \omega \varepsilon \faz{Z} _0}{\faz{H} _{\varphi}} .
+\faz{E} _t &= \frac{\faz{Z} _0}{\faz{H} _{\varphi}} ,
 \end{align}
 \end{subequations}
+vycházející z \ref{NewImpedanceHC}. Levou stranu vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku (postupuje se stejně jako v kapitole \ref{NeumannHC}).
 
-Výpočtem rotace na levé straně (postupuje se stejně jako v kapitole \ref{NeumannHC} - tzn. dále vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku) získáme vyjádření v podobě parciální diferenciální rovnice:
-\begin{equation}
-\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} = \frac{\mj \omega \varepsilon \faz{Z} _0}{\faz{H} _{\varphi}}
-\end{equation}
+Vzhledem k tomu, že objektem výpočtu je TM vlna, bude přítomna pouze složka $\varphi$ pole $\faz{H}$:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj \omega \varepsilon \faz{E} _t
+\\
+\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj \omega \varepsilon \frac{\faz{H} _{\varphi}}{\faz{Z} _0}
+\end{align}
+\end{subequations}
 Tento tvar lze podobně jako v kapitole \ref{NeumannHC} dosadit do \ref{HCweakneumann} (výrazu získaného při výpočtu slabých norem):
 \begin{subequations}
 \begin{align}
@@ -2071,9 +2101,9 @@ r ~ \frac{2 ~ \pi ~ f ~ \faz{Z} _0}{u} ~ v
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici nejsou obsaženy, neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
 
-Pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i = 1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena $0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena~$0$.
 
 Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
 
@@ -2347,6 +2377,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. Agros2D [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
 \bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
 \bibitem{RovinnaVlna} Rovinné vlny. \textit{Fyzikální sekce Matematicko-fyzikální fakulty UK} [online]. [cit. 2013-02-20]. Dostupné z: http://physics.mff.cuni.cz/kfpp/skripta/kurz\_fyziky\_pro\_DS/display.php/optika/1\_3
+\bibitem{hpFEM} THE HP-FEM GROUP. \textit{www.hpFEM.org} [online]. 2013 [cit. 2013-04-09]. Dostupné z: http://hpfem.org/
 
 
 \end{thebibliography}
