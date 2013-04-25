@@ -1,7 +1,0 @@
-- homogenní vlnová rovnice - gamma je nula?
-- je 2.36 to samé jako, kdybych napsal velké E (vektor) ...logicky bych øekl, e jo
-	- rozdíl asi bude pouze e jde o modifikovanı vektor bez sloky z, proto se takhle rozepisuje
-	- kdy jedonduše v 2.19 (homogenní helhmoltz) poloím k = 0, vyjde mi to samé bez dalších obstrukcí
-	- cílem je asi pøedevším ukázat eliminaci sloky z
-- proè pouívám malé e a jak se pozná? to je právì ve 2.28, na kterou jsem mi øekl, a tam referenci nedávám. tam píšu, e malé e s vıpisem sloek x a y v závorce - e(x,y) - se pouívá jako vyjádøení transverzálního (pøíènéhé) pole (není tam podélná sloka z)
-	- jestli si myslíte, e mám vysvìtlení doplnit i k 2.36, doplním ho

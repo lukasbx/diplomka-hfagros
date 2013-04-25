@@ -250,7 +250,7 @@ Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční o
 \end{align}
 \end{subequations}
 
-Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$.
+Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$. \cite{Teorie}
 
 
 \subsection{Vlnová rovnice}
@@ -732,7 +732,7 @@ Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
 \faz{h} (x, y) = \frac{1}{Z_{TEM}} \hat{z} \times \faz{e} (x, y) .
 \end{equation}
 
-Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
+%Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
 
 \subsubsection{TE vlny}
 Na rozdíl od TEM vln, kde jsou podélné složky $H$ i $E$ pole nulové, se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
@@ -810,16 +810,62 @@ z čehož plyne, že $Z_{TM}$ je frekvenčně závislé.
 \newpage
 \section{Numerické řešení elektromagnetického pole}
 
-\subsection{Agros 2D}
-Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody hp-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje následující kapitola \ref{FEM}. \cite{hpFEM}
-
-Agros2D je volně šiřitelnou open-source aplikací vyvíjenou pod licencí GNU GPL. Zájemce o tento program může zjistit více informací i si stáhnout poslední verzi na stránkách www.agros2d.org (viz \cite{Agros}). Postup vytvoření geometrie a spuštění modelování je také shrnut v příloze B akademické práce \cite{Koudela}.
-
-Pro ukázku je níže znázorněn výstup programu při modelování čtvercového objektu v TM poli:
 
 
 \subsection{Metoda konečných prvků}
 \label{FEM}
+Reálné fyzikální problémy bývají většinou natolik komplikované, že pouze málo z nich lze vyřešit pomocí analytických metod. Důvodem pro to nejčastěji je, že parciální diferenciální rovnice není lineární, řešená oblast je příliš složitá nebo je prostředí nehomogenní popř. anizotropní. Potom je nutné použít některou z numerických metod řešení.
+
+První z nich je metoda konečných diferencí (FDM - Finite Difference Method). Jedná se o velmi jednoduchou a účinnou metodu pro řešení parciálních diferenciálních rovnic, představenou poprvé již v roce 1920 A. Thomem a to pod názvem metoda čtverců. Metoda konečných diferencí nebyla původně koncipována na aplikaci na elektromagnetické pole - prvně byla využita k řešení nehomogenní hydrodynamické rovnice, ale její všestrannost umožnila její rozšíření pro řešení dalších fyzikálních polí. Základní myšlenkou této metody je nahrazení derivací konečnými diferencemi a převedení na soustavu algebraických rovnic. \cite{ATE}
+
+Druhou numerickou metodou je metoda konečných prvků (FEM - Finite Element Method). Nevýhodou této metody oproti metodě konečných diferencí je, že je náročnější na programovou implementaci. Její pozitiva jako jsou její výkonnost a univerzálnost však toto negativum převažují a jedná se proto o nejpoužívanější numerickou metodu (a to zejmána v její variantě hp-FEM využívané i v knihovně Hermes2D). 
+
+Též historie metody konečných prvků se začíná psát v 1. polovině 20. století, kdy jsou její základy položeny v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. S průběhem času přibývaly problémy, které lze metodou konečných prvků řešit až v současnosti lze metodu použít pro téměř všechny fyzikální pole.
+
+Jedná se o numerickou techniku, jejímž cílem je nalezení řešení okrajového problému. Používá variační metody pro minimalizaci chybové funkce a výpočet nejlepšího řešení. Metoda konečných prvků je postavena na spojování mnoha jednoduchých elementárních rovnic v mnoha malých subdoménách, zvaných konečné prvky, za účelem aproximace složitější rovnice na větší oblasti (doméně). Rozdělení oblasti na menší část přináší několik výhod: přesnější vyjádření složité geometrie, zařazení rozdílných materiálových vlastností, jednoduché znázornění celkového řešení a zachycení lokálních účinků. 
+
+\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
+\begin{center}
+\includegraphics[width=10cm]{grid.png} %příkaz width zmenší délku na zadaný rozměr fyzického papíru a zachová proporce
+\caption{Síť vygenerovaná v programu Agros2D} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
+\end{center}
+\end{figure}
+
+Jednotlivé kroky řešení problému pomocí metody konečných prvků by se daly shrnout takto:
+\begin{itemize}
+\item Rozdělení oblasti diskretizační mřížkou  na jednotlivé subdomény (konečné prvky)
+\item Vyjádření rovnic pro jednotlivé subdomény (prvky)
+\item Doplnění okrajovými podmínkami (Dirichletovou a Neumannovou)
+\item Systematická rekombinace všech sad rovnic všech prvků do jednoho systému
+\item Výpočet soustavy algebraických rovnic
+\end{itemize}
+
+Výhodou metody konečných prvků je, že je numericky stabilní. To znamená, že chyba obsažená na vstupu se během výpočtu nekumuluje a nezpůsobuje znehodnocení výstupu. Během druhého kroku, zmíněného výše, jsou rovnice elementů jednoduchými rovnicemi lokálně aproximujícími původní komplexní rovnici, která často bývá parciální diferenciální rovnicí. Pro vysvětlení procesu aproximace bývá metoda konečných prvků často považována za speciální případ Galerkinovy metody. Tento proces, matematicky řečeno, spočívá ve zkonstruování integrálu unitárního prostoru zbytkové a váhové funkce a nastavení integrálu na nulu. Zjednodušeně jde o postup, který minimalizuje chybu aproximace nasazením testovacích funkcí do parciálních diferenciálních rovnic. Residual (zbytek) je chyba způsobená testovací funkcí a váhové funkce jsou polynomiální aproximací promítající tento residual (zbytek). Tento proces eliminuje všechny prostorové derivace z parciální diferenciální rovnice a tak parciální diferenciální rovnici lokálně aproximuje se sadou algebraických rovnic pro problémy v ustáleném stavu a se sadou obyčejných diferenciálních rovnic pro přechodné problémy.
+
+Tyto sady rovnic jsou rovnicemi jednotlivých prvků. Jsou lineární pokud je i základní parciální diferenciální rovnice lineární (a naopak). Sada algebraických rovnic vznikající u problémů v ustáleném stavu je řešena pomocí metod numerické lineární algebry, zatímco sada obyčejných diferenciálních rovnic vznikající u přechodných problémů je řešena numerickou integrací pomocí standardních technik jako Eulerova metoda nebo Runge-Kuttova metoda. Tento proces je většinou vykonáván softwarem používajícím souřadná data generovaná z jednotlivých subdomén.
+
+Ve čtvrtém kroku, zmíněném ve výše uvedeném přehledu, je generována globální soustava rovnic z rovnic jednotlivých prvků a to prostřednictvím transformace souřadnic z uzlů lokálních subdomén na uzly globální oblasti (domény). Tato prostorová transformace zahrnuje úpravy do vhodné orientace ve vztahu k referenčnímu souřadnému systému. \cite{FEM}
+
+
+
+\subsection{Agros 2D}
+Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody hp-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje předchozí kapitola \ref{FEM}. \cite{hpFEM}
+
+Modelování v programu Agros2D vypadá ve stručnosti takto: Nejprve se v \textbf{preprocesoru} vytvoří geometrie objektu, nadefinují se materiálové parametry a přiřadí se okrajové podmínky. Poté \textbf{procesor}, výpočetní část založená na metodě konečných prvků (hp-FEM) provede vlastní výpočet. Výsledné řešení je vyhodnoceno a zobrazeno v \textbf{postprocesoru}, kde si uživatel může volit různé parametry vizualizace vypočtených dat jako barevné mapy, kontury, vektorová pole, grafy veličin a lokální a integrální veličiny. 
+
+Procesor Agrosu umožňuje použít pokročilé funkce metody konečných prvků jako konečné prvky vyššího řádu přesnosti, kdy je hledaná funkce aproximována na prvku polynomem vyššího řádu přesnosti, automatickou adaptivitu, kdy je diskretizační síť a stupeň aproximace volena automaticky na základě odhadu chyby řešení a práci s křivočarými prvky, kdy je řešení oblast diskretizována zpravidla trojúhelníkovými prvky.
+
+Agros2D je volně šiřitelnou open-source aplikací vyvíjenou pod licencí GNU GPL. Zájemce o tento program může zjistit více informací i si stáhnout poslední verzi na stránkách www.agros2d.org (viz \cite{Agros}). Postup vytvoření geometrie a spuštění modelování je také shrnut v příloze B akademické práce \cite{Koudela}.
+
+Pro ukázku je níže znázorněn výstup programu při modelování čtvercového objektu v TM poli:
+\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
+\begin{center}
+\includegraphics[width=11.8cm]{agros.png} %příkaz width zmenší délku na zadaný rozměr fyzického papíru a zachová proporce
+\caption{Postprocesing modelu v programu Agros2D} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
+\end{center}
+\end{figure}
+
+
 
 \newpage
 \section{Návrh modulu pro VF pole}
@@ -1579,6 +1625,7 @@ A samotná Neumannova okrajová podmínka může být též rozepsána pomocí g
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{gradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
+\label{NeumannEKvek}
 \frac{\partial \faz{E}_z}{\partial \vec{n}} \cdot \vec{k} = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}}.
 \end{equation}
 Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{k}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
@@ -1665,6 +1712,7 @@ A samotná Neumannova okrajová podmínka může být též rozepsána pomocí g
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{Hgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
+\label{NeumannHKvek}
 \frac{\partial \faz{H}_z}{\partial \vec{n}} \cdot \vec{k} = \vec{n} \times \mj \omega \varepsilon \faz{\vec{E}}.
 \end{equation}
 Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{k}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
@@ -1744,6 +1792,7 @@ A samotná Neumannova okrajová podmínka může být též rozepsána pomocí g
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{ECgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
+\label{NeumannECvek}
 \frac{\partial \faz{E}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}} .
 \end{equation}
 Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{\phi}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
@@ -1823,6 +1872,7 @@ A samotná Neumannova okrajová podmínka může být též rozepsána pomocí g
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{HCgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
+\label{NeumannHCvek}
 \frac{\partial \faz{H}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = \vec{n} \times \mj \omega \varepsilon \faz{\vec{E}} .
 \end{equation}
 Roznásobíme-li pravou stranu normálovým vektorem $\vec{n}$ (a levou stranu vektorem $\vec{\phi}$) obsahujícím pouze tečnou složku, dostaneme skalární vyjádření:
@@ -1945,7 +1995,7 @@ Na pravou stranu dosadíme podle rovnice:
 \begin{align}
 \faz{E} _t &= \vec{n} \times \faz{\vec{E}}
 \\
-\faz{E} _t &= \frac{\faz{Z} _0}{\faz{H} _z} ,
+\faz{E} _t &= \faz{Z} _0 \faz{H} _z ,
 \end{align}
 \end{subequations}
 vycházející z \ref{NewImpedanceHK}. Levou stranu vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku (postupuje se stejně jako v kapitole \ref{NeumannHK}).
@@ -1955,25 +2005,25 @@ Vzhledem k tomu, že objektem výpočtu je TM vlna, bude přítomna pouze složk
 \begin{align}
 \frac{\partial \faz{H} _z}{\partial \vec{n}} &= \mj \omega \varepsilon \faz{E} _t
 \\
-\frac{\partial \faz{H} _z}{\partial \vec{n}} &= \mj \omega \varepsilon \frac{\faz{Z} _0}{\faz{H} _z} .
+\frac{\partial \faz{H} _z}{\partial \vec{n}} &= \mj \omega \varepsilon \faz{Z} _0 \faz{H} _z .
 \end{align}
 \end{subequations}
 Tento tvar lze podobně jako v kapitole \ref{NeumannHK} dosadit do \ref{Hweakneumann} (výrazu získaného při výpočtu slabých norem):
 \begin{subequations}
 \begin{align}
-\frac{1}{\varepsilon} \int _{\Gamma} ( - \frac{\omega \varepsilon \faz{Z} _0}{\faz{H} _{(z~imag)}} ~ v ) ~ \ud \Gamma ,
+\frac{1}{\varepsilon} \int _{\Gamma} ( - \omega \varepsilon \faz{Z} _0 \faz{H} _{(z~imag)} v ) ~ \ud \Gamma ,
 \\ 
-\frac{1}{\varepsilon} \int _{\Gamma} ( \frac{\omega \varepsilon \faz{Z} _0}{\faz{H} _{(z~real)}} ~ v ) ~ \ud \Gamma .
+\frac{1}{\varepsilon} \int _{\Gamma} ( \omega \varepsilon \faz{Z} _0\faz{H} _{(z~real)} v ) ~ \ud \Gamma .
 \end{align}
 \end{subequations}
 
 Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $H$ za $u$. Reálná složka 
 \begin{equation}
-- \frac{2 ~ \pi ~ f ~ \faz{Z} _0}{u} ~ v
+- 2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation} 
 bude označena indexy i = 1, j = 2. Imaginární složka 
 \begin{equation}
-\frac{2 ~ \pi ~ f ~ \faz{Z} _0}{u} ~ v
+2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
@@ -2069,7 +2119,7 @@ Na pravou stranu dosadíme podle rovnice:
 \begin{align}
 \faz{E} _t &= \vec{n} \times \faz{\vec{E}}
 \\
-\faz{E} _t &= \frac{\faz{Z} _0}{\faz{H} _{\varphi}} ,
+\faz{E} _t &= \faz{Z} _0 \faz{H} _{\varphi} ,
 \end{align}
 \end{subequations}
 vycházející z \ref{NewImpedanceHC}. Levou stranu vektorově roznásobíme $\vec{n}$, vyjádříme pomocí gradientu a substituujeme do výrazu představujícího Neumannovu podmínku (postupuje se stejně jako v kapitole \ref{NeumannHC}).
@@ -2079,25 +2129,25 @@ Vzhledem k tomu, že objektem výpočtu je TM vlna, bude přítomna pouze složk
 \begin{align}
 \frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj \omega \varepsilon \faz{E} _t
 \\
-\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj \omega \varepsilon \frac{\faz{H} _{\varphi}}{\faz{Z} _0}
+\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj \omega \varepsilon \faz{H} _{\varphi}\faz{Z} _0
 \end{align}
 \end{subequations}
 Tento tvar lze podobně jako v kapitole \ref{NeumannHC} dosadit do \ref{HCweakneumann} (výrazu získaného při výpočtu slabých norem):
 \begin{subequations}
 \begin{align}
-\frac{1}{\varepsilon} \int _{\Gamma} ( - \frac{\omega \varepsilon \faz{Z} _0}{\faz{H} _{(\varphi ~ imag)}} ~ r ~ v ) ~ \ud \Gamma ,
+\frac{1}{\varepsilon} \int _{\Gamma} ( - \omega \varepsilon \faz{Z} _0 \faz{H} _{(\varphi ~ imag)} ~ r ~ v ) ~ \ud \Gamma ,
 \\ 
-\frac{1}{\varepsilon} \int _{\Gamma} ( \frac{\omega \varepsilon \faz{Z} _0}{\faz{H} _{(\varphi ~ real)}} ~ r ~ v ) ~ \ud \Gamma .
+\frac{1}{\varepsilon} \int _{\Gamma} ( \omega \varepsilon \faz{Z} _0\faz{H} _{(\varphi ~ real)} ~ r ~ v ) ~ \ud \Gamma .
 \end{align}
 \end{subequations}
 
 Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $H$ za $u$. Reálná složka 
 \begin{equation}
-- ~ r ~ \frac{2 ~ \pi ~ f ~ \faz{Z} _0}{u} ~ v
+- ~ r ~ 2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation} 
 bude označena indexy i = 1, j = 2. Imaginární složka 
 \begin{equation}
-r ~ \frac{2 ~ \pi ~ f ~ \faz{Z} _0}{u} ~ v
+r ~ 2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
@@ -2106,6 +2156,425 @@ Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy j
 Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena~$0$.
 
 Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+
+
+
+\subsubsection{Neumannova okrajová podmínka zadaná povrchovým proudem}
+Proudovou hustotu lze vyjádřit jako $\faz{\vec{J}} = \gamma \faz{\vec{E}}$. Opačně to také znamená, že intenzita elektrického pole $\faz{\vec{E}}$ může být vyjádřena pomocí proudové hustoty $\faz{\vec{J}}$. Toho lze s výhodou využít při zadávání Neumannovy okrajové podmínky. Neumannova okrajová podmínka je obecně vyjádřena jako hodnota normálové derivace funkce, konkrétně v našem případě je pak udána prostřednictvím intenzity elektrického pole $\faz{\vec{E}}$. A jak již bylo zmíněno, intenzita elektrického pole $\faz{\vec{E}}$ může být nahrazena proudovou hustotou $\faz{\vec{J}}$.
+
+
+\subsubsection*{Tvar pro \faz{\vec{J}} a TE pole v kartézských souřadnicích}
+Budeme vycházet z tvaru \ref{NeumannEKvek}, ke kterému jsme došli při výpočtu Neumannovy okrajové podmínky v kapitole \ref{NeumannEK}
+\begin{equation}
+\frac{\partial \faz{E}_z}{\partial \vec{n}} \cdot \vec{k} = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}}.
+\end{equation}
+Za veličinu $\faz{\vec{H}}$ na pravé straně dosadíme proudovou hustotu $\faz{\vec{J}}$ vynásobenou vodivostí $\gamma$ na vnitřní straně rozhraní:
+\begin{equation}
+\frac{\partial \faz{E}_z}{\partial \vec{n}} \cdot \vec{k} = - \vec{n} \times \mj \omega \mu \frac{\faz{\vec{J}}}{\gamma}.
+\end{equation}
+Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{E}_z}{\partial \vec{n}} &= - \mj ~ \omega \mu \frac{\faz{J} _t}{\gamma}
+\\
+\frac{\partial \faz{E}_z}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\gamma} (J _{(t~real)} + J _{(t~imag)} ~ \mj)
+\end{align}
+\end{subequations}
+
+Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
+\begin{subequations}
+\label{Jek}
+\begin{align}
+\frac{\partial E _{(z~real)}}{\partial \vec{n}} &= \frac{\omega \mu}{\omega}  J _{(t~imag)}
+\\
+\frac{\partial E _{(z~imag)}}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\omega} J _{(t~real)}
+\end{align}
+\end{subequations}
+Posledním krokem je dosazení pravé strany z \ref{Jek} do \ref{weakneumann} (výrazu získaného při výpočtu slabých forem):
+\begin{subequations}
+\begin{align}
+\frac{1}{\mu} \int _{\Gamma} \frac{\omega \mu}{\gamma} J _{(t~imag)} ~ v ~ \ud \Gamma ~
+\\
+\frac{1}{\mu} \int _{\Gamma} - \mj ~ \frac{\omega \mu}{\gamma} J _{(t~real)} ~ v ~ \ud \Gamma
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+\begin{equation}
+\frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+- \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~real)} ~ v
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlEs}.
+
+
+\subsubsection*{Tvar pro \faz{\vec{J}} a TE pole ve válcových souřadnicích}
+Budeme vycházet z tvaru \ref{NeumannECvek}, ke kterému jsme došli při výpočtu Neumannovy okrajové podmínky v kapitole \ref{NeumannEC}:
+\begin{equation}
+\frac{\partial \faz{E}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}} .
+\end{equation}
+Za veličinu $\faz{\vec{H}}$ na pravé straně dosadíme proudovou hustotu $\faz{\vec{J}}$ vynásobenou vodivostí $\gamma$ na vnitřní straně rozhraní:
+\begin{equation}
+\frac{\partial \faz{E}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - \vec{n} \times \mj \omega \mu \frac{\faz{\vec{J}}}{\gamma}.
+\end{equation}
+Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} &= - \mj ~ \omega \mu \frac{\faz{J} _t}{\gamma}
+\\
+\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\gamma} (J _{(t~real)} + J _{(t~imag)} ~ \mj)
+\end{align}
+\end{subequations}
+
+Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
+\begin{subequations}
+\label{Jec}
+\begin{align}
+\frac{\partial E _{(\varphi ~real)}}{\partial \vec{n}} &= \frac{\omega \mu}{\omega}  J _{(t~imag)}
+\\
+\frac{\partial E _{(\varphi ~imag)}}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\omega} J _{(t~real)}
+\end{align}
+\end{subequations}
+Posledním krokem je dosazení pravé strany z \ref{Jec} do \ref{ECweakneumann} (výrazu získaného při výpočtu slabých forem):
+\begin{subequations}
+\begin{align}
+\frac{1}{\mu} \int _{\Gamma} \frac{\omega \mu}{\gamma} J _{(t~imag)} ~ v ~ r ~ \ud \Gamma ~
+\\
+\frac{1}{\mu} \int _{\Gamma} - \mj ~ \frac{\omega \mu}{\gamma} J _{(t~real)} ~ v ~ r ~ \ud \Gamma
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+\begin{equation}
+\frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v ~ r
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+- \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~real)} ~ v ~ r
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlEs}.
+
+
+\subsubsection*{Tvar pro \faz{\vec{J}} a TM pole v kartézských souřadnicích}
+Budeme vycházet z tvaru \ref{NeumannHKvek}, ke kterému jsme došli při výpočtu Neumannovy okrajové podmínky v kapitole \ref{NeumannHK}:
+\begin{equation}
+\frac{\partial \faz{H} _z}{\partial \vec{n}} \cdot \vec{k} = \vec{n} \times \mj \omega \varepsilon \faz{\vec{E}}.
+\end{equation}
+Za veličinu $\faz{\vec{E}}$ na pravé straně dosadíme proudovou hustotu $\faz{\vec{J}}$ vynásobenou vodivostí $\gamma$ na vnitřní straně rozhraní:
+\begin{equation}
+\frac{\partial \faz{H}_z}{\partial \vec{n}} \cdot \vec{k} = \vec{n} \times \mj \omega \varepsilon \frac{\faz{\vec{J}}}{\gamma}.
+\end{equation}
+Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{H}_z}{\partial \vec{n}} &= \mj ~ \omega \varepsilon \frac{\faz{J} _t}{\gamma}
+\\
+\frac{\partial \faz{H}_z}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\gamma} (J _{(t~real)} + J _{(t~imag)} ~ \mj)
+\end{align}
+\end{subequations}
+
+Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
+\begin{subequations}
+\label{Jhk}
+\begin{align}
+\frac{\partial H _{(z~real)}}{\partial \vec{n}} &= - \frac{\omega \varepsilon}{\omega}  J _{(t~imag)}
+\\
+\frac{\partial H _{(z~imag)}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\omega} J _{(t~real)}
+\end{align}
+\end{subequations}
+Posledním krokem je dosazení pravé strany z \ref{Jhk} do \ref{Hweakneumann} (výrazu získaného při výpočtu slabých forem):
+\begin{subequations}
+\begin{align}
+\frac{1}{\varepsilon} \int _{\Gamma} - \frac{\omega \varepsilon}{\gamma} J _{(t~imag)} ~ v ~ \ud \Gamma
+\\
+\frac{1}{\varepsilon} \int _{\Gamma} \mj ~ \frac{\omega \varepsilon}{\gamma} J _{(t~real)} ~ v ~ \ud \Gamma ~
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+\begin{equation}
+- \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+\frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~real)} ~ v
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+
+
+\subsubsection*{Tvar pro \faz{\vec{J}} a TM pole ve válcových souřadnicích}
+Budeme vycházet z tvaru \ref{NeumannHCvek}, ke kterému jsme došli při výpočtu Neumannovy okrajové podmínky v kapitole \ref{NeumannHC}:
+\begin{equation}
+\frac{\partial \faz{H}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = \vec{n} \times \mj \omega \varepsilon \faz{\vec{E}} .
+\end{equation}
+Za veličinu $\faz{\vec{E}}$ na pravé straně dosadíme proudovou hustotu $\faz{\vec{J}}$ vynásobenou vodivostí $\gamma$ na vnitřní straně rozhraní:
+\begin{equation}
+\frac{\partial \faz{H}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = \vec{n} \times \mj \omega \varepsilon \frac{\faz{\vec{J}}}{\gamma}.
+\end{equation}
+Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
+\begin{subequations}
+\begin{align}
+\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj ~ \omega \varepsilon \frac{\faz{J} _t}{\gamma}
+\\
+\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\gamma} (J _{(t~real)} + J _{(t~imag)} ~ \mj)
+\end{align}
+\end{subequations}
+
+Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
+\begin{subequations}
+\label{Jhc}
+\begin{align}
+\frac{\partial H _{(\varphi ~real)}}{\partial \vec{n}} &= - \frac{\omega \varepsilon}{\omega}  J _{(t~imag)}
+\\
+\frac{\partial H _{(\varphi ~imag)}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\omega} J _{(t~real)}
+\end{align}
+\end{subequations}
+Posledním krokem je dosazení pravé strany z \ref{Jhc} do \ref{HCweakneumann} (výrazu získaného při výpočtu slabých forem):
+\begin{subequations}
+\begin{align}
+\frac{1}{\varepsilon} \int _{\Gamma} - \frac{\omega \varepsilon}{\gamma} J _{(t~imag)} ~ v ~ r ~ \ud \Gamma
+\\
+\frac{1}{\varepsilon} \int _{\Gamma} \mj ~ \frac{\omega \varepsilon}{\gamma} J _{(t~real)} ~ v ~ r ~ \ud \Gamma ~
+\end{align}
+\end{subequations}
+
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+\begin{equation}
+- \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v ~ r
+\end{equation} 
+bude označena indexy i = 1, j = 1. Imaginární složka 
+\begin{equation}
+\frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~real)} ~ v ~ r
+\end{equation}
+bude označena indexy i = 2, j = 2.
+
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+
+
+
+
+\subsection{Postprocessor - dopočet různých veličin pole}
+Postprocessing v programu Agros2D umožňuje dopočíst a graficky zobrazit další veličiny pole z veličin již získaných. Vztahy pro dopočet dalších veličin i interpretaci hodnot již získaných musí být implementovány v xml modulu, resp. jeho podmodulu postprocessor.
+
+V xml souboru parsovaném do knihovny Agrosu jsou v rovnicích použitých v postprocessoru použity následující symboly:
+\begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
+\caption{Tabulka symbolů použitých v rovnicích xml modulu v sekci postprocessoru}
+\begin{center} %pro zarovnání tabulky na střed
+\begin{tabular}{|l|c|} %zarovnání sloupců |left|center| oddělené čárou
+\hline %horní horizontální čára
+value1 & $H _{(z~real)}$ resp. $H _{(\varphi ~real)}$ \\
+\hline
+value2 & $H _{(z~imag)}$ resp. $H _{(\varphi ~imag)}$ \\
+\hline
+dx1 & $\dfrac{\partial H _{(z~real)}}{\partial x}$ \\
+\hline 
+dx2 & $\dfrac{\partial H _{(z~imag)}}{\partial x}$ \\ 
+\hline
+dy1 & $\dfrac{\partial H _{(z~real)}}{\partial y}$ \\ 
+\hline
+dy2 & $\dfrac{\partial H _{(z~imag)}}{\partial y}$ \\ 
+\hline
+dr1 & $\dfrac{\partial H _{(\varphi ~real)}}{\partial r}$ \\ 
+\hline 
+dr2 & $\dfrac{\partial H _{(\varphi ~imag)}}{\partial r}$ \\ 
+\hline
+dz1 & $\dfrac{\partial H _{(\varphi ~real)}}{\partial z}$ \\ 
+\hline
+dz2 & $\dfrac{\partial H _{(\varphi ~imag)}}{\partial z}$ \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table} 
+
+
+
+\subsubsection{Intenzita magnetického pole}
+Hodnoty pro intenzitu magnetického pole $\faz{\vec{H}}$ vycházejí přímo z řešených slabých forem a úkolem postprocessoru je tedy pouze jejich přímé zobrazení. Zápis v xml modulu v \ref{postH}.
+
+\subsubsection{Intenzita elektrického pole}
+Vztah pro výpočet intenzity elektrického pole $\faz{\vec{E}}$ lze odvodit z \ref{max1fharm} (1. Maxwellovy rovnice) a tím získat jeho hodnotu ze známé veličiny $\faz{\vec{H}}$.
+
+Výpočtem operace rotace pro jedinou složku $z$ $\faz{\vec{H}}$ a rozepsáním vektoru na pravé straně získáme:
+\begin{subequations}
+\begin{align}
+\left| 
+\begin{array}{c c c}
+\vec{i} & \vec{j} & \vec{k} \\ 
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+0 & 0 & \faz{H} _z
+\end{array}
+\right|
+&= \mj \omega \varepsilon (\faz{E} _x \vec{i} + \faz{E} _y \vec{j})
+\\
+\frac{\partial \faz{H} _z}{\partial y} \vec{i} - \frac{\partial \faz{H} _z}{\partial x} \vec{j} &= \mj \omega \varepsilon (\faz{E} _x \vec{i} + \faz{E} _y \vec{j}) .
+\end{align}
+\end{subequations}
+Pro jednotlivé složky vektoru $\faz{\vec{E}}$ to potom znamená:
+\begin{subequations}
+\begin{align}
+\faz{E} _x &= \frac{1}{\mj \omega \varepsilon} \frac{\partial \faz{H} _z}{\partial y} = \frac{1}{\mj \omega \varepsilon} (\frac{\partial \faz{H} _{(z ~ real)}}{\partial y} + \frac{\partial \faz{H} _{(z ~ imag)}}{\partial y} \mj ) ,
+\\
+\faz{E} _y &= - \frac{1}{\mj \omega \varepsilon} \frac{\partial \faz{H} _z}{\partial x} = - \frac{1}{\mj \omega \varepsilon} (\frac{\partial \faz{H} _{(z ~ real)}}{\partial x} + \frac{\partial \faz{H} _{(z ~ imag)}}{\partial x} \mj ) .
+\end{align}
+\end{subequations}
+Rozepsáno na jejich reálné a imaginární složky:
+\begin{subequations}
+\begin{align}
+E _{(x~real)} &= \frac{1}{\omega \varepsilon} \frac{\partial \faz{H} _{(z~imag)}}{\partial y} ,
+\\
+E _{(x~imag)} &= \frac{1}{\mj \omega \varepsilon} \frac{\partial \faz{H} _{(z~real)}}{\partial y} ,
+\\
+E _{(y~real)} &= - \frac{1}{\omega \varepsilon} \frac{\partial \faz{H} _{(z~imag)}}{\partial x} ,
+\\
+E _{(y~imag)} &= - \frac{1}{\mj \omega \varepsilon} \frac{\partial \faz{H} _{(z~real)}}{\partial x} .
+\end{align}
+\end{subequations}
+
+Z výše uvedených rovnic lze vyjádřit velikost (absolutní hodnotu) vektoru $\faz{\vec{E}}$:
+\begin{equation}
+E = \frac{1}{\omega \varepsilon} \sqrt{\left( \frac{\partial \faz{H} _{(z~imag)}}{\partial y} \right) ^2 + \left( \frac{\partial \faz{H} _{(z~real)}}{\partial y} \right) ^2 + \left( - \frac{\partial \faz{H} _{(z~imag)}}{\partial x} \right) ^2 + \left( - \frac{\partial \faz{H} _{(z~real)}}{\partial x} \right) ^2}
+\end{equation}
+
+Podobně se postupuje i při výpočtu ve válcových  souřadnicích. Zde je přítomna pouze složka $\varphi$ $\faz{\vec{H}}$. Rozepsáním vektoru na pravé straně získáme:
+\begin{subequations}
+\begin{align}
+\left| 
+\begin{array}{c c c}
+\vec{\rho} & \vec{\phi} & \vec{k} \\ 
+\frac{\partial}{\partial r} & \frac{\partial}{\partial \varphi} & \frac{\partial}{\partial z} \\
+0 & \faz{H} _{\varphi} & 0
+\end{array}
+\right|
+&= \mj \omega \varepsilon (\faz{E} _r \vec{\rho} + \faz{E} _z \vec{k})
+\\
+\frac{1}{r} \frac{\partial (r \faz{H} _{\varphi} )}{\partial r} \vec{k} - \frac{\partial \faz{H} _{\varphi}}{\partial z} \vec{\rho} &= \mj \omega \varepsilon (\faz{E} _r \vec{\rho} + \faz{E} _z \vec{k}) .
+\end{align}
+\end{subequations}
+Pro jednotlivé složky vektoru $\faz{\vec{E}}$ to potom znamená:
+\begin{subequations}
+\begin{align}
+\faz{E} _r &= - \frac{1}{\mj \omega \varepsilon} \frac{\partial \faz{H} _{\varphi}}{\partial z} = - \frac{1}{\mj \omega \varepsilon} ( \frac{\partial \faz{H} _{(\varphi ~ real)}}{\partial z} + \frac{\partial \faz{H} _{(\varphi ~ imag)}}{\partial z} \mj ) ,
+\\
+\faz{E} _z &= \frac{1}{\mj \omega \varepsilon} \frac{1}{r} \frac{\partial (r \faz{H} _{\varphi})}{\partial r} = \frac{1}{\mj \omega \varepsilon} ( \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi ~ real)})}{\partial r} + \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi ~ imag)})}{\partial r} \mj ) .
+\end{align}
+\end{subequations}
+Rozepsáno na jejich reálné a imaginární složky:
+\begin{subequations}
+\begin{align}
+E _{(r~real)} &= - \frac{1}{\omega \varepsilon} \frac{\partial \faz{H} _{(\varphi ~ imag)}}{\partial z} ,
+\\
+E _{(r~imag)} &= - \frac{1}{\mj \omega \varepsilon} \frac{\partial \faz{H} _{(\varphi ~ real)}}{\partial z} ,
+\\
+E _{(z~real)} &= \frac{1}{\omega \varepsilon} \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi ~ imag)})}{\partial r} ,
+\\
+E _{(z~imag)} &= \frac{1}{\mj \omega \varepsilon} \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi ~ real)})}{\partial r} .
+\end{align}
+\end{subequations}
+
+Z výše uvedených rovnic lze vyjádřit velikost (absolutní hodnotu) vektoru $\faz{\vec{E}}$:
+\begin{equation}
+E = \frac{1}{\omega \varepsilon} \sqrt{\left( - \frac{\partial \faz{H} _{(\varphi Imag)}}{\partial z} \right) ^2 + \left( - \frac{\partial \faz{H} _{(\varphi Real)}}{\partial z} \right) ^2 + \left( \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi Imag)})}{\partial r} \right) ^2 + \left( \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi Real)})}{\partial r} \right) ^2}
+\end{equation}
+
+Programový xml kód použitý v modulu je vyjádřen v \ref{postH}.
+
+
+\subsubsection{Poyntingův vektor}
+Poyntingův vektor $\faz{\vec{N}}$ $[W / m ^2]$ představuje plošnou hustotu výkonu na řešené oblasti a je vyjádřen jako vektorový součin intenzity elektrického pole $\faz{\vec{E}}$ a intenzity magnetického pole $\faz{\vec{H}}$:
+\begin{equation}
+\label{poynting}
+\faz{\vec{N}} = \faz{\vec{E}} \times \faz{\vec{H}} .
+\end{equation}
+Provedeme výpočet vektorového součinu z pravé strany rovnice:
+\begin{equation}
+\faz{\vec{E}} \times \faz{\vec{H}} =
+\left| 
+\begin{array}{c c c}
+\vec{i} & \vec{j} & \vec{k} \\ 
+\faz{E} _x & \faz{E} _y & 0 \\
+0 & 0 & \faz{H} _z
+\end{array}
+\right|
+= \faz{E} _y \faz{H} _z \vec{i} - \faz{E} _x \faz{H} _z \vec{j} .
+\end{equation}
+A výsledek zapíšeme zpět do rovnice \ref{poynting}:
+\begin{equation}
+\faz{N} _x \vec{i} + \faz{N} _y \vec{j} = \faz{E} _y \faz{H} _z \vec{i} - \faz{E} _x \faz{H} _z \vec{j} .
+\end{equation}
+Výraz vyjádříme pro jednotlivé složky vektoru $\faz{\vec{N}}$:
+\begin{subequations}
+\begin{align*}
+\faz{N} _x &= \faz{E} _y \faz{H} _z = (E _{(y~real)} + E _{(y~imag)} \mj) (H _{(z~real)} + H _{(z~imag)} \mj) 
+\\
+&= E _{(y~real)} H _{(z~real)} - E _{(y~imag)} H _{(z~imag)} + \mj (E _{(y~real)} H _{(z~imag)} + E _{(y~imag)} H _{(z~real)}) ,
+\numberthis
+\\
+\faz{N} _y &= - \faz{E} _x \faz{H} _z = - (E _{(x~real)} + E _{(x~imag)} \mj) (H _{(z~real)} + H _{(z~imag)} \mj)
+\\ 
+&= - E _{(x~real)} H _{(z~real)} + E _{(x~imag)} H _{(z~imag)} - \mj (E _{(x~real)} H _{(z~imag)} + E _{(x~imag)} H _{(z~real)}) .
+\numberthis
+\end{align*}
+\end{subequations}
+Poyntingův vektor představuje hustotu výkonu elektromagnetického pole. Jeho hodnota tedy musí být reálným číslem:
+\begin{subequations}
+\begin{align}
+N _x &= E _{(y~real)} H _{(z~real)} - E _{(y~imag)} H _{(z~imag)} ,
+\\
+N _y &= - E _{(x~real)} H _{(z~real)} + E _{(x~imag)} H _{(z~imag)} .
+\end{align}
+\end{subequations}
+
+Programový xml kód použitý pro zápis Poyntingova vektoru do postprocessoru v TM modulu je vyjádřen v \ref{postH}. Za složky intenzity elektrického pole je zde dosazeno z části postprocessoru určené pro výpočet $\faz{\vec{E}}$ a za složky intenzity magnetického pole přímý výsledek výpočtu slabých forem.
+
+
+Podobně se postupuje i při výpočtu ve válcových souřadnicích. Zde je přítomna pouze složka $\varphi$ $\faz{\vec{H}}$. Vycházíme z rovnice \ref{poynting}. Provedeme výpočet vektorového součinu:
+\begin{equation}
+\faz{\vec{E}} \times \faz{\vec{H}} =
+\left| 
+\begin{array}{c c c}
+\vec{\rho} & \vec{\phi} & \vec{k} \\ 
+\faz{E} _r & 0 & \faz{E} _z \\
+0 & \faz{H} _{\varphi} & 0
+\end{array}
+\right|
+= \faz{E} _r \faz{H} _{\varphi} \vec{k} - \faz{E} _z \faz{H} _{\varphi} \vec{\rho} .
+\end{equation}
+A výsledek zapíšeme zpět do rovnice \ref{poynting}:
+\begin{equation}
+\faz{N} _r \vec{\rho} + \faz{N} _z \vec{k} = \faz{E} _r \faz{H} _{\varphi} \vec{k} - \faz{E} _z \faz{H} _{\varphi} \vec{\rho} .
+\end{equation}
+Výraz vyjádříme pro jednotlivé složky vektoru $\faz{\vec{N}}$:
+\begin{subequations}
+\begin{align*}
+\faz{N} _r &= - \faz{E} _z \faz{H} _{\varphi} = - (E _{(z~real)} + E _{(z~imag)} \mj) (H _{(\varphi ~real)} + H _{(\varphi ~imag)} \mj) 
+\\
+&= - E _{(z~real)} H _{(\varphi ~real)} + E _{(z~imag)} H _{(\varphi ~imag)} - \mj (E _{(z~real)} H _{(\varphi ~imag)} + E _{(z~imag)} H _{(\varphi ~real)}) ,
+\numberthis
+\\
+\faz{N} _z &= \faz{E} _r \faz{H} _{\varphi} = (E _{(r~real)} + E _{(r~imag)} \mj) (H _{(\varphi ~real)} + H _{(\varphi ~imag)} \mj)
+\\ 
+&= E _{(r~real)} H _{(\varphi ~real)} - E _{(r~imag)} H _{(\varphi ~imag)} + \mj (E _{(r~real)} H _{(\varphi ~imag)} + E _{(r~imag)} H _{(\varphi ~real)}) .
+\numberthis
+\end{align*}
+\end{subequations}
+Poyntingův vektor představuje hustotu výkonu elektromagnetického pole. Jeho hodnota tedy musí být reálným číslem:
+\begin{subequations}
+\begin{align}
+N _r &= - E _{(z~real)} H _{(\varphi ~real)} + E _{(z~imag)} H _{(\varphi ~imag)} ,
+\\
+N _z &= E _{(r~real)} H _{(\varphi ~real)} - E _{(r~imag)} H _{(\varphi ~imag)} .
+\end{align}
+\end{subequations}
+
+Programový xml kód použitý pro zápis Poyntingova vektoru do postprocessoru v TM modulu je vyjádřen v \ref{postH}. Za složky intenzity elektrického pole je zde dosazeno z části postprocessoru určené pro výpočet $\faz{\vec{E}}$ a za složky intenzity magnetického pole přímý výsledek výpočtu slabých forem.
 
 
 
@@ -2378,6 +2847,10 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
 \bibitem{RovinnaVlna} Rovinné vlny. \textit{Fyzikální sekce Matematicko-fyzikální fakulty UK} [online]. [cit. 2013-02-20]. Dostupné z: http://physics.mff.cuni.cz/kfpp/skripta/kurz\_fyziky\_pro\_DS/display.php/optika/1\_3
 \bibitem{hpFEM} THE HP-FEM GROUP. \textit{www.hpFEM.org} [online]. 2013 [cit. 2013-04-09]. Dostupné z: http://hpfem.org/
+\bibitem{ATE} KARBAN, Pavel. ELEKTROTECHNICKÁ FAKULTA, Západočeská univerzita v Plzni. \textit{Numerické metody: Metoda konečných diferencí.} Plzeň, 22.03.2012. Dostupné z: http://home.zcu.cz/$\sim$karban/ATE/prednaska\_ 06.pdf
+\bibitem{Mayer} MAYER, Daniel, Josef POLÁK. \textit{Metody řešení elektrických a magnetických polí.} 1. vyd. Praha: SNTL, 1983, 450 s.
+\bibitem{FEM} Finite element method. In: \textit{Wikipedia: the free encyclopedia} [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-04-24]. Dostupné z: http://en.wikipedia.org/wiki/Finite\_ element\_ method
+\bibitem{Teorie} MAYER, Daniel. FAKULTA ELEKTROTECHNICKÁ, Západočeská univerzita v Plzni. \textit{Teorie elektromagnetického pole: 2. díl.} 3. vyd. Lektor: Zdeňka BENEŠOVÁ. Plzeň: Západočeská univerzita v Plzni, 2004, 358 s. ISBN 80-7082-826-9.
 
 
 \end{thebibliography}
@@ -2549,6 +3022,13 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
       </module:weakform_surface>
     </module:weakforms_surface>
   </module:surface>
+\end{spverbatim}
+
+\subsection*{Programový kód postprocessoru}
+\label{postH}
+
+\begin{spverbatim}
+
 \end{spverbatim}
 
 
