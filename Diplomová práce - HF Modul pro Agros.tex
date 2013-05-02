@@ -10,6 +10,7 @@
 \usepackage{makeidx}
 \usepackage{graphicx}
 \usepackage{enumerate}
+\usepackage{float}
 \usepackage[font=small, labelfont=small, labelfont=bf]{caption} %Zobrazení textu "Obr. 3.1:" tučně podle normy; "font=small" písmo podle normy musí být o 2 body menší 
 \usepackage[unicode=true]{hyperref} %zobrazení kapitol v pdf rejsříku + hyperaktivnost; unicode=true důležité pro správné zobrazení znaků v pdf rejstříku
 \usepackage{indentfirst} %odsazení i prvního odstavce po nadpisu pro lepší strukturu
@@ -104,7 +105,7 @@ Modelování vf zařízení \vspace{90mm}\\
 
 %%Anotace%%
 \section*{Anotace}
-Účelem diplomové práce je nastínit problematiku vf obvodů a šíření vf vln, 				matematický popis vf šíření a následné zapracování získaných znalostí ve formě 			odvozených slabých forem do xml modulu pro Agros.
+Hlavním cílem diplomové práce bylo vytvoření modulu v jazyce XML zakomponovatelného do programu Agros2D. Tento modul rozšiřuje program Agros2D o schopnost modelování vysokofrekvenčních zařízení, kterými se dominantně šíří transverzálně magnetické (TM) vlny.
 \vspace{100mm}\\
 
 %%Klíčová slova%%
@@ -115,7 +116,7 @@ TE vlna, TM vlna, TEM vlna, slabá forma, vf modelování
 
 %%Abstract%%
 \section*{Abstract}
-The objective of the diploma thesis is to summarize hf wave propagation and create 		mathematical description of hf wave propagation. The knowledge is subsequently 			processed in the weak forms of propagation and creation an xml modul for Agros2D.
+The objective of the master's thesis was creation of modul in XML language intagrable into Agros2D application. The module extends the capabilities of Agros2D by high frequency devices modeling in which is dominant transverse magnetic (TM) waves propagation. 
 \vspace{100mm}\\
 
 %%Keywords%%
@@ -186,7 +187,7 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 
 %%Úvod%%
 \section{Úvod}
-Předkládaná diplomová práce má za cíl rozšířit program Agros2D, resp. jeho knihovnu Hermes, vyvíjený na katedře KTE o modul umožňující modelování vysokofrekvenčního pole. Práce také shrnuje obecné poznatky v oblasti vysokofrekvenčního elektromagnetického pole a pokládá teoretický základ pro následnou tvorbu modulu.
+Předkládaná diplomová práce má za cíl rozšířit program Agros2D  vyvíjený na katedře KTE o modul umožňující modelování vysokofrekvenčního pole. Práce také shrnuje obecné poznatky v oblasti vysokofrekvenčního elektromagnetického pole a pokládá teoretický základ pro následnou tvorbu modulu.
 
 Posuzování toho, co je vysoká frekvence je subjektivně závislé na oboru, v kterém se pohybujeme. Pro člověka pracujícího se síťovou frekvencí (50 Hz) bude 1 kHz již frekvence vysoká. Kdežto pro někoho navrhujícího satelitní spoje bude i 1 GHz frekvence nízká. Tato práce bude považovat za vysokofrekvenční zařízení systémy pracující s frekvencí odpovídající rádiovému a mikrovlnnému spektru - tj. 100 MHz až 1000 GHz. \cite{Pozar4}
 
@@ -205,7 +206,7 @@ $\vec{B}$ & $\mathrm{[T]}$ & magnetická indukce. \\
 \end{center}
 \end{table}
 
-Vztahy mezi jednotlivými veličinami lze vyjádřit pomocí základních zákonů pro teorii elektromagnetického pole - soustavy Maxwellových rovnic, níže uvedených v diferenciálním tvaru:
+Vztahy mezi jednotlivými veličinami lze vyjádřit pomocí základních zákonů elektromagnetického pole - soustavy Maxwellových rovnic v diferenciálním tvaru:
 \begin{subequations}
 \begin{align}
 \label{maxdif1}
@@ -239,7 +240,7 @@ Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční o
 \begin{subequations}
 \begin{align}
 \label{max1fharm}
-\rot \faz{\vec{H}} &= \faz{J} + \mj \omega \varepsilon \faz{\vec{E}},
+\rot \faz{\vec{H}} &= \faz{\vec{J}} + \mj \omega \varepsilon \faz{\vec{E}},
 \\
 \label{max2fharm}
 \rot \faz{\vec{E}} &= - \mj \omega \mu \faz{\vec{H}},
@@ -250,7 +251,7 @@ Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční o
 \end{align}
 \end{subequations}
 
-Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $S ^{-1}$. \cite{Teorie}
+Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $\mathrm{S} ^{-1}$. \cite{Teorie}
 
 
 \subsection{Vlnová rovnice}
@@ -409,7 +410,6 @@ Rovnici \ref{HelmD} následně vynásobíme konstantou $\varepsilon$ a rovnici \
 \end{subequations}
 Výše uvedené nehomogenní rovnice \ref{HelmholtzDH} přejdou při $\faz{\vec{J}} _{ext} = 0$ a $\rho = 0$ do rovnic homogenních stejně jako \ref{homohelmholtze} a \ref{homohelmholtzb} (pravá strana rovnic bude rovna 0).
 
-\vspace{15mm}
 Konstanta $k ~\mathrm{[m ^{-1}]}$, zavedená výše, je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě, konduktivitě a také na frekvenci. Pro prostředí s nulovou vodivostí $\gamma$ rovnice vypadá takto:
 \begin{equation}
 k = \omega \sqrt{\mu \varepsilon} .
@@ -427,49 +427,50 @@ Vlnová impedance je obecně komplexní veličinou popisující poměr mezi inte
 \end{equation}
 Ve volném prostoru je vlnová impedance rovna tzv. vlastní (intrinsic) impedanci:
 \begin{equation}
-\faz{Z_0} = \eta _0 = \sqrt{\dfrac{\mu _0}{\varepsilon _0}} = 377 \Omega .
+\faz{Z_0} = \eta _0 = \sqrt{\dfrac{\mu _0}{\varepsilon _0}} = 377 \Omega
 \end{equation}
+\cite{Intrinsic} .
 
 
-\subsection{Šíření vln ve volném prostoru}
-V následujícím textu bude uvažováno šíření vln ve volném neohraničeném prostředí. Jedná se o prostor bez přítomnosti překážek (různých objektů), které mají jiné materiálové konstanty $\varepsilon$, $\mu$ a $\gamma$ než okolní prostředí, ve kterém se vlna šíří.
-
-\subsubsection{Rovinná homogenní vlna}
-Každá vlna je každým jednotlivým řešením vlnové rovnice. Subjektivně lze vlnu vnímat jako rozruch šířící se v prostoru a čase. Fyzikálně jde o změnu fáze vycházející z rovnosti druhých parciálních derivací podle času a souřadnic. Množina bodů, v nichž má fáze v daném čase stejnou hodnotu se nazývá vlnoplochou. Nejvýznamnějším druhem vln jsou vlny rovinné (vlnoplochy jsou roviny) a vlny sférické (vlnoplochy jsou kulové plochy). 
-
-Vzhledem k omezením (konečnosti) rozměrů zdroje elektromagnetického záření nemůže žádný zdroj emitovat vlnu, jejíž vlnoplocha by byla dokonale rovinná. Rovinná vlna je zjednodušením aplikovaným na sférickou vlnoplochu v dostatečné vzdálenosti od zdroje vlnění, kde se již uvažovaný výřez její vlnoplochy s akceptovatelnou chybou jeví jako rovina. Výhodou použití rovinných homogenních vln je mimo jiné možnost sestavovaní složitějších vln jejich prostou superpozicí. Homogenní vlnou se nazývá vlna, u které je na vlnoploše konstantní hodnota amplitudy. [\cite{RovinnaVlna}]
-
-Pro harmonické pole bez vnějších zdrojů vycházejme z homogenní Helmholtzovy rovnice \ref{homohelmholtze}. Rovnici rozepišme pro jednotlivé souřadnice kartézské souřadné soustavy, zvolené vzhledem k vhodnosti pro šíření rovinných vln:
-\begin{subequations}
-\begin{align}
-\triangle \faz{E} _x + \faz{k} ^2 \faz{E} _x = 0 ,
-\\
-\triangle \faz{E} _y + \faz{k} ^2 \faz{E} _y = 0 ,
-\\
-\triangle \faz{E} _z + \faz{k} ^2 \faz{E} _z = 0 .
-\end{align}
-\end{subequations} 
-
-Rozepíšeme operátor delta pomocí parciálních derivací. Z předchozího vyjádření se tedy stala soustava parciálních diferenciálních rovnic druhého řádu:
-\begin{subequations}
-\label{rovinadif}
-\begin{align}
-\label{rovinadif1}
-\frac{\partial ^2 \faz{E} _x }{\partial x ^2} + \frac{\partial ^2 \faz{E} _x }{\partial y ^2} + \frac{\partial ^2 \faz{E} _x }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 ,
-\\
-\label{rovinadif2}
-\frac{\partial ^2 \faz{E} _y }{\partial x ^2} + \frac{\partial ^2 \faz{E} _y }{\partial y ^2} + \frac{\partial ^2 \faz{E} _y }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 ,
-\\
-\label{rovinadif3}
-\frac{\partial ^2 \faz{E} _z }{\partial x ^2} + \frac{\partial ^2 \faz{E} _z }{\partial y ^2} + \frac{\partial ^2 \faz{E} _z }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 .
-\end{align}
-\end{subequations}
-Zvolíme-li, že se vlna bude šířit ve směru osy $z$, bude vlnoplocha kolmá na tuto osu a rovnoběžná s rovinou tvořenou osami $x$ a $y$. To znamená výrazné zjednodušení řešeného problému. Dalším zjednodušením je uvažování vektoru intenzity elektrického pole $\vec{\faz{E}}$ pouze ve směru osy $x$.
-
-V důsledku to znamená, že vektor $\vec{\faz{E}}$ bude ve směru osy $y$ a $z$ nulový, tedy že $\vec{\faz{E}} _y = 0$ a $\vec{\faz{E}} _z = 0$. Dalším důsledkem je, že velikost a fáze vektoru $\vec{\faz{E}}$ ve směru osy x bude konstantní. Proto $\frac{\partial \faz{E} _x}{\partial x} = 0$ a $\frac{\partial \faz{E} _x}{\partial y} = 0$. Po aplikaci na soustavu \ref{rovinadif} dojde k tomu, že rovnice \ref{rovinadif2} a \ref{rovinadif3} se celé vynulují a vypadnou. U rovnice \ref{rovinadif1} vypadnou první dva členy na levé straně, výsledná rovnice bude tedy vypadat takto:
-\begin{equation}
-\frac{\partial ^2 \faz{E} _x}{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 .
-\end{equation}
+%\subsection{Šíření vln ve volném prostoru}
+%V následujícím textu bude uvažováno šíření vln ve volném neohraničeném prostředí. Jedná se o prostor bez přítomnosti překážek (různých objektů), které mají jiné materiálové konstanty $\varepsilon$, $\mu$ a $\gamma$ než okolní prostředí, ve kterém se vlna šíří.
+%
+%\subsubsection{Rovinná homogenní vlna}
+%Každá vlna je každým jednotlivým řešením vlnové rovnice. Subjektivně lze vlnu vnímat jako rozruch šířící se v prostoru a čase. Fyzikálně jde o změnu fáze vycházející z rovnosti druhých parciálních derivací podle času a souřadnic. Množina bodů, v nichž má fáze v daném čase stejnou hodnotu se nazývá vlnoplochou. Nejvýznamnějším druhem vln jsou vlny rovinné (vlnoplochy jsou roviny) a vlny sférické (vlnoplochy jsou kulové plochy). 
+%
+%Vzhledem k omezením (konečnosti) rozměrů zdroje elektromagnetického záření nemůže žádný zdroj emitovat vlnu, jejíž vlnoplocha by byla dokonale rovinná. Rovinná vlna je zjednodušením aplikovaným na sférickou vlnoplochu v dostatečné vzdálenosti od zdroje vlnění, kde se již uvažovaný výřez její vlnoplochy s akceptovatelnou chybou jeví jako rovina. Výhodou použití rovinných homogenních vln je mimo jiné možnost sestavovaní složitějších vln jejich prostou superpozicí. Homogenní vlnou se nazývá vlna, u které je na vlnoploše konstantní hodnota amplitudy. [\cite{RovinnaVlna}]
+%
+%Pro harmonické pole bez vnějších zdrojů vycházejme z homogenní Helmholtzovy rovnice \ref{homohelmholtze}. Rovnici rozepišme pro jednotlivé souřadnice kartézské souřadné soustavy, zvolené vzhledem k vhodnosti pro šíření rovinných vln:
+%\begin{subequations}
+%\begin{align}
+%\triangle \faz{E} _x + \faz{k} ^2 \faz{E} _x = 0 ,
+%\\
+%\triangle \faz{E} _y + \faz{k} ^2 \faz{E} _y = 0 ,
+%\\
+%\triangle \faz{E} _z + \faz{k} ^2 \faz{E} _z = 0 .
+%\end{align}
+%\end{subequations} 
+%
+%Rozepíšeme operátor delta pomocí parciálních derivací. Z předchozího vyjádření se tedy stala soustava parciálních diferenciálních rovnic druhého řádu:
+%\begin{subequations}
+%\label{rovinadif}
+%\begin{align}
+%\label{rovinadif1}
+%\frac{\partial ^2 \faz{E} _x }{\partial x ^2} + \frac{\partial ^2 \faz{E} _x }{\partial y ^2} + \frac{\partial ^2 \faz{E} _x }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 ,
+%\\
+%\label{rovinadif2}
+%\frac{\partial ^2 \faz{E} _y }{\partial x ^2} + \frac{\partial ^2 \faz{E} _y }{\partial y ^2} + \frac{\partial ^2 \faz{E} _y }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 ,
+%\\
+%\label{rovinadif3}
+%\frac{\partial ^2 \faz{E} _z }{\partial x ^2} + \frac{\partial ^2 \faz{E} _z }{\partial y ^2} + \frac{\partial ^2 \faz{E} _z }{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 .
+%\end{align}
+%\end{subequations}
+%Zvolíme-li, že se vlna bude šířit ve směru osy $z$, bude vlnoplocha kolmá na tuto osu a rovnoběžná s rovinou tvořenou osami $x$ a $y$. To znamená výrazné zjednodušení řešeného problému. Dalším zjednodušením je uvažování vektoru intenzity elektrického pole $\vec{\faz{E}}$ pouze ve směru osy $x$.
+%
+%V důsledku to znamená, že vektor $\vec{\faz{E}}$ bude ve směru osy $y$ a $z$ nulový, tedy že $\vec{\faz{E}} _y = 0$ a $\vec{\faz{E}} _z = 0$. Dalším důsledkem je, že velikost a fáze vektoru $\vec{\faz{E}}$ ve směru osy x bude konstantní. Proto $\frac{\partial \faz{E} _x}{\partial x} = 0$ a $\frac{\partial \faz{E} _x}{\partial y} = 0$. Po aplikaci na soustavu \ref{rovinadif} dojde k tomu, že rovnice \ref{rovinadif2} a \ref{rovinadif3} se celé vynulují a vypadnou. U rovnice \ref{rovinadif1} vypadnou první dva členy na levé straně, výsledná rovnice bude tedy vypadat takto:
+%\begin{equation}
+%\frac{\partial ^2 \faz{E} _x}{\partial z ^2} + \faz{k} ^2 \faz{E} _x = 0 .
+%\end{equation}
  
  
 
@@ -477,7 +478,7 @@ V důsledku to znamená, že vektor $\vec{\faz{E}}$ bude ve směru osy $y$ a $z$
 \newpage
 \subsection{Šíření vln pomocí vlnovodů a vedení}
 \subsubsection{Vlnovody}
-Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jednom ze svých projektů. Zabývá se možností šíření elektromagnetických vln uvnitř duté trubice. A tuto myšlenku odmítá. Věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem.
+Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jednom ze svých projektů. Zabývá se možností šíření elektromagnetických vln uvnitř duté trubice. A tuto myšlenku odmítá. Věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem. \cite{Pozar2}
 
 \begin{figure}[h] 
 \begin{center}
@@ -487,7 +488,7 @@ Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jedn
 \end{center}
 \end{figure}
 
-Výhodou vlnovodů je jejich nízký útlum a schopnost přenášet vysoké výkony, stinnou stránkou ale je jejich rozměrnost (čím nižší frekvence, tím masivnější konstrukce) a cena. Pro frekvenci kolem 1 GHz jsou rozměry již 20 cm x 10 cm a s klesající frekvencí dále rostou (viz. obr. \ref{vlnovod}. Pro vysoké frekvence (nad 100 GHz) naopak rozměry klesají na desetiny milimetru a takovéto vlnovody jsou proto náročné na výrobu. Nezřídka se proto používají tzv. nadrozměrné vlnovody, kdy velikost vlnovodu překročí hranici pro šíření jednoho vidu a vlnovodem se šíří vidů více. 
+Výhodou vlnovodů je jejich nízký útlum a schopnost přenášet vysoké výkony, stinnou stránkou ale je jejich rozměrnost (čím nižší frekvence, tím masivnější konstrukce) a cena. Pro frekvenci kolem 1 GHz jsou rozměry již 20 cm x 10 cm a s klesající frekvencí dále rostou (viz. obr. \ref{vlnovod}). Pro vysoké frekvence (nad 100 GHz) naopak rozměry klesají na desetiny milimetru a takovéto vlnovody jsou proto náročné na výrobu. Nezřídka se proto používají tzv. nadrozměrné vlnovody, kdy velikost vlnovodu překročí hranici pro šíření jednoho vidu a vlnovodem se šíří vidů více. \cite{Dimensions}
 %Možno doplnit: "Pro dané rozměry a materiálové vlastnosti vlnovodu se tato hraniční frekvence pro šíření jednoho vidu nazývá frevencí mezní (cutoff) a bude o ní řeč později"
 
 Druhým způsobem pro přenos vysokých frekvencí jsou koaxiální vedení. Koaxiální vedení vynikají šířkou pásma, kterou mohou přenášet a jsou i cenově dostupnější, nicméně již méně jsou vhodná pro stavbu komplexních mikrovlnných komponent.
@@ -504,7 +505,7 @@ Microstrip je dnes nejpoužívanějším médiem pro integrované mikrovlnné ob
 \end{center}
 \end{figure}
 
-Elektromagnetická vlna šířící se microstripem existuje z části v dielektrickém substrátu a z části ve vzduchu nad ním. A jelikož dielektrická konstanta substrátu je jiná (větší) než vzduchu, vzniká nehomogenní médium, skrz které se vlna šíří. Nehomogenita a frekvenční rozptyl se ještě dále zhoršují spolu s větší šířkou substrátu. Proto až zvládnutí technologie výroby dostatečně tenkých substrátů umožňující menší frekvenční závislost vedení a potlačení podélných složek elektromagnetického pole umožnilo široké rozšíření a skutečný nástup technologie microstrip.
+Elektromagnetická vlna šířící se microstripem existuje z části v dielektrickém substrátu a z části ve vzduchu nad ním. A jelikož dielektrická konstanta substrátu je jiná (větší) než vzduchu, vzniká nehomogenní médium, skrz které se vlna šíří. Nehomogenita a frekvenční rozptyl se ještě dále zhoršují spolu s větší šířkou substrátu. Proto až zvládnutí technologie výroby dostatečně tenkých substrátů umožňující menší frekvenční závislost vedení a potlačení podélných složek elektromagnetického pole umožnilo široké rozšíření a skutečný nástup technologie microstrip. \cite{Microstrip}
 %Možno doplnit: Microstrip neumožňuje šíření skutečných TEM vln. Při nenulové frekvenci jsou vždy přítomné i podélné složky $\vec{E}$ a $\vec{H}$ pole. Tyto složky jsou ale zanedbatelně malé, proto lze o přítomném poli hovořit jako o kvazi-TEM.
 
 \subsubsection{Typy vln šířících se prostřednictvím vlnovodů}
@@ -735,7 +736,7 @@ Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
 %Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
 
 \subsubsection{TE vlny}
-Na rozdíl od TEM vln, kde jsou podélné složky $H$ i $E$ pole nulové, se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
+Na rozdíl od TEM vln, kde jsou podélné složky $\vec{H}$ i $\vec{E}$ pole nulové, se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
 \begin{subequations}
 \begin{align}
 H_x &= \frac{-j \beta}{k^2_c} \frac{\partial H_z}{\partial x} ,
@@ -818,11 +819,11 @@ Reálné fyzikální problémy bývají většinou natolik komplikované, že po
 
 První z nich je metoda konečných diferencí (FDM - Finite Difference Method). Jedná se o velmi jednoduchou a účinnou metodu pro řešení parciálních diferenciálních rovnic, představenou poprvé již v roce 1920 A. Thomem a to pod názvem metoda čtverců. Metoda konečných diferencí nebyla původně koncipována na aplikaci na elektromagnetické pole - prvně byla využita k řešení nehomogenní hydrodynamické rovnice, ale její všestrannost umožnila její rozšíření pro řešení dalších fyzikálních polí. Základní myšlenkou této metody je nahrazení derivací konečnými diferencemi a převedení na soustavu algebraických rovnic. \cite{ATE}
 
-Druhou numerickou metodou je metoda konečných prvků (FEM - Finite Element Method). Nevýhodou této metody oproti metodě konečných diferencí je, že je náročnější na programovou implementaci. Její pozitiva jako jsou její výkonnost a univerzálnost však toto negativum převažují a jedná se proto o nejpoužívanější numerickou metodu (a to zejmána v její variantě hp-FEM využívané i v knihovně Hermes2D). 
+Druhou numerickou metodou je metoda konečných prvků (FEM - Finite Element Method). Nevýhodou této metody oproti metodě konečných diferencí je, že je náročnější na programovou implementaci. Její pozitiva jako jsou její výkonnost a univerzálnost však toto negativum převažují a jedná se proto o nejpoužívanější numerickou metodu. 
 
-Též historie metody konečných prvků se začíná psát v 1. polovině 20. století, kdy jsou její základy položeny v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. S průběhem času přibývaly problémy, které lze metodou konečných prvků řešit až v současnosti lze metodu použít pro téměř všechny fyzikální pole.
+Základy metody konečných prvků byly položeny v 1. polovině 20. století v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. S průběhem času přibývaly problémy, které lze metodou konečných prvků řešit až v současnosti lze metodu použít pro téměř všechny fyzikální pole.
 
-Jedná se o numerickou techniku, jejímž cílem je nalezení řešení okrajového problému. Používá variační metody pro minimalizaci chybové funkce a výpočet nejlepšího řešení. Metoda konečných prvků je postavena na spojování mnoha jednoduchých elementárních rovnic v mnoha malých subdoménách, zvaných konečné prvky, za účelem aproximace složitější rovnice na větší oblasti (doméně). Rozdělení oblasti na menší část přináší několik výhod: přesnější vyjádření složité geometrie, zařazení rozdílných materiálových vlastností, jednoduché znázornění celkového řešení a zachycení lokálních účinků. 
+Jedná se o numerickou techniku, jejímž cílem je nalezení řešení okrajové úlohy. Používá variační metody pro minimalizaci chybové funkce a výpočet nejlepšího řešení. Podstata metody konečných prvků spočívá v rozdělení řešené oblasti na elementy, na kterých je řešení aproximováno polynomy n-tého stupně. Rozdělení oblasti (diskretizace) na menší část přináší několik výhod: přesnější vyjádření složité geometrie, zařazení rozdílných materiálových vlastností, jednoduché znázornění celkového řešení a zachycení lokálních účinků. 
 
 \begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
 \begin{center}
@@ -833,27 +834,27 @@ Jedná se o numerickou techniku, jejímž cílem je nalezení řešení okrajov�
 
 Jednotlivé kroky řešení problému pomocí metody konečných prvků by se daly shrnout takto:
 \begin{itemize}
-\item Rozdělení oblasti diskretizační mřížkou  na jednotlivé subdomény (konečné prvky)
-\item Vyjádření rovnic pro jednotlivé subdomény (prvky)
+\item Rozdělení oblasti diskretizační mřížkou  na jednotlivé elementy (konečné prvky)
+\item Vyjádření rovnic pro jednotlivé elementy (prvky)
 \item Doplnění okrajovými podmínkami (Dirichletovou a Neumannovou)
-\item Systematická rekombinace všech sad rovnic všech prvků do jednoho systému
+\item Zasazení všech sad rovnic všech elementů do jedné soustavy
 \item Výpočet soustavy algebraických rovnic
 \end{itemize}
 
-Výhodou metody konečných prvků je, že je numericky stabilní. To znamená, že chyba obsažená na vstupu se během výpočtu nekumuluje a nezpůsobuje znehodnocení výstupu. Během druhého kroku, zmíněného výše, jsou rovnice elementů jednoduchými rovnicemi lokálně aproximujícími původní komplexní rovnici, která často bývá parciální diferenciální rovnicí. Pro vysvětlení procesu aproximace bývá metoda konečných prvků často považována za speciální případ Galerkinovy metody. Tento proces, matematicky řečeno, spočívá ve zkonstruování integrálu unitárního prostoru zbytkové a váhové funkce a nastavení integrálu na nulu. Zjednodušeně jde o postup, který minimalizuje chybu aproximace nasazením testovacích funkcí do parciálních diferenciálních rovnic. Residual (zbytek) je chyba způsobená testovací funkcí a váhové funkce jsou polynomiální aproximací promítající tento residual (zbytek). Tento proces eliminuje všechny prostorové derivace z parciální diferenciální rovnice a tak parciální diferenciální rovnici lokálně aproximuje se sadou algebraických rovnic pro problémy v ustáleném stavu a se sadou obyčejných diferenciálních rovnic pro přechodné problémy.
-
-Tyto sady rovnic jsou rovnicemi jednotlivých prvků. Jsou lineární pokud je i základní parciální diferenciální rovnice lineární (a naopak). Sada algebraických rovnic vznikající u problémů v ustáleném stavu je řešena pomocí metod numerické lineární algebry, zatímco sada obyčejných diferenciálních rovnic vznikající u přechodných problémů je řešena numerickou integrací pomocí standardních technik jako Eulerova metoda nebo Runge-Kuttova metoda. Tento proces je většinou vykonáván softwarem používajícím souřadná data generovaná z jednotlivých subdomén.
-
-Ve čtvrtém kroku, zmíněném ve výše uvedeném přehledu, je generována globální soustava rovnic z rovnic jednotlivých prvků a to prostřednictvím transformace souřadnic z uzlů lokálních subdomén na uzly globální oblasti (domény). Tato prostorová transformace zahrnuje úpravy do vhodné orientace ve vztahu k referenčnímu souřadnému systému. \cite{FEM}
+%Výhodou metody konečných prvků je, že je numericky stabilní. To znamená, že chyba obsažená na vstupu se během výpočtu nekumuluje a nezpůsobuje znehodnocení výstupu. Během druhého kroku, zmíněného výše, jsou rovnice elementů jednoduchými rovnicemi lokálně aproximujícími původní komplexní rovnici, která často bývá parciální diferenciální rovnicí. Pro vysvětlení procesu aproximace bývá metoda konečných prvků často považována za speciální případ Galerkinovy metody. Tento proces, matematicky řečeno, spočívá ve zkonstruování integrálu unitárního prostoru zbytkové a váhové funkce a nastavení integrálu na nulu. Zjednodušeně jde o postup, který minimalizuje chybu aproximace nasazením testovacích funkcí do parciálních diferenciálních rovnic. Residual (zbytek) je chyba způsobená testovací funkcí a váhové funkce jsou polynomiální aproximací promítající tento residual (zbytek). Tento proces eliminuje všechny prostorové derivace z parciální diferenciální rovnice a tak parciální diferenciální rovnici lokálně aproximuje se sadou algebraických rovnic pro problémy v ustáleném stavu a se sadou obyčejných diferenciálních rovnic pro přechodné problémy.
+%
+%Tyto sady rovnic jsou rovnicemi jednotlivých prvků. Jsou lineární pokud je i základní parciální diferenciální rovnice lineární (a naopak). Sada algebraických rovnic vznikající u problémů v ustáleném stavu je řešena pomocí metod numerické lineární algebry, zatímco sada obyčejných diferenciálních rovnic vznikající u přechodných problémů je řešena numerickou integrací pomocí standardních technik jako Eulerova metoda nebo Runge-Kuttova metoda. Tento proces je většinou vykonáván softwarem používajícím souřadná data generovaná z jednotlivých subdomén.
+%
+%Ve čtvrtém kroku, zmíněném ve výše uvedeném přehledu, je generována globální soustava rovnic z rovnic jednotlivých prvků a to prostřednictvím transformace souřadnic z uzlů lokálních subdomén na uzly globální oblasti (domény). Tato prostorová transformace zahrnuje úpravy do vhodné orientace ve vztahu k referenčnímu souřadnému systému. \cite{FEM}
 
 
 
 \subsection{Agros 2D}
 Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody hp-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje předchozí kapitola \ref{FEM}. \cite{hpFEM}
 
-Modelování v programu Agros2D vypadá ve stručnosti takto: Nejprve se v \textbf{preprocesoru} vytvoří geometrie objektu, nadefinují se materiálové parametry a přiřadí se okrajové podmínky. Poté \textbf{procesor}, výpočetní část založená na metodě konečných prvků (hp-FEM) provede vlastní výpočet. Výsledné řešení je vyhodnoceno a zobrazeno v \textbf{postprocesoru}, kde si uživatel může volit různé parametry vizualizace vypočtených dat jako barevné mapy, kontury, vektorová pole, grafy veličin a lokální a integrální veličiny. 
+Modelování v programu Agros2D vypadá ve stručnosti takto: Nejprve se v \textbf{preprocesoru} vytvoří geometrie objektu, nadefinují se materiálové parametry a přiřadí se okrajové podmínky. Poté \textbf{procesor}, výpočetní část založená na metodě konečných prvků (\textit{hp}-FEM) provede vlastní výpočet. Výsledné řešení je vyhodnoceno a zobrazeno v \textbf{postprocesoru}, kde si uživatel může volit různé parametry vizualizace vypočtených dat jako barevné mapy, kontury, vektorová pole, grafy veličin a lokální a integrální veličiny. 
 
-Procesor Agrosu umožňuje použít pokročilé funkce metody konečných prvků jako konečné prvky vyššího řádu přesnosti, kdy je hledaná funkce aproximována na prvku polynomem vyššího řádu přesnosti, automatickou adaptivitu, kdy je diskretizační síť a stupeň aproximace volena automaticky na základě odhadu chyby řešení a práci s křivočarými prvky, kdy je řešení oblast diskretizována zpravidla trojúhelníkovými prvky.
+Procesor Agrosu umožňuje použít pokročilé funkce metody konečných prvků jako konečné prvky vyššího řádu přesnosti, kdy je hledaná funkce aproximována na prvku polynomem vyššího řádu přesnosti, automatickou adaptivitu, kdy je diskretizační síť a stupeň aproximace volena automaticky na základě odhadu chyby řešení a práci s křivočarými prvky.
 
 Agros2D je volně šiřitelnou open-source aplikací vyvíjenou pod licencí GNU GPL. Zájemce o tento program může zjistit více informací i si stáhnout poslední verzi na stránkách www.agros2d.org (viz \cite{Agros}). Postup vytvoření geometrie a spuštění modelování je také shrnut v příloze B akademické práce \cite{Koudela}.
 
@@ -869,10 +870,10 @@ Pro ukázku je níže znázorněn výstup programu při modelování čtvercové
 
 \newpage
 \section{Návrh modulu pro VF pole}
-Navrhovaný modul pro VF pole je .xml soubor obsahující upravené předpisy a rovnice, potřebné pro výpočet veličin vln ve volném prostoru a vlnovodech. Na základě těchto rovnic potom vlastní engine programu Agros2D, knihovna Hermes2D a algoritmus hp fem, vypočítají potřebné veličiny šířící se vlny v jednotlivých bodech zdiskretizovaného prostředí a vytvoří modelové rozložení elektromagnetického pole.
+Cílem návrhu je vytvoření modulu psaného v jazyce XML sloužícího jako plugin do programu Agros2D. Tento modul obsahuje upravené předpisy a rovnice potřebné pro výpočet veličin pole, ve kterém se dominantně šíří transverzálně magnetické (TM) vlny. Na základě těchto rovnic potom vlastní engine programu Agros2D, knihovna Hermes2D a algoritmus hp fem, vypočítají potřebné veličiny šířící se vlny v jednotlivých bodech zdiskretizovaného prostředí a vytvoří modelové rozložení elektromagnetického pole.
 
-\subsection{Slabé formulace vlnových rovnice}
-Prostředí programu Agros2D předpokládá pouze určité typy a způsoby šíření vln vedoucí k zjednodušení modelové situace. Agros2D simuluje pole v 2D prostoru, v třetím rozměru se předpokládá, že je pole rozloženo rovnoměrně nebo symetricky k zakreslené geometrii. Předpokladem je také šíření harmonického pole. Proto je ideální použití Helmholtzovy rovnice (\ref{HelmholtzEnehomo} - Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$).
+\subsection{Slabé formulace Helmholtzových rovnic}
+Prostředí programu Agros2D předpokládá pouze určité typy a způsoby šíření vln vedoucí k zjednodušení modelové situace. Agros2D simuluje pole v 2D prostoru, v třetím rozměru se předpokládá, že je pole rozloženo rovnoměrně nebo symetricky k zakreslené geometrii. Předpokladem je také šíření harmonického pole. Proto je ideální použití Helmholtzovy rovnice (\ref{HelmholtzEnehomo} - Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$), která umožňuje jednodušší řešení (ale použít lze i vlnovou rovnici).
 
 U Helmholtzovi rovnici dále předpokládáme rovnoměrné rozložení náboje $\rho$. Z toho plyne, že člen $\grad \! \! (\rho / \varepsilon)$ rovnice \ref{HelmholtzEnehomo} bude roven nule. Pro planární problém budeme předpokládat šíření vln v kartézské souřadnicové soustavě ve směru osy $z$. Pro osově symetrický systém bude předpokladem šíření vln v polární souřadnicové soustavě mající pouze tangenciální složku.
 
@@ -909,7 +910,7 @@ Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjá
 \end{equation}
 
 
-\subsubsection{Slabá formulace fázoru E v kartézské souřadnicové soustavě}
+\subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{E} v kartézské souřadnicové soustavě}
 
 Vycházejme z rovnice \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Prvním krokem pro vyjádření slabé formy je rozložení rovnice na reálnou a imaginární složku:
 \begin{equation}
@@ -986,7 +987,7 @@ Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jeji
 - \frac{1}{\mu} \left( \frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y} \cdot \frac{\partial v}{\partial y} \right) + \frac{1}{\mu} \frac{\partial u}{\partial n} ~ v + (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v + 2 ~ \pi ~ f ~ \gamma ~ u ~ v = - 2 ~ \pi ~ f ~ \faz{J} _{ext} ~ v .
 \end{equation}
 
-Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $1/ \mu ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
+Pro účely zápisu rovnic do XML modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $1/ \mu ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
 
 Člen levé strany reálné části
 \begin{subequations}
@@ -1041,10 +1042,10 @@ bude označen indexy i = 2, j = 2. Značení z důvodu přehlednosti zachovává
 \end{equation}
 bude označen indexy i = 1, j = 1. Zde jsou indexy rovny 1, protože přestože jde o imaginární část, je zde obsažena reálná veličina ($J _{extRe}$).
 
-Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 1 v kapitole \nameref{xmlE}.
+Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 1 v kapitole \nameref{XMLE}.
 
 
-\subsubsection{Slabá formulace fázoru H v kartézské souřadnicové soustavě}
+\subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{H} v kartézské souřadnicové soustavě}
 Formulace vychází z nehomogenní Helmholtzovy rovnice pro $\faz{\vec{H}}$ (\ref{HelmholtzHnehomo}), na kterou se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{E}$. Levá strana tedy bude, stejně jako v rovnici \ref{HelmEasy}, obsahovat veličinu $\faz{H}$ s pouze $z$ složkou pole. Na pravé straně to mimo jiné znamená, že, vzhledem k přítomnosti pouze $z$ složky původního vektoru, se $\rot \faz{J} _{ext} = \left( - \frac{\partial \faz{J} _{ext(x)}}{\partial y} + \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) \vec{k}$:
 \begin{equation}
 \label{HelmEasyH}
@@ -1077,7 +1078,7 @@ Imaginární potom:
 &\triangle H _{zIm} + \omega ^2 \varepsilon \mu H _{zIm} - \omega \mu \gamma H _{zRe} = \frac{\partial J _{extIm(x)}}{\partial y} - \frac{\partial J _{extIm(y)}}{\partial x} .
 \numberthis
 \end{align*}
-Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}):
+Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$:
 \begin{align*}
 &R_e:
 \\
@@ -1129,7 +1130,7 @@ Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjá
 &= \int _{\Omega} \left( \frac{\partial \faz{J} _{ext(x)}}{\partial y} - \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) v ~ \ud \Omega .
 \end{split}
 \end{equation}
-Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici také vydělíme $\varepsilon$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Celou rovnici také vydělíme $\varepsilon$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
 \begin{equation}
 \label{HzWeakEpsilon}
 \begin{split}
@@ -1138,7 +1139,7 @@ Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jeji
 \end{split}
 \end{equation}
 
-Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $1/ \varepsilon ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
+Pro účely zápisu rovnic do XML modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $1/ \varepsilon ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
 
 Člen levé strany reálné části
 \begin{subequations}
@@ -1185,7 +1186,7 @@ bude označen indexy i = 2, j = 1. Značení i = 2 reflektuje to, že se jedná 
 \begin{equation}
 \frac{1}{\varepsilon} \left( \frac{\partial J _{extRe(x)}}{\partial y} - \frac{\partial J _{extRe(y)}}{\partial x} \right) v
 \end{equation}
-bude označen indexy i = 1, j = 1. Jde o reálnou část s reálnou veličinou ($J _{extRe}$). Značení z důvodu přehlednosti zachovává oba indexy i a j, přestože se jedná o jednorozměrný vektor, do kterého jsou členy zanášeny. Proto i = j.
+bude označen indexy i = 1, j = 1. Jde o reálnou část s reálnou veličinou ($J _{extRe}$). 
 
 Člen pravé strany imaginární části
 \begin{equation}
@@ -1193,10 +1194,10 @@ bude označen indexy i = 1, j = 1. Jde o reálnou část s reálnou veličinou (
 \end{equation}
 bude označen indexy i = 2, j = 2. Zde jsou indexy rovny 2, protože jde o imaginární část s imaginární veličinou ($J _{extIm}$).
 
-Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 2 v kapitole \nameref{xmlH}. Pravé strany nebyly v modulu implementovány (byly položeny rovny nule), protože je uvažováno pouze šíření v prostoru bez proudové hustoty.
+Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 2 v kapitole \nameref{XMLH}. Pravé strany nebyly v modulu implementovány (byly položeny rovny nule), protože je uvažováno pouze šíření v prostoru bez proudové hustoty.
 
 
-\subsubsection{Slabá formulace fázoru E ve válcové souřadnicové soustavě}
+\subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{E} ve válcové souřadnicové soustavě}
 
 V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Podobně jako v kartézské souřadné soustavě vycházíme z \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Což v tomto případu znamená, že je přítomna pouze složka $\faz{E} _{\varphi}$. Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
 \begin{equation}
@@ -1227,11 +1228,12 @@ Imaginární potom:
 &\triangle E _{\varphi Im} + \omega ^2 \varepsilon \mu E _{\varphi Im} - \omega \mu \gamma E _{\varphi Re} = \omega \mu J _{extRe} .
 \numberthis
 \end{align*}
-Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
+Obě části roznásobíme testovací funkcí $v$ a následně je zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit, že objemový integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude počítán jako trojný integrál 
 \begin{equation}
+\label{trojnyI}
 \iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
 \end{equation}
-Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je proto nutno zapsat $r$ vznikající v trojitém integrálu jako vyjádření úhlové délky pomocí inkrementu infinitezimální hodnoty $r ~ \ud \varphi$: 
+Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je proto nutno zapsat $r$ vznikající v trojném integrálu jako vyjádření úhlové délky pomocí inkrementu infinitezimální hodnoty $r ~ \ud \varphi$: 
 \begin{align*}
 &R_e:
 \\
@@ -1277,13 +1279,13 @@ Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjá
 \end{split}
 \numberthis
 \end{equation*}
-Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici také vydělíme $\mu$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Celou rovnici také vydělíme $\mu$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
 \begin{equation}
 \label{EphiWeakEpsilon}
 - r \frac{1}{\mu} \left( \frac{\partial u}{\partial r} \cdot \frac{\partial v}{\partial r} + \frac{\partial u}{\partial z} \cdot \frac{\partial v}{\partial z} \right) + r \frac{1}{\mu} \frac{\partial u}{\partial n} ~ v + r ~ (2 ~ \pi ~ f) ^2 ~ \varepsilon ~ u ~ v + r ~ 2 ~ \pi ~ f ~ \gamma ~ u ~ v = - r ~ 2 ~ \pi ~ f ~ \faz{J} _{ext} ~ v .
 \end{equation}
 
-Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $r ~ 1/ \mu ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
+Pro účely zápisu rovnic do XML modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $r ~ 1/ \mu ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
 
 Člen levé strany reálné části
 \begin{subequations}
@@ -1338,7 +1340,7 @@ r ~ 2 ~ \pi ~ f ~ J _{extRe} ~ v
 \end{equation}
 bude označen indexy i = 1, j = 1. Zde jsou indexy rovny 1, protože přestože jde o imaginární část, je zde obsažena reálná veličina ($J _{extRe}$).
 
-Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 1 v kapitole \nameref{xmlE}.
+Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 1 v kapitole \nameref{XMLE}.
 
 %%Polární souřadnicová soustava odovzená přes rotace:
 %nebo jinak zapsáno též takto:
@@ -1379,7 +1381,7 @@ Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Př�
 %\end{subequations}
 
 
-\subsubsection{Slabá formulace fázoru H ve válcové souřadnicové soustavě}
+\subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{H} ve válcové souřadnicové soustavě}
 
 V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Formulace vychází z nehomogenní Helmholtzovy rovnice pro $\faz{\vec{H}}$ (\ref{HelmholtzHnehomo}), na kterou se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{E}$ (\ref{HelmEasy}). Což v tomto případě znamená, že je na levé straně rovnice přítomna pouze složka $\faz{H} _{\varphi}$.Na pravé straně to mimo jiné znamená, že, vzhledem k přítomnosti pouze $\varphi$ složky původního vektoru a aplikaci symetrie, se $\rot \faz{J} _{ext} = \frac{1}{r} \left( \frac{\partial \faz{J} _{ext(r)}}{\partial z} - \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right) \vec{\phi}$. Rovnice \ref{HelmholtzHnehomo} modifikovaná do válcových souřadnic potom vypadá takto:
 \begin{equation}
@@ -1413,11 +1415,7 @@ Imaginární potom:
 &\triangle H _{\varphi Im} + \omega ^2 \varepsilon \mu H _{\varphi Im} - \omega \mu \gamma H _{\varphi Re} = \frac{1}{r} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right) .
 \numberthis
 \end{align*}
-Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit jednu věc ohledně numerického výpočtu získaného integrálu. Získaný integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude vnitřně numericky vypočítán jako trojitý integrál 
-\begin{equation}
-\iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
-\end{equation}
-Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je proto nutno zapsat $r$ vznikající v trojitém integrálu jako vyjádření úhlové délky pomocí inkrementu infinitezimální hodnoty $r ~ \ud \varphi$:
+Obě části roznásobíme testovací funkcí $v$ a následně je zintegrujeme po ploše $\Omega$. Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je nutno zapsat $r$ vznikající v trojném integrálu (viz \ref{trojnyI}) jako vyjádření úhlové délky pomocí inkrementu infinitezimální hodnoty $r ~ \ud \varphi$:
 \begin{align*}
 &R_e:
 \\
@@ -1465,7 +1463,7 @@ Výpočtem divergencí a jejich skalárním roznásobením potom dojdeme k vyjá
 & + \omega \mu \gamma \int _{\Omega} r ~ u ~ v ~ \ud \Omega = \int _{\Omega}\left( - \frac{\partial \faz{J} _{ext(r)}}{\partial z} + \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right) v ~ \ud \Omega .
 \numberthis
 \end{align*}
-Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jejich výpočet se stará knihovna Hermes, ve které je obsažen programový kód umožňující detekci prvků, na které má být integrace aplikována a její následný výpočet. Celou rovnici také vydělíme $\varepsilon$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Celou rovnici také vydělíme $\varepsilon$ (pro vyjádření Neumannovy okrajové podmínky v potřebném tvaru) a $\omega$ rozepíšeme pomocí $f$:
 \begin{equation}
 \label{HphiWeakEpsilon}
 \begin{split}
@@ -1474,7 +1472,7 @@ Ve výrazu zapisovaném do modulu nebudou přímo vyjádřeny integrály. O jeji
 \end{split}
 \end{equation}
 
-Pro účely zápisu rovnic do xml modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $r ~ 1/ \varepsilon ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
+Pro účely zápisu rovnic do XML modulu, budou rovnice rozděleny podle stran rovnic (levá strana --> maticový zápis, pravá strana --> vektorový zápis) a imaginárních složek. Člen $r ~ 1/ \varepsilon ~ \partial u / \partial n ~ v$ představující Neumanovu okrajovou podmínku je vyjádřen v jiné části modulu věnující se povrchovým integrálům.
 
 Člen levé strany reálné části
 \begin{subequations}
@@ -1521,7 +1519,7 @@ bude označen indexy i = 2, j = 1. Značení i = 2 reflektuje to, že se jedná 
 \begin{equation}
 \frac{1}{\varepsilon} \left( - \frac{\partial J _{extRe(r)}}{\partial z} + \frac{\partial J _{extRe(z)}}{\partial r} \right) v
 \end{equation}
-bude označen indexy i = 1, j = 1. Jde o reálnou část s reálnou veličinou ($J _{extRe}$). Značení z důvodu přehlednosti zachovává oba indexy i a j, přestože se jedná o jednorozměrný vektor, do kterého jsou členy zanášeny. Proto i = j.
+bude označen indexy i = 1, j = 1. Jde o reálnou část s reálnou veličinou ($J _{extRe}$). 
 
 Člen pravé strany imaginární části
 \begin{equation}
@@ -1529,11 +1527,11 @@ bude označen indexy i = 1, j = 1. Jde o reálnou část s reálnou veličinou (
 \end{equation}
 bude označen indexy i = 2, j = 2. Zde jsou indexy rovny 2, protože jde o imaginární část s imaginární veličinou ($J _{extIm}$).
 
-Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 2 v kapitole \nameref{xmlH}. Pravé strany nebyly v modulu implementovány (byly položeny rovny nule), protože je uvažováno pouze šíření v prostoru bez proudové hustoty.
+Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Příloze 2 v kapitole \nameref{XMLH}. Pravé strany nebyly v modulu implementovány (byly položeny rovny nule), protože je uvažováno pouze šíření v prostoru bez proudové hustoty.
 
 
 \subsection{Okrajové podmínky}
-Okrajové podmínky předepisují chování funkce, nebo derivace funkce, v určitých bodech. Těmito body jsou okraje oblasti, na které danou rovnici řešíme. Při řešení parciálních diferenciálních rovnic vystupují obvykle tři typy okrajových podmínek - Dirichletova okrajová podmínka, Neumannova okrajová podmínka a Newtonova okrajová podmínka.
+Okrajové podmínky předepisují chování funkce, nebo derivace funkce, na hranicích řešené oblasti. Těmito body jsou okraje oblasti, na které danou rovnici řešíme. Při řešení parciálních diferenciálních rovnic vystupují obvykle tři typy okrajových podmínek - Dirichletova okrajová podmínka, Neumannova okrajová podmínka a Newtonova okrajová podmínka.
 
 
 \subsubsection{Dirichletova okrajová podmínka}
@@ -1543,24 +1541,24 @@ u = f _{Dir} (x, y, z, t)
 \end{equation}
 
 \subsubsection*{Tvar pro $\faz{\vec{E}}$ v kartézských souřadnicích}
-Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{E}}$. Jedná se o TE vlnu, to znamená, že je přítomna pouze složka $z$ pole $\faz{E}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $E _{(z ~ real)}$ a imaginární složku $E _{(z ~ imag)}$. Reálná složka $E _{(z ~ real)}$ bude označena indexem $i = 1$, imaginární složka $E _{(z ~ imag)}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako ,,essential form''.
+Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{E}}$. Jedná se o TE vlnu, to znamená, že je přítomna pouze složka $z$ pole $\faz{E}$. Pro zápis do XML modulu je třeba rozložit tuto veličinu na její reálnou složku $E _{(z ~ real)}$ a imaginární složku $E _{(z ~ imag)}$. Reálná složka $E _{(z ~ real)}$ bude označena indexem $i = 1$, imaginární složka $E _{(z ~ imag)}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako ,,essential form''.
 
-Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{XMLEs}.
 
 \subsubsection*{Tvar pro $\faz{\vec{H}}$ v kartézských souřadnicích}
-Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{H}}$. Jedná se o TM vlnu, to znamená, že je přítomna pouze složka $z$ pole $\faz{E}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $H _{(z ~ real}$ a imaginární složku $H _{(z ~ imag)}$. Reálná složka $H _{(z ~ real)}$ bude označena indexem $i = 1$, imaginární složka $H _{(z ~ imag)}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako ,,essential form''.
+V tomto případě na pravou stranu rovnice náleží veličina pole $\faz{\vec{H}}$. Jedná se o TM vlnu, to znamená, že je přítomna pouze složka $z$ pole $\faz{E}$. Pro zápis do XML modulu je třeba rozložit tuto veličinu na její reálnou složku $H _{(z ~ real}$ a imaginární složku $H _{(z ~ imag)}$. Reálná složka $H _{(z ~ real)}$ bude označena indexem $i = 1$, imaginární složka $H _{(z ~ imag)}$ indexem $i = 2$.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+XML kód pro TM vlny je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 \subsubsection*{Tvar pro $\faz{\vec{E}}$ ve válcových souřadnicích}
-Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{E}}$. Jedná se o TE vlnu, to znamená, že je přítomna pouze složka $\varphi$ pole $\faz{E}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $E _{(\varphi ~ real)}$ a imaginární složku $E _{(\varphi ~ imag)}$. Reálná složka $E _{(\varphi ~ real)}$ bude označena indexem $i = 1$, imaginární složka $E _{(\varphi ~ imag)}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako ,,essential form''.
+Stejně jako v kartézských souřadnicích náleží na pravou stranu rovnice veličina pole tj. $\faz{\vec{E}}$. Jedná se o TE vlnu, to znamená, že je přítomna pouze složka $\varphi$ pole $\faz{E}$. Pro zápis do XML modulu je třeba rozložit tuto veličinu na její reálnou složku $E _{(\varphi ~ real)}$ a imaginární složku $E _{(\varphi ~ imag)}$. Reálná složka $E _{(\varphi ~ real)}$ bude označena indexem $i = 1$, imaginární složka $E _{(\varphi ~ imag)}$ indexem $i = 2$.
 
-Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
+Zápis v XML je uveden v Příloze 1 v kapitole \nameref{XMLEs}.
 
 \subsubsection*{Tvar pro $\faz{\vec{H}}$ ve válcových souřadnicích}
-Na pravou stranu rovnice náleží veličina pole tj. $\faz{\vec{H}}$. Jedná se o TM vlnu, to znamená, že je přítomna pouze složka $\varphi$ pole $\faz{E}$. Pro zápis do xml modulu je třeba rozložit tuto veličinu na její reálnou složku $H _{(\varphi ~ real)}$ a imaginární složku $H _{(\varphi ~ imag)}$. Reálná složka $H _{(\varphi ~ real)}$ bude označena indexem $i = 1$, imaginární složka $H _{(\varphi ~ imag)}$ indexem $i = 2$. Jedná se o vektorový zápis, zde vystupující jako ,,essential form''.
+Na pravou stranu rovnice náleží veličina pole tj. v tomto případě $\faz{\vec{H}}$. Jedná se o TM vlnu, to znamená, že je přítomna pouze složka $\varphi$ pole $\faz{E}$. Pro zápis do XML modulu je třeba rozložit tuto veličinu na její reálnou složku $H _{(\varphi ~ real)}$ a imaginární složku $H _{(\varphi ~ imag)}$. Reálná složka $H _{(\varphi ~ real)}$ bude označena indexem $i = 1$, imaginární složka $H _{(\varphi ~ imag)}$ indexem $i = 2$.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přepis do XML použitého v modulu je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 \subsubsection{Neumannova okrajová podmínka}
@@ -1644,7 +1642,7 @@ Posledním krokem je dosazení pravé strany z \ref{neumann} do \ref{weakneumann
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka 
+Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do XML modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka 
 \begin{equation}
 2 ~ \pi ~ f ~ H_{(t~imag)} ~ v
 \end{equation} 
@@ -1654,7 +1652,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{XMLEs}.
 
 \subsubsection*{Tvar pro $\faz{\vec{H}}$ v kartézských souřadnicích}
 \label{NeumannHK}
@@ -1731,7 +1729,7 @@ Posledním krokem je dosazení pravé strany z \ref{Hneumann} do \ref{Hweakneuma
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
 - 2 ~ \pi ~ f ~ E_{(t~imag)} ~ v
 \end{equation} 
@@ -1741,7 +1739,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 \subsubsection*{Tvar pro $\faz{\vec{E}}$ ve válcových souřadnicích}
 \label{NeumannEC}
@@ -1811,7 +1809,7 @@ Posledním krokem je dosazení pravé strany z \ref{ECneumann} do \ref{ECweakneu
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka 
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka 
 \begin{equation}
 2 ~ \pi ~ f ~ H_{(t~imag)} ~ r ~ v
 \end{equation} 
@@ -1821,7 +1819,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{XMLEs}.
 
 \subsubsection*{Tvar pro $\faz{\vec{H}}$ ve válcových souřadnicích}
 \label{NeumannHC}
@@ -1891,7 +1889,7 @@ Posledním krokem je dosazení pravé strany z \ref{HCneumann} do \ref{HCweakneu
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka 
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka 
 \begin{equation}
 - 2 ~ \pi ~ f ~ H_{(t~imag)} ~ r ~ v
 \end{equation} 
@@ -1901,7 +1899,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 \subsubsection{Newtonova okrajová podmínka}
@@ -1956,7 +1954,7 @@ Tento tvar lze podobně jako v kapitole \ref{NeumannEK} dosadit do \ref{weakneum
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $E$ za $u$. Reálná složka 
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $E$ za $u$. Reálná složka 
 \begin{equation}
 \frac{2 ~ \pi ~ f}{\faz{Z} _0} ~ u ~ v
 \end{equation} 
@@ -1966,11 +1964,11 @@ bude označena indexy i = 1, j = 2. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do XML modulu.
 
-Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je v xml modulu též vyjádřena~$0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v XML modulu vyjádřena $0$ a pro i = 2, j = 2 je v XML modulu též vyjádřena~$0$.
 
-Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{XMLEs}.
 
 
 \subsubsection*{Tvar pro \faz{\vec{H}} v kartézských souřadnicích}
@@ -1979,7 +1977,7 @@ Obecný zápis \ref{Newton} lze pro \faz{\vec{H}} v kartézských souřadnicích
 \label{NewHK}
 \frac{\partial \faz{H} _z}{\partial \vec{n}} + K_1 \faz{H} _z = K_2 .
 \end{equation}
-Jak již název této okrajové podmínky napovídá, řešení vychází z výpočtu impedance: 
+Řešení vychází z výpočtu impedance: 
 \begin{equation}
 \label{NewImpedanceHK}
 \faz{Z} _0 = \frac{\faz{E}}{\faz{H}} .
@@ -2017,7 +2015,7 @@ Tento tvar lze podobně jako v kapitole \ref{NeumannHK} dosadit do \ref{Hweakneu
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $H$ za $u$. Reálná složka 
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $H$ za $u$. Reálná složka 
 \begin{equation}
 - 2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation} 
@@ -2027,11 +2025,11 @@ bude označena indexy i = 1, j = 2. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do XML modulu.
 
-Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je v xml modulu též vyjádřena~$0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v XML modulu vyjádřena $0$ a pro i = 2, j = 2 je v XML modulu též vyjádřena~$0$.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 
@@ -2041,7 +2039,7 @@ Obecný zápis \ref{Newton} lze pro \faz{\vec{E}} ve válcových souřadnicích 
 \label{NewEC}
 \frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} + K_1 \faz{E} _{\varphi} = K_2 .
 \end{equation}
-Jak již název této okrajové podmínky napovídá, řešení vychází z výpočtu impedance: 
+Řešení vychází z výpočtu impedance: 
 \begin{equation}
 \label{NewImpedanceEC}
 \faz{Z} _0 = \frac{\faz{E}}{\faz{H}} .
@@ -2079,7 +2077,7 @@ Tento tvar lze podobně jako v kapitole \ref{NeumannEC} dosadit do \ref{ECweakne
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $E$ za $u$. Reálná složka 
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $E$ za $u$. Reálná složka 
 \begin{equation}
 r ~\frac{2 ~ \pi ~ f}{\faz{Z} _0} ~ u ~ v
 \end{equation} 
@@ -2089,11 +2087,11 @@ bude označena indexy i = 1, j = 2. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do XML modulu.
 
-Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je v xml modulu též vyjádřena~$0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v XML modulu vyjádřena $0$ a pro i = 2, j = 2 je v XML modulu též vyjádřena~$0$.
 
-Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 1 v kapitole \nameref{XMLEs}.
 
 
 
@@ -2103,7 +2101,7 @@ Obecný zápis \ref{Newton} lze pro \faz{\vec{H}} ve válcových souřadnicích 
 \label{NewHC}
 \frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} + K_1 \faz{H} _{\varphi} = K_2 .
 \end{equation}
-Jak již název této okrajové podmínky napovídá, řešení vychází z výpočtu impedance: 
+Řešení vychází z výpočtu impedance: 
 \begin{equation}
 \label{NewImpedanceHC}
 \faz{Z} _0 = \frac{\faz{E}}{\faz{H}} .
@@ -2141,7 +2139,7 @@ Tento tvar lze podobně jako v kapitole \ref{NeumannHC} dosadit do \ref{HCweakne
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $H$ za $u$. Reálná složka 
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření levé strany, tudíž ,,matrix form''. Stejně jako u vyjádření levé strany u objemových integrálů použijeme substituci veličiny $H$ za $u$. Reálná složka 
 \begin{equation}
 - ~ r ~ 2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation} 
@@ -2151,11 +2149,11 @@ r ~ 2 ~ \pi ~ f ~ \faz{Z} _0 ~ u ~ v
 \end{equation}
 bude označena indexy i = 2, j = 1.
 
-Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do xml modulu.
+Položky s indexy i = 1, j = 1 a i = 2, j = 2 v matici jsou nulové (obsaženy jsou pouze diagonální prvky), neuvádí se proto ani do XML modulu.
 
-Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v xml modulu vyjádřena $0$ a pro i = 2, j = 2 je xml modulu též vyjádřena~$0$.
+Také pravá strana rovnice (vector form) je nulová. Konkrétně to znamená, že pro i~=~1, j = 1 je v XML modulu vyjádřena $0$ a pro i = 2, j = 2 je XML modulu též vyjádřena~$0$.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 
@@ -2199,7 +2197,7 @@ Posledním krokem je dosazení pravé strany z \ref{Jek} do \ref{weakneumann} (v
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
 \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v
 \end{equation} 
@@ -2209,7 +2207,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLEs}.
 
 
 \subsubsection*{Tvar pro \faz{\vec{J}} a TE pole ve válcových souřadnicích}
@@ -2248,7 +2246,7 @@ Posledním krokem je dosazení pravé strany z \ref{Jec} do \ref{ECweakneumann} 
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
 \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v ~ r
 \end{equation} 
@@ -2258,7 +2256,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlEs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLEs}.
 
 
 \subsubsection*{Tvar pro \faz{\vec{J}} a TM pole v kartézských souřadnicích}
@@ -2297,7 +2295,7 @@ Posledním krokem je dosazení pravé strany z \ref{Jhk} do \ref{Hweakneumann} (
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
 - \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v
 \end{equation} 
@@ -2307,7 +2305,7 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 \subsubsection*{Tvar pro \faz{\vec{J}} a TM pole ve válcových souřadnicích}
@@ -2346,7 +2344,7 @@ Posledním krokem je dosazení pravé strany z \ref{Jhc} do \ref{HCweakneumann} 
 \end{align}
 \end{subequations}
 
-Takto získaný výraz lze již (bez integrálu o jehož detekci a výpočet se stará samotný programový kód Agrosu) zapsat do xml modulu. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
+Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\varepsilon$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
 - \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v ~ r
 \end{equation} 
@@ -2356,17 +2354,17 @@ bude označena indexy i = 1, j = 1. Imaginární složka
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
-Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{xmlHs}.
+Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 
 
 \subsection{Postprocessor - dopočet různých veličin pole}
-Postprocessing v programu Agros2D umožňuje dopočíst a graficky zobrazit další veličiny pole z veličin již získaných. Vztahy pro dopočet dalších veličin i interpretaci hodnot již získaných musí být implementovány v xml modulu, resp. jeho podmodulu postprocessor.
+Postprocessing v programu Agros2D umožňuje dopočíst a graficky zobrazit další veličiny pole z veličin již získaných. Vztahy pro dopočet dalších veličin i interpretaci hodnot již získaných musí být implementovány v XML modulu, resp. jeho podmodulu postprocessor.
 
-V xml souboru parsovaném do knihovny Agrosu jsou v rovnicích použitých v postprocessoru použity následující symboly:
+V XML souboru parsovaném do knihovny Agrosu jsou v rovnicích použitých v postprocessoru použity následující symboly:
 \begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
-\caption{Tabulka symbolů použitých v rovnicích xml modulu v sekci postprocessoru}
+\caption{Tabulka symbolů použitých v rovnicích XML modulu v sekci postprocessoru}
 \begin{center} %pro zarovnání tabulky na střed
 \begin{tabular}{|l|c|} %zarovnání sloupců |left|center| oddělené čárou
 \hline %horní horizontální čára
@@ -2397,7 +2395,7 @@ dz2 & $\dfrac{\partial H _{(\varphi ~imag)}}{\partial z}$ \\
 
 
 \subsubsection{Intenzita magnetického pole}
-Hodnoty pro intenzitu magnetického pole $\faz{\vec{H}}$ vycházejí přímo z řešených slabých forem a úkolem postprocessoru je tedy pouze jejich přímé zobrazení. Zápis v xml modulu v \ref{postH}.
+Hodnoty pro intenzitu magnetického pole $\faz{\vec{H}}$ vycházejí přímo z řešených slabých forem a úkolem postprocessoru je tedy pouze jejich přímé zobrazení. Zápis v XML modulu je vyjádřen v Příloze 2 v kapitole \nameref{postH}.
 
 \subsubsection{Intenzita elektrického pole}
 Vztah pro výpočet intenzity elektrického pole $\faz{\vec{E}}$ lze odvodit z \ref{max1fharm} (1. Maxwellovy rovnice) a tím získat jeho hodnotu ze známé veličiny $\faz{\vec{H}}$.
@@ -2484,7 +2482,7 @@ Z výše uvedených rovnic lze vyjádřit velikost (absolutní hodnotu) vektoru 
 E = \frac{1}{\omega \varepsilon} \sqrt{\left( - \frac{\partial \faz{H} _{(\varphi Imag)}}{\partial z} \right) ^2 + \left( - \frac{\partial \faz{H} _{(\varphi Real)}}{\partial z} \right) ^2 + \left( \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi Imag)})}{\partial r} \right) ^2 + \left( \frac{1}{r} \frac{\partial (r \faz{H} _{(\varphi Real)})}{\partial r} \right) ^2}
 \end{equation}
 
-Programový xml kód použitý v modulu je vyjádřen v \ref{postH}.
+Programový XML kód použitý v modulu je vyjádřen v Příloze 2 v kapitole \nameref{postH}.
 
 
 \subsubsection{Poyntingův vektor}
@@ -2532,7 +2530,7 @@ N _y &= - E _{(x~real)} H _{(z~real)} + E _{(x~imag)} H _{(z~imag)} .
 \end{align}
 \end{subequations}
 
-Programový xml kód použitý pro zápis Poyntingova vektoru do postprocessoru v TM modulu je vyjádřen v \ref{postH}. Za složky intenzity elektrického pole je zde dosazeno z části postprocessoru určené pro výpočet $\faz{\vec{E}}$ a za složky intenzity magnetického pole přímý výsledek výpočtu slabých forem.
+Programový XML kód použitý pro zápis Poyntingova vektoru do postprocessoru v TM modulu je vyjádřen v Příloze 2 v kapitole \nameref{postH}. Za složky intenzity elektrického pole je zde dosazeno z části postprocessoru určené pro výpočet $\faz{\vec{E}}$ a za složky intenzity magnetického pole přímý výsledek výpočtu slabých forem.
 
 
 Podobně se postupuje i při výpočtu ve válcových souřadnicích. Zde je přítomna pouze složka $\varphi$ $\faz{\vec{H}}$. Vycházíme z rovnice \ref{poynting}. Provedeme výpočet vektorového součinu:
@@ -2574,9 +2572,137 @@ N _z &= E _{(r~real)} H _{(\varphi ~real)} - E _{(r~imag)} H _{(\varphi ~imag)} 
 \end{align}
 \end{subequations}
 
-Programový xml kód použitý pro zápis Poyntingova vektoru do postprocessoru v TM modulu je vyjádřen v \ref{postH}. Za složky intenzity elektrického pole je zde dosazeno z části postprocessoru určené pro výpočet $\faz{\vec{E}}$ a za složky intenzity magnetického pole přímý výsledek výpočtu slabých forem.
+Programový XML kód použitý pro zápis Poyntingova vektoru do postprocessoru v TM modulu je vyjádřen v Příloze 2 v kapitole \nameref{postH}. Za složky intenzity elektrického pole je zde dosazeno z části postprocessoru určené pro výpočet $\faz{\vec{E}}$ a za složky intenzity magnetického pole přímý výsledek výpočtu slabých forem.
 
 
+
+\subsection{Ilustrační příklad}
+Pro ukázku funkčnosti a možností vyvinutého modulu budou prezentovány dva příklady. První, komplexnější, prezentuje reálný model kónické antény v osové symetrii. Druhý, spíše teoretický, je použit na porovnání výsledku s programem Comsol a ověření správnosti řešení.
+
+\subsubsection{Kónická anténa}
+Kónické antény jsou díky jejich širokopásmové charakteristice a relativní jednoduchosti vhodné pro mnoho aplikací. Rotační symetrie nám umožňuje modelovat tento problém v 2D. Modelování v 2D má navíc ještě tu výhodu, že lze použít velmi jemnou mřížku a tím dosáhnout velké přesnosti.
+
+Geometrie antény spolu s aplikovanou mřížkou je znázorněna níže na obr. \ref{meshed}. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalGeometry.png} 
+\caption{Geometrie antény s aplikovanou mřížkou} 
+\label{meshed}
+\end{center}
+\end{figure}
+
+Na vnější obvod půlkruhu (půlkruh je oblastí ve které je modelováno šíření vln) je aplikována \textbf{Impedance Boundary Condition} s hodnotou $Z_0 = 377 ~ \Omega$. Na okraj představující příčnou část půlkruhu a přiléhající k ose osové symetrie je aplikována \textbf{Dirichletova okrajová podmínka} s hodnotou $H_r = 0 ~ A.m^{-1}$, $H_i = 0 ~ A.m^{-1}$ tzn. také tzv. Perfect Magnetic Conductor. Materiálem uvnitř půlkruhu je vzduch. To znamená $\varepsilon _r = 1$, $\mu _r = 1$, $\gamma = 0 ~ S.m^{-1}$. Na okrajích samotné kónické antény je aplikována \textbf{Neumannova okrajová podmínka} s hodnotou $E_r = 0 ~ V.m^{-1}$, $E_i = 0 ~ V.m^{-1}$ tzn. také Perfect Electric Conductor. Neumannova okrajová podmínka je též aplikována na podélných stranách přívodního koaxiálního kabelu. Na vstupu tohoto koaxiálního kabelu je zdroj magnetického pole zadaný Dirichletovou okrajovou podmínkou s hodnotami $H_r = 100 ~ A.m^{-1}$, $H_i = 50 ~ A.m^{-1}$. Materiálové konstanty tohoto kabelu jsou $\varepsilon _r = 2,07$, $\mu _r = 1$, $\gamma = 0 ~ S.m^{-1}$.
+
+Obrázky \ref{Hreal}, \ref{Himag} a \ref{absH} znázorňují rozložení intenzity magnetického pole $\vec{H}$. Obrázek \ref{Hreal} znázorňuje reálnou složku $\vec{H _{real}}$, obrázek \ref{Himag} imaginární složku $\vec{H _{imag}}$ a obrázek \ref{absH} absolutní hodnotu $H$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalHr.png} 
+\caption{Kónická anténa - rozložení složky $\vec{H _{real}}$} 
+\label{Hreal}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalHi.png} 
+\caption{Kónická anténa - rozložení složky $\vec{H _{imag}}$} 
+\label{Himag}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalH.png} 
+\caption{Kónická anténa - rozložení absolutní hodnoty $H$} 
+\label{absH}
+\end{center}
+\end{figure}
+
+Díky postprocesoru je možné zobrazit i další veličiny. Intenzitu elektrického pole lze získat pomocí \ref{max1fharm} (1. Maxwellovy rovnice) z již vypočtené intenzity magnetického pole. Obrázek \ref{absE} znázorňuje rozložení absolutní hodnoty intenzity elektrického pole $E$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{58.jpg} 
+\caption{Kónická anténa - rozložení absolutní hodnoty $E$} 
+\label{absE}
+\end{center}
+\end{figure}
+
+Pomocí postprocessingu lze získat též zobrazení Poyntingova vektoru. Hodnota tohoto vektoru se vypočte jako vektorový součin intenzity elektrického pole $\faz{\vec{E}}$ a intenzity magnetického pole $\faz{\vec{H}}$. Grafický výstup z Agrosu pro Poyntingův vektor znázorňuje obrázek \ref{Poynting}. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalPoynting.png} 
+\caption{Kónická anténa - zobrazení Poyntingova vektoru} 
+\label{Poynting}
+\end{center}
+\end{figure}
+
+Agros umožňuje také zobrazení postprocessingu v 3D. Díky tomuto pohledu lze vidět nejen jak vypadá reálný model, ale v případě osové symetrie také reálné rozložení veličin v trojrozměrném prostoru. Model kónické antény s vykreslením skalárního pole proměnné $H _{z~real}$ ilustruje obrázek \ref{Con3D}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{Conical3D.png} 
+\caption{Model kónické antény s vykreslením skalárního pole proměnné $H _{z~real}$} 
+\label{Con3D}
+\end{center}
+\end{figure} 
+
+
+\subsubsection{Srovnání modelu vytvořeného v Agrosu s modelem v Comsolu}
+Pro ověření funkčnosti vytvořeného modulu a správnosti vypočtených rovnic je porovnáno řešení čtvercového modelu v programu Agros s řešením v programu Comsol, které je považováno za referenční. Problém je modelován v 2D v kartézském souřadném systému (planárně).
+
+Geometrie čtvercového modelu spolu s aplikovanou mřížkou v Agrosu je znázorněna na obr. \ref{meshedSQ}. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{SquareGeometry.png} 
+\caption{Geometrie čtvercového modelu s aplikovanou mřížkou} 
+\label{meshedSQ}
+\end{center}
+\end{figure}
+
+Na spodní a horní stranu čtvercového modelu je aplikována Neumannova okrajová podmínka s hodnotou $E_r = 0 ~ V.m^{-1}$, $E_i = 0 ~ V.m^{-1}$ tzn. Perfect Electric Conductor. Na pravý okraj čtvercového modelu je aplikována Dirichletova okrajová podmínka s hodnotou $H_r = 0 ~ A.m^{-1}$, $H_i = 0 ~ A.m^{-1}$ tzn. také Perfect Magnetic Conductor. Na levý okraj je také aplikována Dirichletova okrajová podmínka s hodnotou $H_r = 1 ~ A.m^{-1}$, $H_i = 0 ~ A.m^{-1}$ (nenulová, sloužící jako zdroj magnetického pole). Materiálem uvnitř modelu je vzduch. To znamená $\varepsilon _r = 1$, $\mu _r = 1$, $\gamma = 0 ~ S.m^{-1}$. Rozměry objektu jsou 0,5 m na 0,5 m. Použitá frekvence činí 1 Ghz. 
+
+Obrázky \ref{SQaH} a \ref{SQcH} znázorňují rozložení intenzity magnetického pole $\vec{H}$. Obrázek \ref{SQaH} znázorňuje absolutní hodnotu $H$ na objektu modelovaném v Agrosu, obrázek \ref{SQcH} absolutní hodnotu $H$ na objektu modelovaném v Comsolu.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{SquareHa.png} 
+\caption{Čtvercový model v Agrosu - rozložení absolutní hodnoty $H$} 
+\label{SQaH}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=15cm]{SquareHc.png} 
+\caption{Čtvercový model v Comsolu - rozložení absolutní hodnoty $H$} 
+\label{SQcH}
+\end{center}
+\end{figure}
+
+Porovnat lze i intenzitu elektrického pole vypočtenou postprocessorem. Obrázek \ref{SQaE} znázorňuje rozložení absolutní hodnoty intenzity elektrického pole $E$ na objektu modelovaném v Agrosu, obrázek \ref{SQcH} rozložení absolutní hodnoty $H$ na objektu modelovaném v Comsolu.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{SquareEa.png} 
+\caption{Čtvercový model v Agrosu - rozložení absolutní hodnoty $E$} 
+\label{SQaE}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=15cm]{SquareEc.png} 
+\caption{Čtvercový model v Comsolu - rozložení absolutní hodnoty $E$} 
+\label{SQcE}
+\end{center}
+\end{figure}
+
+Je zřejmé že objekt modelovaný v Agrosu se neliší od stejného objektu modelovaného v Comsolu. Bereme-li Comsol jako profesionální komerční program za referenční, znamená to, že modul vytvořený pro Agros neobsahuje žádnou vadu a umožňuje Agrosu bezchybné modelování TM vln.
 
 
 
@@ -2839,18 +2965,19 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 %Podle názvu v "{}" se poté odkazuje uvnitř textu pomocí příkazu "\cite{}" 
 \bibitem{Pozar2} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 1998. Second Edition. ISBN 0-471-17096-8.
 \bibitem{Pozar4} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 2012. Fourth Edition. ISBN 978-0-470-63155-3.
-\bibitem{Kastner} KASTNER, Raphael. SCHOOL OF ELECTRICAL ENGINEERING, Tel Aviv University. Antennas and Radiation. Tel Aviv, 2009. Dostupné z: http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Frequency-Domain
-\bibitem{Dimensions} Rectangular waveguide dimensions. Microwaves101.com [online]. Tucson, AZ, November 3, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/waveguidedimensions.cfm
-\bibitem{Microstrip} Microstrip. Microwaves101.com [online]. Tucson, AZ, February 18, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/microstrip.cfm
-\bibitem{Instrinsic} Intrinsic Impedance. Antenna-Theory.com [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
-\bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. Agros2D [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
+\bibitem{Kastner} KASTNER, Raphael. SCHOOL OF ELECTRICAL ENGINEERING, Tel Aviv University. \textit{Antennas and Radiation.} Tel Aviv, 2009. Dostupné z: http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Frequency-Domain
+\bibitem{Dimensions} Rectangular waveguide dimensions. \textit{Microwaves101.com} [online]. Tucson, AZ, November 3, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/waveguidedimensions.cfm
+\bibitem{Microstrip} Microstrip. \textit{Microwaves101.com} [online]. Tucson, AZ, February 18, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/microstrip.cfm
+\bibitem{Intrinsic} Intrinsic Impedance. \textit{Antenna-Theory.com} [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
+\bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. \textit{Agros2D} [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
 \bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
 \bibitem{RovinnaVlna} Rovinné vlny. \textit{Fyzikální sekce Matematicko-fyzikální fakulty UK} [online]. [cit. 2013-02-20]. Dostupné z: http://physics.mff.cuni.cz/kfpp/skripta/kurz\_fyziky\_pro\_DS/display.php/optika/1\_3
 \bibitem{hpFEM} THE HP-FEM GROUP. \textit{www.hpFEM.org} [online]. 2013 [cit. 2013-04-09]. Dostupné z: http://hpfem.org/
 \bibitem{ATE} KARBAN, Pavel. ELEKTROTECHNICKÁ FAKULTA, Západočeská univerzita v Plzni. \textit{Numerické metody: Metoda konečných diferencí.} Plzeň, 22.03.2012. Dostupné z: http://home.zcu.cz/$\sim$karban/ATE/prednaska\_ 06.pdf
 \bibitem{Mayer} MAYER, Daniel, Josef POLÁK. \textit{Metody řešení elektrických a magnetických polí.} 1. vyd. Praha: SNTL, 1983, 450 s.
-\bibitem{FEM} Finite element method. In: \textit{Wikipedia: the free encyclopedia} [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-04-24]. Dostupné z: http://en.wikipedia.org/wiki/Finite\_ element\_ method
+\bibitem{FEM} ŠOLÍN, Pavel, Karel SEGETH a Ivo DOLEŽEL. \textit{Higher-Order Finite Element Methods}. Taylor \& Francis, 2003, 408 s. ISBN 9781584884385
 \bibitem{Teorie} MAYER, Daniel. FAKULTA ELEKTROTECHNICKÁ, Západočeská univerzita v Plzni. \textit{Teorie elektromagnetického pole: 2. díl.} 3. vyd. Lektor: Zdeňka BENEŠOVÁ. Plzeň: Západočeská univerzita v Plzni, 2004, 358 s. ISBN 80-7082-826-9.
+\bibitem{Comsol} Model Gallery: Conical Antenna. COMSOL GROUP. \textit{Comsol} [online]. (c) 1998-2013 [cit. 2013-04-28]. Dostupné z: http://www.comsol.com/showroom/gallery/137/
 
 
 \end{thebibliography}
@@ -2877,7 +3004,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \addcontentsline{toc}{section}{Přílohy}
 \section*{Příloha I. - XML kód pro TE}
 \subsection*{Zápis slabých formulací fázoru~E}
-\label{xmlE}
+\label{XMLE}
 \begin{spverbatim}
   <module:volume>
     <module:quantity id="rf_te_permittivity" shortname="rf_eps"/>
@@ -2905,7 +3032,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 
 
 \subsection*{Zápis okrajových podmínek fázoru~E}
-\label{xmlEs}
+\label{XMLEs}
 
 \begin{spverbatim}
  <module:surface>
@@ -2952,7 +3079,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 \newpage
 \section*{Příloha II. - XML kód pro TM}
 \subsection*{Zápis slabých formulací fázoru~H}
-\label{xmlH}
+\label{XMLH}
 
 \begin{spverbatim}
 <module:volume>
@@ -2981,7 +3108,7 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 
 
 \subsection*{Zápis okrajových podmínek fázoru~H}
-\label{xmlHs}
+\label{XMLHs}
 
 \begin{spverbatim}
  <module:surface>
