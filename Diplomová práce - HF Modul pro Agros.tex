@@ -77,7 +77,7 @@
 ~FAKULTA ELEKTROTECHNICKÁ\\
 \vspace*{5mm}}
 \end{large}
-\textbf{~KATEDRA TEORETICKÉ ELEKTROTECHNIKY}
+\textbf{~KATEDRA TECHNOLOGIÍ A MĚŘENÍ}
 %tex sází křivě - není zarováno přesně na střed - musím cpát mezery na dorovnání
 \vspace{70mm}\\
 
@@ -146,7 +146,7 @@ Jméno a příjmení~~~~~~~~\vspace{3mm}
 %%Poděkování%%
 \vspace*{50mm}
 \section*{Poděkování}
-Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánkovi, za 			jeho cenné rady a profesionální vedení bez nějž by vznik této práce nebyl vůbec 			možný.\\
+Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánkovi, Ph.D, za jeho cenné rady, připomínky, čas a nasazení a jeho profesionální vedení bez nějž by vznik této práce nebyl vůbec možný.\\
 \newpage
 
 
@@ -187,13 +187,24 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 
 %%Úvod%%
 \section{Úvod}
-Předkládaná diplomová práce má za cíl rozšířit program Agros2D  vyvíjený na katedře KTE o modul umožňující modelování vysokofrekvenčního pole. Práce také shrnuje obecné poznatky v oblasti vysokofrekvenčního elektromagnetického pole a pokládá teoretický základ pro následnou tvorbu modulu.
+Předkládaná diplomová práce má za cíl rozšířit program Agros2D, vyvíjený na katedře KTE, o modul umožňující modelování vysokofrekvenčního elektromagnetického pole. Modul obsahuje upravené předpisy a rovnice potřebné pro výpočet veličin pole, ve kterém se dominantně šíří transverzálně magnetické (TM) vlny. Doplněn je nicméně i již dříve vytvořený modul pro vlny transverzálně elektrické (TE). Práce také shrnuje obecné poznatky v oblasti vysokofrekvenčního elektromagnetického pole a pokládá teoretický základ pro následnou tvorbu modulu.
 
-Posuzování toho, co je vysoká frekvence je subjektivně závislé na oboru, v kterém se pohybujeme. Pro člověka pracujícího se síťovou frekvencí (50 Hz) bude 1 kHz již frekvence vysoká. Kdežto pro někoho navrhujícího satelitní spoje bude i 1 GHz frekvence nízká. Tato práce bude považovat za vysokofrekvenční zařízení systémy pracující s frekvencí odpovídající rádiovému a mikrovlnnému spektru - tj. 100 MHz až 1000 GHz. \cite{Pozar4}
+Postup při návrhu spočívá v odvození bilineárních a lineárních členů integrálních tvarů (tzv. slabých forem) vlnových rovnic. Předpokladem simulace je šíření harmonického pole, proto není řešena samotná vlnová rovnice, ale přechází se k řešení rovnice Helmholtzovy. Odvození slabých forem je věnována kapitola \ref{weakforms}. Odvození vlnové rovnice, Helmholtzovy rovnice a teorii šíření elektromagnetických vln se potom věnuje kapitola \ref{propagation}.
+
+Okrajovými podmínkami předepisujícími chování funkce, nebo derivace funkce, na hranicích řešené oblasti se zabývá kapitola \ref{boundary} a její výsledky představují další článek k vytvoření modulu. V tomto stádiu by modul byl již téměř schopný dávat výsledky pro základní počítanou veličinu a to intenzitu magnetického pole $H$. Možnosti výpočtu a vizualizace dalších navázaných veličin doplňuje postprocesor, jemuž je zasvěcena kapitola \ref{postprocesor}.
+
+To, jak funguje metoda konečných prvků, na které je postaveno vlastní výpočetní jádro Agrosu, proč se rovnice musejí upravit do slabých formulací, a jak se následně zapisují do modulu v jazyce XML, uvádí kapitola \ref{numerika}.
+
+Bezchybnou funkci modulu dokazuje kapitola \ref{srovnani} a to srovnáním s profesionálním komerčním programem Comsol, který je považován za referenční. V kapitole \ref{antena} jsou ilustrovány možnosti vyvinutého modulu na modelu Kónické antény, kterou se šíří transverzálně magnetické vlny.
+
+%Hlavním cílem diplomové práce bylo vytvoření modulu v jazyce XML zakomponovatelného do programu Agros2D. Tento modul rozšiřuje program Agros2D o schopnost modelování vysokofrekvenčních zařízení, kterými se dominantně šíří transverzálně magnetické (TM) vlny.
+
+%Posuzování toho, co je vysoká frekvence je subjektivně závislé na oboru, v kterém se pohybujeme. Pro člověka pracujícího se síťovou frekvencí (50 Hz) bude 1 kHz již frekvence vysoká. Kdežto pro někoho navrhujícího satelitní spoje bude i 1 GHz frekvence nízká. Tato práce bude považovat za vysokofrekvenční zařízení systémy pracující s frekvencí odpovídající rádiovému a mikrovlnnému spektru - tj. 100 MHz až 1000 GHz. \cite{Pozar4}
 
 \newpage
 
 \section{Šíření vysokofrekvenčního elektromagnetického pole}
+\label{propagation}
 Každé nestacionární elektromagnetické pole má charakter elektromagnetické vlny, která se šíří prostředím. Toto pole lze popsat veličinami vztahujícími se k jednotlivému elektrickému a magnetickému poli:
 \begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
 \begin{center} %pro zarovnání tabulky na střed
@@ -335,7 +346,7 @@ Rovnici \ref{vlnaD} následně vynásobíme konstantou $\varepsilon$ a rovnici \
 \triangle \vec{H} - \mu \gamma \frac{\partial \vec{H}}{\partial t} - \mu \varepsilon \frac{\partial ^2 \vec{H}}{\partial t ^2} &= - \rot \vec{J} _{ext}.
 \end{align}
 \end{subequations}
-Výše uvedené nehomogenní rovnice \ref{DHnehom} přejdou při $\vec{J} _{ext} = 0$ a $\rho = 0$ do rovnic homogenních stejně jako \ref{homovlnovkaE} a \ref{homovlnovkaB} (pravá strana rovnic bude rovna 0).
+Výše uvedené nehomogenní rovnice \ref{DHnehom} přejdou při $\vec{J} _{ext} = 0$ a $\rho = 0$ do rovnic homogenních stejně jako \ref{homovlnovkaE} a \ref{homovlnovkaB} (pravá strana rovnic bude rovna 0). \cite{Mayer}
 
 
 
@@ -408,7 +419,7 @@ Rovnici \ref{HelmD} následně vynásobíme konstantou $\varepsilon$ a rovnici \
 \triangle \faz{\vec{H}} + \faz{k} ^2 \faz{\vec{H}} &= - \rot \faz{\vec{J}} _{ext} .
 \end{align}
 \end{subequations}
-Výše uvedené nehomogenní rovnice \ref{HelmholtzDH} přejdou při $\faz{\vec{J}} _{ext} = 0$ a $\rho = 0$ do rovnic homogenních stejně jako \ref{homohelmholtze} a \ref{homohelmholtzb} (pravá strana rovnic bude rovna 0).
+Výše uvedené nehomogenní rovnice \ref{HelmholtzDH} přejdou při $\faz{\vec{J}} _{ext} = 0$ a $\rho = 0$ do rovnic homogenních stejně jako \ref{homohelmholtze} a \ref{homohelmholtzb} (pravá strana rovnic bude rovna 0). \cite{Kastner}
 
 Konstanta $k ~\mathrm{[m ^{-1}]}$, zavedená výše, je definována jako konstanta šíření, nebo také  vlnové číslo. Odráží existenci materiálových parametrů prostředí, ve kterém se vlna šíří. Konstanta je závislá na permitivitě, permeabilitě, konduktivitě a také na frekvenci. Pro prostředí s nulovou vodivostí $\gamma$ rovnice vypadá takto:
 \begin{equation}
@@ -478,7 +489,9 @@ Ve volném prostoru je vlnová impedance rovna tzv. vlastní (intrinsic) impedan
 \newpage
 \subsection{Šíření vln pomocí vlnovodů a vedení}
 \subsubsection{Vlnovody}
-Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jednom ze svých projektů. Zabývá se možností šíření elektromagnetických vln uvnitř duté trubice. A tuto myšlenku odmítá. Věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem. \cite{Pozar2}
+První myšlenka zabývající se možností šíření elektromagnetických vln uvnitř duté trubice vznikla již roku 1893 a stál za ní britský matematik a fyzik Oliver Heaviside. Tuto myšlenku nicméně vzápětí odmítá, protože věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem. \cite{Pozar2}
+
+%Píše se rok 1893 a britský matematik a fyzik Oliver Heaviside pracuje na jednom ze svých projektů. Zabývá se možností šíření elektromagnetických vln uvnitř duté trubice. A tuto myšlenku odmítá. Věří, že elektromagnetickou energii nelze přenášet bez pomoci dvou vodičů. O čtyři roky později, roku 1897, tuto otázku přezkoumává jiný britský fyzik, Lord Reyleigh. A matematicky dokazuje, že šíření elektromagnetických vln dutou trubicí je možné, a to jak pro vlnovody s kruhovým, tak pravoúhlým průřezem. \cite{Pozar2}
 
 \begin{figure}[h] 
 \begin{center}
@@ -712,7 +725,7 @@ j \beta H_y &= j \omega \varepsilon E_x
 \\
 \frac{\beta}{\omega \varepsilon} &= \frac{E_x}{H_y}
 \\
-\frac{E_x}{H_y} &= \frac{\omega \sqrt{\mu \varepsilon}}{\omega \varepsilon} = \sqrt{\dfrac{\mu}{\varepsilon}} = \eta .
+\frac{E_x}{H_y} &= \frac{\omega \sqrt{\mu \varepsilon}}{\omega \varepsilon} = \sqrt{\dfrac{\mu}{\varepsilon}} .
 \end{align}
 \end{subequations}
 Druhá vychází z \ref{maxpart1}:
@@ -725,7 +738,7 @@ j \beta E_x &= - j \omega \mu H_y
 \\
 \frac{E_y}{H_x} &= - \frac{\omega \mu}{\beta}
 \\
-- \frac{E_y}{H_x} &= \frac{\omega \mu}{\omega \sqrt{\mu \varepsilon}} = \sqrt{\dfrac{\mu}{\varepsilon}} = \eta .
+- \frac{E_y}{H_x} &= \frac{\omega \mu}{\omega \sqrt{\mu \varepsilon}} = \sqrt{\dfrac{\mu}{\varepsilon}} .
 \end{align}
 \end{subequations}
 Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
@@ -805,41 +818,191 @@ j \beta H_y &= j \omega \varepsilon E_x
 \frac{E_x}{H_y} &= \frac{\beta}{\omega \varepsilon} ,
 \end{align}
 \end{subequations}
-z čehož plyne, že $Z_{TM}$ je frekvenčně závislé.
+z čehož plyne, že $Z_{TM}$ je frekvenčně závislé. \cite{Pozar4}
 
 
 \newpage
 \section{Numerické řešení elektromagnetického pole}
-
-
-
-\subsection{Metoda konečných prvků}
-\label{FEM}
+\label{numerika}
 Reálné fyzikální problémy bývají většinou natolik komplikované, že pouze málo z nich lze vyřešit pomocí analytických metod. Důvodem pro to nejčastěji je, že parciální diferenciální rovnice není lineární, řešená oblast je příliš složitá nebo je prostředí nehomogenní popř. anizotropní. Potom je nutné použít některou z numerických metod řešení.
 
 První z nich je metoda konečných diferencí (FDM - Finite Difference Method). Jedná se o velmi jednoduchou a účinnou metodu pro řešení parciálních diferenciálních rovnic, představenou poprvé již v roce 1920 A. Thomem a to pod názvem metoda čtverců. Metoda konečných diferencí nebyla původně koncipována na aplikaci na elektromagnetické pole - prvně byla využita k řešení nehomogenní hydrodynamické rovnice, ale její všestrannost umožnila její rozšíření pro řešení dalších fyzikálních polí. Základní myšlenkou této metody je nahrazení derivací konečnými diferencemi a převedení na soustavu algebraických rovnic. \cite{ATE}
 
 Druhou numerickou metodou je metoda konečných prvků (FEM - Finite Element Method). Nevýhodou této metody oproti metodě konečných diferencí je, že je náročnější na programovou implementaci. Její pozitiva jako jsou její výkonnost a univerzálnost však toto negativum převažují a jedná se proto o nejpoužívanější numerickou metodu. 
 
-Základy metody konečných prvků byly položeny v 1. polovině 20. století v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. S průběhem času přibývaly problémy, které lze metodou konečných prvků řešit až v současnosti lze metodu použít pro téměř všechny fyzikální pole.
+Základy metody konečných prvků byly položeny v 1. polovině 20. století v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. S průběhem času přibývaly problémy, které lze metodou konečných prvků řešit až v současnosti lze metodu použít pro téměř všechny fyzikální pole. \cite{FEM}
 
-Jedná se o numerickou techniku, jejímž cílem je nalezení řešení okrajové úlohy. Používá variační metody pro minimalizaci chybové funkce a výpočet nejlepšího řešení. Podstata metody konečných prvků spočívá v rozdělení řešené oblasti na elementy, na kterých je řešení aproximováno polynomy n-tého stupně. Rozdělení oblasti (diskretizace) na menší část přináší několik výhod: přesnější vyjádření složité geometrie, zařazení rozdílných materiálových vlastností, jednoduché znázornění celkového řešení a zachycení lokálních účinků. 
 
-\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
-\begin{center}
-\includegraphics[width=10cm]{grid.png} %příkaz width zmenší délku na zadaný rozměr fyzického papíru a zachová proporce
-\caption{Síť vygenerovaná v programu Agros2D} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
-\end{center}
-\end{figure}
+\subsection{Metoda konečných prvků}
+\label{FEM}
+Metoda konečných prvků se nejčastěji využívá pro řešení okrajových úloh tedy problémů popsaných  obyčejnými nebo parciálními diferenciálními rovnicemi doplněnými o okrajové podmínky.
+Většinu jevů v elektromagnetickém poli je možné popsat operátorovou rovnicí:
+\begin{equation}
+\mathcal{L}u(\vec{x}) = f,  \qquad \vec{x} \in \Omega,
+\label{eq:operator_equation}
+\end{equation} 
+kde $\mathcal{L}$ je lineární operátor, $u$ je neznámé řešení, $f$ je známá funkce. Rovnici \ref{eq:operator_equation} je třeba doplnit o příslušné okrajové podmínky.
 
-Jednotlivé kroky řešení problému pomocí metody konečných prvků by se daly shrnout takto:
+Například pro Laplaceovu rovnici lze operátor $\mathcal{L}$ vyjádřit ve tvaru:
+\begin{equation}
+\mathcal{L} = \Delta = \frac{\partial^2}{\partial x^2} +   \frac{\partial^2}{\partial y^2},
+\label{eq:laplace_equation}
+\end{equation}
+Okrajové podmínky potom mohou být trojího druhu:
 \begin{itemize}
-\item Rozdělení oblasti diskretizační mřížkou  na jednotlivé elementy (konečné prvky)
-\item Vyjádření rovnic pro jednotlivé elementy (prvky)
-\item Doplnění okrajovými podmínkami (Dirichletovou a Neumannovou)
-\item Zasazení všech sad rovnic všech elementů do jedné soustavy
-\item Výpočet soustavy algebraických rovnic
-\end{itemize}
+\item \emph{Dirichletova okrajová podmínka} - na hranici je známa přímo hodnota řešení 
+\begin{equation}
+u(\vec{x}) = f(\vec{x}), 
+\end{equation}
+kde $f$ je známá funkce definovaná na hranici $\partial \Omega$ oblasti $\Omega$.
+\item \emph{Neumannova okrajová podmínka} - na hranici je známa derivace ve směru vnější normály    
+\begin{equation}
+\frac{\partial u(\vec{x})}{\partial \vec{n}} = f(\vec{x}), 
+\end{equation}
+kde $f$ je známá funkce definovaná na hranici $\partial \Omega$ oblasti $\Omega$.
+\item \emph{Newtonova okrajová podmínka} je kombinací předchozích dvou podmínek
+\begin{equation}
+\frac{\partial u(\vec{x})}{\partial \vec{n}} + u(\vec{x}) = f(\vec{x}). 
+\end{equation}
+\end{itemize}   
+Metoda konečných prvků vychází z variačních principů a teorie zobecněných a slabých řešení.
+Slabým řešením rovnice \ref{eq:operator_equation} se rozumí taková funkce $u_0$, pro kterou je splněna integrální identita:
+\begin{equation}
+\langle\langle u, v \rangle\rangle = \langle f, v \rangle,	
+\label{eq:weak_formulation}
+\end{equation}
+pro všechna $v$ z nějakého vhodně zvoleného prostoru. Funkce $v$ se obvykle nazývají testovací funkce. Symbol $\langle\langle \cdot, \cdot \rangle\rangle$ v rovnici \ref{eq:weak_formulation} označuje bilineární formu příslušnou operátoru $\mathcal{L}$, symbol $\langle \cdot, \cdot \rangle$ formu lineární (skalární součin známé funkce $f(\vec{x})$ s testovací funkcí $v$.
+ 
+Rovnice \ref{eq:weak_formulation} se nazývá \emph{slabá formulace} původní rovnice \ref{eq:operator_equation}. V publikaci \cite{Rektorys} jsou uvedeny věty, které shrnují předpoklady za jakých lze zaručit existenci a jednoznačnost slabého řešení a za jakých podmínek je slabé řešení ekvivalentní silnému řešení rovnice \ref{eq:operator_equation}.
+
+Za předpokladu operátoru $\mathcal{L}$ definovaného rovnicí a za předpokladu Dirichletovy okrajové podmínky:
+\begin{equation}
+u(x,y) = 0, \qquad \forall \quad [x, y] \in \partial\Omega,  
+\label{eq:operator_equation_1}
+\end{equation}
+lze obě strany rovnice \ref{eq:weak_formulation} vynásobit testovací funkcí a integrovat přes oblast~$\Omega$:
+\begin{equation}
+\int_\Omega \Delta u \cdot v \dif \Omega =  
+\int_\Omega v f \dif \Omega.
+\label{eq:weak_formulation_1}
+\end{equation}
+Tuto rovnici lze po aplikaci Greenovy věty dále upravit:
+\begin{equation}
+\int_\Omega \nabla u \cdot \nabla v \dif \Omega = \int_\Omega v f \dif \Omega,
+\label{eq:weak_formulation_2}
+\end{equation} 
+kde 
+\begin{equation}
+\langle\langle u, v \rangle\rangle = \int_\Omega \nabla u \cdot \nabla v \dif \Omega
+\end{equation}
+je příslušná bilineární forma a  
+\begin{equation}
+\langle f,v \rangle = \int_\Omega v f \dif \Omega
+\end{equation}
+lineární forma. V této práci jsou obě formy stručně nazývány \emph{slabé formy}.
+Metoda konečných prvků vychází z Galarkinovy metody. Funkce, kterými se aproximuje řešení jsou ze stejného prostoru jako testovací funkce. 
+Přesné řešení $u$ je tedy aproximováno přibližným řešením, které vznikne lineární kombinací bázových funkcí:
+\begin{equation}
+\hat{u}(\vec{x}) = c_1 \phi_1(\vec{x}) + c_2 \phi_2(\vec{x}) +  \dots c_n \phi_n(\vec{x}).
+\end{equation}
+Po dosazení přibližného řešení do rovnice \ref{eq:weak_formulation_2},  postupném dosazení všech bázových funkcí $\phi_i$ za $v$ a  vyčíslení integrálů získáme soustavu lineárních rovnic pro neznámé koeficienty 
+$c_1, c_2, \dots , c_n$. 
+Z požadavku aby rovnice \ref{eq:operator_equation_1} platila pro všechny bázové funkce lze získat soustavu rovnic:
+\begin{equation}
+\int_\Omega \nabla \hat{u}(\vec{x}) \cdot \nabla \phi_1 \dif \Omega = \int_\Omega \phi_1 f \dif \Omega,
+\end{equation}
+\begin{displaymath}
+\int_\Omega \nabla \hat{u}(\vec{x}) \cdot \nabla \phi_2 \dif \Omega = \int_\Omega \phi_2 f \dif \Omega,
+\end{displaymath}
+\begin{displaymath}
+\vdots
+\end{displaymath}
+\begin{displaymath}
+\int_\Omega \nabla \hat{u}(\vec{x}) \cdot \nabla \phi_n \dif \Omega = \int_\Omega \phi_n f \dif \Omega.
+\end{displaymath}
+Po dosazení za přibližné řešení přejde soustava rovnic do tvaru:
+\begin{equation}
+\int_\Omega \nabla (c_1 \phi_1 + c_2 \phi_2 +  \dots c_n ) \cdot \nabla \phi_1 \dif \Omega = \int_\Omega \phi_1 f \dif \Omega,
+\end{equation}
+\begin{displaymath}
+\int_\Omega \nabla (c_1 \phi_1 + c_2 \phi_2 +  \dots c_n ) \cdot \nabla \phi_2 \dif \Omega = \int_\Omega \phi_2 f \dif \Omega,
+\end{displaymath}
+\begin{displaymath}
+\vdots
+\end{displaymath}
+\begin{displaymath}
+\int_\Omega \nabla (c_1 \phi_1 + c_2 \phi_2 +  \dots c_n ) \cdot \nabla \phi_n \dif \Omega = \int_\Omega \phi_n f \dif \Omega
+\end{displaymath}
+a po úpravě: 
+\begin{displaymath}
+ c_1 \int_\Omega \nabla \phi_1 \cdot \nabla \phi_1 \dif \Omega  +   
+ c_2 \int_\Omega \nabla \phi_1 \cdot \nabla \phi_2 \dif \Omega   
+ + \dots +
+ c_n \int_\Omega \nabla \phi_1 \cdot \nabla \phi_n \dif \Omega   
+ = \int_\Omega \phi_1 f \dif \Omega,
+\end{displaymath}
+\begin{displaymath}
+ c_1 \int_\Omega \nabla \phi_2 \cdot \nabla \phi_1 \dif \Omega  +   
+ c_2 \int_\Omega \nabla \phi_2 \cdot \nabla \phi_2 \dif \Omega   
+ + \dots +
+ c_n \int_\Omega \nabla \phi_2 \cdot \nabla \phi_n \dif \Omega   
+ = \int_\Omega \phi_2 f \dif \Omega,
+\end{displaymath}
+\begin{displaymath}
+\vdots
+\end{displaymath}
+\begin{equation}
+ c_1 \int_\Omega \nabla \phi_n \cdot \nabla \phi_1 \dif \Omega  +   
+ c_2 \int_\Omega \nabla \phi_n \cdot \nabla \phi_2 \dif \Omega   
+ + \dots +
+ c_n \int_\Omega \nabla \phi_n \cdot \nabla \phi_n \dif \Omega   
+ = \int_\Omega \phi_n f \dif \Omega.
+\label{eq:discrete_problem}
+\end{equation}
+Soustavu rovnic \ref{eq:discrete_problem} lze snadno přepsat do maticové podoby: 
+\begin{equation}
+\left[\begin{array}{cccc}
+a_{11} & a_{12} & \dots &  a_{1n} \\
+a_{21} & a_{22} & \dots &  a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \dots &  a_{nn} \\
+\end{array}\right]
+\left[\begin{array}{c}
+c_1 \\
+c_2 \\
+\vdots \\
+c_n
+\end{array}\right] = .
+\left[\begin{array}{c}
+b_1 \\
+b_2 \\
+\vdots \\
+b_n
+\end{array}\right],
+\end{equation}
+kde
+\begin{equation}
+a_{ij} = \int_\Omega \nabla \phi_i \cdot \nabla \phi_j \dif \Omega, \qquad b_i =  \int_\Omega \phi_i f \dif \Omega.
+\end{equation}
+Řešením této soustavy rovnic jsou koeficienty $c_1, c_2 \dots c_n$, které umožňují určit hodnotu řešení v libovolném bodu oblasti $\Omega$.
+
+%Jedná se o numerickou techniku, jejímž cílem je nalezení řešení okrajové úlohy. Používá variační metody pro minimalizaci chybové funkce a výpočet nejlepšího řešení. Podstata metody konečných prvků spočívá v rozdělení řešené oblasti na elementy, na kterých je řešení aproximováno polynomy n-tého stupně. Rozdělení oblasti (diskretizace) na menší část přináší několik výhod: přesnější vyjádření složité geometrie, zařazení rozdílných materiálových vlastností, jednoduché znázornění celkového řešení a zachycení lokálních účinků. 
+%
+%\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
+%\begin{center}
+%\includegraphics[width=10cm]{grid.png} %příkaz width zmenší délku na zadaný rozměr fyzického papíru a zachová proporce
+%\caption{Síť vygenerovaná v programu Agros2D} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
+%\end{center}
+%\end{figure}
+%
+%Jednotlivé kroky řešení problému pomocí metody konečných prvků by se daly shrnout takto:
+%\begin{itemize}
+%\item Rozdělení oblasti diskretizační mřížkou  na jednotlivé elementy (konečné prvky)
+%\item Vyjádření rovnic pro jednotlivé elementy (prvky)
+%\item Doplnění okrajovými podmínkami (Dirichletovou a Neumannovou)
+%\item Zasazení všech sad rovnic všech elementů do jedné soustavy
+%\item Výpočet soustavy algebraických rovnic
+%\end{itemize}
 
 %Výhodou metody konečných prvků je, že je numericky stabilní. To znamená, že chyba obsažená na vstupu se během výpočtu nekumuluje a nezpůsobuje znehodnocení výstupu. Během druhého kroku, zmíněného výše, jsou rovnice elementů jednoduchými rovnicemi lokálně aproximujícími původní komplexní rovnici, která často bývá parciální diferenciální rovnicí. Pro vysvětlení procesu aproximace bývá metoda konečných prvků často považována za speciální případ Galerkinovy metody. Tento proces, matematicky řečeno, spočívá ve zkonstruování integrálu unitárního prostoru zbytkové a váhové funkce a nastavení integrálu na nulu. Zjednodušeně jde o postup, který minimalizuje chybu aproximace nasazením testovacích funkcí do parciálních diferenciálních rovnic. Residual (zbytek) je chyba způsobená testovací funkcí a váhové funkce jsou polynomiální aproximací promítající tento residual (zbytek). Tento proces eliminuje všechny prostorové derivace z parciální diferenciální rovnice a tak parciální diferenciální rovnici lokálně aproximuje se sadou algebraických rovnic pro problémy v ustáleném stavu a se sadou obyčejných diferenciálních rovnic pro přechodné problémy.
 %
@@ -850,7 +1013,7 @@ Jednotlivé kroky řešení problému pomocí metody konečných prvků by se da
 
 
 \subsection{Agros 2D}
-Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody hp-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje předchozí kapitola \ref{FEM}. \cite{hpFEM}
+Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody \textit{hp}-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje předchozí kapitola \ref{FEM}. \cite{hpFEM}
 
 Modelování v programu Agros2D vypadá ve stručnosti takto: Nejprve se v \textbf{preprocesoru} vytvoří geometrie objektu, nadefinují se materiálové parametry a přiřadí se okrajové podmínky. Poté \textbf{procesor}, výpočetní část založená na metodě konečných prvků (\textit{hp}-FEM) provede vlastní výpočet. Výsledné řešení je vyhodnoceno a zobrazeno v \textbf{postprocesoru}, kde si uživatel může volit různé parametry vizualizace vypočtených dat jako barevné mapy, kontury, vektorová pole, grafy veličin a lokální a integrální veličiny. 
 
@@ -870,12 +1033,13 @@ Pro ukázku je níže znázorněn výstup programu při modelování čtvercové
 
 \newpage
 \section{Návrh modulu pro VF pole}
-Cílem návrhu je vytvoření modulu psaného v jazyce XML sloužícího jako plugin do programu Agros2D. Tento modul obsahuje upravené předpisy a rovnice potřebné pro výpočet veličin pole, ve kterém se dominantně šíří transverzálně magnetické (TM) vlny. Na základě těchto rovnic potom vlastní engine programu Agros2D, knihovna Hermes2D a algoritmus hp fem, vypočítají potřebné veličiny šířící se vlny v jednotlivých bodech zdiskretizovaného prostředí a vytvoří modelové rozložení elektromagnetického pole.
+Cílem návrhu je vytvoření modulu psaného v jazyce XML sloužícího jako plugin do programu Agros2D. Tento modul obsahuje upravené předpisy a rovnice potřebné pro výpočet veličin pole, ve kterém se dominantně šíří transverzálně magnetické (TM) vlny. Na základě těchto rovnic potom vlastní jádro programu Agros2D, knihovna Hermes2D a algoritmus \textit{hp}-FEM, vypočítají potřebné veličiny.
 
 \subsection{Slabé formulace Helmholtzových rovnic}
+\label{weakforms}
 Prostředí programu Agros2D předpokládá pouze určité typy a způsoby šíření vln vedoucí k zjednodušení modelové situace. Agros2D simuluje pole v 2D prostoru, v třetím rozměru se předpokládá, že je pole rozloženo rovnoměrně nebo symetricky k zakreslené geometrii. Předpokladem je také šíření harmonického pole. Proto je ideální použití Helmholtzovy rovnice (\ref{HelmholtzEnehomo} - Helmholtzova rovnice pro fázor vektoru $\faz{\vec{E}}$), která umožňuje jednodušší řešení (ale použít lze i vlnovou rovnici).
 
-U Helmholtzovi rovnici dále předpokládáme rovnoměrné rozložení náboje $\rho$. Z toho plyne, že člen $\grad \! \! (\rho / \varepsilon)$ rovnice \ref{HelmholtzEnehomo} bude roven nule. Pro planární problém budeme předpokládat šíření vln v kartézské souřadnicové soustavě ve směru osy $z$. Pro osově symetrický systém bude předpokladem šíření vln v polární souřadnicové soustavě mající pouze tangenciální složku.
+U Helmholtzovy rovnici dále předpokládáme rovnoměrné rozložení náboje $\rho$. Z toho plyne, že člen $\grad \! \! (\rho / \varepsilon)$ rovnice \ref{HelmholtzEnehomo} bude roven nule. Pro planární problém budeme předpokládat šíření vln v kartézské souřadnicové soustavě ve směru osy $z$. Pro osově symetrický systém bude předpokladem šíření vln v polární souřadnicové soustavě mající pouze tangenciální složku.
 
 Zavedením těchto zjednodušujících předpokladů se Helmholtzova rovnice \ref{HelmholtzEnehomo} transformuje do tvaru:
 \begin{equation}
@@ -1531,6 +1695,7 @@ Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Př�
 
 
 \subsection{Okrajové podmínky}
+\label{boundary}
 Okrajové podmínky předepisují chování funkce, nebo derivace funkce, na hranicích řešené oblasti. Těmito body jsou okraje oblasti, na které danou rovnici řešíme. Při řešení parciálních diferenciálních rovnic vystupují obvykle tři typy okrajových podmínek - Dirichletova okrajová podmínka, Neumannova okrajová podmínka a Newtonova okrajová podmínka.
 
 
@@ -1619,7 +1784,7 @@ Výraz na levé straně lze také vyjádřit pomocí gradientu:
 A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
 \begin{equation}
 \label{gradneumann}
-\frac{\partial \faz{E}_z}{\partial \vec{n}} = grad \faz{E}_z \cdot \vec{n} .
+\frac{\partial \faz{E}_z}{\partial \vec{n}} = \grad \faz{E}_z \cdot \vec{n} .
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{gradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
@@ -1706,7 +1871,7 @@ Výraz na levé straně lze také vyjádřit pomocí gradientu:
 A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
 \begin{equation}
 \label{Hgradneumann}
-\frac{\partial \faz{H}_z}{\partial \vec{n}} = grad \faz{H}_z \cdot \vec{n} .
+\frac{\partial \faz{H}_z}{\partial \vec{n}} = \grad \faz{H}_z \cdot \vec{n} .
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{Hgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
@@ -1786,7 +1951,7 @@ Výraz na levé straně lze také vyjádřit pomocí gradientu:
 A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
 \begin{equation}
 \label{ECgradneumann}
-\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} = grad \faz{E} _{\varphi} \cdot \vec{n} .
+\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} = \grad \faz{E} _{\varphi} \cdot \vec{n} .
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{ECgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
@@ -1866,7 +2031,7 @@ Výraz na levé straně lze také vyjádřit pomocí gradientu:
 A samotná Neumannova okrajová podmínka může být též rozepsána pomocí gradientu:
 \begin{equation}
 \label{HCgradneumann}
-\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} = grad \faz{H} _{\varphi} \cdot \vec{n} .
+\frac{\partial \faz{H} _{\varphi}}{\partial \vec{n}} = \grad \faz{H} _{\varphi} \cdot \vec{n} .
 \end{equation}
 To znamená, že na levou stranu rovnice \ref{HCgradneumann} můžeme dosadit výraz představující Neumannovu okrajovou podmínku:
 \begin{equation}
@@ -2360,6 +2525,7 @@ Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLHs}.
 
 
 \subsection{Postprocessor - dopočet různých veličin pole}
+\label{postprocesor}
 Postprocessing v programu Agros2D umožňuje dopočíst a graficky zobrazit další veličiny pole z veličin již získaných. Vztahy pro dopočet dalších veličin i interpretaci hodnot již získaných musí být implementovány v XML modulu, resp. jeho podmodulu postprocessor.
 
 V XML souboru parsovaném do knihovny Agrosu jsou v rovnicích použitých v postprocessoru použity následující symboly:
@@ -2486,7 +2652,7 @@ Programový XML kód použitý v modulu je vyjádřen v Příloze 2 v kapitole \
 
 
 \subsubsection{Poyntingův vektor}
-Poyntingův vektor $\faz{\vec{N}}$ $[W / m ^2]$ představuje plošnou hustotu výkonu na řešené oblasti a je vyjádřen jako vektorový součin intenzity elektrického pole $\faz{\vec{E}}$ a intenzity magnetického pole $\faz{\vec{H}}$:
+Poyntingův vektor $\faz{\vec{N}}$ $\mathrm{[W / m ^2]}$ představuje plošnou hustotu výkonu na řešené oblasti a je vyjádřen jako vektorový součin intenzity elektrického pole $\faz{\vec{E}}$ a intenzity magnetického pole $\faz{\vec{H}}$:
 \begin{equation}
 \label{poynting}
 \faz{\vec{N}} = \faz{\vec{E}} \times \faz{\vec{H}} .
@@ -2577,81 +2743,10 @@ Programový XML kód použitý pro zápis Poyntingova vektoru do postprocessoru 
 
 
 \subsection{Ilustrační příklad}
-Pro ukázku funkčnosti a možností vyvinutého modulu budou prezentovány dva příklady. První, komplexnější, prezentuje reálný model kónické antény v osové symetrii. Druhý, spíše teoretický, je použit na porovnání výsledku s programem Comsol a ověření správnosti řešení.
-
-\subsubsection{Kónická anténa}
-Kónické antény jsou díky jejich širokopásmové charakteristice a relativní jednoduchosti vhodné pro mnoho aplikací. Rotační symetrie nám umožňuje modelovat tento problém v 2D. Modelování v 2D má navíc ještě tu výhodu, že lze použít velmi jemnou mřížku a tím dosáhnout velké přesnosti.
-
-Geometrie antény spolu s aplikovanou mřížkou je znázorněna níže na obr. \ref{meshed}. 
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{ConicalGeometry.png} 
-\caption{Geometrie antény s aplikovanou mřížkou} 
-\label{meshed}
-\end{center}
-\end{figure}
-
-Na vnější obvod půlkruhu (půlkruh je oblastí ve které je modelováno šíření vln) je aplikována \textbf{Impedance Boundary Condition} s hodnotou $Z_0 = 377 ~ \Omega$. Na okraj představující příčnou část půlkruhu a přiléhající k ose osové symetrie je aplikována \textbf{Dirichletova okrajová podmínka} s hodnotou $H_r = 0 ~ A.m^{-1}$, $H_i = 0 ~ A.m^{-1}$ tzn. také tzv. Perfect Magnetic Conductor. Materiálem uvnitř půlkruhu je vzduch. To znamená $\varepsilon _r = 1$, $\mu _r = 1$, $\gamma = 0 ~ S.m^{-1}$. Na okrajích samotné kónické antény je aplikována \textbf{Neumannova okrajová podmínka} s hodnotou $E_r = 0 ~ V.m^{-1}$, $E_i = 0 ~ V.m^{-1}$ tzn. také Perfect Electric Conductor. Neumannova okrajová podmínka je též aplikována na podélných stranách přívodního koaxiálního kabelu. Na vstupu tohoto koaxiálního kabelu je zdroj magnetického pole zadaný Dirichletovou okrajovou podmínkou s hodnotami $H_r = 100 ~ A.m^{-1}$, $H_i = 50 ~ A.m^{-1}$. Materiálové konstanty tohoto kabelu jsou $\varepsilon _r = 2,07$, $\mu _r = 1$, $\gamma = 0 ~ S.m^{-1}$.
-
-Obrázky \ref{Hreal}, \ref{Himag} a \ref{absH} znázorňují rozložení intenzity magnetického pole $\vec{H}$. Obrázek \ref{Hreal} znázorňuje reálnou složku $\vec{H _{real}}$, obrázek \ref{Himag} imaginární složku $\vec{H _{imag}}$ a obrázek \ref{absH} absolutní hodnotu $H$.
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{ConicalHr.png} 
-\caption{Kónická anténa - rozložení složky $\vec{H _{real}}$} 
-\label{Hreal}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{ConicalHi.png} 
-\caption{Kónická anténa - rozložení složky $\vec{H _{imag}}$} 
-\label{Himag}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{ConicalH.png} 
-\caption{Kónická anténa - rozložení absolutní hodnoty $H$} 
-\label{absH}
-\end{center}
-\end{figure}
-
-Díky postprocesoru je možné zobrazit i další veličiny. Intenzitu elektrického pole lze získat pomocí \ref{max1fharm} (1. Maxwellovy rovnice) z již vypočtené intenzity magnetického pole. Obrázek \ref{absE} znázorňuje rozložení absolutní hodnoty intenzity elektrického pole $E$.
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{58.jpg} 
-\caption{Kónická anténa - rozložení absolutní hodnoty $E$} 
-\label{absE}
-\end{center}
-\end{figure}
-
-Pomocí postprocessingu lze získat též zobrazení Poyntingova vektoru. Hodnota tohoto vektoru se vypočte jako vektorový součin intenzity elektrického pole $\faz{\vec{E}}$ a intenzity magnetického pole $\faz{\vec{H}}$. Grafický výstup z Agrosu pro Poyntingův vektor znázorňuje obrázek \ref{Poynting}. 
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{ConicalPoynting.png} 
-\caption{Kónická anténa - zobrazení Poyntingova vektoru} 
-\label{Poynting}
-\end{center}
-\end{figure}
-
-Agros umožňuje také zobrazení postprocessingu v 3D. Díky tomuto pohledu lze vidět nejen jak vypadá reálný model, ale v případě osové symetrie také reálné rozložení veličin v trojrozměrném prostoru. Model kónické antény s vykreslením skalárního pole proměnné $H _{z~real}$ ilustruje obrázek \ref{Con3D}.
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=8.7cm]{Conical3D.png} 
-\caption{Model kónické antény s vykreslením skalárního pole proměnné $H _{z~real}$} 
-\label{Con3D}
-\end{center}
-\end{figure} 
-
+Pro ukázku funkčnosti a možností vyvinutého modulu budou prezentovány dva příklady. První, spíše teoretický, je použit na porovnání výsledku s programem Comsol a ověření správnosti řešení. Druhý, komplexnější, prezentuje reálný model kónické antény v osové symetrii. 
 
 \subsubsection{Srovnání modelu vytvořeného v Agrosu s modelem v Comsolu}
+\label{srovnani}
 Pro ověření funkčnosti vytvořeného modulu a správnosti vypočtených rovnic je porovnáno řešení čtvercového modelu v programu Agros s řešením v programu Comsol, které je považováno za referenční. Problém je modelován v 2D v kartézském souřadném systému (planárně).
 
 Geometrie čtvercového modelu spolu s aplikovanou mřížkou v Agrosu je znázorněna na obr. \ref{meshedSQ}. 
@@ -2664,7 +2759,7 @@ Geometrie čtvercového modelu spolu s aplikovanou mřížkou v Agrosu je znázo
 \end{center}
 \end{figure}
 
-Na spodní a horní stranu čtvercového modelu je aplikována Neumannova okrajová podmínka s hodnotou $E_r = 0 ~ V.m^{-1}$, $E_i = 0 ~ V.m^{-1}$ tzn. Perfect Electric Conductor. Na pravý okraj čtvercového modelu je aplikována Dirichletova okrajová podmínka s hodnotou $H_r = 0 ~ A.m^{-1}$, $H_i = 0 ~ A.m^{-1}$ tzn. také Perfect Magnetic Conductor. Na levý okraj je také aplikována Dirichletova okrajová podmínka s hodnotou $H_r = 1 ~ A.m^{-1}$, $H_i = 0 ~ A.m^{-1}$ (nenulová, sloužící jako zdroj magnetického pole). Materiálem uvnitř modelu je vzduch. To znamená $\varepsilon _r = 1$, $\mu _r = 1$, $\gamma = 0 ~ S.m^{-1}$. Rozměry objektu jsou 0,5 m na 0,5 m. Použitá frekvence činí 1 Ghz. 
+Na spodní a horní stranu čtvercového modelu je aplikována Neumannova okrajová podmínka s hodnotou $E_r = 0 ~ \mathrm{V.m^{-1}}$, $E_i = 0 ~ \mathrm{V.m^{-1}}$ tzn. Perfect Electric Conductor. Na pravý okraj čtvercového modelu je aplikována Dirichletova okrajová podmínka s hodnotou $H_r = 0 ~ \mathrm{A.m^{-1}}$, $H_i = 0 ~ \mathrm{A.m^{-1}}$ tzn. také Perfect Magnetic Conductor. Na levý okraj je také aplikována Dirichletova okrajová podmínka s hodnotou $H_r = 1 ~ \mathrm{A.m^{-1}}$, $H_i = 0 ~ \mathrm{A.m^{-1}}$ (nenulová, sloužící jako zdroj magnetického pole). Materiálem uvnitř modelu je vzduch. To znamená $\varepsilon _r = 1$, $\mu _r = 1$, $\gamma = 0 ~ \mathrm{S.m^{-1}}$. Rozměry objektu jsou 0,5 m na 0,5 m. Použitá frekvence činí 1 Ghz. 
 
 Obrázky \ref{SQaH} a \ref{SQcH} znázorňují rozložení intenzity magnetického pole $\vec{H}$. Obrázek \ref{SQaH} znázorňuje absolutní hodnotu $H$ na objektu modelovaném v Agrosu, obrázek \ref{SQcH} absolutní hodnotu $H$ na objektu modelovaném v Comsolu.
 
@@ -2706,254 +2801,325 @@ Je zřejmé že objekt modelovaný v Agrosu se neliší od stejného objektu mod
 
 
 
-%%Stránka pro zkoušení vkládání obrázků%%
-\clearpage
-\section{Zatím moje pokusy}
-\subsection{Vkládání obrázků}
-\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
+
+\subsubsection{Kónická anténa}
+\label{antena}
+Kónické antény jsou díky jejich širokopásmové charakteristice a relativní jednoduchosti vhodné pro mnoho aplikací. Rotační symetrie nám umožňuje modelovat tento problém v 2D. Modelování v 2D má navíc ještě tu výhodu, že lze použít velmi jemnou mřížku a tím dosáhnout velké přesnosti.
+
+Geometrie antény spolu s aplikovanou mřížkou je znázorněna níže na obr. \ref{meshed}. 
+
+\begin{figure}
 \begin{center}
-\includegraphics{Obrzkusmo.pdf}
-\caption{Obrázek v pdf kreslený v ipe} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
-\end{center}
-\end{figure}
-\vspace*{10mm}
-\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
-\begin{center}
-\includegraphics[width=15cm]{58.jpg} %příkaz width zmenší délku na zadaný rozměr fyzického papíru a zachová proporce
-\caption{Fotka v jpg} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
+\includegraphics[width=8.7cm]{ConicalGeometry.png} 
+\caption{Geometrie antény s aplikovanou mřížkou} 
+\label{meshed}
 \end{center}
 \end{figure}
 
+Na vnější obvod půlkruhu (půlkruh je oblastí ve které je modelováno šíření vln) je aplikována \textbf{Impedance Boundary Condition} s hodnotou $Z_0 = 377 ~ \mathrm{\Omega}$. Na okraj představující příčnou část půlkruhu a přiléhající k ose osové symetrie je aplikována \textbf{Dirichletova okrajová podmínka} s hodnotou $H_r = 0 ~ \mathrm{A.m^{-1}}$, $H_i = 0 ~ \mathrm{A.m^{-1}}$ tzn. také tzv. Perfect Magnetic Conductor. Materiálem uvnitř půlkruhu je vzduch. To znamená $\varepsilon _r = 1$, $\mu _r = 1$, $\gamma = 0 ~ \mathrm{S.m^{-1}}$. Na okrajích samotné kónické antény je aplikována \textbf{Neumannova okrajová podmínka} s hodnotou $E_r = 0 ~ \mathrm{V.m^{-1}}$, $E_i = 0 ~ \mathrm{V.m^{-1}}$ tzn. také Perfect Electric Conductor. Neumannova okrajová podmínka je též aplikována na podélných stranách přívodního koaxiálního kabelu. Na vstupu tohoto koaxiálního kabelu je zdroj magnetického pole zadaný Dirichletovou okrajovou podmínkou s hodnotami $H_r = 100 ~ \mathrm{A.m^{-1}}$, $H_i = 50 ~ \mathrm{A.m^{-1}}$. Materiálové konstanty tohoto kabelu jsou $\varepsilon _r = 2,07$, $\mu _r = 1$, $\gamma = 0 ~ \mathrm{S.m^{-1}}$.
 
-%%Stránka pro zkoušení vkládání tabulek%%
-\subsection{Vkládání tabulek}
-Zkušební tvorba tabulek. Nejhorší je tvorba sirotků. Otázkou je, jak jím předejít. Klasické parametry nepomáhají. Problém se ani na fórech neřeší\ldots
-\begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
-\caption{Tabulka s přizpůsobením šířky sloupců}
-\begin{center} %pro zarovnání tabulky na střed
-\begin{tabular}{|l|c|c|} %zarovnání sloupců |left|center|center| oddělené čárou
-\hline %horní horizontální čára
-\textbf{Frekvenční pásmo} & \textbf{Technologie} & \textbf{Region} \\ %první řádka
-\hline %oddělovací čára
-700Mhz & LTE & USA \\ %druhá řádka 
-\hline %oddělovací čára
-800Mhz & LTE & Evropa \\ %třetí řádka
-\hline %oddělovací čára
-850Mhz & GSM & USA \\ %čtvrtá řádka
-\hline 
-900Mhz & GSM & Evropa \\ 
-\hline
-1700Mhz & 3G & USA \\ 
-\hline
-1800Mhz & GSM & Evropa \\ 
-\hline
-1900Mhz & GSM & USA \\ 
-\hline 
-2100Mhz & 3G & Evropa \\ 
-\hline
-2600Mhz & LTE & Evropa \\ 
-\hline
-\end{tabular}
+Obrázky \ref{Hreal}, \ref{Himag} a \ref{absH} znázorňují rozložení intenzity magnetického pole $\vec{H}$. Obrázek \ref{Hreal} znázorňuje reálnou složku $\vec{H _{real}}$, obrázek \ref{Himag} imaginární složku $\vec{H _{imag}}$ a obrázek \ref{absH} absolutní hodnotu $H$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalHr.png} 
+\caption{Kónická anténa - rozložení složky $\vec{H _{real}}$} 
+\label{Hreal}
 \end{center}
-\end{table} 
+\end{figure}
 
-Fixní šířka sloupce může být nastavena příkazem "p\{5cm\}", ale tento příkaz vynutí zarovnání doleva. Při požadavku na zarovnání na střed nebo doprava ho nelze použít a buňka se musí manuálně roztáhnout doplněním násilných mezer "~" v první řádce tak, aby všechny sloupce byly stejně široké.
-
-\begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
-\caption{Tabulka s fixní šířkou sloupců}
-%fixní šířka sloupce může být nastavena příkazem "p{5cm}", ale tento příkaz vynutí zarovnání doleva, při požadavku na zarovnání na střed nebo doprava ho nelze použít a buňka se musí manuálně roztáhnout doplněním násilných mezer "~" v první řádce tak, aby všechny sloupce byly stejně široké
-\begin{center} %pro zarovnání tabulky na střed
-\begin{tabular}{|l|c|c|} %zarovnání sloupců |left|center|center| oddělené čárou
-\hline %horní horizontální čára
-\textbf{Frekvenční pásmo} & \textbf{~~~Technologie~~~} & \textbf{~~~~~~Region~~~~~~} \\ %první řádka doplněná násilnými mezerami "~" pro rotažení buněk, aby sloupce byly stejně široké
-\hline %oddělovací čára
-700Mhz & LTE & USA \\ %druhá řádka 
-\hline %oddělovací čára
-800Mhz & LTE & Evropa \\ %třetí řádka
-\hline %oddělovací čára
-850Mhz & GSM & USA \\ %čtvrtá řádka
-\hline 
-900Mhz & GSM & Evropa \\ 
-\hline
-1700Mhz & 3G & USA \\ 
-\hline
-1800Mhz & GSM & Evropa \\ 
-\hline
-1900Mhz & GSM & USA \\ 
-\hline 
-2100Mhz & 3G & Evropa \\ 
-\hline
-2600Mhz & LTE & Evropa \\ 
-\hline
-\end{tabular}
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalHi.png} 
+\caption{Kónická anténa - rozložení složky $\vec{H _{imag}}$} 
+\label{Himag}
 \end{center}
-\end{table} 
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalH.png} 
+\caption{Kónická anténa - rozložení absolutní hodnoty $H$} 
+\label{absH}
+\end{center}
+\end{figure}
+
+Díky postprocesoru je možné zobrazit i další veličiny. Intenzitu elektrického pole lze získat pomocí \ref{max1fharm} (1. Maxwellovy rovnice) z již vypočtené intenzity magnetického pole. Obrázek \ref{absE} znázorňuje rozložení absolutní hodnoty intenzity elektrického pole $E$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalE.png} 
+\caption{Kónická anténa - rozložení absolutní hodnoty $E$} 
+\label{absE}
+\end{center}
+\end{figure}
+
+Pomocí postprocessingu lze získat též zobrazení Poyntingova vektoru. Hodnota tohoto vektoru se vypočte jako vektorový součin intenzity elektrického pole $\faz{\vec{E}}$ a intenzity magnetického pole $\faz{\vec{H}}$. Grafický výstup z Agrosu pro Poyntingův vektor znázorňuje obrázek \ref{Poynting}. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{ConicalPoynting.png} 
+\caption{Kónická anténa - zobrazení Poyntingova vektoru} 
+\label{Poynting}
+\end{center}
+\end{figure}
+
+Agros umožňuje také zobrazení postprocessingu v 3D. Díky tomuto pohledu lze vidět nejen jak vypadá reálný model, ale v případě osové symetrie také reálné rozložení veličin v trojrozměrném prostoru. Model kónické antény s vykreslením skalárního pole proměnné $H _{z~real}$ ilustruje obrázek \ref{Con3D}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=8.7cm]{Conical3D.png} 
+\caption{Model kónické antény s vykreslením skalárního pole proměnné $H _{z~real}$} 
+\label{Con3D}
+\end{center}
+\end{figure} 
 
 
-%%Stránka pro zkušební sazbu rovnic"
-\subsection{Sazba rovnic}
-Slavná rovnice Alberta Einsteina praví: $E = m \cdot c^2$. Platí pro všechny částice s nenulovou klidovou hmotností. Energie fotonu je naproti tomu determinována pouze jeho frekvencí (a Planckovou konstantou) $E = h * f$.
-%sazba rovnice přímo v textu se provádí mezi dvěma znaky "$...$"
 
-Nyní se podíváme na zoubek číslovaným rovnicím. Co třeba takhle první Maxwellova rovnice v diferenciálním tvaru?
-\begin{equation} \label{max1} %číslovaná rovnice mimo text se uvádní příkazem "equation"; příkaz "label" slouží pro vytvoření návěští pro hypertextový odkaz na rovnici
-\rot\vec{H}=\vec{J}+\dfrac{\partial \vec{D}}{\partial t}
-%"\rot" - rotace; "\vec" - znak vektoru; "\frac{}{}" - rovnice; "\partial" - znak diferenciální rovnice 
-\end{equation}
-
-Pro sazbu matematiky platí obecně jiná pravidla. Jinak se například zadávají mezery nebo tučné písmo.
-\begin{equation}
-\forall x \in \mathbf{R}: \qquad x^{2+p} \geq 0
-%"\forall" - znak "pro všechna"; "\in" - znak "je prvkem"; "\mathbf{}" - tučné písmo v rovnici; "\qquad" - delší mezera v rovnici; více znaků v jednom místě musí být uzavřeno mezi "{}"; "\geq" - znak "větší nebo rovno"
-%pro tučné nevzpřímené symboly je místo "\mathbf{}" nutno použít "\boldsymbol"
-\end{equation}
-
-Zkusíme i odkazování. Vzpomínáte si na první Maxwellovu rovnici? Jestli ne, je to tato: \ref{max1}. Btw., znáte ten hezký symbol pro množinu reálných čísel? Je to tento: $\mathbb{R}$
-%"\ref{max1}" - slouží pro vytvoření hypertextového číslovaného odkazu na rovnici (návěští max1)
-%"\mathbb{R}" - vloží prokládaný znak R
-
-A teď třeba funkce a odmocniny. Jako příklad do písemky z matematiky. Najděte definiční obor funkce:
-\begin{equation}
-f(x):\quad\left(\dfrac{\sqrt{3^{-x}}}{\sqrt[3]{x-7}}\right)^2
-%"\quad" - mezera; "\left(" - levá závorka přes celou výšku následujícího výrazu (zlomku); "\dfrac" - zlomek; "\sqrt[3]" - 3. odmocnina; "\rigt)" - uzavření závorky přes celou výšku výrazu 
-\end{equation} 
-
-Studenti, pamatujete si ještě, derivace? Tohle musíte umět z hlavy i kdybych vás probudil uprostřed noci: $y=\cos(x^3)\qquad y'= \qquad y''=$
-%"'" popř. "''" - první popř. druhá derivace
-
-Kdo z vás si vzpomene ještě na limity a ví, co tato znamená?
-\begin{displaymath}
-\lim_{x \rightarrow 0} \frac{\sin x}{x} = 1
-%limita odkud kam se zadává jako dolní index: "lim_{x \rightarrow 0}"; "\rightarrow" - šipka doprava používaná v limitě; "\sin" - sin a další se zadávají přes lomítko, aby byly vzpřímeným písmem
-\end{displaymath}
-
-Vrátíme se zpět k Maxwellovým rovnicím. Budeme pokračovat popořadě a podíváme se na druhou Maxwellovu rovnici, tentokrát v integrálním tvaru:
-\begin{equation}
-\oint_c \vec{E} \overrightarrow{\ud l} = -\frac{\ud\Phi}{\ud t}
-%"\oint_c" - křivkový integrál po křivce c (zadává se jako dolní index); "\overrightarrow{} - šipka vektoru ale přes více znaků; "\ud" - vzpřímené "d" používané v integrálu; "\Phi" - velké řecké fí 
-\end{equation}
-
-A nyní něco trochu komplikovanějšího. Jak se spočte taková zřídlovost?
-\begin{equation}
-\nabla \times \vec{E} = \rot \vec{E} = \left| 
-%"\nabla" - nabla; "\times" - vektorové "krát"; "\rot" - rotace; "\left|" - závorky determinantu
-\begin{array}{c c c}
-%determinant nebo matice se zadávají přes prostředí "array", parametry udávají počet sloupců a jejich centrování ("c" - na střed)
-\vec{i} & \vec{j} & \vec{k} \\
-%zadávání jako u tabulky: "&" pro další buňku, "\\" pro další řádek
-\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
-E_x & E_y & E_z
-\end{array} \right|
-\end{equation}
-
-Občas bude zapotřebí vysázet víc rovnic současně. Například všechny Maxwellovy rovnice. Následující ukázka předvádí použití příkazu "align" nahrazující "equation" pro sazbu více rovnic. Rovnítko se musí doplnit znaky "\&": "\&=", aby byly rovnice správně vycentrovány na střed.
-\begin{subequations}
-%prostředí subequations zajistí podčíslování rovnic jako a, b, c
-\begin{align}
-%prostředí "align" nahrazuje "equation" pro sazbu více rovnic
-f(x)&=\cos x
-%rovnítko se musí doplnit znakem "&": "&=", aby byly rovnice správně vycentrovány na střed
-\\
-f'(x)&=-\sin x
-\\
-\udiv x &= 0
-%pro divergenci se musí použít "\udiv" namísto "\div"
-\end{align}
-\end{subequations}
-
-\noindent
-%"\noindent" - zajistí, že následující odstavec na začátku nebude odsazený
-Nebo napsat vysvětlivku k rovnici, která nebude odsazená.
-
-
-%Zkušební stránka odrážek a číslování%%
-\subsection{Odrážky a číslování}
-
-\subsubsection{Odrážkovaný seznam}
-Státy USA, které jsem navštívil:
-\begin{itemize}
-%prostředí "itemize" vytvoří zařážkový seznam; příkaz "\item[-]" může být doplněn "-" pro nahrazení koleček pomlčkami
-\item Kalifornie
-%příkazem "\item" se přidávají jednotlivé položky
-\item Florida
-\item New Jersey
-\item New York
-\item Illinois
-\item Wisconsin
-\item Minnesota
-\item Pensylvánie
-\item Maryland
-\item Virginia
-\item District of Columbia
-\end{itemize}
-
-\subsubsection{Číslovaný seznam}
-Pořadí, v jakém jsem je navštívil:
-\begin{enumerate}
-%prostředí "enumerate" vytvoří číslovaný seznam
-\item Illinois
-%příkazem "\item" se přidávají jednotlivé položky
-\item Wisconsin
-\item Minnesota
-\item Kalifornie
-\item New York
-\item New Jersey
-\item Pensylvánie
-\item Maryland
-\item District of Columbia
-\item Virginia
-\item Florida
-\end{enumerate}
-
-\subsubsection{Popisné výčty (prostředí ,,Description'')}
-Hlavní města některých států USA, které jsem navštívil:
-\begin{description}
-%prostředí description vytvoří seznam, kde je první část (název) zvýrazněno, za ním následuje text
-\item[Kalifornie] Sacramento
-%příkazem "\item[]" se přidávají jednotlivé položky, do "[]" se uvede název (to co bude tučně)
-\item[Wisconsin] Madison
-\item[Maryland] Annapolis
-\end{description}
-
-\subsubsection{Odsazování - tabulátor}
-Největší města některých států USA, která jsem navštívil:
-\begin{tabbing} %začátek odsazovaného prostředí tabulátoru
-\hspace{5cm}\=\kill %parametrem v "\hspace{cm}" je délka odsazení tabulátoru
-Illinois \> Chicago \\ %nejdříve první část, potom tabulátor "\>" a druhá část
-Maryland \> Baltimore \\ 
-Kalifornie \> Los Angeles 
-\end{tabbing} 
-
-\subsection{Citace}
-\LaTeX ~nabízí i speciální prostředí pro citace a zvýraznění textu:
-\begin{quote} %začátek prostředí pro citaci
-\emph{,,Veni, vidi, vici.''} %zvýraznění (kurzíva) citace 
-\end{quote}
-
-\subsection{Verbatim}
-Prostředí ,,Verbatim'' se hodí na sazbu textů, kde není žádoucí brát zřetel na formátovací značky. Příkladem je sazba zdrojových kodů.
-%začátek prostředí verbatim pro sazbu bez ohledu na formátovací značky
-\begin{verbatim}
-System.out.println("Ja su lama, nevzpomenu si ani na zapis hlavicky v Jave")
-\end{verbatim}
+%%%Stránka pro zkoušení vkládání obrázků%%
+%\clearpage
+%\section{Zatím moje pokusy}
+%\subsection{Vkládání obrázků}
+%\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
+%\begin{center}
+%\includegraphics{Obrzkusmo.pdf}
+%\caption{Obrázek v pdf kreslený v ipe} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
+%\end{center}
+%\end{figure}
+%\vspace*{10mm}
+%\begin{figure}[h] %obrázek musí být v plovoucím objektu figure; pro zabránění nežádoucího plavání po stránce se musí doplnit parametr "[h]"
+%\begin{center}
+%\includegraphics[width=15cm]{58.jpg} %příkaz width zmenší délku na zadaný rozměr fyzického papíru a zachová proporce
+%\caption{Fotka v jpg} %popisek obrázku automaticky doplněný o číslo a promítající se v seznamu obrázků
+%\end{center}
+%\end{figure}
+%
+%
+%%%Stránka pro zkoušení vkládání tabulek%%
+%\subsection{Vkládání tabulek}
+%Zkušební tvorba tabulek. Nejhorší je tvorba sirotků. Otázkou je, jak jím předejít. Klasické parametry nepomáhají. Problém se ani na fórech neřeší\ldots
+%\begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
+%\caption{Tabulka s přizpůsobením šířky sloupců}
+%\begin{center} %pro zarovnání tabulky na střed
+%\begin{tabular}{|l|c|c|} %zarovnání sloupců |left|center|center| oddělené čárou
+%\hline %horní horizontální čára
+%\textbf{Frekvenční pásmo} & \textbf{Technologie} & \textbf{Region} \\ %první řádka
+%\hline %oddělovací čára
+%700Mhz & LTE & USA \\ %druhá řádka 
+%\hline %oddělovací čára
+%800Mhz & LTE & Evropa \\ %třetí řádka
+%\hline %oddělovací čára
+%850Mhz & GSM & USA \\ %čtvrtá řádka
+%\hline 
+%900Mhz & GSM & Evropa \\ 
+%\hline
+%1700Mhz & 3G & USA \\ 
+%\hline
+%1800Mhz & GSM & Evropa \\ 
+%\hline
+%1900Mhz & GSM & USA \\ 
+%\hline 
+%2100Mhz & 3G & Evropa \\ 
+%\hline
+%2600Mhz & LTE & Evropa \\ 
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table} 
+%
+%Fixní šířka sloupce může být nastavena příkazem "p\{5cm\}", ale tento příkaz vynutí zarovnání doleva. Při požadavku na zarovnání na střed nebo doprava ho nelze použít a buňka se musí manuálně roztáhnout doplněním násilných mezer "~" v první řádce tak, aby všechny sloupce byly stejně široké.
+%
+%\begin{table}[h] %tabulka "tabular" musí být uzavřena v plovoucím objektu "table"
+%\caption{Tabulka s fixní šířkou sloupců}
+%%fixní šířka sloupce může být nastavena příkazem "p{5cm}", ale tento příkaz vynutí zarovnání doleva, při požadavku na zarovnání na střed nebo doprava ho nelze použít a buňka se musí manuálně roztáhnout doplněním násilných mezer "~" v první řádce tak, aby všechny sloupce byly stejně široké
+%\begin{center} %pro zarovnání tabulky na střed
+%\begin{tabular}{|l|c|c|} %zarovnání sloupců |left|center|center| oddělené čárou
+%\hline %horní horizontální čára
+%\textbf{Frekvenční pásmo} & \textbf{~~~Technologie~~~} & \textbf{~~~~~~Region~~~~~~} \\ %první řádka doplněná násilnými mezerami "~" pro rotažení buněk, aby sloupce byly stejně široké
+%\hline %oddělovací čára
+%700Mhz & LTE & USA \\ %druhá řádka 
+%\hline %oddělovací čára
+%800Mhz & LTE & Evropa \\ %třetí řádka
+%\hline %oddělovací čára
+%850Mhz & GSM & USA \\ %čtvrtá řádka
+%\hline 
+%900Mhz & GSM & Evropa \\ 
+%\hline
+%1700Mhz & 3G & USA \\ 
+%\hline
+%1800Mhz & GSM & Evropa \\ 
+%\hline
+%1900Mhz & GSM & USA \\ 
+%\hline 
+%2100Mhz & 3G & Evropa \\ 
+%\hline
+%2600Mhz & LTE & Evropa \\ 
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table} 
+%
+%
+%%%Stránka pro zkušební sazbu rovnic"
+%\subsection{Sazba rovnic}
+%Slavná rovnice Alberta Einsteina praví: $E = m \cdot c^2$. Platí pro všechny částice s nenulovou klidovou hmotností. Energie fotonu je naproti tomu determinována pouze jeho frekvencí (a Planckovou konstantou) $E = h * f$.
+%%sazba rovnice přímo v textu se provádí mezi dvěma znaky "$...$"
+%
+%Nyní se podíváme na zoubek číslovaným rovnicím. Co třeba takhle první Maxwellova rovnice v diferenciálním tvaru?
+%\begin{equation} \label{max1} %číslovaná rovnice mimo text se uvádní příkazem "equation"; příkaz "label" slouží pro vytvoření návěští pro hypertextový odkaz na rovnici
+%\rot\vec{H}=\vec{J}+\dfrac{\partial \vec{D}}{\partial t}
+%%"\rot" - rotace; "\vec" - znak vektoru; "\frac{}{}" - rovnice; "\partial" - znak diferenciální rovnice 
+%\end{equation}
+%
+%Pro sazbu matematiky platí obecně jiná pravidla. Jinak se například zadávají mezery nebo tučné písmo.
+%\begin{equation}
+%\forall x \in \mathbf{R}: \qquad x^{2+p} \geq 0
+%%"\forall" - znak "pro všechna"; "\in" - znak "je prvkem"; "\mathbf{}" - tučné písmo v rovnici; "\qquad" - delší mezera v rovnici; více znaků v jednom místě musí být uzavřeno mezi "{}"; "\geq" - znak "větší nebo rovno"
+%%pro tučné nevzpřímené symboly je místo "\mathbf{}" nutno použít "\boldsymbol"
+%\end{equation}
+%
+%Zkusíme i odkazování. Vzpomínáte si na první Maxwellovu rovnici? Jestli ne, je to tato: \ref{max1}. Btw., znáte ten hezký symbol pro množinu reálných čísel? Je to tento: $\mathbb{R}$
+%%"\ref{max1}" - slouží pro vytvoření hypertextového číslovaného odkazu na rovnici (návěští max1)
+%%"\mathbb{R}" - vloží prokládaný znak R
+%
+%A teď třeba funkce a odmocniny. Jako příklad do písemky z matematiky. Najděte definiční obor funkce:
+%\begin{equation}
+%f(x):\quad\left(\dfrac{\sqrt{3^{-x}}}{\sqrt[3]{x-7}}\right)^2
+%%"\quad" - mezera; "\left(" - levá závorka přes celou výšku následujícího výrazu (zlomku); "\dfrac" - zlomek; "\sqrt[3]" - 3. odmocnina; "\rigt)" - uzavření závorky přes celou výšku výrazu 
+%\end{equation} 
+%
+%Studenti, pamatujete si ještě, derivace? Tohle musíte umět z hlavy i kdybych vás probudil uprostřed noci: $y=\cos(x^3)\qquad y'= \qquad y''=$
+%%"'" popř. "''" - první popř. druhá derivace
+%
+%Kdo z vás si vzpomene ještě na limity a ví, co tato znamená?
+%\begin{displaymath}
+%\lim_{x \rightarrow 0} \frac{\sin x}{x} = 1
+%%limita odkud kam se zadává jako dolní index: "lim_{x \rightarrow 0}"; "\rightarrow" - šipka doprava používaná v limitě; "\sin" - sin a další se zadávají přes lomítko, aby byly vzpřímeným písmem
+%\end{displaymath}
+%
+%Vrátíme se zpět k Maxwellovým rovnicím. Budeme pokračovat popořadě a podíváme se na druhou Maxwellovu rovnici, tentokrát v integrálním tvaru:
+%\begin{equation}
+%\oint_c \vec{E} \overrightarrow{\ud l} = -\frac{\ud\Phi}{\ud t}
+%%"\oint_c" - křivkový integrál po křivce c (zadává se jako dolní index); "\overrightarrow{} - šipka vektoru ale přes více znaků; "\ud" - vzpřímené "d" používané v integrálu; "\Phi" - velké řecké fí 
+%\end{equation}
+%
+%A nyní něco trochu komplikovanějšího. Jak se spočte taková zřídlovost?
+%\begin{equation}
+%\nabla \times \vec{E} = \rot \vec{E} = \left| 
+%%"\nabla" - nabla; "\times" - vektorové "krát"; "\rot" - rotace; "\left|" - závorky determinantu
+%\begin{array}{c c c}
+%%determinant nebo matice se zadávají přes prostředí "array", parametry udávají počet sloupců a jejich centrování ("c" - na střed)
+%\vec{i} & \vec{j} & \vec{k} \\
+%%zadávání jako u tabulky: "&" pro další buňku, "\\" pro další řádek
+%\frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+%E_x & E_y & E_z
+%\end{array} \right|
+%\end{equation}
+%
+%Občas bude zapotřebí vysázet víc rovnic současně. Například všechny Maxwellovy rovnice. Následující ukázka předvádí použití příkazu "align" nahrazující "equation" pro sazbu více rovnic. Rovnítko se musí doplnit znaky "\&": "\&=", aby byly rovnice správně vycentrovány na střed.
+%\begin{subequations}
+%%prostředí subequations zajistí podčíslování rovnic jako a, b, c
+%\begin{align}
+%%prostředí "align" nahrazuje "equation" pro sazbu více rovnic
+%f(x)&=\cos x
+%%rovnítko se musí doplnit znakem "&": "&=", aby byly rovnice správně vycentrovány na střed
+%\\
+%f'(x)&=-\sin x
+%\\
+%\udiv x &= 0
+%%pro divergenci se musí použít "\udiv" namísto "\div"
+%\end{align}
+%\end{subequations}
+%
+%\noindent
+%%"\noindent" - zajistí, že následující odstavec na začátku nebude odsazený
+%Nebo napsat vysvětlivku k rovnici, která nebude odsazená.
+%
+%
+%%Zkušební stránka odrážek a číslování%%
+%\subsection{Odrážky a číslování}
+%
+%\subsubsection{Odrážkovaný seznam}
+%Státy USA, které jsem navštívil:
+%\begin{itemize}
+%%prostředí "itemize" vytvoří zařážkový seznam; příkaz "\item[-]" může být doplněn "-" pro nahrazení koleček pomlčkami
+%\item Kalifornie
+%%příkazem "\item" se přidávají jednotlivé položky
+%\item Florida
+%\item New Jersey
+%\item New York
+%\item Illinois
+%\item Wisconsin
+%\item Minnesota
+%\item Pensylvánie
+%\item Maryland
+%\item Virginia
+%\item District of Columbia
+%\end{itemize}
+%
+%\subsubsection{Číslovaný seznam}
+%Pořadí, v jakém jsem je navštívil:
+%\begin{enumerate}
+%%prostředí "enumerate" vytvoří číslovaný seznam
+%\item Illinois
+%%příkazem "\item" se přidávají jednotlivé položky
+%\item Wisconsin
+%\item Minnesota
+%\item Kalifornie
+%\item New York
+%\item New Jersey
+%\item Pensylvánie
+%\item Maryland
+%\item District of Columbia
+%\item Virginia
+%\item Florida
+%\end{enumerate}
+%
+%\subsubsection{Popisné výčty (prostředí ,,Description'')}
+%Hlavní města některých států USA, které jsem navštívil:
+%\begin{description}
+%%prostředí description vytvoří seznam, kde je první část (název) zvýrazněno, za ním následuje text
+%\item[Kalifornie] Sacramento
+%%příkazem "\item[]" se přidávají jednotlivé položky, do "[]" se uvede název (to co bude tučně)
+%\item[Wisconsin] Madison
+%\item[Maryland] Annapolis
+%\end{description}
+%
+%\subsubsection{Odsazování - tabulátor}
+%Největší města některých států USA, která jsem navštívil:
+%\begin{tabbing} %začátek odsazovaného prostředí tabulátoru
+%\hspace{5cm}\=\kill %parametrem v "\hspace{cm}" je délka odsazení tabulátoru
+%Illinois \> Chicago \\ %nejdříve první část, potom tabulátor "\>" a druhá část
+%Maryland \> Baltimore \\ 
+%Kalifornie \> Los Angeles 
+%\end{tabbing} 
+%
+%\subsection{Citace}
+%\LaTeX ~nabízí i speciální prostředí pro citace a zvýraznění textu:
+%\begin{quote} %začátek prostředí pro citaci
+%\emph{,,Veni, vidi, vici.''} %zvýraznění (kurzíva) citace 
+%\end{quote}
+%
+%\subsection{Verbatim}
+%Prostředí ,,Verbatim'' se hodí na sazbu textů, kde není žádoucí brát zřetel na formátovací značky. Příkladem je sazba zdrojových kodů.
+%%začátek prostředí verbatim pro sazbu bez ohledu na formátovací značky
+%\begin{verbatim}
+%System.out.println("Ja su lama, nevzpomenu si ani na zapis hlavicky v Jave")
+%\end{verbatim}
 
 
 %%Závěr%%
 \clearpage %\newpage nefunguje, po plouvocím objektu (obrázek, tabulka) musí pro novou stránku následovat "clearpage" 
 \section{Závěr}
-Věřím, že se povede dojít až k úspěšnému odvození finálních rovnic a vytvoření modulu pro modelování vysokofrekvenčního pole.
+V rámci diplomové práce byl vytvořen modul pro modelování vysokofrekvenčního elektromagnetického pole. Modul obsahuje upravené předpisy a rovnice potřebné pro výpočet veličin pole, ve kterém se dominantně šíří transverzálně magnetické (TM) vlny.
 
-V současné době zdokonaluji kapitolu o vlnovodech a chtěl bych odvodit okrajové podmínky pro Helmholtzovu rovnici (ale nevím, co to je ani jak na to) - samotnou Helmholtzovu rovnici jsem již odvodil. Také bych Helmholtzovu rovnici chtěl vyjádřit ve válcových souřadnicích.
+Díky vytvořenému modulu lze použít aplikaci Agros2D na modelování dalšího fyzikálního pole a rozšířit tak její možnosti a uplatnění. Bezchybná funkce modulu byla dokázána v kapitole \ref{srovnani} a to srovnáním s profesionálním komerčním programem Comsol.
 
-V další fázi bych dotáhl do konce kapitolu o šíření vln ve volném prostoru a vytvořil kapitolu (nebo přílohu) se stručnými informacemi o programu Agros2D a jeho ovládání.
+V rámci práce byl také zrevidován a mírně upraven a rozšířen modul pro modelování transverzálně elektrických (TE) vln.
 
-Poté přijde na řadu to nejtěžší. Zjistit bližší informace o tom, co jsou to tzv. slabé formy, odvodit rovnice, vytvořit modul a analyzovat jeho chování uvnitř programu Agros2D.
+Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole, tak prací na již vyvinutém modulu pro TM vlny. Modul lze rozšířit o další okrajové podmínky a také o možnost modelování v nelineárním prostředí.
 
-Na závěr potom porovnat jeho chování a modelování vysokofrekvenčních zařízení v programu Comsol.
 
-Modleme se za to, že se práce úspěšně povede dotáhnout do konce a v dubnu tady bude moci čnít: ,,Práce dokončena''
-
-In nomine Patris et Filii et Spiritus Sancti. Amen.
 
 %%Použitá literatura%%
 \newpage
@@ -2963,21 +3129,22 @@ In nomine Patris et Filii et Spiritus Sancti. Amen.
 
 %Do "{}" příjmení autora, za to vložit z citace.cz, na název kurzívu
 %Podle názvu v "{}" se poté odkazuje uvnitř textu pomocí příkazu "\cite{}" 
+\bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. \textit{Agros2D} [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
+\bibitem{ATE} KARBAN, Pavel. ELEKTROTECHNICKÁ FAKULTA, Západočeská univerzita v Plzni. \textit{Numerické metody: Metoda konečných diferencí.} Plzeň, 22.03.2012. Dostupné z: http://home.zcu.cz/$\sim$karban/ATE/prednaska\_ 06.pdf
+\bibitem{Kastner} KASTNER, Raphael. SCHOOL OF ELECTRICAL ENGINEERING, Tel Aviv University. \textit{Antennas and Radiation.} Tel Aviv, 2009. Dostupné z: http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Frequency-Domain
+\bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
+\bibitem{Mayer} MAYER, Daniel. FAKULTA ELEKTROTECHNICKÁ, Západočeská univerzita v Plzni. \textit{Teorie elektromagnetického pole: 2. díl.} 3. vyd. Lektor: Zdeňka BENEŠOVÁ. Plzeň: Západočeská univerzita v Plzni, 2004, 358 s. ISBN 80-7082-826-9.
+\bibitem{Mayer} MAYER, Daniel, Josef POLÁK. \textit{Metody řešení elektrických a magnetických polí.} 1. vyd. Praha: SNTL, 1983, 450 s.
 \bibitem{Pozar2} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 1998. Second Edition. ISBN 0-471-17096-8.
 \bibitem{Pozar4} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 2012. Fourth Edition. ISBN 978-0-470-63155-3.
-\bibitem{Kastner} KASTNER, Raphael. SCHOOL OF ELECTRICAL ENGINEERING, Tel Aviv University. \textit{Antennas and Radiation.} Tel Aviv, 2009. Dostupné z: http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Frequency-Domain
-\bibitem{Dimensions} Rectangular waveguide dimensions. \textit{Microwaves101.com} [online]. Tucson, AZ, November 3, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/waveguidedimensions.cfm
-\bibitem{Microstrip} Microstrip. \textit{Microwaves101.com} [online]. Tucson, AZ, February 18, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/microstrip.cfm
-\bibitem{Intrinsic} Intrinsic Impedance. \textit{Antenna-Theory.com} [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
-\bibitem{Agros} KARBAN, Pavel. FACULTY OF ELECTRICAL ENGINEERING, University of West Bohemia in Pilsen. \textit{Agros2D} [online]. Plzeň, 2012 [cit. 2012-11-19]. Dostupné z: http://www.agros2d.org/
-\bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
-\bibitem{RovinnaVlna} Rovinné vlny. \textit{Fyzikální sekce Matematicko-fyzikální fakulty UK} [online]. [cit. 2013-02-20]. Dostupné z: http://physics.mff.cuni.cz/kfpp/skripta/kurz\_fyziky\_pro\_DS/display.php/optika/1\_3
-\bibitem{hpFEM} THE HP-FEM GROUP. \textit{www.hpFEM.org} [online]. 2013 [cit. 2013-04-09]. Dostupné z: http://hpfem.org/
-\bibitem{ATE} KARBAN, Pavel. ELEKTROTECHNICKÁ FAKULTA, Západočeská univerzita v Plzni. \textit{Numerické metody: Metoda konečných diferencí.} Plzeň, 22.03.2012. Dostupné z: http://home.zcu.cz/$\sim$karban/ATE/prednaska\_ 06.pdf
-\bibitem{Mayer} MAYER, Daniel, Josef POLÁK. \textit{Metody řešení elektrických a magnetických polí.} 1. vyd. Praha: SNTL, 1983, 450 s.
+\bibitem{Rektorys} REKTORYS, Karel. \textit{Přehled užité matematiky.} 7. vyd. Praha: Prometheus, 2000, 720 s. ISBN 978-80-7196-180-21.
 \bibitem{FEM} ŠOLÍN, Pavel, Karel SEGETH a Ivo DOLEŽEL. \textit{Higher-Order Finite Element Methods}. Taylor \& Francis, 2003, 408 s. ISBN 9781584884385
-\bibitem{Teorie} MAYER, Daniel. FAKULTA ELEKTROTECHNICKÁ, Západočeská univerzita v Plzni. \textit{Teorie elektromagnetického pole: 2. díl.} 3. vyd. Lektor: Zdeňka BENEŠOVÁ. Plzeň: Západočeská univerzita v Plzni, 2004, 358 s. ISBN 80-7082-826-9.
+\bibitem{hpFEM} THE HP-FEM GROUP. \textit{www.hpFEM.org} [online]. 2013 [cit. 2013-04-09]. Dostupné z: http://hpfem.org/
+\bibitem{Intrinsic} Intrinsic Impedance. \textit{Antenna-Theory.com} [online]. (c) 2009-2011 [cit. 2012-11-19]. Dostupné z: http://www.antenna-theory.com/definitions/intrinsicimpedance.php
+\bibitem{Microstrip} Microstrip. \textit{Microwaves101.com} [online]. Tucson, AZ, February 18, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/microstrip.cfm
 \bibitem{Comsol} Model Gallery: Conical Antenna. COMSOL GROUP. \textit{Comsol} [online]. (c) 1998-2013 [cit. 2013-04-28]. Dostupné z: http://www.comsol.com/showroom/gallery/137/
+\bibitem{Dimensions} Rectangular waveguide dimensions. \textit{Microwaves101.com} [online]. Tucson, AZ, November 3, 2012 [cit. 2012-11-19]. Dostupné z: http://www.microwaves101.com/encyclopedia/waveguidedimensions.cfm
+\bibitem{RovinnaVlna} Rovinné vlny. \textit{Fyzikální sekce Matematicko-fyzikální fakulty UK} [online]. [cit. 2013-02-20]. Dostupné z: http://physics.mff.cuni.cz/kfpp/skripta/kurz\_fyziky\_pro\_DS/display.php/optika/1\_3
 
 
 \end{thebibliography}

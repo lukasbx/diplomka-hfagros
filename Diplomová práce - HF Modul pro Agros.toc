@@ -13,38 +13,27 @@
 \contentsline {subsubsection}{\numberline {2.3.6}TM vlny}{16}{subsubsection.2.3.6}
 \contentsline {section}{\numberline {3}Numerick\IeC {\'e} \IeC {\v r}e\IeC {\v s}en\IeC {\'\i } elektromagnetick\IeC {\'e}ho pole}{18}{section.3}
 \contentsline {subsection}{\numberline {3.1}Metoda kone\IeC {\v c}n\IeC {\'y}ch prvk\IeC {\r u}}{18}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Agros 2D}{19}{subsection.3.2}
-\contentsline {section}{\numberline {4}N\IeC {\'a}vrh modulu pro VF pole}{20}{section.4}
-\contentsline {subsection}{\numberline {4.1}Slab\IeC {\'e} formulace Helmholtzov\IeC {\'y}ch rovnic}{20}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {E}}\mathsurround \z@ $\relax } v kart\IeC {\'e}zsk\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{21}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {H}}\mathsurround \z@ $\relax } v kart\IeC {\'e}zsk\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{24}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {E}}\mathsurround \z@ $\relax } ve v\IeC {\'a}lcov\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{27}{subsubsection.4.1.3}
-\contentsline {subsubsection}{\numberline {4.1.4}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {H}}\mathsurround \z@ $\relax } ve v\IeC {\'a}lcov\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{30}{subsubsection.4.1.4}
-\contentsline {subsection}{\numberline {4.2}Okrajov\IeC {\'e} podm\IeC {\'\i }nky}{33}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Dirichletova okrajov\IeC {\'a} podm\IeC {\'\i }nka}{34}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Neumannova okrajov\IeC {\'a} podm\IeC {\'\i }nka}{35}{subsubsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.3}Newtonova okrajov\IeC {\'a} podm\IeC {\'\i }nka}{41}{subsubsection.4.2.3}
-\contentsline {subsubsection}{\numberline {4.2.4}Neumannova okrajov\IeC {\'a} podm\IeC {\'\i }nka zadan\IeC {\'a} povrchov\IeC {\'y}m proudem}{46}{subsubsection.4.2.4}
-\contentsline {subsection}{\numberline {4.3}Postprocessor - dopo\IeC {\v c}et r\IeC {\r u}zn\IeC {\'y}ch veli\IeC {\v c}in pole}{50}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Intenzita magnetick\IeC {\'e}ho pole}{51}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}Intenzita elektrick\IeC {\'e}ho pole}{51}{subsubsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.3}Poynting\IeC {\r u}v vektor}{53}{subsubsection.4.3.3}
-\contentsline {subsection}{\numberline {4.4}Ilustra\IeC {\v c}n\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }klad}{54}{subsection.4.4}
-\contentsline {subsubsection}{\numberline {4.4.1}K\IeC {\'o}nick\IeC {\'a} ant\IeC {\'e}na}{54}{subsubsection.4.4.1}
-\contentsline {subsubsection}{\numberline {4.4.2}Srovn\IeC {\'a}n\IeC {\'\i } modelu vytvo\IeC {\v r}en\IeC {\'e}ho v Agrosu s modelem v Comsolu}{58}{subsubsection.4.4.2}
-\contentsline {section}{\numberline {5}Zat\IeC {\'\i }m moje pokusy}{63}{section.5}
-\contentsline {subsection}{\numberline {5.1}Vkl\IeC {\'a}d\IeC {\'a}n\IeC {\'\i } obr\IeC {\'a}zk\IeC {\r u}}{63}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Vkl\IeC {\'a}d\IeC {\'a}n\IeC {\'\i } tabulek}{64}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Sazba rovnic}{64}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Odr\IeC {\'a}\IeC {\v z}ky a \IeC {\v c}\IeC {\'\i }slov\IeC {\'a}n\IeC {\'\i }}{66}{subsection.5.4}
-\contentsline {subsubsection}{\numberline {5.4.1}Odr\IeC {\'a}\IeC {\v z}kovan\IeC {\'y} seznam}{66}{subsubsection.5.4.1}
-\contentsline {subsubsection}{\numberline {5.4.2}\IeC {\v C}\IeC {\'\i }slovan\IeC {\'y} seznam}{66}{subsubsection.5.4.2}
-\contentsline {subsubsection}{\numberline {5.4.3}Popisn\IeC {\'e} v\IeC {\'y}\IeC {\v c}ty (prost\IeC {\v r}ed\IeC {\'\i } ,,Description'')}{67}{subsubsection.5.4.3}
-\contentsline {subsubsection}{\numberline {5.4.4}Odsazov\IeC {\'a}n\IeC {\'\i } - tabul\IeC {\'a}tor}{67}{subsubsection.5.4.4}
-\contentsline {subsection}{\numberline {5.5}Citace}{67}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}Verbatim}{67}{subsection.5.6}
-\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{68}{section.6}
-\contentsline {section}{Pou\IeC {\v z}it\IeC {\'a} literatura}{69}{section*.119}
-\contentsline {section}{Seznam obr\IeC {\'a}zk\IeC {\r u}}{71}{section*.121}
-\contentsline {section}{Seznam tabulek}{72}{section*.123}
-\contentsline {section}{P\IeC {\v r}\IeC {\'\i }lohy}{1}{section*.125}
+\contentsline {subsection}{\numberline {3.2}Agros 2D}{21}{subsection.3.2}
+\contentsline {section}{\numberline {4}N\IeC {\'a}vrh modulu pro VF pole}{22}{section.4}
+\contentsline {subsection}{\numberline {4.1}Slab\IeC {\'e} formulace Helmholtzov\IeC {\'y}ch rovnic}{22}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {E}}\mathsurround \z@ $\relax } v kart\IeC {\'e}zsk\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{23}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {H}}\mathsurround \z@ $\relax } v kart\IeC {\'e}zsk\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{25}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {E}}\mathsurround \z@ $\relax } ve v\IeC {\'a}lcov\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{29}{subsubsection.4.1.3}
+\contentsline {subsubsection}{\numberline {4.1.4}Slab\IeC {\'a} formulace Helmholtzovy rovnice pro {\relax $\@@underline {\hbox {H}}\mathsurround \z@ $\relax } ve v\IeC {\'a}lcov\IeC {\'e} sou\IeC {\v r}adnicov\IeC {\'e} soustav\IeC {\v e}}{32}{subsubsection.4.1.4}
+\contentsline {subsection}{\numberline {4.2}Okrajov\IeC {\'e} podm\IeC {\'\i }nky}{35}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Dirichletova okrajov\IeC {\'a} podm\IeC {\'\i }nka}{35}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Neumannova okrajov\IeC {\'a} podm\IeC {\'\i }nka}{36}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Newtonova okrajov\IeC {\'a} podm\IeC {\'\i }nka}{43}{subsubsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.4}Neumannova okrajov\IeC {\'a} podm\IeC {\'\i }nka zadan\IeC {\'a} povrchov\IeC {\'y}m proudem}{48}{subsubsection.4.2.4}
+\contentsline {subsection}{\numberline {4.3}Postprocessor - dopo\IeC {\v c}et r\IeC {\r u}zn\IeC {\'y}ch veli\IeC {\v c}in pole}{52}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Intenzita magnetick\IeC {\'e}ho pole}{52}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Intenzita elektrick\IeC {\'e}ho pole}{53}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}Poynting\IeC {\r u}v vektor}{55}{subsubsection.4.3.3}
+\contentsline {subsection}{\numberline {4.4}Ilustra\IeC {\v c}n\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }klad}{56}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Srovn\IeC {\'a}n\IeC {\'\i } modelu vytvo\IeC {\v r}en\IeC {\'e}ho v Agrosu s modelem v Comsolu}{56}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}K\IeC {\'o}nick\IeC {\'a} ant\IeC {\'e}na}{57}{subsubsection.4.4.2}
+\contentsline {section}{\numberline {5}Z\IeC {\'a}v\IeC {\v e}r}{65}{section.5}
+\contentsline {section}{Pou\IeC {\v z}it\IeC {\'a} literatura}{66}{section*.114}
+\contentsline {section}{Seznam obr\IeC {\'a}zk\IeC {\r u}}{68}{section*.116}
+\contentsline {section}{Seznam tabulek}{69}{section*.118}
+\contentsline {section}{P\IeC {\v r}\IeC {\'\i }lohy}{1}{section*.120}
