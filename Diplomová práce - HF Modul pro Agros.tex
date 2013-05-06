@@ -178,7 +178,41 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 \textbf{TE}\dotfill & Transverzálně elektrický \\  
 \textbf{TEM}~\ldots\ldots\ldots & Transverzálně elektromagnetický \\ 
 \textbf{TM}\dotfill & Transverzálně magnetický \\ 
+
+\textbf{KTE}\dotfill & Katedra teoretické elektrotechniky \\
+\textbf{XML}\dotfill & Extensible Markup Language \\
+\textbf{FDM}\dotfill & Finite Difference Method \\
+\textbf{FEM}\dotfill & Finite Element Method \\
+
+
 \end{tabular} 
+
+\vspace{10mm}
+\begin{tabular}{lll}
+\vec{H} \hspace{7mm} & $\mathrm{[A \cdot m^{-1}]}$ \hspace{15mm} & intenzita magnetického pole \\
+\vec{E} & $\mathrm{[V \cdot m^{-1}]}$ & intenzita elektrického pole, \\ 
+\vec{D} & $\mathrm{[C \cdot m^{-2}]}$ & elektrická indukce, \\ 
+\vec{B} & $\mathrm{[T]}$ & magnetická indukce. \\ 
+\vec{J} & $\mathrm{[A \cdot m^{-2}]}$ & proudová hustota \\
+\vec{N} & $\mathrm{[W \cdot m^{-2}]}$ & Poyntingův vektor \\
+$\rho$ & $\mathrm{[C \cdot m^{-3}]}$ & objemová hustota náboje \\
+$\varepsilon$ & $\mathrm{[F \cdot m^{-1}]}$ & permitivita \\
+$\varepsilon _r$ & [-] & relativní permitivita \\
+$\varepsilon _0$ & $\mathrm{[F \cdot m^{-1}]}$ & permitivita vakua \\
+$\mu$ & $\mathrm{[H \cdot m^{-1}]}$ & permeabilita \\
+$\mu _r$ & [-] & relativní permeabilita \\
+$\mu _0$ & $\mathrm{[H \cdot m^{-1}]}$ & permeabilita vakua \\
+$\gamma$ & $\mathrm{[S^{-1}]}$ & měrná elektrická vodivost \\
+$\omega$ & $\mathrm{[rad \cdot s^{-1}}]$ & úhlová frekvence \\
+$\faz{k}$ & $\mathrm{[m^{-1}}]$ & konstanta šíření \\
+f & [Hz] & frekvence \\
+$\faz{Z}$ & $\mathrm{[\Omega]}$ & vlnová impedance \\
+$\alpha$ & $\mathrm{[rad \cdot m^{-1}]}$ & měrný útlum \\
+$\beta$ & $\mathrm{[dB \cdot m^{-1}]}$ & fázová konstanta \\
+
+
+
+\end{tabular}
 \newpage
 
 \setlength{\parindent}{5ex} 
@@ -262,7 +296,7 @@ Pro harmonicky proměnné pole lze Maxwellovy rovnice přepsat do frekvenční o
 \end{align}
 \end{subequations}
 
-Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $\mathrm{S} ^{-1}$. \cite{Teorie}
+Výše uvedené rovnice platí v nepozměněné podobě pro lineární, homogenní, izotropní prostředí. Lineární znamená, že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na veličinách pole, homogenní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na prostorových souřadnicích a izotropní že $\varepsilon , \mu$ a $\gamma$ nejsou závislé na směru vektorů veličin pole. Veličina $\gamma$ je měrná vodivost s jednotkou $\mathrm{S \cdot m} ^{-1}$. \cite{MayerTeorie}
 
 
 \subsection{Vlnová rovnice}
@@ -542,7 +576,7 @@ Předpokladem je šíření harmonického pole se závislostí $\me ^{jwt}$ pod�
 \faz{\vec{H}}(x, y, z)&=[\faz{\vec{h}}(x, y) + \hat{z}h_z(x, y)] \me ^{j\beta z} .
 \end{align}
 \end{subequations}
-$\faz{\vec{e}}(x,y)$ a $\faz{\vec{h}}(x,y)$ vyjadřují příčnou (transverzální) složku elektrického a magnetického pole, $e_z$ a $h_z$ představují složku podélnou. Pokud by se vlna šířila v opačném směru (ne ve směru $+z$, ale $-z$), nahradí se $\beta$ za $-\beta$. V případě, kdy by byl přítomen útlum, nahradí se se konstanta šíření $j \beta$ za komplexní konstantu $\gamma$, $\gamma = \alpha + j \beta$.
+$\faz{\vec{e}}(x,y)$ a $\faz{\vec{h}}(x,y)$ vyjadřují příčnou (transverzální) složku elektrického a magnetického pole, $e_z$ a $h_z$ představují složku podélnou. Pokud by se vlna šířila v opačném směru (ne ve směru $+z$, ale $-z$), nahradí se $\beta$ za $-\beta$. V případě, kdy by byl přítomen útlum, přičte se ke konstantě $j \beta$ konstanta $\alpha$ představující měrný útlum.
 
 Pokud ve vlnovodu nebo přenosovém vedení nejsou zdroje $J$, mohou být Maxwellovy rovnice vyjádřeny:
 \begin{subequations}
@@ -2335,6 +2369,8 @@ Za veličinu $\faz{\vec{H}}$ na pravé straně dosadíme proudovou hustotu $\faz
 \begin{equation}
 \frac{\partial \faz{E}_z}{\partial \vec{n}} \cdot \vec{k} = - \vec{n} \times \mj \omega \mu \frac{\faz{\vec{J}}}{\gamma}.
 \end{equation}
+Proudovou hustotu lze rozepsat jako 
+
 Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
 \begin{subequations}
 \begin{align}
@@ -3133,7 +3169,7 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
 \bibitem{ATE} KARBAN, Pavel. ELEKTROTECHNICKÁ FAKULTA, Západočeská univerzita v Plzni. \textit{Numerické metody: Metoda konečných diferencí.} Plzeň, 22.03.2012. Dostupné z: http://home.zcu.cz/$\sim$karban/ATE/prednaska\_ 06.pdf
 \bibitem{Kastner} KASTNER, Raphael. SCHOOL OF ELECTRICAL ENGINEERING, Tel Aviv University. \textit{Antennas and Radiation.} Tel Aviv, 2009. Dostupné z: http://www.scribd.com/doc/56316827/3/Maxwell-Equations-in-the-Frequency-Domain
 \bibitem{Koudela} KOUDELA, Lukáš. \textit{Simulace šíření elektromagnetických vln.} Plzeň, 2011. Diplomová práce. Západočeská univerzita v Plzni, Fakulta elektrotechnická, Katedra teoretické elektrotechniky. Vedoucí práce Ing. Pavel Karban, Ph.D.
-\bibitem{Mayer} MAYER, Daniel. FAKULTA ELEKTROTECHNICKÁ, Západočeská univerzita v Plzni. \textit{Teorie elektromagnetického pole: 2. díl.} 3. vyd. Lektor: Zdeňka BENEŠOVÁ. Plzeň: Západočeská univerzita v Plzni, 2004, 358 s. ISBN 80-7082-826-9.
+\bibitem{MayerTeorie} MAYER, Daniel. FAKULTA ELEKTROTECHNICKÁ, Západočeská univerzita v Plzni. \textit{Teorie elektromagnetického pole: 2. díl.} 3. vyd. Lektor: Zdeňka BENEŠOVÁ. Plzeň: Západočeská univerzita v Plzni, 2004, 358 s. ISBN 80-7082-826-9.
 \bibitem{Mayer} MAYER, Daniel, Josef POLÁK. \textit{Metody řešení elektrických a magnetických polí.} 1. vyd. Praha: SNTL, 1983, 450 s.
 \bibitem{Pozar2} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 1998. Second Edition. ISBN 0-471-17096-8.
 \bibitem{Pozar4} POZAR, David M. \textit{Microwave Engineering}. John Wiley \& Sons, Inc., 2012. Fourth Edition. ISBN 978-0-470-63155-3.
