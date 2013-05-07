@@ -94,9 +94,9 @@ Modelování vf zařízení \vspace{90mm}\\
 %%Spodní text%%
 \begin{flushleft}
 \begin{large}
-\textbf{Plzeň 2013}
-\hfill
-\textbf{Lukáš BRTNA}
+Autor práce: Bc. Lukáš Brtna\\
+\vspace{3mm}
+Vedoucí práce: Ing. David Pánek, Ph.D.
 \end{large}
 \end{flushleft}
 \end{titlepage}
@@ -190,9 +190,9 @@ Tímto bych rád poděkoval vedoucímu diplomové práce, panu Ing. Davidu Pánk
 \vspace{10mm}
 \begin{tabular}{lll}
 \vec{H} \hspace{7mm} & $\mathrm{[A \cdot m^{-1}]}$ \hspace{15mm} & intenzita magnetického pole \\
-\vec{E} & $\mathrm{[V \cdot m^{-1}]}$ & intenzita elektrického pole, \\ 
-\vec{D} & $\mathrm{[C \cdot m^{-2}]}$ & elektrická indukce, \\ 
-\vec{B} & $\mathrm{[T]}$ & magnetická indukce. \\ 
+\vec{E} & $\mathrm{[V \cdot m^{-1}]}$ & intenzita elektrického pole \\ 
+\vec{D} & $\mathrm{[C \cdot m^{-2}]}$ & elektrická indukce \\ 
+\vec{B} & $\mathrm{[T]}$ & magnetická indukce \\ 
 \vec{J} & $\mathrm{[A \cdot m^{-2}]}$ & proudová hustota \\
 \vec{N} & $\mathrm{[W \cdot m^{-2}]}$ & Poyntingův vektor \\
 $\rho$ & $\mathrm{[C \cdot m^{-3}]}$ & objemová hustota náboje \\
@@ -225,7 +225,7 @@ Předkládaná diplomová práce má za cíl rozšířit program Agros2D, vyvíj
 
 Postup při návrhu spočívá v odvození bilineárních a lineárních členů integrálních tvarů (tzv. slabých forem) vlnových rovnic. Předpokladem simulace je šíření harmonického pole, proto není řešena samotná vlnová rovnice, ale přechází se k řešení rovnice Helmholtzovy. Odvození slabých forem je věnována kapitola \ref{weakforms}. Odvození vlnové rovnice, Helmholtzovy rovnice a teorii šíření elektromagnetických vln se potom věnuje kapitola \ref{propagation}.
 
-Okrajovými podmínkami předepisujícími chování funkce, nebo derivace funkce, na hranicích řešené oblasti se zabývá kapitola \ref{boundary} a její výsledky představují další článek k vytvoření modulu. V tomto stádiu by modul byl již téměř schopný dávat výsledky pro základní počítanou veličinu a to intenzitu magnetického pole $H$. Možnosti výpočtu a vizualizace dalších navázaných veličin doplňuje postprocesor, jemuž je zasvěcena kapitola \ref{postprocesor}.
+Okrajovými podmínkami předepisujícími chování funkce, nebo derivace funkce, na hranicích řešené oblasti se zabývá kapitola \ref{boundary} a její výsledky představují další článek k vytvoření modulu. V tomto stádiu by modul byl již téměř schopný dávat výsledky pro základní počítanou veličinu a to intenzitu magnetického pole $\vec{H}$. Možnosti výpočtu a vizualizace dalších navázaných veličin doplňuje postprocesor, jemuž je zasvěcena kapitola \ref{postprocesor}.
 
 To, jak funguje metoda konečných prvků, na které je postaveno vlastní výpočetní jádro Agrosu, proč se rovnice musejí upravit do slabých formulací, a jak se následně zapisují do modulu v jazyce XML, uvádí kapitola \ref{numerika}.
 
@@ -529,7 +529,7 @@ První myšlenka zabývající se možností šíření elektromagnetických vln
 
 \begin{figure}[h] 
 \begin{center}
-\includegraphics[width=8cm]{vlnovod.pdf}
+\includegraphics[width=8cm]{vlnovod.png}
 \caption{Vlnovod masivnější konstrukce pro šíření vln o nižší frekvenci (okolo 1 GHz)}
 \label{vlnovod}
 \end{center}
@@ -587,7 +587,6 @@ Pokud ve vlnovodu nebo přenosovém vedení nejsou zdroje $J$, mohou být Maxwel
 \nabla \times \faz{H} &= j\omega \varepsilon \faz{E} .
 \end{align}
 \end{subequations}
-.
 Tyto vektorové rovnice mohou být převedeny do tvaru jednotlivých parciálních diferenciálních rovnic:
 \begin{subequations}
 \begin{align}
@@ -712,7 +711,7 @@ Tyto rovnice potom mohou být přepsány do formy využívající Laplacova oper
 \end{equation}
 
 
-Stejný postup lze aplikovat i u příčného magnetického pole a dojít ke stejnému výsledku:
+Stejný postup lze aplikovat i u příčného magnetického pole a tím dojít ke stejnému výsledku:
 \begin{equation}
 \triangle _t \faz{h} (x, y) = 0 .
 \end{equation}
@@ -783,7 +782,7 @@ Výsledky z \ref{ztem1} a \ref{ztem2} je možno spojit do jedné rovnice:
 %Charakteristická impedance $Z_0$ se vypočte jako $U / I$ a lze jí získat z \ref{napeti} a \ref{amper}
 
 \subsubsection{TE vlny}
-Na rozdíl od TEM vln, kde jsou podélné složky $\vec{H}$ i $\vec{E}$ pole nulové, se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říka $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
+Na rozdíl od TEM vln, kde jsou podélné složky $\vec{H}$ i $\vec{E}$ pole nulové, se u TE vln $H_z  \neq 0$. Pro přítomnost podélné složky magnetického pole se jim také říká $H$-vlny. U TE vln mohou být rovnice \ref{vyjadreno} zjednodušeny na:
 \begin{subequations}
 \begin{align}
 H_x &= \frac{-j \beta}{k^2_c} \frac{\partial H_z}{\partial x} ,
@@ -864,12 +863,12 @@ První z nich je metoda konečných diferencí (FDM - Finite Difference Method).
 
 Druhou numerickou metodou je metoda konečných prvků (FEM - Finite Element Method). Nevýhodou této metody oproti metodě konečných diferencí je, že je náročnější na programovou implementaci. Její pozitiva jako jsou její výkonnost a univerzálnost však toto negativum převažují a jedná se proto o nejpoužívanější numerickou metodu. 
 
-Základy metody konečných prvků byly položeny v 1. polovině 20. století v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. S průběhem času přibývaly problémy, které lze metodou konečných prvků řešit až v současnosti lze metodu použít pro téměř všechny fyzikální pole. \cite{FEM}
+Základy metody konečných prvků byly položeny v 1. polovině 20. století v práci Alexandera Hrennikoffa a Richarda Couranta. V roce 1953 jsou potom rovnice popsány v maticovém tvaru, což umožňuje jejich řešení na počítačích. K širšímu využití metody, umožněnému příchodem výkonnější výpočetní techniky, dochází v průběhu 60. a 70. let. V průběhu času přibývaly problémy, které lze metodou konečných prvků řešit, až v současnosti lze metodu použít pro téměř všechny fyzikální pole. \cite{FEM}
 
 
 \subsection{Metoda konečných prvků}
 \label{FEM}
-Metoda konečných prvků se nejčastěji využívá pro řešení okrajových úloh tedy problémů popsaných  obyčejnými nebo parciálními diferenciálními rovnicemi doplněnými o okrajové podmínky.
+Metoda konečných prvků se nejčastěji využívá pro řešení okrajových úloh, tedy problémů popsaných  obyčejnými nebo parciálními diferenciálními rovnicemi doplněnými o okrajové podmínky.
 Většinu jevů v elektromagnetickém poli je možné popsat operátorovou rovnicí:
 \begin{equation}
 \mathcal{L}u(\vec{x}) = f,  \qquad \vec{x} \in \Omega,
@@ -905,9 +904,9 @@ Slabým řešením rovnice \ref{eq:operator_equation} se rozumí taková funkce 
 \langle\langle u, v \rangle\rangle = \langle f, v \rangle,	
 \label{eq:weak_formulation}
 \end{equation}
-pro všechna $v$ z nějakého vhodně zvoleného prostoru. Funkce $v$ se obvykle nazývají testovací funkce. Symbol $\langle\langle \cdot, \cdot \rangle\rangle$ v rovnici \ref{eq:weak_formulation} označuje bilineární formu příslušnou operátoru $\mathcal{L}$, symbol $\langle \cdot, \cdot \rangle$ formu lineární (skalární součin známé funkce $f(\vec{x})$ s testovací funkcí $v$.
+pro všechna $v$ z nějakého vhodně zvoleného prostoru. Funkce $v$ se obvykle nazývají testovací funkce. Symbol $\langle\langle \cdot, \cdot \rangle\rangle$ v rovnici \ref{eq:weak_formulation} označuje bilineární formu příslušnou operátoru $\mathcal{L}$, symbol $\langle \cdot, \cdot \rangle$ formu lineární (skalární součin známé funkce $f(\vec{x})$ s testovací funkcí $v$).
  
-Rovnice \ref{eq:weak_formulation} se nazývá \emph{slabá formulace} původní rovnice \ref{eq:operator_equation}. V publikaci \cite{Rektorys} jsou uvedeny věty, které shrnují předpoklady za jakých lze zaručit existenci a jednoznačnost slabého řešení a za jakých podmínek je slabé řešení ekvivalentní silnému řešení rovnice \ref{eq:operator_equation}.
+Rovnice \ref{eq:weak_formulation} se nazývá \emph{slabá formulace} původní rovnice \ref{eq:operator_equation}. V publikaci \cite{Rektorys} jsou uvedeny věty, které shrnují předpoklady, za jakých lze zaručit existenci a jednoznačnost slabého řešení a za jakých podmínek je slabé řešení ekvivalentní silnému řešení rovnice \ref{eq:operator_equation}.
 
 Za předpokladu operátoru $\mathcal{L}$ definovaného rovnicí a za předpokladu Dirichletovy okrajové podmínky:
 \begin{equation}
@@ -941,7 +940,7 @@ Přesné řešení $u$ je tedy aproximováno přibližným řešením, které vz
 \end{equation}
 Po dosazení přibližného řešení do rovnice \ref{eq:weak_formulation_2},  postupném dosazení všech bázových funkcí $\phi_i$ za $v$ a  vyčíslení integrálů získáme soustavu lineárních rovnic pro neznámé koeficienty 
 $c_1, c_2, \dots , c_n$. 
-Z požadavku aby rovnice \ref{eq:operator_equation_1} platila pro všechny bázové funkce lze získat soustavu rovnic:
+Z požadavku, aby rovnice \ref{eq:operator_equation_1} platila pro všechny bázové funkce lze získat soustavu rovnic:
 \begin{equation}
 \int_\Omega \nabla \hat{u}(\vec{x}) \cdot \nabla \phi_1 \dif \Omega = \int_\Omega \phi_1 f \dif \Omega,
 \end{equation}
@@ -1049,7 +1048,7 @@ a_{ij} = \int_\Omega \nabla \phi_i \cdot \nabla \phi_j \dif \Omega, \qquad b_i =
 \subsection{Agros 2D}
 Agros2D je multiplatformní aplikací zaměřenou na řešení problémů různých fyzikálních polí (od elektrostatického přes akustické po teplotní). Je založen na knihovně Hermes, psané v jazyce C++, využívající pro výpočty metody \textit{hp}-FEM. Jedná se o verzi metody konečných prvků (FEM - Finite Element Method) pro řešení parciálních diferenciálních rovnic, která je založena na postupné numerické aproximaci udávané elementem o proměnné velikosti ($h$) a stupněm polynomu ($p$). Úvod do metody FEM poskytuje předchozí kapitola \ref{FEM}. \cite{hpFEM}
 
-Modelování v programu Agros2D vypadá ve stručnosti takto: Nejprve se v \textbf{preprocesoru} vytvoří geometrie objektu, nadefinují se materiálové parametry a přiřadí se okrajové podmínky. Poté \textbf{procesor}, výpočetní část založená na metodě konečných prvků (\textit{hp}-FEM) provede vlastní výpočet. Výsledné řešení je vyhodnoceno a zobrazeno v \textbf{postprocesoru}, kde si uživatel může volit různé parametry vizualizace vypočtených dat jako barevné mapy, kontury, vektorová pole, grafy veličin a lokální a integrální veličiny. 
+Modelování v programu Agros2D vypadá ve stručnosti takto: Nejprve se v \textbf{preprocesoru} vytvoří geometrie objektu, nadefinují se materiálové parametry a přiřadí se okrajové podmínky. Poté \textbf{procesor}, výpočetní část založená na metodě konečných prvků (\textit{hp}-FEM), provede vlastní výpočet. Výsledné řešení je vyhodnoceno a zobrazeno v \textbf{postprocesoru}, kde si uživatel může volit různé parametry vizualizace vypočtených dat jako barevné mapy, kontury, vektorová pole, grafy veličin a lokální a integrální veličiny. 
 
 Procesor Agrosu umožňuje použít pokročilé funkce metody konečných prvků jako konečné prvky vyššího řádu přesnosti, kdy je hledaná funkce aproximována na prvku polynomem vyššího řádu přesnosti, automatickou adaptivitu, kdy je diskretizační síť a stupeň aproximace volena automaticky na základě odhadu chyby řešení a práci s křivočarými prvky.
 
@@ -1092,7 +1091,7 @@ Helmholtzovu rovnici pak lze vyjádřit pomocí takzvané slabé formulace. Ozna
 - \int _{\Omega} \triangle u ~ v ~ \ud \Omega - \int _{\Omega} k ~ u ~ v ~ \ud \Omega &= \int _{\Omega} f ~ v ~ \ud \Omega .
 \end{align}
 \end{subequations}
-Na výraz následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad u = \nabla u$):
+Na výraz následně aplikujeme Greenovu větu, pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad u = \nabla u$):
 \begin{equation}
 \label{Green}
 - \int _{\Omega} \nabla u \cdot \nabla v ~ \ud \Omega + \int _{\Gamma} \frac{\partial u}{\partial n} ~ v ~ \ud \Gamma - \int _{\Omega} k ~ u ~ v ~ \ud \Omega = \int _{\Omega} f ~ v ~ \ud \Omega .
@@ -1147,7 +1146,7 @@ Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme 
 &\int _{\Omega} \triangle E _{zIm} ~ v ~ \ud \Omega + \omega ^2 \varepsilon \mu \int _{\Omega} E _{zIm} ~ v ~ \ud \Omega - \omega \mu \gamma \int _{\Omega} E _{zRe} ~ v ~ \ud \Omega = \omega \mu \int _{\Omega} J _{extRe} ~ v ~ \ud \Omega .
 \numberthis
 \end{align*}
-Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\grad E _{zRe} = \nabla E _{zRe}$) (viz \ref{Green}):
+Následně aplikujeme Greenovu větu, pomocí které rozložíme operátor $\triangle$ na skalární součin dvou divergencí ($\grad E _{zRe} = \nabla E _{zRe}$) (viz \ref{Green}):
 \begin{align*}
 &R_e:
 \\
@@ -1244,7 +1243,7 @@ Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Př�
 
 
 \subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{H} v kartézské souřadnicové soustavě}
-Formulace vychází z nehomogenní Helmholtzovy rovnice pro $\faz{\vec{H}}$ (\ref{HelmholtzHnehomo}), na kterou se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{E}$. Levá strana tedy bude, stejně jako v rovnici \ref{HelmEasy}, obsahovat veličinu $\faz{H}$ s pouze $z$ složkou pole. Na pravé straně to mimo jiné znamená, že, vzhledem k přítomnosti pouze $z$ složky původního vektoru, se $\rot \faz{J} _{ext} = \left( - \frac{\partial \faz{J} _{ext(x)}}{\partial y} + \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) \vec{k}$:
+Formulace vychází z nehomogenní Helmholtzovy rovnice pro $\faz{\vec{H}}$ (\ref{HelmholtzHnehomo}), na kterou se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{E}$. Levá strana tedy bude, stejně jako v rovnici \ref{HelmEasy}, obsahovat veličinu $\faz{H}$ s pouze $z$ složkou pole. Na pravé straně to mimo jiné znamená, že vzhledem k přítomnosti pouze $z$ složky původního vektoru, se $\rot \faz{J} _{ext} = \left( - \frac{\partial \faz{J} _{ext(x)}}{\partial y} + \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) \vec{k}$:
 \begin{equation}
 \label{HelmEasyH}
 \triangle \faz{H} _{(z)} + \faz{k} ^2 \faz{H} _{(z)} = - \left( - \frac{\partial \faz{J} _{ext(x)}}{\partial y} + \frac{\partial \faz{J} _{ext(y)}}{\partial x} \right) .
@@ -1293,7 +1292,7 @@ Obě části roznásobíme testovací funkcí $v$ a následně je  zintegrujeme 
 &= \int _{\Omega} \left(\frac{\partial J _{extIm(x)}}{\partial y} - \frac{\partial J _{extIm(y)}}{\partial x} \right) v ~ \ud \Omega
 \numberthis
 \end{align*}
-Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad H _{zRe} = \nabla H _{zRe}$) (viz \ref{Green}):
+Následně aplikujeme Greenovu větu, pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad H _{zRe} = \nabla H _{zRe}$) (viz \ref{Green}):
 \begin{align*}
 &R_e:
 \\
@@ -1397,7 +1396,7 @@ Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Př�
 
 \subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{E} ve válcové souřadnicové soustavě}
 
-V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Podobně jako v kartézské souřadné soustavě vycházíme z \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů. Což v tomto případu znamená, že je přítomna pouze složka $\faz{E} _{\varphi}$. Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
+V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Podobně jako v kartézské souřadné soustavě vycházíme z \ref{HelmEasy} - nehomogenní Helmholtzovy rovnice pro $\faz{E}$ po aplikování zjednodušujících předpokladů, což v tomto případu znamená, že je přítomna pouze složka $\faz{E} _{\varphi}$. Rovnice \ref{HelmEasy} modifikovaná do válcových souřadnic potom vypadá takto:
 \begin{equation}
 \triangle \faz{E} _{(\varphi)} + \faz{k} ^2 \faz{E} _{(\varphi)} = \mj \omega \mu \faz{J} _{ext} 
 \end{equation}
@@ -1426,7 +1425,7 @@ Imaginární potom:
 &\triangle E _{\varphi Im} + \omega ^2 \varepsilon \mu E _{\varphi Im} - \omega \mu \gamma E _{\varphi Re} = \omega \mu J _{extRe} .
 \numberthis
 \end{align*}
-Obě části roznásobíme testovací funkcí $v$ a následně je zintegrujeme po ploše $\Omega$ (oblast na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit, že objemový integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$ bude počítán jako trojný integrál 
+Obě části roznásobíme testovací funkcí $v$ a následně je zintegrujeme po ploše $\Omega$ (oblast, na které chceme znát řešení - např. vnitřní region vlnovodu; podobně jako v \ref{Poisson}). Předtím je ale potřeba ještě si uvědomit, že objemový integrál, přestože se zapisuje zjednodušeně jako $\int _{\Omega} u \ud \Omega$, bude počítán jako trojný integrál 
 \begin{equation}
 \label{trojnyI}
 \iiint \limits_{\varphi ~ r ~ z} u ~ r ~ \ud \varphi ~ \ud r ~ \ud z . 
@@ -1446,7 +1445,7 @@ Do integrálu $\int _{\Omega} u ~ \ud \Omega$ je proto nutno zapsat $r$ vznikaj�
 &= \omega \mu \int _{\Omega} r ~ J _{extRe} ~ v ~ \ud \Omega .
 \numberthis
 \end{align*}
-Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad E _{\varphi Re} = \nabla E _{\varphi Re}$) (viz \ref{Green}):
+Následně aplikujeme Greenovu větu, pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad E _{\varphi Re} = \nabla E _{\varphi Re}$) (viz \ref{Green}):
 \begin{align*}
 &R_e:
 \\
@@ -1581,7 +1580,7 @@ Přesný XML kód použitý pro zápis výše uvedených rovnic je uveden v Př�
 
 \subsubsection{Slabá formulace Helmholtzovy rovnice pro \faz{H} ve válcové souřadnicové soustavě}
 
-V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Formulace vychází z nehomogenní Helmholtzovy rovnice pro $\faz{\vec{H}}$ (\ref{HelmholtzHnehomo}), na kterou se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{E}$ (\ref{HelmEasy}). Což v tomto případě znamená, že je na levé straně rovnice přítomna pouze složka $\faz{H} _{\varphi}$.Na pravé straně to mimo jiné znamená, že, vzhledem k přítomnosti pouze $\varphi$ složky původního vektoru a aplikaci symetrie, se $\rot \faz{J} _{ext} = \frac{1}{r} \left( \frac{\partial \faz{J} _{ext(r)}}{\partial z} - \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right) \vec{\phi}$. Rovnice \ref{HelmholtzHnehomo} modifikovaná do válcových souřadnic potom vypadá takto:
+V trojrozměrné válcové souřadné soustavě je poloha bodu určena vzdáleností od středu $r$, úhlem $\varphi$ a vzdáleností od roviny podstavy $z$. Formulace vychází z nehomogenní Helmholtzovy rovnice pro $\faz{\vec{H}}$ (\ref{HelmholtzHnehomo}), na kterou se aplikují stejné zjednodušující předpoklady jako na rovnici pro $\faz{E}$ (\ref{HelmEasy}), což v tomto případě znamená, že je na levé straně rovnice přítomna pouze složka $\faz{H} _{\varphi}$.Na pravé straně to mimo jiné znamená, že, vzhledem k přítomnosti pouze $\varphi$ složky původního vektoru a aplikaci symetrie, se $\rot \faz{J} _{ext} = \frac{1}{r} \left( \frac{\partial \faz{J} _{ext(r)}}{\partial z} - \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right) \vec{\phi}$. Rovnice \ref{HelmholtzHnehomo} modifikovaná do válcových souřadnic potom vypadá takto:
 \begin{equation}
 \triangle \faz{H} _{(\varphi)} + \faz{k} ^2 \faz{H} _{(\varphi)} = - \frac{1}{r} \left(  \frac{\partial \faz{J} _{ext(r)}}{\partial z} - \frac{\partial \faz{J} _{ext(z)}}{\partial r} \right)
 \end{equation}
@@ -1630,7 +1629,7 @@ Obě části roznásobíme testovací funkcí $v$ a následně je zintegrujeme p
 &= \int _{\Omega} r ~ \frac{1}{r} \left( - \frac{\partial J _{extIm(r)}}{\partial z} + \frac{\partial J _{extIm(z)}}{\partial r} \right) v ~ \ud \Omega
 \numberthis
 \end{align*}
-Následně aplikujeme Greenovu větu pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad H _{\varphi Re} = \nabla H _{\varphi Re}$) (viz \ref{Green}):
+Následně aplikujeme Greenovu větu, pomocí které rozložíme operátor $\triangle$ na skalární součin dvou gradientů ($\grad H _{\varphi Re} = \nabla H _{\varphi Re}$) (viz \ref{Green}):
 \begin{align*}
 &R_e:
 \\
@@ -1789,7 +1788,7 @@ Pro získání její hodnoty budeme vycházet z \ref{max2fharm} (2. Maxwellovy r
 \right|
 = \frac{\partial \faz{E}_z}{\partial y} ~ \vec{i} - \frac{\partial \faz{E}_z}{\partial x} ~ \vec{j}  .
 \end{equation} 
-Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+Právě vypočtenou levou, i pravou stranu, následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
 \begin{equation}
 \vec{n} \times \left( \frac{\partial \faz{E}_z}{\partial y} ~ \vec{i} - \frac{\partial \faz{E}_z}{\partial x} ~ \vec{j} \right) = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}} .
 \end{equation}
@@ -1876,7 +1875,7 @@ Pro získání její hodnoty budeme vycházet z \ref{max1fharm} (1. Maxwellovy r
 \right|
 = \frac{\partial \faz{H}_z}{\partial y} ~ \vec{i} - \frac{\partial \faz{H}_z}{\partial x} ~ \vec{j}  .
 \end{equation} 
-Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+Právě vypočtenou levou, i pravou stranu, následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
 \begin{equation}
 \vec{n} \times \left( \frac{\partial \faz{H}_z}{\partial y} ~ \vec{i} - \frac{\partial \faz{H}_z}{\partial x} ~ \vec{j} \right) = \vec{n} \times \mj \omega \varepsilon \faz{\vec{E}} .
 \end{equation}
@@ -1956,7 +1955,7 @@ Pro získání její hodnoty budeme vycházet z \ref{max2fharm} (2. Maxwellovy r
 \begin{equation}
 \rot \! \faz{\vec{E}} = - \frac{\partial \faz{E} _{\varphi}}{\partial z} ~ \vec{\rho} + \frac{1}{r} \frac{\partial ( r \faz{E} _{\varphi} ) }{\partial r} ~ \vec{k} .
 \end{equation}
-Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+Právě vypočtenou levou, i pravou stranu, následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
 \begin{equation}
 \vec{n} \times \left( \frac{1}{r} \frac{\partial ( r \faz{E} _{\varphi} ) }{\partial r} ~ \vec{k} - \frac{\partial \faz{E}_{\varphi}}{\partial z} ~ \vec{\rho} \right) = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}} .
 \end{equation}
@@ -2036,7 +2035,7 @@ Pro získání její hodnoty budeme vycházet z \ref{max1fharm} (1. Maxwellovy r
 \begin{equation}
 \rot \! \faz{\vec{H}} = - \frac{\partial \faz{H} _{\varphi}}{\partial z} ~ \vec{\rho} + \frac{1}{r} \frac{\partial ( r \faz{H} _{\varphi} ) }{\partial r} ~ \vec{k} .
 \end{equation}
-Právě vypočtenou levou, i pravou stranu následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
+Právě vypočtenou levou, i pravou stranu, následně roznásobíme vektorem $\vec{n}$ (vektorem normálovým na rozhraní):
 \begin{equation}
 \vec{n} \times \left( \frac{1}{r} \frac{\partial ( r \faz{H} _{\varphi} ) }{\partial r} ~ \vec{k} - \frac{\partial \faz{H} _{\varphi}}{\partial z} ~ \vec{\rho} \right) = \vec{n} \times \mj \omega \varepsilon \faz{\vec{E}} .
 \end{equation}
@@ -2363,48 +2362,46 @@ Proudovou hustotu lze vyjádřit jako $\faz{\vec{J}} = \gamma \faz{\vec{E}}$. Op
 \subsubsection*{Tvar pro \faz{\vec{J}} a TE pole v kartézských souřadnicích}
 Budeme vycházet z tvaru \ref{NeumannEKvek}, ke kterému jsme došli při výpočtu Neumannovy okrajové podmínky v kapitole \ref{NeumannEK}
 \begin{equation}
+\label{JTEk}
 \frac{\partial \faz{E}_z}{\partial \vec{n}} \cdot \vec{k} = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}}.
 \end{equation}
-Za veličinu $\faz{\vec{H}}$ na pravé straně dosadíme proudovou hustotu $\faz{\vec{J}}$ vynásobenou vodivostí $\gamma$ na vnitřní straně rozhraní:
+Proudová hustota $\faz{J} _t$ je rovna vektorovému součinu normálového vektoru $\vec{n}$ a intenzity magnetického pole $\faz{\vec{H}}$:
 \begin{equation}
-\frac{\partial \faz{E}_z}{\partial \vec{n}} \cdot \vec{k} = - \vec{n} \times \mj \omega \mu \frac{\faz{\vec{J}}}{\gamma}.
+\label{JtTEk}
+\vec{n} \times \faz{\vec{H}} = \faz{J} _t .
 \end{equation}
-Proudovou hustotu lze rozepsat jako 
+Na pravou stranu výrazu \ref{JTEk} potom dosadíme za vektorový součin $\vec{n}$ a $\faz{\vec{H}}$ z~rovnice~\ref{JtTEk}:
+\begin{equation}
+\frac{\partial \faz{E}_z}{\partial \vec{n}} = - \mj \omega \mu \faz{J} _t .
+\end{equation}
 
-Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
-\begin{subequations}
-\begin{align}
-\frac{\partial \faz{E}_z}{\partial \vec{n}} &= - \mj ~ \omega \mu \frac{\faz{J} _t}{\gamma}
-\\
-\frac{\partial \faz{E}_z}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\gamma} (J _{(t~real)} + J _{(t~imag)} ~ \mj)
-\end{align}
-\end{subequations}
-
-Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
+Rovnici můžeme rozdělit na její reálnou a imaginární složku:
 \begin{subequations}
 \label{Jek}
 \begin{align}
-\frac{\partial E _{(z~real)}}{\partial \vec{n}} &= \frac{\omega \mu}{\omega}  J _{(t~imag)}
+\frac{\partial \faz{E}_z}{\partial \vec{n}} &= - \mj ~ \omega \mu (J _{(t~real)} + J _{(t~imag)} ~ \mj)
 \\
-\frac{\partial E _{(z~imag)}}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\omega} J _{(t~real)}
+\frac{\partial E _{(z~real)}}{\partial \vec{n}} &= \omega \mu  J _{(t~imag)}
+\\
+\frac{\partial E _{(z~imag)}}{\partial \vec{n}} &= - \mj ~ \omega \mu J _{(t~real)}
 \end{align}
 \end{subequations}
 Posledním krokem je dosazení pravé strany z \ref{Jek} do \ref{weakneumann} (výrazu získaného při výpočtu slabých forem):
 \begin{subequations}
 \begin{align}
-\frac{1}{\mu} \int _{\Gamma} \frac{\omega \mu}{\gamma} J _{(t~imag)} ~ v ~ \ud \Gamma ~
+\frac{1}{\mu} \int _{\Gamma} \omega \mu J _{(t~imag)} ~ v ~ \ud \Gamma ~
 \\
-\frac{1}{\mu} \int _{\Gamma} - \mj ~ \frac{\omega \mu}{\gamma} J _{(t~real)} ~ v ~ \ud \Gamma
+\frac{1}{\mu} \int _{\Gamma} - \mj ~ \omega \mu J _{(t~real)} ~ v ~ \ud \Gamma
 \end{align}
 \end{subequations}
 
 Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
-\frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v
+2 ~ \pi ~ f ~ J_{(t~imag)} ~ v
 \end{equation} 
 bude označena indexy i = 1, j = 1. Imaginární složka 
 \begin{equation}
-- \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~real)} ~ v
+- 2 ~ \pi ~ f ~ J_{(t~real)} ~ v
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
@@ -2414,46 +2411,44 @@ Přesný XML kód je uveden v Příloze 2 v kapitole \nameref{XMLEs}.
 \subsubsection*{Tvar pro \faz{\vec{J}} a TE pole ve válcových souřadnicích}
 Budeme vycházet z tvaru \ref{NeumannECvek}, ke kterému jsme došli při výpočtu Neumannovy okrajové podmínky v kapitole \ref{NeumannEC}:
 \begin{equation}
+\label{JTEc}
 \frac{\partial \faz{E}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - ~ \vec{n} \times \mj \omega \mu \faz{\vec{H}} .
 \end{equation}
-Za veličinu $\faz{\vec{H}}$ na pravé straně dosadíme proudovou hustotu $\faz{\vec{J}}$ vynásobenou vodivostí $\gamma$ na vnitřní straně rozhraní:
+Proudová hustota $\faz{J} _t$ je rovna vektorovému součinu normálového vektoru $\vec{n}$ a intenzity magnetického pole $\faz{\vec{H}}$:
 \begin{equation}
-\frac{\partial \faz{E}_{\varphi}}{\partial \vec{n}} \cdot \vec{\phi} = - \vec{n} \times \mj \omega \mu \frac{\faz{\vec{J}}}{\gamma}.
+\label{JtTEc}
+\vec{n} \times \faz{\vec{H}} = \faz{J} _t .
 \end{equation}
-Na obou stranách rovnice provedeme součiny vektorů a veličinu $\faz{J}$ rozepíšeme na její reálnou a imaginární složku:
-\begin{subequations}
-\begin{align}
-\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} &= - \mj ~ \omega \mu \frac{\faz{J} _t}{\gamma}
-\\
-\frac{\partial \faz{E} _{\varphi}}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\gamma} (J _{(t~real)} + J _{(t~imag)} ~ \mj)
-\end{align}
-\end{subequations}
+Na pravou stranu výrazu \ref{JTEc} potom dosadíme za vektorový součin $\vec{n}$ a $\faz{\vec{H}}$ z~rovnice~\ref{JtTEc}:
+\begin{equation}
+\frac{\partial \faz{E}_{\varphi}}{\partial \vec{n}} = - \mj \omega \mu \faz{J} _t .
+\end{equation}
 
-Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
+Rovnici můžeme rozdělit na její reálnou a imaginární složku:
 \begin{subequations}
 \label{Jec}
 \begin{align}
-\frac{\partial E _{(\varphi ~real)}}{\partial \vec{n}} &= \frac{\omega \mu}{\omega}  J _{(t~imag)}
+\frac{\partial E _{(\varphi ~real)}}{\partial \vec{n}} &= \omega \mu  J _{(t~imag)}
 \\
-\frac{\partial E _{(\varphi ~imag)}}{\partial \vec{n}} &= - \mj ~ \frac{\omega \mu}{\omega} J _{(t~real)}
+\frac{\partial E _{(\varphi ~imag)}}{\partial \vec{n}} &= - \mj ~ \omega \mu J _{(t~real)}
 \end{align}
 \end{subequations}
 Posledním krokem je dosazení pravé strany z \ref{Jec} do \ref{ECweakneumann} (výrazu získaného při výpočtu slabých forem):
 \begin{subequations}
 \begin{align}
-\frac{1}{\mu} \int _{\Gamma} \frac{\omega \mu}{\gamma} J _{(t~imag)} ~ v ~ r ~ \ud \Gamma ~
+\frac{1}{\mu} \int _{\Gamma} \omega \mu J _{(t~imag)} ~ v ~ r ~ \ud \Gamma ~
 \\
-\frac{1}{\mu} \int _{\Gamma} - \mj ~ \frac{\omega \mu}{\gamma} J _{(t~real)} ~ v ~ r ~ \ud \Gamma
+\frac{1}{\mu} \int _{\Gamma} - \mj ~ \omega \mu J _{(t~real)} ~ v ~ r ~ \ud \Gamma
 \end{align}
 \end{subequations}
 
 Pro vyjádření do modulu vynecháme ze zápisu integrály. Bude se jednat o vyjádření pravé strany, tudíž ,,vector form''. Člen $\mu$ se vykrátí a $\omega$ rozepíšeme pomocí $f$. Reálná složka  
 \begin{equation}
-\frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~imag)} ~ v ~ r
+2 ~ \pi ~ f ~ J_{(t~imag)} ~ v ~ r
 \end{equation} 
 bude označena indexy i = 1, j = 1. Imaginární složka 
 \begin{equation}
-- \frac{2 ~ \pi ~ f}{\gamma} ~ J_{(t~real)} ~ v ~ r
+- 2 ~ \pi ~ f ~ J_{(t~real)} ~ v ~ r
 \end{equation}
 bude označena indexy i = 2, j = 2.
 
@@ -2482,9 +2477,9 @@ Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
 \begin{subequations}
 \label{Jhk}
 \begin{align}
-\frac{\partial H _{(z~real)}}{\partial \vec{n}} &= - \frac{\omega \varepsilon}{\omega}  J _{(t~imag)}
+\frac{\partial H _{(z~real)}}{\partial \vec{n}} &= - \frac{\omega \varepsilon}{\gamma}  J _{(t~imag)}
 \\
-\frac{\partial H _{(z~imag)}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\omega} J _{(t~real)}
+\frac{\partial H _{(z~imag)}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\gamma} J _{(t~real)}
 \end{align}
 \end{subequations}
 Posledním krokem je dosazení pravé strany z \ref{Jhk} do \ref{Hweakneumann} (výrazu získaného při výpočtu slabých forem):
@@ -2531,9 +2526,9 @@ Rovnici tedy můžeme rozdělit na její reálnou a imaginární složku:
 \begin{subequations}
 \label{Jhc}
 \begin{align}
-\frac{\partial H _{(\varphi ~real)}}{\partial \vec{n}} &= - \frac{\omega \varepsilon}{\omega}  J _{(t~imag)}
+\frac{\partial H _{(\varphi ~real)}}{\partial \vec{n}} &= - \frac{\omega \varepsilon}{\gamma}  J _{(t~imag)}
 \\
-\frac{\partial H _{(\varphi ~imag)}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\omega} J _{(t~real)}
+\frac{\partial H _{(\varphi ~imag)}}{\partial \vec{n}} &= \mj ~ \frac{\omega \varepsilon}{\gamma} J _{(t~real)}
 \end{align}
 \end{subequations}
 Posledním krokem je dosazení pravé strany z \ref{Jhc} do \ref{HCweakneumann} (výrazu získaného při výpočtu slabých forem):
@@ -3208,7 +3203,7 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
 \section*{Příloha I. - XML kód pro TE}
 \subsection*{Zápis slabých formulací fázoru~E}
 \label{XMLE}
-\begin{spverbatim}
+\small\begin{spverbatim}
   <module:volume>
     <module:quantity id="rf_te_permittivity" shortname="rf_eps"/>
     <module:quantity id="rf_te_permeability" shortname="rf_mur"/>
@@ -3237,8 +3232,8 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
 \subsection*{Zápis okrajových podmínek fázoru~E}
 \label{XMLEs}
 
-\begin{spverbatim}
- <module:surface>
+\small\begin{spverbatim}
+  <module:surface>
     <module:quantity id="rf_te_electric_field_real" shortname="rf_Er"/>
     <module:quantity id="rf_te_electric_field_imag" shortname="rf_Ei"/>
     <module:quantity id="rf_te_magnetic_field_real" shortname="rf_Hr"/>
@@ -3284,20 +3279,16 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
 \subsection*{Zápis slabých formulací fázoru~H}
 \label{XMLH}
 
-\begin{spverbatim}
-<module:volume>
+\small\begin{spverbatim}
+  <module:volume>
     <module:quantity id="rf_tm_permittivity" shortname="rf_eps"/>
     <module:quantity id="rf_tm_permeability" shortname="rf_mur"/>
     <module:quantity id="rf_tm_conductivity" shortname="rf_gamma"/>
-    <module:quantity id="rf_tm_current_density_external_real" shortname="rf_Jer"/>
-    <module:quantity id="rf_tm_current_density_external_imag" shortname="rf_Jei"/>
     <module:weakforms_volume>
-      <module:weakform_volume analysistype="harmonic" equation="\curl \left( \frac{1}{\mu}\, \curl \vecfaz{H} \right) - \mj \omega \left( \sigma + \mj \omega \varepsilon \right) \vecfaz{H} = - \curl \vecfaz{J}_{\mathrm{ext}}">
+      <module:weakform_volume analysistype="harmonic" equation="\curl \left( \frac{1}{\mu}\, \curl \vecfaz{H} \right) - \mj \omega \left( \gamma + \mj \omega \varepsilon \right) \vecfaz{H} = - \curl \vecfaz{J}_{\mathrm{ext}}">
         <module:quantity id="rf_tm_permittivity"/>
         <module:quantity id="rf_tm_permeability"/>
         <module:quantity id="rf_tm_conductivity"/>
-        <module:quantity id="rf_tm_current_density_external_real"/>
-        <module:quantity id="rf_tm_current_density_external_imag"/>
         <module:matrix_form id="form" axi_linear="- r * 1 / (rf_eps * EPS0) * (udr * vdr + udz * vdz) + r * pow(2 * PI * f, 2) * rf_mur * MU0 * uval * vval" axi_newton="0" i="1" j="1" planar_linear="- 1 / (rf_eps * EPS0) * (udx * vdx + udy * vdy) + pow(2 * PI * f, 2) * rf_mur * MU0 * uval * vval" planar_newton="0" symmetric="0"/>
         <module:matrix_form id="form" axi_linear="- r * 1 / (rf_eps * EPS0) * (udr * vdr + udz * vdz) + r * pow(2 * PI * f, 2) * rf_mur * MU0 * uval * vval" axi_newton="0" i="2" j="2" planar_linear="- 1 / (rf_eps * EPS0) * (udx * vdx + udy * vdy) + pow(2 * PI * f, 2) * rf_mur * MU0 * uval * vval" planar_newton="0" symmetric="0"/>
         <module:matrix_form id="form" axi_linear="r * 2 * PI * f * rf_gamma * 1 / (rf_eps * EPS0) * uval * vval" axi_newton="0" i="1" j="2" planar_linear="2 * PI * f * rf_gamma * 1 / (rf_eps * EPS0) * uval * vval" planar_newton="0"/>
@@ -3313,14 +3304,15 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
 \subsection*{Zápis okrajových podmínek fázoru~H}
 \label{XMLHs}
 
-\begin{spverbatim}
- <module:surface>
+\small\begin{spverbatim}
+  <module:surface>
     <module:quantity id="rf_tm_electric_field_real" shortname="rf_Er"/>
     <module:quantity id="rf_tm_electric_field_imag" shortname="rf_Ei"/>
     <module:quantity id="rf_tm_magnetic_field_real" shortname="rf_Hr"/>
     <module:quantity id="rf_tm_magnetic_field_imag" shortname="rf_Hi"/>
     <module:quantity id="rf_tm_surface_current_real" shortname="rf_Jr"/>
     <module:quantity id="rf_tm_surface_current_imag" shortname="rf_Ji"/>
+    <module:quantity id="rf_tm_conductivity" shortname="gamma"/>
     <module:quantity id="rf_tm_impedance" shortname="rf_Z0"/>
     <module:weakforms_surface>
       <module:weakform_surface analysistype="harmonic" default="rf_tm_magnetic_field">
@@ -3336,16 +3328,17 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
           <module:vector_form id="form" axi_linear="- 2 * PI * f * rf_Ei * r * vval" axi_newton="0" i="1" j="1" planar_linear="- 2 * PI * f * rf_Ei * vval" planar_newton="0"/>
           <module:vector_form id="form" axi_linear="2 * PI * f * rf_Er * r * vval" axi_newton="0" i="2" j="2" planar_linear="2 * PI * f * rf_Er * vval" planar_newton="0"/>
         </module:boundary>
-        <module:boundary equation="\faz{J}_{t} = - \frac{1}{\omega \mu} \frac{\partial \vecfaz{E}}{\partial n_0} = \faz{J}_0" id="rf_tm_surface_current" name="Surface current">
+        <module:boundary equation="\faz{J}_{t} = - \frac{\gamma}{\omega \varepsilon} \frac{\partial \vecfaz{H}}{\partial n_0} = \faz{J}_0" id="rf_tm_surface_current" name="Surface current">
           <module:quantity id="rf_tm_surface_current_real"/>
           <module:quantity id="rf_tm_surface_current_imag"/>
-          <module:vector_form axi_linear="- 2 * PI * f * rf_Ji * r * vval" axi_newton="0" i="1" id="form" j="1" planar_linear="- 2 * PI * f * rf_Ji * vval" planar_newton="0"/>
-          <module:vector_form axi_linear="2 * PI * f * rf_Jr * r * vval" axi_newton="0" i="2" id="form" j="2" planar_linear="2 * PI * f * rf_Jr * vval" planar_newton="0"/>
+          <module:quantity id="rf_tm_conductivity"/>
+          <module:vector_form axi_linear="- 2 * PI * f * rf_Ji / gamma * r * vval" axi_newton="0" i="1" id="form" j="1" planar_linear="- 2 * PI * f / gamma * rf_Ji * vval" planar_newton="0"/>
+          <module:vector_form axi_linear="2 * PI * f * rf_Jr / gamma * r * vval" axi_newton="0" i="2" id="form" j="2" planar_linear="2 * PI * f / gamma * rf_Jr * vval" planar_newton="0"/>
         </module:boundary>
-        <module:boundary equation="- \frac{1}{\omega \mu} \frac{\partial \vecfaz{E}}{\partial n_0} = \sqrt{\frac{\varepsilon - \mj \sigma / \omega}{\mu}} \vecfaz{E}" id="rf_tm_impedance" name="Impedance boundary condition">
+        <module:boundary equation="- \frac{1}{\omega \varepsilon} \frac{\partial \vecfaz{H}}{\partial n_0} = \sqrt{\frac{\mu - \mj \gamma / \omega}{\varepsilon}} \vecfaz{H}" id="rf_tm_impedance" name="Impedance boundary condition">
           <module:quantity id="rf_tm_impedance"/>
-          <module:matrix_form axi_linear="r * 2 * PI * f / rf_Z0 * uval * vval" axi_newton="0" i="1" id="form" j="2" planar_linear="- 2 * PI * f * rf_Z0 / uval * vval" planar_newton="0"/>
-          <module:matrix_form axi_linear="- r * 2 * PI * f / rf_Z0 * uval * vval" axi_newton="0" i="2" id="form" j="1" planar_linear="2 * PI * f * rf_Z0 / uval * vval" planar_newton="0"/>
+          <module:matrix_form axi_linear="r * 2 * PI * f * rf_Z0 * uval * vval" axi_newton="0" i="1" id="form" j="2" planar_linear="2 * PI * f * rf_Z0 * uval * vval" planar_newton="0"/>
+          <module:matrix_form axi_linear="- r * 2 * PI * f * rf_Z0 * uval * vval" axi_newton="0" i="2" id="form" j="1" planar_linear="-2 * PI * f * rf_Z0 * uval * vval" planar_newton="0"/>
           <module:vector_form axi_linear="0" axi_newton="0" i="1" id="form" j="1" planar_linear="0" planar_newton="0"/>
           <module:vector_form axi_linear="0" axi_newton="0" i="2" id="form" j="2" planar_linear="0" planar_newton="0"/>
         </module:boundary>
@@ -3357,8 +3350,93 @@ Agros2D lze dále rozšiřovat a to jak přidáním dalšího fyzikálního pole
 \subsection*{Programový kód postprocessoru}
 \label{postH}
 
-\begin{spverbatim}
-
+\small\begin{spverbatim}
+  <module:postprocessor>
+    <module:localvariables>
+    <module:localvariable id="rf_tm_magnetic_field" name="Magnetic field" shortname="H" shortname_html="&lt;i>H&lt;/i>" shortname_latex="H" type="scalar" unit="A/m" unit_html="A.m&lt;sup>-1&lt;/sup>" unit_latex="A \cdot m^{-1}">
+      <module:expression analysistype="harmonic" axi="sqrt(value1*value1 + value2*value2)" planar="sqrt(value1*value1 + value2*value2)"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_magnetic_field_real" name="Magnetic field - real" shortname="Hr" shortname_html="&lt;i>H&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="H_{r}" type="scalar" unit="A/m" unit_html="A.m&lt;sup>-1&lt;/sup>" unit_latex="A \cdot m^{-1}">
+      <module:expression analysistype="harmonic" axi="value1" planar="value1"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_magnetic_field_imag" name="Magnetic field - imag" shortname="Hi" shortname_html="&lt;i>H&lt;/i>&lt;sub>i&lt;/sub>" shortname_latex="H_{i}" type="scalar" unit="A/m" unit_html="A.m&lt;sup>-1&lt;/sup>" unit_latex="A \cdot m^{-1}">
+      <module:expression analysistype="harmonic" axi="value2" planar="value2"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_flux_density" name="Flux density" shortname="B" shortname_html="&lt;i>B&lt;/i>" shortname_latex="B" type="scalar" unit="T">
+      <module:expression analysistype="harmonic" axi="rf_mur * MU0 * sqrt(value1 * value1 + value2 * value2)" planar="rf_mur * MU0 * sqrt(value1 * value1 + value2 * value2)"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_flux_density_real" name="Flux density - real" shortname="Br" shortname_html="&lt;i>B&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="B_{r}" type="scalar" unit="T">
+      <module:expression analysistype="harmonic" axi="rf_mur * MU0 * value1" planar="rf_mur * MU0 * value1"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_flux_density_imag" name="Flux density - imag" shortname="Bi" shortname_html="&lt;i>B&lt;/i>&lt;sub>i&lt;/sub>" shortname_latex="B_{i}" type="scalar" unit="T">
+      <module:expression analysistype="harmonic" axi="rf_mur * MU0 * value2" planar="rf_mur * MU0 * value2"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_displacement" name="Displacement" shortname="D" shortname_html="&lt;i>D&lt;/i>" shortname_latex="D" type="scalar" unit="C/m2" unit_html="C.m&lt;sup>-2&lt;/sup>" unit_latex="C \cdot m^{-2}">
+      <module:expression analysistype="harmonic" axi="sqrt(pow(rf_eps * EPS0 * (- 1 / (2 * PI * f * rf_eps * EPS0) * dz2) ,2) + pow(rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * (dr2 + (r > 0) * value2 / r)) ,2) + pow(rf_eps * EPS0 * (-1 / (2 * PI * f * rf_eps * EPS0) * dz1) ,2) + pow(rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * (dr1 + (r > 0) * value1 / r)) ,2))" planar="sqrt(pow(rf_eps * EPS0 * (- 1 / (2 * PI * f * rf_eps * EPS0) * dy2) ,2) + pow(1 / (2 * PI * f * rf_eps * EPS0) * dx2 ,2) + pow(rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * dy1) ,2) + pow(rf_eps * EPS0 * (- 1 / (2 * PI * f * rf_eps * EPS0) * dx1) ,2))"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_displacement_real" name="Displacement - real" shortname="Dr" shortname_html="&lt;i>D&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="D_{r}" type="vector" unit="C/m2" unit_html="C.m&lt;sup>-2&lt;/sup>" unit_latex="C \cdot m^{-2}">
+      <module:expression analysistype="harmonic" axi_r="rf_eps * EPS0 * (-1 / (2 * PI * f * rf_eps * EPS0) * dz2)" axi_z="rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * (dr2 + (r > 0) * value2 / r))" planar_x="rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * dy2)" planar_y="rf_eps * EPS0 * (- 1 / (2 * PI * f * rf_eps * EPS0) * dx1)"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_displacement_imag" name="Displacement - imag" shortname="Di" shortname_html="&lt;i>D&lt;/i>&lt;sub>i&lt;/sub>" shortname_latex="D_{i}" type="vector" unit="C/m2" unit_html="C.m&lt;sup>-2&lt;/sup>" unit_latex="C \cdot m^{-2}">
+      <module:expression analysistype="harmonic" axi_r="rf_eps * EPS0 * (-1 / (2 * PI * f * rf_eps * EPS0) * dz1)" axi_z="rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * (dr1 + (r > 0) * value1 / r))" planar_x="rf_eps * EPS0 * (1 / (2 * PI * f * rf_eps * EPS0) * dy1)" planar_y="rf_eps * EPS0 * (- 1 / (2 * PI * f * rf_eps * EPS0) * dx1)"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_surface_current_real" name="Current density - real" shortname="Jr" shortname_html="&lt;i>J&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="J_{r}" type="vector" unit="A/m2" unit_html="A.m&lt;sup>-2&lt;/sup>" unit_latex="A \cdot m^{-2}">
+      <module:expression analysistype="harmonic" axi_r="rf_gamma * (-1 / (2 * PI * f * rf_eps * EPS0) * dz2)" axi_z="rf_gamma * (1 / (2 * PI * f * rf_eps * EPS0) * (dr2 + (r > 0) * value2 / r))" planar_x="rf_gamma * (1 / (2 * PI * f * rf_eps * EPS0) * dy2)" planar_y="rf_gamma * (- 1 / (2 * PI * f * rf_eps * EPS0) * dx2)"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_surface_current_imag" name="Current density - imag" shortname="Ji" shortname_html="&lt;i>J&lt;/i>&lt;sub>i&lt;/sub>" shortname_latex="J_{i}" type="vector" unit="A/m2" unit_html="A.m&lt;sup>-2&lt;/sup>" unit_latex="A \cdot m^{-2}">
+      <module:expression analysistype="harmonic"  axi_r="rf_gamma * (-1 / (2 * PI * f * rf_eps * EPS0) * dz1)" axi_z="rf_gamma * (1 / (2 * PI * f * rf_eps * EPS0) * (dr1 + (r > 0) * value1 / r))" planar_x="rf_gamma * (1 / (2 * PI * f * rf_eps * EPS0) * dy1)" planar_y="rf_gamma * (- 1 / (2 * PI * f * rf_eps * EPS0) * dx1)"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_electric_field" name="Electric field" shortname="E" shortname_html="&lt;i>E&lt;/i>" shortname_latex="E" type="scalar" unit="V/m" unit_html="V.m&lt;sup>-1&lt;/sup>">
+      <module:expression analysistype="harmonic" axi="1 / (2 * PI * f * rf_eps * EPS0) * sqrt(pow(- dz2,2) + pow((dr2 + (r > 0) * value2 / r),2) + pow(- dz1,2) + pow((dr1 + (r > 0) * value1 / r), 2) )" planar="1 / (2 * PI * f * rf_eps * EPS0) * sqrt(pow(dy2,2) + pow(- dx2,2) + pow(dy1,2) + pow(- dx1,2))"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_electric_field_real" name="Electric field - real" shortname="Er" shortname_html="&lt;i>E&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="E_{r}" type="vector" unit="V/m" unit_html="V.m&lt;sup>-1&lt;/sup>" unit_latex="V \cdot m^{-1}">
+      <module:expression analysistype="harmonic" axi_r="-1 / (2 * PI * f * rf_eps * EPS0) * dz2" axi_z="1 / (2 * PI * f * rf_eps * EPS0) * (dr2 + (r > 0) * value2 / r)" planar_x="1 / (2 * PI * f * rf_eps * EPS0) * dy2" planar_y="- 1 / (2 * PI * f * rf_eps * EPS0) * dx2"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_electric_field_imag" name="Electric field - imag" shortname="Ei" shortname_html="&lt;i>E&lt;/i>&lt;sub>i&lt;/sub>" shortname_latex="E_{i}" type="vector" unit="V/m" unit_html="V.m&lt;sup>-1&lt;/sup>" unit_latex="V \cdot m^{-1}">
+      <module:expression analysistype="harmonic" axi_r="-1 / (2 * PI * f * rf_eps * EPS0) * dz1" axi_z="1 / (2 * PI * f * rf_eps * EPS0) * (dr1 + (r > 0) * value1 / r)" planar_x="1 / (2 * PI * f * rf_eps * EPS0) * dy1" planar_y="- 1 / (2 * PI * f * rf_eps * EPS0) * dx1"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_poynting_vector" name="Poynting vector" shortname="N" shortname_html="&lt;i>N&lt;/i>" shortname_latex="N" type="vector" unit="W/m2" unit_html="W.m&lt;sup>-2&lt;/sup>" unit_latex="W \cdot m^{-2}">
+      <module:expression analysistype="harmonic" axi_r="- 1 / (2 * PI * f * rf_eps * EPS0) * (dr2 + (r > 0) * value2 / r) * value1 + 1 / (2 * PI * f * rf_eps * EPS0) * (dr1 + (r > 0) * value1 / r) * value2" axi_z="-1 / (2 * PI * f * rf_eps * EPS0) * dz2 * value1 - (-1 / (2 * PI * f * rf_eps * EPS0) * dz1) * value2" planar_x="- 1 / (2 * PI * f * rf_eps * EPS0) * dx2 * value1 - (- 1 / (2 * PI * f * rf_eps * EPS0) * dx1) * value2" planar_y="- 1 / (2 * PI * f * rf_eps * EPS0) * dy2 * value1 + 1 / (2 * PI * f * rf_eps * EPS0) * dy1 * value2"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_permittivity" name="Permittivity" shortname="epsr" shortname_html="&lt;i>&amp;epsilon;&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="\varepsilon_{r}" type="scalar" unit="-" unit_html="-" unit_latex="-">
+      <module:expression analysistype="harmonic" axi="rf_eps" planar="rf_eps"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_permeability" name="Permeability" shortname="mur" shortname_html="&lt;i>&amp;mu;&lt;/i>&lt;sub>r&lt;/sub>" shortname_latex="\mu_{r}" type="scalar" unit="-" unit_html="-" unit_latex="-">
+      <module:expression analysistype="harmonic" axi="rf_mur" planar="rf_mur"/>
+    </module:localvariable>
+    <module:localvariable id="rf_tm_conductivity" name="Conductivity" shortname="gamma" shortname_html="&lt;i>&amp;gamma;&lt;/i>" shortname_latex="\gamma" type="scalar" unit="S/m" unit_html="S.m&lt;sup>-1&lt;/sup>" unit_latex="S \cdot m^{-1}">
+      <module:expression analysistype="harmonic" axi="rf_gamma" planar="rf_gamma"/>
+    </module:localvariable>
+    </module:localvariables>
+    <module:view>
+      <module:scalar_view>
+        <module:default analysistype="harmonic" id="rf_tm_magnetic_field_real"/>
+      </module:scalar_view>
+      <module:vector_view>
+        <module:default analysistype="harmonic" id="rf_tm_magnetic_field_real"/>
+      </module:vector_view>
+    </module:view>
+    <module:volumeintegrals>
+      <module:volumeintegral id="rf_tm_volume" name="Volume" shortname="V" shortname_html="&lt;i>V&lt;/i>" shortname_latex="V" unit="m3" unit_html="m&lt;sup>3&lt;/sup>" unit_latex="m^{3}">
+        <module:expression analysistype="harmonic" axi="2.0 * PI * r" planar="1.0"/>
+      </module:volumeintegral>
+      <module:volumeintegral id="rf_tm_cross_section" name="Cross section" shortname="S" shortname_html="&lt;i>S&lt;/i>" shortname_latex="S" unit="m2" unit_html="m&lt;sup>2&lt;/sup>" unit_latex="m^{2}">
+        <module:expression analysistype="harmonic" axi="1.0" planar="1.0"/>
+      </module:volumeintegral>
+      <module:volumeintegral id="rf_tm_magnetic_field" name="Magnetic field" shortname="H" shortname_html="&lt;i>H&lt;/i>" shortname_latex="H" unit="A m" unit_html="A.m" unit_latex="m^{2}">
+        <module:expression analysistype="harmonic" axi="sqrt(value1*value1 + value2*value2)" planar="sqrt(value1*value1 + value2*value2)"/>
+      </module:volumeintegral>
+    </module:volumeintegrals>
+    <module:surfaceintegrals>
+      <module:surfaceintegral id="rf_tm_length" name="Length" shortname="l" shortname_html="&lt;i>l&lt;/i>" shortname_latex="l" unit="m" unit_html="m" unit_latex="m">
+        <module:expression analysistype="harmonic" axi="1.0" planar="1.0"/>
+      </module:surfaceintegral>
+      <module:surfaceintegral id="rf_tm_surface" name="Surface" shortname="S" shortname_html="&lt;i>S&lt;/i>" shortname_latex="S" unit="m2" unit_html="m&lt;sup>2&lt;/sup>" unit_latex="m^{2}">
+        <module:expression analysistype="harmonic" axi="2.0 * PI * r" planar="1.0"/>
+      </module:surfaceintegral>
+    </module:surfaceintegrals>
+    <module:force/>
+  </module:postprocessor>
 \end{spverbatim}
 
 

@@ -25,7 +25,7 @@
     <module:quantity id="rf_tm_permeability" shortname="rf_mur"/>
     <module:quantity id="rf_tm_conductivity" shortname="rf_gamma"/>
     <module:weakforms_volume>
-      <module:weakform_volume analysistype="harmonic" equation="\curl \left( \frac{1}{\mu}\, \curl \vecfaz{H} \right) - \mj \omega \left( \sigma + \mj \omega \varepsilon \right) \vecfaz{H} = - \curl \vecfaz{J}_{\mathrm{ext}}">
+      <module:weakform_volume analysistype="harmonic" equation="\curl \left( \frac{1}{\mu}\, \curl \vecfaz{H} \right) - \mj \omega \left( \gamma + \mj \omega \varepsilon \right) \vecfaz{H} = - \curl \vecfaz{J}_{\mathrm{ext}}">
         <module:quantity id="rf_tm_permittivity"/>
         <module:quantity id="rf_tm_permeability"/>
         <module:quantity id="rf_tm_conductivity"/>
@@ -62,14 +62,14 @@
           <module:vector_form id="form" axi_linear="- 2 * PI * f * rf_Ei * r * vval" axi_newton="0" i="1" j="1" planar_linear="- 2 * PI * f * rf_Ei * vval" planar_newton="0"/>
           <module:vector_form id="form" axi_linear="2 * PI * f * rf_Er * r * vval" axi_newton="0" i="2" j="2" planar_linear="2 * PI * f * rf_Er * vval" planar_newton="0"/>
         </module:boundary>
-        <module:boundary equation="\faz{J}_{t} = - \frac{1}{\omega \mu} \frac{\partial \vecfaz{E}}{\partial n_0} = \faz{J}_0" id="rf_tm_surface_current" name="Surface current">
+        <module:boundary equation="\faz{J}_{t} = - \frac{\gamma}{\omega \varepsilon} \frac{\partial \vecfaz{H}}{\partial n_0} = \faz{J}_0" id="rf_tm_surface_current" name="Surface current">
           <module:quantity id="rf_tm_surface_current_real"/>
           <module:quantity id="rf_tm_surface_current_imag"/>
           <module:quantity id="rf_tm_conductivity"/>
           <module:vector_form axi_linear="- 2 * PI * f * rf_Ji / gamma * r * vval" axi_newton="0" i="1" id="form" j="1" planar_linear="- 2 * PI * f / gamma * rf_Ji * vval" planar_newton="0"/>
           <module:vector_form axi_linear="2 * PI * f * rf_Jr / gamma * r * vval" axi_newton="0" i="2" id="form" j="2" planar_linear="2 * PI * f / gamma * rf_Jr * vval" planar_newton="0"/>
         </module:boundary>
-        <module:boundary equation="- \frac{1}{\omega \mu} \frac{\partial \vecfaz{E}}{\partial n_0} = \sqrt{\frac{\varepsilon - \mj \sigma / \omega}{\mu}} \vecfaz{E}" id="rf_tm_impedance" name="Impedance boundary condition">
+        <module:boundary equation="- \frac{1}{\omega \varepsilon} \frac{\partial \vecfaz{H}}{\partial n_0} = \sqrt{\frac{\mu - \mj \gamma / \omega}{\varepsilon}} \vecfaz{H}" id="rf_tm_impedance" name="Impedance boundary condition">
           <module:quantity id="rf_tm_impedance"/>
           <module:matrix_form axi_linear="r * 2 * PI * f * rf_Z0 * uval * vval" axi_newton="0" i="1" id="form" j="2" planar_linear="2 * PI * f * rf_Z0 * uval * vval" planar_newton="0"/>
           <module:matrix_form axi_linear="- r * 2 * PI * f * rf_Z0 * uval * vval" axi_newton="0" i="2" id="form" j="1" planar_linear="-2 * PI * f * rf_Z0 * uval * vval" planar_newton="0"/>
